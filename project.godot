@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SlingShotExperiments"
-run/main_scene="res://GameScenes/TestScene.tscn"
+run/main_scene="res://Assets/GameScenes/TestScene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.png"
 

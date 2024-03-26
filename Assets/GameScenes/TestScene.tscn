@@ -1,18 +1,19 @@
-[gd_scene load_steps=41 format=3 uid="uid://wodc5823bj3f"]
+[gd_scene load_steps=42 format=3 uid="uid://wodc5823bj3f"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="1_x1cxe"]
-[ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_y0i1w"]
-[ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="2_0pei7"]
-[ext_resource type="Script" path="res://Assets/Scripts/StaticBodyHittable.gd" id="2_bukdq"]
-[ext_resource type="Script" path="res://Assets/Scripts/DrawCollisionShape.gd" id="3_hcnnh"]
-[ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="4_ngc4t"]
-[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/BasicSwordTest.png" id="5_x8ib4"]
-[ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="6_x5rm2"]
-[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Golem_Mask_12302023.png" id="7_at6bj"]
-[ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="8_5yet7"]
-[ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="9_dmsvm"]
-[ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="10_8fyjh"]
-[ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/BasicEyeEnemy_03202024.png" id="12_627sm"]
+[ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_k22hi"]
+[ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="2_i76sk"]
+[ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="3_ngnro"]
+[ext_resource type="Script" path="res://Assets/Scripts/StaticBodyHittable.gd" id="4_5cyuo"]
+[ext_resource type="Script" path="res://Assets/Scripts/DrawCollisionShape.gd" id="5_fyc66"]
+[ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="6_eep1i"]
+[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/BasicSwordTest.png" id="7_v0pk2"]
+[ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="8_w5cxd"]
+[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Golem_Mask_12302023.png" id="9_a6irq"]
+[ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="10_db6d7"]
+[ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="11_5dfd4"]
+[ext_resource type="PackedScene" uid="uid://bkfau5cnacjck" path="res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn" id="12_k1bmn"]
+[ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="13_s8max"]
+[ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/BasicEyeEnemy_03202024.png" id="14_0wy7m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lh3dv"]
 size = Vector2(593.941, 117.085)
@@ -457,7 +458,7 @@ graph_offset = Vector2(-18, 96)
 size = Vector2(50, 50)
 
 [node name="World2D" type="Node2D"]
-script = ExtResource("1_y0i1w")
+script = ExtResource("1_k22hi")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -467,20 +468,20 @@ offset_top = 23.0
 offset_right = 86.0
 offset_bottom = 54.0
 text = "Debug"
-script = ExtResource("2_0pei7")
+script = ExtResource("2_i76sk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("1_x1cxe")
+script = ExtResource("3_ngnro")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(98, 155)
 rotation = -0.425295
-script = ExtResource("2_bukdq")
+script = ExtResource("4_5cyuo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 position = Vector2(0.758202, -0.222382)
 shape = SubResource("RectangleShape2D_lh3dv")
-script = ExtResource("3_hcnnh")
+script = ExtResource("5_fyc66")
 
 [node name="Golem" type="RigidBody2D" parent="."]
 position = Vector2(270, -271)
@@ -489,7 +490,7 @@ lock_rotation = true
 continuous_cd = 2
 linear_damp = 3.0
 angular_damp = 10.0
-script = ExtResource("4_ngc4t")
+script = ExtResource("6_eep1i")
 
 [node name="Weapon" type="Node2D" parent="Golem"]
 position = Vector2(-4.99999, -79)
@@ -498,10 +499,10 @@ rotation = -1.25612
 [node name="WeaponSprite" type="Sprite2D" parent="Golem/Weapon"]
 position = Vector2(0, -105.165)
 scale = Vector2(0.435, 0.551)
-texture = ExtResource("5_x8ib4")
+texture = ExtResource("7_v0pk2")
 
 [node name="RaycastCollider" type="Node2D" parent="Golem/Weapon"]
-script = ExtResource("6_x5rm2")
+script = ExtResource("8_w5cxd")
 
 [node name="RaycastNode" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(0, -50)
@@ -533,7 +534,7 @@ position = Vector2(0, -267)
 [node name="MaskSprite" type="Sprite2D" parent="Golem"]
 rotation = -1.5708
 scale = Vector2(0.12, 0.1)
-texture = ExtResource("7_at6bj")
+texture = ExtResource("9_a6irq")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Golem"]
 position = Vector2(0, 0.351616)
@@ -547,42 +548,29 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_vv4ts")
 anim_player = NodePath("../AnimationPlayer")
-script = ExtResource("8_5yet7")
+script = ExtResource("10_db6d7")
 
 [node name="InputHandler" type="Node2D" parent="Golem/AnimationTree"]
-script = ExtResource("9_dmsvm")
+script = ExtResource("11_5dfd4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Golem"]
 libraries = {
 "": SubResource("AnimationLibrary_ixbfl")
 }
 
-[node name="BasicEyeEnemy" type="RigidBody2D" parent="."]
-position = Vector2(-321, -260)
-rotation = 0.623042
-linear_damp = 3.0
-script = ExtResource("10_8fyjh")
-health = 30
-
-[node name="Sprite" type="Sprite2D" parent="BasicEyeEnemy"]
-rotation = -1.5708
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("12_627sm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEyeEnemy"]
-shape = SubResource("RectangleShape2D_oymk4")
+[node name="BasicEyeEnemy" parent="." instance=ExtResource("12_k1bmn")]
 
 [node name="BasicEyeEnemy2" type="RigidBody2D" parent="."]
 position = Vector2(729, -372)
 rotation = 0.623042
 linear_damp = 3.0
-script = ExtResource("10_8fyjh")
+script = ExtResource("13_s8max")
 health = 30
 
 [node name="Sprite" type="Sprite2D" parent="BasicEyeEnemy2"]
 rotation = -1.5708
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("12_627sm")
+texture = ExtResource("14_0wy7m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEyeEnemy2"]
 shape = SubResource("RectangleShape2D_oymk4")
@@ -591,13 +579,13 @@ shape = SubResource("RectangleShape2D_oymk4")
 position = Vector2(67, 364)
 rotation = 0.623042
 linear_damp = 3.0
-script = ExtResource("10_8fyjh")
+script = ExtResource("13_s8max")
 health = 30
 
 [node name="Sprite" type="Sprite2D" parent="BasicEyeEnemy3"]
 rotation = -1.5708
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("12_627sm")
+texture = ExtResource("14_0wy7m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEyeEnemy3"]
 shape = SubResource("RectangleShape2D_oymk4")

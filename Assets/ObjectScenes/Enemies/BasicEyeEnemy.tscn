@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkfau5cnacjck"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="1_0dwv7"]
+[ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/BasicEyeEnemy_03202024.png" id="2_rj7tf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oymk4"]
+size = Vector2(50, 50)
+
+[node name="BasicEyeEnemy" type="RigidBody2D"]
+position = Vector2(-321, -260)
+rotation = 0.623042
+linear_damp = 3.0
+script = ExtResource("1_0dwv7")
+health = 30
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_rj7tf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oymk4")
