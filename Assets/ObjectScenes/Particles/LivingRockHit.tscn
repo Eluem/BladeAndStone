@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://dflb3et3ys61a"]
+
+[ext_resource type="Texture2D" uid="uid://bcwuhv74pwb4p" path="res://Assets/Art/Particles/Particle_Wave.png" id="1_0ftk3"]
+[ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="2_46kr4"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Particles/LivingRockHit.gd" id="2_lfa8t"]
+
+[sub_resource type="Curve" id="Curve_ulmw3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_81feh"]
+curve = SubResource("Curve_ulmw3")
+
+[sub_resource type="Curve" id="Curve_m2seb"]
+_data = [Vector2(0, 0.200676), 0.0, 0.0, 0, 0, Vector2(1, 0.806757), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8wiss"]
+curve = SubResource("Curve_m2seb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dip80"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 30.0
+initial_velocity_min = 250.0
+initial_velocity_max = 600.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1000.0
+damping_max = 1000.0
+scale_min = 5.0
+scale_max = 5.0
+scale_over_velocity_max = 600.0
+scale_over_velocity_curve = SubResource("CurveTexture_8wiss")
+color = Color(0.643137, 0.643137, 0.643137, 1)
+alpha_curve = SubResource("CurveTexture_81feh")
+sub_emitter_mode = 1
+sub_emitter_frequency = 15.0
+
+[sub_resource type="Curve" id="Curve_w8b5s"]
+_data = [Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pkgas"]
+curve = SubResource("Curve_w8b5s")
+
+[sub_resource type="Curve" id="Curve_j4wc7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7volg"]
+curve = SubResource("Curve_j4wc7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mgq65"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_max = 180.0
+spread = 90.0
+flatness = 1.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 1.0
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_7volg")
+color = Color(0.643137, 0.643137, 0.643137, 1)
+alpha_curve = SubResource("CurveTexture_pkgas")
+
+[node name="LivingRockHit" type="GPUParticles2D"]
+emitting = false
+sub_emitter = NodePath("TrailDust")
+process_material = SubResource("ParticleProcessMaterial_dip80")
+texture = ExtResource("1_0ftk3")
+one_shot = true
+explosiveness = 1.0
+trail_lifetime = 4.34
+script = ExtResource("2_lfa8t")
+
+[node name="TrailDust" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_mgq65")
+trail_lifetime = 1.0
+trail_sections = 16
+trail_section_subdivisions = 8
+
+[node name="DeleteOnFinish" type="Node" parent="."]
+script = ExtResource("2_46kr4")

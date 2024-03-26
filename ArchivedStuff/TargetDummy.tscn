@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dado8jjx1nlkq"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/RigidBodyHittable.gd" id="1_qgqci"]
+[ext_resource type="Script" path="res://Assets/Scripts/DebugSmileyFace.gd" id="2_gikl2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oymk4"]
+size = Vector2(50, 50)
+
+[node name="TargetDummy" type="RigidBody2D"]
+position = Vector2(-362, 48)
+script = ExtResource("1_qgqci")
+health = 500
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oymk4")
+
+[node name="DebugSmileyFace" type="Node2D" parent="." node_paths=PackedStringArray("collisionShape2D")]
+script = ExtResource("2_gikl2")
+collisionShape2D = NodePath("")

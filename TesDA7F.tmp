@@ -1,0 +1,219 @@
+[gd_scene load_steps=15 format=3 uid="uid://wodc5823bj3f"]
+
+[ext_resource type="Script" path="res://Scripts/Golem.gd" id="1_w87io"]
+[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Art/BasicSwordTest.png" id="2_0o7hd"]
+[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Art/Golem_Mask_12302023.png" id="2_3mwqk"]
+[ext_resource type="Script" path="res://Scripts/MeleeWeaponRaycastCollider.gd" id="3_uuftr"]
+[ext_resource type="Script" path="res://Scripts/PlayerInput.gd" id="3_xbdbu"]
+[ext_resource type="Script" path="res://Scripts/StaticBodyHittable.gd" id="4_bj3hj"]
+[ext_resource type="Script" path="res://Scripts/DebugSmileyFace.gd" id="5_v3a1h"]
+[ext_resource type="Script" path="res://DrawCollisionShape.gd" id="7_1tsae"]
+[ext_resource type="Script" path="res://Scripts/Damageable.gd" id="7_d2a0i"]
+
+[sub_resource type="Animation" id="Animation_8dneb"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-76, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.1754, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_kwt8u"]
+resource_name = "SwingWeapon"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.25, 0, 137, -0.25, 0, 0.25, 0, 39, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-76, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, 70, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.1754, -0.25, 0, 0.25, 0, 1.55357, -0.25, 0, 0.25, 0, 4.2984, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon/RaycastCollider")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Enable"
+}, {
+"args": [],
+"method": &"Disable"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixbfl"]
+_data = {
+"RESET": SubResource("Animation_8dneb"),
+"SwingWeapon": SubResource("Animation_kwt8u")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh3dv"]
+size = Vector2(593.941, 117.085)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oymk4"]
+size = Vector2(50, 50)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Golem" type="RigidBody2D" parent="."]
+inertia = 1.0
+lock_rotation = true
+continuous_cd = 2
+linear_damp = 3.0
+angular_damp = 10.0
+script = ExtResource("1_w87io")
+
+[node name="Weapon" type="Node2D" parent="Golem"]
+position = Vector2(6, -76)
+rotation = -1.1754
+
+[node name="Image" type="Sprite2D" parent="Golem/Weapon"]
+position = Vector2(0, -105.165)
+scale = Vector2(0.435, 0.551)
+texture = ExtResource("2_0o7hd")
+
+[node name="RaycastCollider" type="Node2D" parent="Golem/Weapon"]
+script = ExtResource("3_uuftr")
+
+[node name="RaycastNode" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -50)
+
+[node name="RaycastNode2" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -80)
+
+[node name="RaycastNode3" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -110)
+
+[node name="RaycastNode4" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -140)
+
+[node name="RaycastNode5" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -170)
+
+[node name="RaycastNode6" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -200)
+
+[node name="RaycastNode7" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -230)
+
+[node name="RaycastNode8" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -260)
+
+[node name="RaycastNode9" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -267)
+
+[node name="Sprite2D" type="Sprite2D" parent="Golem"]
+rotation = 4.71239
+scale = Vector2(0.12, 0.1)
+texture = ExtResource("2_3mwqk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Golem"]
+position = Vector2(0, 0.351616)
+rotation = 4.71239
+scale = Vector2(1, 1.00403)
+polygon = PackedVector2Array(0, 75, 20, 65, 34, 48, 39, 10, 51, -49, 44, -65, 16, -75, -16, -75, -44, -65, -51, -49, -39, 10, -34, 48, -20, 65)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Golem"]
+libraries = {
+"": SubResource("AnimationLibrary_ixbfl")
+}
+autoplay = "SwingWeapon"
+
+[node name="PlayerInput" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_xbdbu")
+target = NodePath("../Golem")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(98, 155)
+rotation = -0.425295
+script = ExtResource("4_bj3hj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_1tsae")
+
+[node name="TargetDummy" type="RigidBody2D" parent="."]
+position = Vector2(-362, 48)
+script = ExtResource("7_d2a0i")
+health = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetDummy"]
+shape = SubResource("RectangleShape2D_oymk4")
+
+[node name="DebugSmileyFace" type="Node2D" parent="TargetDummy" node_paths=PackedStringArray("collisionShape2D")]
+script = ExtResource("5_v3a1h")
+collisionShape2D = NodePath("../CollisionShape2D")
+
+[node name="TargetDummy2" type="RigidBody2D" parent="."]
+position = Vector2(193, 266)
+script = ExtResource("7_d2a0i")
+health = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetDummy2"]
+shape = SubResource("RectangleShape2D_oymk4")
+
+[node name="DebugSmileyFace" type="Node2D" parent="TargetDummy2" node_paths=PackedStringArray("collisionShape2D")]
+script = ExtResource("5_v3a1h")
+collisionShape2D = NodePath("../../TargetDummy/CollisionShape2D")

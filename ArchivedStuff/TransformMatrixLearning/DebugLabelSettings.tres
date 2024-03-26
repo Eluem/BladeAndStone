@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dw2dfh2col66j"]
+
+[sub_resource type="SystemFont" id="SystemFont_2gt7r"]
+font_names = PackedStringArray("Arial")
+
+[resource]
+font = SubResource("SystemFont_2gt7r")
+font_size = 30
+font_color = Color(1, 0, 0, 1)

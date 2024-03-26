@@ -1,0 +1,603 @@
+[gd_scene load_steps=41 format=3 uid="uid://wodc5823bj3f"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="1_x1cxe"]
+[ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_y0i1w"]
+[ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="2_0pei7"]
+[ext_resource type="Script" path="res://Assets/Scripts/StaticBodyHittable.gd" id="2_bukdq"]
+[ext_resource type="Script" path="res://Assets/Scripts/DrawCollisionShape.gd" id="3_hcnnh"]
+[ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="4_ngc4t"]
+[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/BasicSwordTest.png" id="5_x8ib4"]
+[ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="6_x5rm2"]
+[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Golem_Mask_12302023.png" id="7_at6bj"]
+[ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="8_5yet7"]
+[ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="9_dmsvm"]
+[ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="10_8fyjh"]
+[ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/BasicEyeEnemy_03202024.png" id="12_627sm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh3dv"]
+size = Vector2(593.941, 117.085)
+
+[sub_resource type="Animation" id="Animation_m6ito"]
+resource_name = "Attack_Swing_Charging"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-30, -0.25, 0, 0.25, 0, -71, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-101, -0.25, 0, 0.25, 0, -105, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.84168, -0.25, 0, 0.25, 0, -2.14655, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.88647, -0.25, 0, 0.25, 0, -2.03092, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_7lpt2"]
+resource_name = "Attack_Swing_HoldCharge"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-71, -0.25, 0, 0.25, 0, -71, -0.25, 0, 0.25, 0, -71, -0.25, 0, 0.25, 0, -71, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0, -103, -0.25, 0, 0.25, 0, -97, -0.25, 0, 0.25, 0, -105, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-2.14655, -0.25, 0, 0.25, 0, -1.88383, -0.25, 0, 0.25, 0, -2.09463, -0.25, 0, 0.25, 0, -2.14655, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-2.03092, -0.25, 0, 0.25, 0, -1.89621, -0.25, 0, 0.25, 0, -1.87097, -0.25, 0, 0.25, 0, -2.03092, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+
+[sub_resource type="Animation" id="Animation_kwt8u"]
+resource_name = "Attack_Swing_Light_Active"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(6, -0.25, 0, 0.229867, 52.1437, 137, -0.075, 0, 0.075, 0, 39, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 3, 1),
+"points": PackedFloat32Array(-76, 0, 0, 0, 0, -3, -0.075, 0, 0.075, 0, 70, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 3, 1),
+"points": PackedFloat32Array(-1.1754, 0, 0, 0, 0, 1.55357, -0.075, 0, 0.075, 0, 4.2984, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon/RaycastCollider")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Enable"
+}, {
+"args": [],
+"method": &"Disable"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.145),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"slash"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tybwd"]
+resource_name = "Attack_Swing_Light_WindDown"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(39, -0.25, 0, 0.25, 0, 137, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(70, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, -76, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(4.2984, -0.25, 0, 0.25, 0, 1.55357, -0.25, 0, 0.25, 0, -1.1754, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_ryek6"]
+resource_name = "Attack_Swing_WindUp"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(52, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-64, -0.25, 0, 0.25, 0, -101, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.10124, -0.25, 0, 0.25, 0, -1.84168, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0, -1.88647, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_ce1ol"]
+resource_name = "Idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(52, -0.25, 0, 0.25, 0, 52, -0.25, 0, 0.25, 0, 48, -0.25, 0, 0.25, 0, 52, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-64, -0.25, 0, 0.25, 0, -71, -0.25, 0, 0.25, 0, -67, -0.25, 0, 0.25, 0, -64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-1.10124, -0.25, 0, 0.25, 0, -1.20022, -0.25, 0, 0.25, 0, -0.974862, -0.25, 0, 0.25, 0, -1.10124, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0, -1.64061, -0.25, 0, 0.4, 0.0370814, -1.51205, -0.3, -0.0358657, 0.25, 0, -1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+
+[sub_resource type="Animation" id="Animation_8dneb"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4.99999, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-79, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.25612, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixbfl"]
+_data = {
+"Attack_Swing_Charging": SubResource("Animation_m6ito"),
+"Attack_Swing_HoldCharge": SubResource("Animation_7lpt2"),
+"Attack_Swing_Light_Active": SubResource("Animation_kwt8u"),
+"Attack_Swing_Light_WindDown": SubResource("Animation_tybwd"),
+"Attack_Swing_WindUp": SubResource("Animation_ryek6"),
+"Idle": SubResource("Animation_ce1ol"),
+"RESET": SubResource("Animation_8dneb")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_voxog"]
+animation = &"Attack_Swing_Charging"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbua3"]
+animation = &"Attack_Swing_HoldCharge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dbuoc"]
+animation = &"Attack_Swing_Light_Active"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tln0r"]
+animation = &"Attack_Swing_Light_WindDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4yeo"]
+animation = &"Attack_Swing_WindUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iingt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8nskt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f3mon"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejk6i"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qgf24"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3hebs"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_recpo"]
+states/Attack_Swing_Charging/node = SubResource("AnimationNodeAnimation_voxog")
+states/Attack_Swing_Charging/position = Vector2(239, 147)
+states/Attack_Swing_HoldCharge/node = SubResource("AnimationNodeAnimation_rbua3")
+states/Attack_Swing_HoldCharge/position = Vector2(239, 239)
+states/Attack_Swing_Light_Active/node = SubResource("AnimationNodeAnimation_dbuoc")
+states/Attack_Swing_Light_Active/position = Vector2(493, 55)
+states/Attack_Swing_WindDown/node = SubResource("AnimationNodeAnimation_tln0r")
+states/Attack_Swing_WindDown/position = Vector2(752, 55)
+states/Attack_Swing_WindUp/node = SubResource("AnimationNodeAnimation_n4yeo")
+states/Attack_Swing_WindUp/position = Vector2(239, 55)
+states/End/position = Vector2(1005, 147)
+states/Start/position = Vector2(-23, 147)
+transitions = ["Start", "Attack_Swing_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_Swing_WindUp", "Attack_Swing_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_Swing_Charging", "Attack_Swing_HoldCharge", SubResource("AnimationNodeStateMachineTransition_f3mon"), "Attack_Swing_WindUp", "Attack_Swing_Light_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Swing_Light_Active", "Attack_Swing_WindDown", SubResource("AnimationNodeStateMachineTransition_qgf24"), "Attack_Swing_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_3hebs")]
+graph_offset = Vector2(-70, -27)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3gsh"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f23j1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4xae"]
+advance_mode = 2
+advance_expression = "consume_tapped()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dsjer"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vv4ts"]
+states/Attack/node = SubResource("AnimationNodeStateMachine_recpo")
+states/Attack/position = Vector2(525, 197)
+states/End/position = Vector2(123, 264)
+states/Idle/node = SubResource("AnimationNodeAnimation_y3gsh")
+states/Idle/position = Vector2(322, 197)
+states/Start/position = Vector2(123, 197)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_f23j1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_p4xae"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_dsjer")]
+graph_offset = Vector2(-18, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oymk4"]
+size = Vector2(50, 50)
+
+[node name="World2D" type="Node2D"]
+script = ExtResource("1_y0i1w")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugButton" type="Button" parent="CanvasLayer"]
+offset_left = 28.0
+offset_top = 23.0
+offset_right = 86.0
+offset_bottom = 54.0
+text = "Debug"
+script = ExtResource("2_0pei7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_x1cxe")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(98, 155)
+rotation = -0.425295
+script = ExtResource("2_bukdq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("3_hcnnh")
+
+[node name="Golem" type="RigidBody2D" parent="."]
+position = Vector2(270, -271)
+inertia = 1.0
+lock_rotation = true
+continuous_cd = 2
+linear_damp = 3.0
+angular_damp = 10.0
+script = ExtResource("4_ngc4t")
+
+[node name="Weapon" type="Node2D" parent="Golem"]
+position = Vector2(-4.99999, -79)
+rotation = -1.25612
+
+[node name="WeaponSprite" type="Sprite2D" parent="Golem/Weapon"]
+position = Vector2(0, -105.165)
+scale = Vector2(0.435, 0.551)
+texture = ExtResource("5_x8ib4")
+
+[node name="RaycastCollider" type="Node2D" parent="Golem/Weapon"]
+script = ExtResource("6_x5rm2")
+
+[node name="RaycastNode" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -50)
+
+[node name="RaycastNode2" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -80)
+
+[node name="RaycastNode3" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -110)
+
+[node name="RaycastNode4" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -140)
+
+[node name="RaycastNode5" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -170)
+
+[node name="RaycastNode6" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -200)
+
+[node name="RaycastNode7" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -230)
+
+[node name="RaycastNode8" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -260)
+
+[node name="RaycastNode9" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+position = Vector2(0, -267)
+
+[node name="MaskSprite" type="Sprite2D" parent="Golem"]
+rotation = -1.5708
+scale = Vector2(0.12, 0.1)
+texture = ExtResource("7_at6bj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Golem"]
+position = Vector2(0, 0.351616)
+rotation = 4.71239
+scale = Vector2(1, 1.00403)
+polygon = PackedVector2Array(0, 75, 20, 65, 34, 48, 39, 10, 51, -49, 44, -65, 16, -75, -16, -75, -44, -65, -51, -49, -39, 10, -34, 48, -20, 65)
+
+[node name="AnimationTree" type="AnimationTree" parent="Golem"]
+libraries = {
+"": SubResource("AnimationLibrary_ixbfl")
+}
+tree_root = SubResource("AnimationNodeStateMachine_vv4ts")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("8_5yet7")
+
+[node name="InputHandler" type="Node2D" parent="Golem/AnimationTree"]
+script = ExtResource("9_dmsvm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Golem"]
+libraries = {
+"": SubResource("AnimationLibrary_ixbfl")
+}
+
+[node name="BasicEyeEnemy" type="RigidBody2D" parent="."]
+position = Vector2(-321, -260)
+rotation = 0.623042
+linear_damp = 3.0
+script = ExtResource("10_8fyjh")
+health = 30
+
+[node name="Sprite" type="Sprite2D" parent="BasicEyeEnemy"]
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_627sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEyeEnemy"]
+shape = SubResource("RectangleShape2D_oymk4")
+
+[node name="BasicEyeEnemy2" type="RigidBody2D" parent="."]
+position = Vector2(729, -372)
+rotation = 0.623042
+linear_damp = 3.0
+script = ExtResource("10_8fyjh")
+health = 30
+
+[node name="Sprite" type="Sprite2D" parent="BasicEyeEnemy2"]
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_627sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEyeEnemy2"]
+shape = SubResource("RectangleShape2D_oymk4")
+
+[node name="BasicEyeEnemy3" type="RigidBody2D" parent="."]
+position = Vector2(67, 364)
+rotation = 0.623042
+linear_damp = 3.0
+script = ExtResource("10_8fyjh")
+health = 30
+
+[node name="Sprite" type="Sprite2D" parent="BasicEyeEnemy3"]
+rotation = -1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_627sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicEyeEnemy3"]
+shape = SubResource("RectangleShape2D_oymk4")
