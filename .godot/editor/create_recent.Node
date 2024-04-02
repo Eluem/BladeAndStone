@@ -1,8 +1,8 @@
+Line2D
+Node2D
 GPUParticles2D
 CPUParticles2D
 TileMap
-Node2D
-Line2D
 Node
 CanvasLayer
 Control

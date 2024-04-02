@@ -15,10 +15,13 @@ var power:float
 var maxLength:float = 200 #The max length that you can drag, anything more is ignored
 var dragThreshold:float = 5 #The max length that you can drag that will count as a tap
 							#before converting to a drag
+var heldTreshold:float = 0.2 #Time before "held" trigger fires, if not dragging
+var heldFired:bool = false #Prevent echoing held
 var inputDebugUI:InputDebugUI
 
 signal drag_release(dragPower:float, dragDir:Vector2)
 signal press_release(holdTime:float)
+signal held_triggered()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +40,9 @@ func _process(delta: float) -> void:
 		dir = startPos - currPos
 		power = (clamp(dir.length(), 0, maxLength)/maxLength)
 		holdTime += delta
+	else:
+		holdTime = 0
+		heldFired = false
 	
 	#Manage drag state/launch flick on drag release
 	if(pressed && !pressing):
@@ -51,6 +57,9 @@ func _process(delta: float) -> void:
 			press_release.emit()
 		released = true
 		pressing = false
+	if(!is_dragging() && holdTime >= heldTreshold && !heldFired):
+		held_triggered.emit()
+		heldFired = true
 	
 	if(debugEnabled):
 		UpdateDebugUI()
@@ -61,7 +70,7 @@ func _process(delta: float) -> void:
 	"""
 
 func is_dragging() -> bool:
-	return pressing && (startPos - currPos).length_squared() > dragThreshold
+	return pressing && (startPos - currPos).length() > dragThreshold
 
 func UpdateDebugUI() -> void:
 	if(justPressed):

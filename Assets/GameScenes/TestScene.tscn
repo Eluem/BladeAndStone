@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://wodc5823bj3f"]
+[gd_scene load_steps=64 format=3 uid="uid://wodc5823bj3f"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_k22hi"]
 [ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="2_i76sk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/BasicSwordTest.png" id="7_v0pk2"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="8_w5cxd"]
 [ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Golem_Mask_12302023.png" id="9_a6irq"]
+[ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="9_acf7s"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="10_db6d7"]
 [ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="11_5dfd4"]
 [ext_resource type="PackedScene" uid="uid://bkfau5cnacjck" path="res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn" id="12_k1bmn"]
@@ -17,6 +18,124 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lh3dv"]
 size = Vector2(593.941, 117.085)
+
+[sub_resource type="Curve" id="Curve_85ku3"]
+_data = [Vector2(0, 1), 0.0, -1.63063, 0, 0, Vector2(0.245562, 0.478488), -1.59666, -1.59666, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_17ds7"]
+resource_name = "Attack_Heavy_Active"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-71, 0, 0, 0, 0, 172, 0, 0, 0, 0, -52, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(105, 0, 0, 0, 0, 5, 0, 0, 0, 0, -174, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-0.994838, 0, 0, 0, 0, -4.71239, 0, 0, 0, 0, -7.56872, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(5.173, -0.25, 0, 0.25, 0, 4.08709, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapon/TrailTarget/HeavyTrail:MAX_LENGTH")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [20, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapon/RaycastCollider:weaponDamage")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Weapon/RaycastCollider:weaponKnockback")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1000.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/RaycastCollider")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Enable"
+}, {
+"args": [],
+"method": &"Disable"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationTree")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_held"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_m6ito"]
 resource_name = "Attack_Swing_Charging"
@@ -40,7 +159,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-101, -0.25, 0, 0.25, 0, -105, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(101, -0.25, 0, 0.25, 0, 105, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6)
 }
 tracks/2/type = "bezier"
@@ -51,7 +170,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-1.84168, -0.25, 0, 0.25, 0, -2.14655, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(4.984, -0.25, 0, 0.25, 0, 5.289, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6)
 }
 tracks/3/type = "bezier"
@@ -62,8 +181,22 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-1.88647, -0.25, 0, 0.25, 0, -2.03092, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(5.028, -0.25, 0, 0.25, 0, 5.173, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6)
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationTree")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_held"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_7lpt2"]
@@ -89,7 +222,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-105, -0.25, 0, 0.25, 0, -103, -0.25, 0, 0.25, 0, -97, -0.25, 0, 0.25, 0, -105, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(105, -0.25, 0, 0.25, 0, 103, -0.25, 0, 0.25, 0, 97, -0.25, 0, 0.25, 0, 105, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1, 2, 3)
 }
 tracks/2/type = "bezier"
@@ -100,7 +233,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-2.14655, -0.25, 0, 0.25, 0, -1.88383, -0.25, 0, 0.25, 0, -2.09463, -0.25, 0, 0.25, 0, -2.14655, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(5.289, -0.25, 0, 0.25, 0, 5.026, -0.25, 0, 0.25, 0, 5.237, -0.25, 0, 0.25, 0, 5.289, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1, 2, 3)
 }
 tracks/3/type = "bezier"
@@ -111,12 +244,12 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-2.03092, -0.25, 0, 0.25, 0, -1.89621, -0.25, 0, 0.25, 0, -1.87097, -0.25, 0, 0.25, 0, -2.03092, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(5.173, -0.25, 0, 0.25, 0, 5.038, -0.25, 0, 0.25, 0, 5.013, -0.25, 0, 0.25, 0, 5.173, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1, 2, 3)
 }
 
 [sub_resource type="Animation" id="Animation_kwt8u"]
-resource_name = "Attack_Swing_Light_Active"
+resource_name = "Attack_LightLeft_Active"
 length = 0.6
 tracks/0/type = "bezier"
 tracks/0/imported = false
@@ -126,7 +259,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 3, 0),
-"points": PackedFloat32Array(6, -0.25, 0, 0.229867, 52.1437, 137, -0.075, 0, 0.075, 0, 39, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(6, 0, 0, 0, 0, 138.145, 0, 0, 0, 0, 39, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.3, 0.6)
 }
 tracks/1/type = "bezier"
@@ -137,7 +270,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(1, 3, 1),
-"points": PackedFloat32Array(-76, 0, 0, 0, 0, -3, -0.075, 0, 0.075, 0, 70, 0, 0, 0, 0),
+"points": PackedFloat32Array(-76, 0, 0, 0, 0, -3, 0, 0, 0, 0, 70, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.3, 0.6)
 }
 tracks/2/type = "bezier"
@@ -148,7 +281,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(1, 3, 1),
-"points": PackedFloat32Array(-1.1754, 0, 0, 0, 0, 1.55357, -0.075, 0, 0.075, 0, 4.2984, 0, 0, 0, 0),
+"points": PackedFloat32Array(-1.1754, 0, 0, 0, 0, 1.55357, 0, 0, 0, 0, 4.2984, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.3, 0.6)
 }
 tracks/3/type = "method"
@@ -182,9 +315,46 @@ tracks/4/keys = {
 "method": &"slash"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapon/TrailTarget/LightTrail:MAX_LENGTH")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [20, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Weapon/RaycastCollider:weaponDamage")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/RaycastCollider:weaponKnockback")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [400.0]
+}
 
 [sub_resource type="Animation" id="Animation_tybwd"]
 resource_name = "Attack_Swing_Light_WindDown"
+length = 0.4
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -192,9 +362,9 @@ tracks/0/path = NodePath("Weapon:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(39, -0.25, 0, 0.25, 0, 137, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(39, 0, 0, 0, 0, 52, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.4)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -203,9 +373,9 @@ tracks/1/path = NodePath("Weapon:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(70, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, -76, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(70, 0, 0, 0, 0, 64, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.4)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -214,9 +384,9 @@ tracks/2/path = NodePath("Weapon:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(4.2984, -0.25, 0, 0.25, 0, 1.55357, -0.25, 0, 0.25, 0, -1.1754, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4.2984, 0, 0, 0, 0, 4.2429, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
 }
 
 [sub_resource type="Animation" id="Animation_ryek6"]
@@ -267,8 +437,245 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.4)
 }
 
+[sub_resource type="Animation" id="Animation_8noys"]
+resource_name = "Attack_LightRight_Active"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(6, 0, 0, 0, 0, 137, 0, 0, 0, 0, 39, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 3, 1),
+"points": PackedFloat32Array(76, 0, 0, 0, 0, 3, 0, 0, 0, 0, -70, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 3, 1),
+"points": PackedFloat32Array(4.317, 0, 0, 0, 0, 1.588, 0, 0, 0, 0, -1.156, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon/RaycastCollider")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Enable"
+}, {
+"args": [],
+"method": &"Disable"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.145),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"slash"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapon/TrailTarget/LightTrail:MAX_LENGTH")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [20, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Weapon/RaycastCollider:weaponDamage")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/RaycastCollider:weaponKnockback")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [400.0]
+}
+
+[sub_resource type="Animation" id="Animation_5kg6s"]
+resource_name = "Attack_LightRight_WindDown"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(39, 0, 0, 0, 0, 137, 0, 0, 0, 0, 52, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-70, 0, 0, 0, 0, 3, 0, 0, 0, 0, 64, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-1.15715, 0, 0, 0, 0, 1.58825, 0, 0, 0, 0, 4.243, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_b6xh4"]
+resource_name = "Attack_LightRight_WindUp"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(52, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0, 101, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4.243, -0.25, 0, 0.25, 0, 4.984, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4.713, -0.25, 0, 0.25, 0, 5.028, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
 [sub_resource type="Animation" id="Animation_ce1ol"]
 resource_name = "Idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(52, -0.25, 0, 0.25, 0, 52, -0.25, 0, 0.25, 0, 48, -0.25, 0, 0.25, 0, 52, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0, 71, -0.25, 0, 0.25, 0, 67, -0.25, 0, 0.25, 0, 64, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-2.04029, -0.25, 0, 0.25, 0, -2.16595, -0.25, 0, 0.25, 0, -1.94081, -0.25, 0, 0.25, 0, -2.04029, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0, -1.50098, -0.25, 0, 0.25, 0, -1.63014, -0.25, 0, 0.25, 0, -1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.4, 2.6, 4)
+}
+
+[sub_resource type="Animation" id="Animation_whlev"]
+resource_name = "Idle_Lefty"
 length = 4.0
 loop_mode = 1
 tracks/0/type = "bezier"
@@ -326,7 +733,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-4.99999, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(52, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -337,7 +744,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-79, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(64, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
@@ -348,7 +755,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-1.25612, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-2.04029, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
@@ -362,32 +769,124 @@ tracks/3/keys = {
 "points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapon/TrailTarget/LightTrail:MAX_LENGTH")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Weapon/TrailTarget/HeavyTrail:MAX_LENGTH")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_3fi7m"]
+resource_name = "Attack_Heavy_WindDown"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-52, 0, 0, 0, 0, 156, 0, 0, 0, 0, 52, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-174, 0, 0, 0, 0, -22, 0, 0, 0, 0, 64, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-7.56872, 0, 0, 0, 0, -4.80436, 0, 0, 0, 0, -2.04, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MaskSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4.08709, 0, 0, 0, 0, 4.71239, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixbfl"]
 _data = {
-"Attack_Swing_Charging": SubResource("Animation_m6ito"),
-"Attack_Swing_HoldCharge": SubResource("Animation_7lpt2"),
-"Attack_Swing_Light_Active": SubResource("Animation_kwt8u"),
-"Attack_Swing_Light_WindDown": SubResource("Animation_tybwd"),
-"Attack_Swing_WindUp": SubResource("Animation_ryek6"),
+"Attack_Heavy_Active": SubResource("Animation_17ds7"),
+"Attack_Heavy_Charging": SubResource("Animation_m6ito"),
+"Attack_Heavy_HoldCharge": SubResource("Animation_7lpt2"),
+"Attack_Heavy_WindDown": SubResource("Animation_3fi7m"),
+"Attack_LightLeft_Active": SubResource("Animation_kwt8u"),
+"Attack_LightLeft_WindDown": SubResource("Animation_tybwd"),
+"Attack_LightLeft_WindUp": SubResource("Animation_ryek6"),
+"Attack_LightRight_Active": SubResource("Animation_8noys"),
+"Attack_LightRight_WindDown": SubResource("Animation_5kg6s"),
+"Attack_LightRight_WindUp": SubResource("Animation_b6xh4"),
 "Idle": SubResource("Animation_ce1ol"),
+"Idle_Lefty": SubResource("Animation_whlev"),
 "RESET": SubResource("Animation_8dneb")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bbq6v"]
+animation = &"Attack_Heavy_Active"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_voxog"]
-animation = &"Attack_Swing_Charging"
+animation = &"Attack_Heavy_Charging"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbua3"]
-animation = &"Attack_Swing_HoldCharge"
+animation = &"Attack_Heavy_HoldCharge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f0d4n"]
+animation = &"Attack_Heavy_WindDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pv843"]
+animation = &"Attack_LightLeft_Active"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5d4fs"]
+animation = &"Attack_LightLeft_WindDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ov32u"]
+animation = &"Attack_LightLeft_WindUp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dbuoc"]
-animation = &"Attack_Swing_Light_Active"
+animation = &"Attack_LightRight_Active"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tln0r"]
-animation = &"Attack_Swing_Light_WindDown"
+animation = &"Attack_LightRight_WindDown"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4yeo"]
-animation = &"Attack_Swing_WindUp"
+animation = &"Attack_LightRight_WindUp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iingt"]
 switch_mode = 2
@@ -396,12 +895,14 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8nskt"]
 switch_mode = 2
 advance_mode = 2
+advance_expression = "held"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f3mon"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejk6i"]
+priority = 2
 switch_mode = 2
 advance_mode = 2
 
@@ -410,24 +911,72 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3hebs"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_biy3r"]
+advance_mode = 2
+advance_expression = "consume_tapped()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cyvjb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tnik0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_msixp"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4jah7"]
+advance_mode = 2
+advance_expression = "consume_tapped()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2kh8l"]
+advance_mode = 2
+advance_expression = "consume_tapped()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wufvn"]
+advance_mode = 2
+advance_expression = "consume_tapped()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x5f6l"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e4gpj"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_recpo"]
-states/Attack_Swing_Charging/node = SubResource("AnimationNodeAnimation_voxog")
-states/Attack_Swing_Charging/position = Vector2(239, 147)
-states/Attack_Swing_HoldCharge/node = SubResource("AnimationNodeAnimation_rbua3")
-states/Attack_Swing_HoldCharge/position = Vector2(239, 239)
-states/Attack_Swing_Light_Active/node = SubResource("AnimationNodeAnimation_dbuoc")
-states/Attack_Swing_Light_Active/position = Vector2(493, 55)
-states/Attack_Swing_WindDown/node = SubResource("AnimationNodeAnimation_tln0r")
-states/Attack_Swing_WindDown/position = Vector2(752, 55)
-states/Attack_Swing_WindUp/node = SubResource("AnimationNodeAnimation_n4yeo")
-states/Attack_Swing_WindUp/position = Vector2(239, 55)
-states/End/position = Vector2(1005, 147)
-states/Start/position = Vector2(-23, 147)
-transitions = ["Start", "Attack_Swing_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_Swing_WindUp", "Attack_Swing_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_Swing_Charging", "Attack_Swing_HoldCharge", SubResource("AnimationNodeStateMachineTransition_f3mon"), "Attack_Swing_WindUp", "Attack_Swing_Light_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Swing_Light_Active", "Attack_Swing_WindDown", SubResource("AnimationNodeStateMachineTransition_qgf24"), "Attack_Swing_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_3hebs")]
-graph_offset = Vector2(-70, -27)
+states/Attack_Heavy_Active/node = SubResource("AnimationNodeAnimation_bbq6v")
+states/Attack_Heavy_Active/position = Vector2(239, 325)
+states/Attack_Heavy_Charging/node = SubResource("AnimationNodeAnimation_voxog")
+states/Attack_Heavy_Charging/position = Vector2(239, 147)
+states/Attack_Heavy_HoldCharge/node = SubResource("AnimationNodeAnimation_rbua3")
+states/Attack_Heavy_HoldCharge/position = Vector2(239, 239)
+states/Attack_Heavy_WindDown/node = SubResource("AnimationNodeAnimation_f0d4n")
+states/Attack_Heavy_WindDown/position = Vector2(239, 409)
+states/Attack_LightLeft_Active/node = SubResource("AnimationNodeAnimation_pv843")
+states/Attack_LightLeft_Active/position = Vector2(493, -50)
+states/Attack_LightLeft_WindDown/node = SubResource("AnimationNodeAnimation_5d4fs")
+states/Attack_LightLeft_WindDown/position = Vector2(765, -50)
+states/Attack_LightLeft_WindUp/node = SubResource("AnimationNodeAnimation_ov32u")
+states/Attack_LightLeft_WindUp/position = Vector2(220, -50)
+states/Attack_LightRight_Active/node = SubResource("AnimationNodeAnimation_dbuoc")
+states/Attack_LightRight_Active/position = Vector2(493, 55)
+states/Attack_LightRight_WindDown/node = SubResource("AnimationNodeAnimation_tln0r")
+states/Attack_LightRight_WindDown/position = Vector2(759, 55)
+states/Attack_LightRight_WindUp/node = SubResource("AnimationNodeAnimation_n4yeo")
+states/Attack_LightRight_WindUp/position = Vector2(239, 55)
+states/End/position = Vector2(1012, 55)
+states/Start/position = Vector2(-25, 55)
+transitions = ["Start", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_LightRight_WindUp", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_Heavy_Charging", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_f3mon"), "Attack_LightRight_WindUp", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_LightRight_Active", "Attack_LightRight_WindDown", SubResource("AnimationNodeStateMachineTransition_qgf24"), "Attack_LightRight_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_3hebs"), "Attack_Heavy_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_biy3r"), "Attack_LightLeft_WindUp", "Attack_LightLeft_Active", SubResource("AnimationNodeStateMachineTransition_cyvjb"), "Attack_LightLeft_Active", "Attack_LightLeft_WindDown", SubResource("AnimationNodeStateMachineTransition_tnik0"), "Attack_LightLeft_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_msixp"), "Attack_LightRight_WindDown", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_4jah7"), "Attack_LightLeft_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2kh8l"), "Attack_Heavy_HoldCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_wufvn"), "Attack_Heavy_Active", "Attack_Heavy_WindDown", SubResource("AnimationNodeStateMachineTransition_x5f6l"), "Attack_Heavy_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_e4gpj")]
+graph_offset = Vector2(-122, 5)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3gsh"]
 animation = &"Idle"
@@ -438,7 +987,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4xae"]
 advance_mode = 2
-advance_expression = "consume_tapped()"
+advance_expression = "consume_tapped() || held"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dsjer"]
 switch_mode = 2
@@ -452,7 +1001,7 @@ states/Idle/node = SubResource("AnimationNodeAnimation_y3gsh")
 states/Idle/position = Vector2(322, 197)
 states/Start/position = Vector2(123, 197)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_f23j1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_p4xae"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_dsjer")]
-graph_offset = Vector2(-18, 96)
+graph_offset = Vector2(-23, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oymk4"]
 size = Vector2(50, 50)
@@ -493,8 +1042,23 @@ angular_damp = 10.0
 script = ExtResource("6_eep1i")
 
 [node name="Weapon" type="Node2D" parent="Golem"]
-position = Vector2(-4.99999, -79)
-rotation = -1.25612
+position = Vector2(52, 64)
+rotation = -2.04029
+
+[node name="TrailTarget" type="Node2D" parent="Golem/Weapon"]
+position = Vector2(0, -145)
+
+[node name="LightTrail" type="Line2D" parent="Golem/Weapon/TrailTarget"]
+width = 180.0
+width_curve = SubResource("Curve_85ku3")
+default_color = Color(0.588235, 0.690196, 0.972549, 0.729412)
+script = ExtResource("9_acf7s")
+
+[node name="HeavyTrail" type="Line2D" parent="Golem/Weapon/TrailTarget"]
+width = 180.0
+width_curve = SubResource("Curve_85ku3")
+default_color = Color(0.862745, 0.0784314, 0.0784314, 0.729412)
+script = ExtResource("9_acf7s")
 
 [node name="WeaponSprite" type="Sprite2D" parent="Golem/Weapon"]
 position = Vector2(0, -105.165)
@@ -503,6 +1067,8 @@ texture = ExtResource("7_v0pk2")
 
 [node name="RaycastCollider" type="Node2D" parent="Golem/Weapon"]
 script = ExtResource("8_w5cxd")
+weaponDamage = 30
+weaponKnockback = 0.0
 
 [node name="RaycastNode" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(0, -50)
@@ -538,9 +1104,14 @@ texture = ExtResource("9_a6irq")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Golem"]
 position = Vector2(0, 0.351616)
-rotation = 4.71239
+rotation = -1.5708
 scale = Vector2(1, 1.00403)
 polygon = PackedVector2Array(0, 75, 20, 65, 34, 48, 39, 10, 51, -49, 44, -65, 16, -75, -16, -75, -44, -65, -51, -49, -39, 10, -34, 48, -20, 65)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Golem"]
+libraries = {
+"": SubResource("AnimationLibrary_ixbfl")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="Golem"]
 libraries = {
@@ -552,11 +1123,6 @@ script = ExtResource("10_db6d7")
 
 [node name="InputHandler" type="Node2D" parent="Golem/AnimationTree"]
 script = ExtResource("11_5dfd4")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Golem"]
-libraries = {
-"": SubResource("AnimationLibrary_ixbfl")
-}
 
 [node name="BasicEyeEnemy" parent="." instance=ExtResource("12_k1bmn")]
 

@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if(button_pressed):
 		buttonHoldTime += delta
 		if(buttonHoldTime >= 1):
-			get_tree().change_scene_to_file("res://GameScenes/TestScene.tscn")
+			get_tree().change_scene_to_file("res://Assets/GameScenes/TestScene.tscn")
 	else:
 		buttonHoldTime = 0
 

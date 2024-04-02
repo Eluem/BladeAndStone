@@ -1,2 +1,3 @@
-res://GameScenes/TestScene.tscn
 res://Assets/GameScenes/TestScene.tscn
+res://Assets/Scripts/DebugButton.gd
+res://Assets/Scripts/PlayerStateMachine.gd
