@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
 
 func press_release() -> void:
 	tapped = true
+	held = false
 
 func held_triggered() -> void:
 	held = true

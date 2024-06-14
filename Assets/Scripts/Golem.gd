@@ -26,13 +26,14 @@ func _physics_process(_delta: float) -> void:
 		apply_torque(10)
 		
 func flick(powerMod:float, dir:Vector2) -> void:
-	apply_central_force(50000 * powerMod * dir)
+	#apply_central_force(50000 * powerMod * dir)
+	apply_central_impulse(1500 * powerMod * dir)
 	targetRotation = dir.angle()
 	targetDir = dir
 	
 func slash() -> void:
 	#Add slight lunge
-	apply_central_force(15000 * transform.x)
+	apply_central_impulse(500 * transform.x)
 	
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if(resetRequested):

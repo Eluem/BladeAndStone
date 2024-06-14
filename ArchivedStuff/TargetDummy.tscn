@@ -14,6 +14,5 @@ health = 500
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oymk4")
 
-[node name="DebugSmileyFace" type="Node2D" parent="." node_paths=PackedStringArray("collisionShape2D")]
+[node name="DebugSmileyFace" type="Node2D" parent="."]
 script = ExtResource("2_gikl2")
-collisionShape2D = NodePath("")
