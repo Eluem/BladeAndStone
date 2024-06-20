@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://wodc5823bj3f"]
+[gd_scene load_steps=76 format=3 uid="uid://wodc5823bj3f"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_k22hi"]
 [ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="2_i76sk"]
@@ -157,7 +157,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(3.413, -0.25, 0, 0.25, 0, 3.718, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-2.87, -0.25, 0, 0.25, 0, -2.565, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6)
 }
 tracks/3/type = "bezier"
@@ -170,6 +170,20 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0.316, -0.25, 0, 0.25, 0, 0.461, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.6)
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationTree")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_held"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_7lpt2"]
@@ -206,7 +220,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(3.718, -0.25, 0, 0.25, 0, 3.455, -0.25, 0, 0.25, 0, 3.666, -0.25, 0, 0.25, 0, 3.718, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-2.565, -0.25, 0, 0.25, 0, -2.828, -0.25, 0, 0.25, 0, -2.617, -0.25, 0, 0.25, 0, -2.565, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1, 2, 3)
 }
 tracks/3/type = "bezier"
@@ -597,6 +611,20 @@ tracks/7/keys = {
 "update": 0,
 "values": [400.0]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationTree")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"clear_held"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_64nr0"]
 resource_name = "Attack_LightRight_FollowThrough"
@@ -755,449 +783,6 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, 0, 0, 0, 0, 0.316, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.4)
-}
-
-[sub_resource type="Animation" id="Animation_2mjtq"]
-resource_name = "Attack_Thrust_Active"
-length = 0.8
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Weapon:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-150, 0, 0, 0, 0, 11, 0, 0, 0, 0, 155, 0, 0, 0, 0, 155, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.8)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Weapon:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(44, 0, 0, 0, 0, 87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.8)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Weapon:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.288524, 0, 0, 0, 0, -0.155486, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.8)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MaskSpriteContainer:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.461, 0, 0, 0, 0, 0.2305, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.8)
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/TrailTarget/HeavyTrail:MAX_LENGTH")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [20, 0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/RaycastCollider:weaponDamage")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [30]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/RaycastCollider:weaponKnockback")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1000.0]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/RaycastCollider")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"Enable"
-}, {
-"args": [],
-"method": &"Disable"
-}]
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:x")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(80, -0.25, 0, 0.25, 0, 80, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:y")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:x")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(80, -0.25, 0, 0.25, 0, 80, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:y")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(20, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:x")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/13/type = "bezier"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:y")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:x")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(170, -0.25, 0, 0.25, 0, 170, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/15/type = "bezier"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:y")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/16/type = "bezier"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:x")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(170, -0.25, 0, 0.25, 0, 170, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/17/type = "bezier"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:y")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(20, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/18/type = "bezier"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:x")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(170, -0.25, 0, 0.25, 0, 170, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8)
-}
-tracks/19/type = "bezier"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:y")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.8, 0.9)
-}
-tracks/20/type = "bezier"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:x")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(267, -0.25, 0, 0.25, 0, 230, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.9)
-}
-tracks/21/type = "bezier"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:y")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-20, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.9)
-}
-tracks/22/type = "bezier"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:x")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(267, -0.25, 0, 0.25, 0, 260, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.9)
-}
-tracks/23/type = "bezier"
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:y")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(20, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.9)
-}
-tracks/24/type = "bezier"
-tracks/24/imported = false
-tracks/24/enabled = true
-tracks/24/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:x")
-tracks/24/interp = 1
-tracks/24/loop_wrap = true
-tracks/24/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(267, -0.25, 0, 0.25, 0, 267, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.9)
-}
-tracks/25/type = "bezier"
-tracks/25/imported = false
-tracks/25/enabled = true
-tracks/25/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:y")
-tracks/25/interp = 1
-tracks/25/loop_wrap = true
-tracks/25/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.9)
-}
-
-[sub_resource type="Animation" id="Animation_w5xkc"]
-resource_name = "Attack_Thrust_Charging"
-length = 0.6
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Weapon:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(39, -0.25, 0, 0.25, 0, -150, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Weapon:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(70, -0.25, 0, 0.25, 0, 44, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Weapon:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(2.727, -0.25, 0, 0.25, 0, 0.288524, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MaskSpriteContainer:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.461, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.6)
-}
-
-[sub_resource type="Animation" id="Animation_s55ki"]
-resource_name = "Attack_Thrust_HoldCharge"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Weapon:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-150, 0, 0, 0, 0, -150, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 3)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Weapon:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(44, 0, 0, 0, 0, 40, -0.25, 0, 0.25, 0, 60, -0.25, 0, 0.25, 0, 44, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Weapon:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.288524, 0, 0, 0, 0, 0.132, -0.25, 0, 0.25, 0, 0.0832062, -0.25, 0, 0.25, 0, 0.288524, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MaskSpriteContainer:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.461, 0, 0, 0, 0, 0.301, -0.25, 0, 0.25, 0, 0.386781, -0.25, 0, 0.25, 0, 0.461, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3)
-}
-
-[sub_resource type="Animation" id="Animation_jmuj4"]
-resource_name = "Attack_Thrust_WindDown"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Weapon:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(155, 0, 0, 0, 0, 52, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Weapon:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, 64, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Weapon:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, 2.672, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MaskSpriteContainer:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="Animation" id="Animation_ce1ol"]
@@ -1368,204 +953,6 @@ tracks/5/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:x")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(50, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:y")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(7.62939e-06, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:x")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(80, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:y")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:x")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(110, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:y")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.52588e-05, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:x")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(140, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/13/type = "bezier"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:y")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(7.62939e-06, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:x")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(170, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/15/type = "bezier"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:y")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.52588e-05, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/16/type = "bezier"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:x")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(200, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/17/type = "bezier"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:y")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(2.28882e-05, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/18/type = "bezier"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:x")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(230, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/19/type = "bezier"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:y")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(2.28882e-05, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/20/type = "bezier"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:x")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(260, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/21/type = "bezier"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:y")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1.14441e-05, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/22/type = "bezier"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:x")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(267, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/23/type = "bezier"
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:y")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(7.62939e-06, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixbfl"]
 _data = {
@@ -1582,10 +969,6 @@ _data = {
 "Attack_LightRight_WindDown_1": SubResource("Animation_5kg6s"),
 "Attack_LightRight_WindDown_2": SubResource("Animation_uxngk"),
 "Attack_LightRight_WindUp": SubResource("Animation_b6xh4"),
-"Attack_Thrust_Active": SubResource("Animation_2mjtq"),
-"Attack_Thrust_Charging": SubResource("Animation_w5xkc"),
-"Attack_Thrust_HoldCharge": SubResource("Animation_s55ki"),
-"Attack_Thrust_WindDown": SubResource("Animation_jmuj4"),
 "Idle": SubResource("Animation_ce1ol"),
 "Idle_Lefty": SubResource("Animation_whlev"),
 "RESET": SubResource("Animation_8dneb")
@@ -1630,25 +1013,13 @@ animation = &"Attack_LightRight_WindDown_2"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4yeo"]
 animation = &"Attack_LightRight_WindUp"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vvnjs"]
-animation = &"Attack_Thrust_Active"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q661e"]
-animation = &"Attack_Thrust_Charging"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tloyf"]
-animation = &"Attack_Thrust_HoldCharge"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_81vfk"]
-animation = &"Attack_Thrust_WindDown"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iingt"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8nskt"]
 switch_mode = 2
 advance_mode = 2
-advance_expression = "held && !dragging"
+advance_expression = "held"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f3mon"]
 switch_mode = 2
@@ -1683,9 +1054,8 @@ advance_mode = 2
 advance_expression = "consume_tapped() || held"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wufvn"]
-xfade_time = 0.1
 advance_mode = 2
-advance_expression = "consume_tapped() || !held"
+advance_expression = "consume_tapped()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x5f6l"]
 switch_mode = 2
@@ -1740,55 +1110,6 @@ xfade_time = 0.2
 advance_mode = 2
 advance_expression = "consume_tapped()"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1r6n5"]
-advance_mode = 2
-advance_expression = "held && dragging"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yqlu0"]
-xfade_time = 0.1
-reset = false
-switch_mode = 1
-advance_mode = 2
-advance_expression = "dragging"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ifmkw"]
-xfade_time = 0.1
-reset = false
-switch_mode = 1
-advance_mode = 2
-advance_expression = "!dragging"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awuxk"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lq10a"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "!dragging"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l0umt"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "dragging"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s34y7"]
-advance_mode = 2
-advance_expression = "consume_dragged() || !held"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0ad8"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7j68x"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pbiku"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "consume_dragged()"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_recpo"]
 states/Attack_Heavy_Active/node = SubResource("AnimationNodeAnimation_bbq6v")
 states/Attack_Heavy_Active/position = Vector2(239, 325)
@@ -1816,18 +1137,10 @@ states/Attack_LightRight_WindDown_2/node = SubResource("AnimationNodeAnimation_k
 states/Attack_LightRight_WindDown_2/position = Vector2(239, -37)
 states/Attack_LightRight_WindUp/node = SubResource("AnimationNodeAnimation_n4yeo")
 states/Attack_LightRight_WindUp/position = Vector2(239, 55)
-states/Attack_Thrust_Active/node = SubResource("AnimationNodeAnimation_vvnjs")
-states/Attack_Thrust_Active/position = Vector2(497, 325)
-states/Attack_Thrust_Charging/node = SubResource("AnimationNodeAnimation_q661e")
-states/Attack_Thrust_Charging/position = Vector2(497, 147)
-states/Attack_Thrust_HoldCharge/node = SubResource("AnimationNodeAnimation_tloyf")
-states/Attack_Thrust_HoldCharge/position = Vector2(497, 239)
-states/Attack_Thrust_WindDown/node = SubResource("AnimationNodeAnimation_81vfk")
-states/Attack_Thrust_WindDown/position = Vector2(497, 409)
 states/End/position = Vector2(1012, 55)
 states/Start/position = Vector2(-25, 55)
-transitions = ["Start", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_LightRight_WindUp", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_Heavy_Charging", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_f3mon"), "Attack_LightRight_WindUp", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Heavy_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_biy3r"), "Attack_LightLeft_WindUp", "Attack_LightLeft_Active", SubResource("AnimationNodeStateMachineTransition_cyvjb"), "Attack_LightLeft_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_msixp"), "Attack_LightRight_WindDown_1", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_4jah7"), "Attack_LightLeft_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2kh8l"), "Attack_Heavy_HoldCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_wufvn"), "Attack_Heavy_Active", "Attack_Heavy_WindDown", SubResource("AnimationNodeStateMachineTransition_x5f6l"), "Attack_Heavy_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_e4gpj"), "Attack_LightRight_Active", "Attack_LightRight_FollowThrough", SubResource("AnimationNodeStateMachineTransition_cf1b0"), "Attack_LightRight_FollowThrough", "Attack_LightRight_WindDown_1", SubResource("AnimationNodeStateMachineTransition_hg0q3"), "Attack_LightRight_FollowThrough", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_uuxf6"), "Attack_LightLeft_Active", "Attack_LightLeft_FollowThrough", SubResource("AnimationNodeStateMachineTransition_3y1e4"), "Attack_LightLeft_FollowThrough", "Attack_LightLeft_WindDown", SubResource("AnimationNodeStateMachineTransition_eakdr"), "Attack_LightLeft_FollowThrough", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2k6ni"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindDown_2", SubResource("AnimationNodeStateMachineTransition_2l3fj"), "Attack_LightRight_WindDown_2", "End", SubResource("AnimationNodeStateMachineTransition_16k8i"), "Attack_LightRight_WindDown_2", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_tmqk6"), "Attack_LightRight_WindUp", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_1r6n5"), "Attack_Heavy_Charging", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_yqlu0"), "Attack_Thrust_Charging", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_ifmkw"), "Attack_Thrust_Charging", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_awuxk"), "Attack_Thrust_HoldCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_lq10a"), "Attack_Heavy_HoldCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_l0umt"), "Attack_Thrust_HoldCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_s34y7"), "Attack_Thrust_Active", "Attack_Thrust_WindDown", SubResource("AnimationNodeStateMachineTransition_a0ad8"), "Attack_Thrust_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_7j68x"), "Attack_Thrust_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_pbiku")]
-graph_offset = Vector2(-68.341, -196.041)
+transitions = ["Start", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_LightRight_WindUp", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_Heavy_Charging", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_f3mon"), "Attack_LightRight_WindUp", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Heavy_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_biy3r"), "Attack_LightLeft_WindUp", "Attack_LightLeft_Active", SubResource("AnimationNodeStateMachineTransition_cyvjb"), "Attack_LightLeft_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_msixp"), "Attack_LightRight_WindDown_1", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_4jah7"), "Attack_LightLeft_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2kh8l"), "Attack_Heavy_HoldCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_wufvn"), "Attack_Heavy_Active", "Attack_Heavy_WindDown", SubResource("AnimationNodeStateMachineTransition_x5f6l"), "Attack_Heavy_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_e4gpj"), "Attack_LightRight_Active", "Attack_LightRight_FollowThrough", SubResource("AnimationNodeStateMachineTransition_cf1b0"), "Attack_LightRight_FollowThrough", "Attack_LightRight_WindDown_1", SubResource("AnimationNodeStateMachineTransition_hg0q3"), "Attack_LightRight_FollowThrough", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_uuxf6"), "Attack_LightLeft_Active", "Attack_LightLeft_FollowThrough", SubResource("AnimationNodeStateMachineTransition_3y1e4"), "Attack_LightLeft_FollowThrough", "Attack_LightLeft_WindDown", SubResource("AnimationNodeStateMachineTransition_eakdr"), "Attack_LightLeft_FollowThrough", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2k6ni"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindDown_2", SubResource("AnimationNodeStateMachineTransition_2l3fj"), "Attack_LightRight_WindDown_2", "End", SubResource("AnimationNodeStateMachineTransition_16k8i"), "Attack_LightRight_WindDown_2", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_tmqk6")]
+graph_offset = Vector2(-38.341, -24)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3gsh"]
 animation = &"Idle"
@@ -1853,7 +1166,7 @@ states/Idle/node = SubResource("AnimationNodeAnimation_y3gsh")
 states/Idle/position = Vector2(288, 197)
 states/Start/position = Vector2(123, 197)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_f23j1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_p4xae"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_dsjer")]
-graph_offset = Vector2(-202, -106)
+graph_offset = Vector2(-162, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oymk4"]
 size = Vector2(50, 50)
@@ -1887,7 +1200,6 @@ script = ExtResource("5_fyc66")
 [node name="Golem" type="RigidBody2D" parent="."]
 position = Vector2(270, -271)
 inertia = 1.0
-can_sleep = false
 lock_rotation = true
 continuous_cd = 2
 linear_damp = 3.0
@@ -1990,7 +1302,6 @@ script = ExtResource("10_db6d7")
 
 [node name="InputHandler" type="Node2D" parent="Golem/AnimationTree"]
 script = ExtResource("11_5dfd4")
-debugEnabled = false
 
 [node name="BasicEyeEnemy" parent="." instance=ExtResource("12_k1bmn")]
 

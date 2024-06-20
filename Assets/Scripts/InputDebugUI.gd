@@ -21,7 +21,7 @@ var startPosLocal:Vector2
 func _ready() -> void:
 	UpdateLocalPositions()
 
-func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pStartPos:Vector2, pCurrPos:Vector2, pPrevPos:Vector2, pDir:Vector2, pPower:float) -> void:
+func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pStartPos:Vector2, pCurrPos:Vector2, pPrevPos:Vector2, pDir:Vector2, pPower:float, pMaxLength:float, pDragThreshold:float) -> void:
 	pressed = pPressed
 	pressing = pPressing
 	holdTime = pHoldTime
@@ -31,6 +31,8 @@ func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pSta
 	prevPos = pPrevPos
 	dir = pDir
 	power = pPower
+	maxLength = pMaxLength
+	dragThreshold = pDragThreshold
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -44,7 +46,7 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	if(pressing && is_dragging() || released):
+	if((pressing && is_dragging()) || released):
 		#Calculate end point with length capped at max power
 		var endPoint:Vector2 = currPosLocal - startPosLocal #get_viewport().get_mouse_position() - startPoint
 		endPoint = startPosLocal + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
@@ -59,9 +61,10 @@ func _draw() -> void:
 	pointCol = Color.GREEN.lerp(Color.RED, holdTime)
 	pointCol.a = timeToDecay
 	draw_circle(currPosLocal, 10, pointCol)
+	draw_arc(startPosLocal, dragThreshold, 0, 360, 360, Color.GREEN, 1, true)
 
 func is_dragging() -> bool:
-	return pressing && (startPos - currPos).length_squared() > dragThreshold
+	return pressing && (startPos - currPos).length_squared() > dragThreshold*dragThreshold
 
 func ScreenPosToLocalPos(pScreenPos:Vector2) -> Vector2:
 	return pScreenPos * (get_viewport_transform() * global_transform);

@@ -1,11 +1,11 @@
 class_name Golem
 extends DebugResettableRigdbody
 var targetRotation:float
-var targetDir:Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationTree/InputHandler.connect("drag_release", flick)
+	$AnimationTree/InputHandler.connect("drag_update", drag_update)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +29,10 @@ func flick(powerMod:float, dir:Vector2) -> void:
 	#apply_central_force(50000 * powerMod * dir)
 	apply_central_impulse(1500 * powerMod * dir)
 	targetRotation = dir.angle()
-	targetDir = dir
+
+func drag_update(powerMod:float, dir:Vector2) -> void:
+	targetRotation = dir.angle()
+
 	
 func slash() -> void:
 	#Add slight lunge

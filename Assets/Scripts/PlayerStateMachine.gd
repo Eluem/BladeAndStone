@@ -6,20 +6,46 @@ var inputHandler:CharacterInputHandler
 @export var tapped:bool
 @export var held:bool
 @export var dragging:bool
+@export var dragged:bool
+
+var tappedMaxBufferTime:float = 0.35
+var tappedBufferTime:float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$InputHandler.connect("press_release", press_release)
+	$InputHandler.connect("drag_release", drag_release)
 	$InputHandler.connect("held_triggered", held_triggered)
+	$InputHandler.connect("drag_triggered", drag_triggered)
+	$InputHandler.connect("drag_cancelled", drag_cancelled)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta:float) -> void:
+	HandleBufferTimers(delta)
 	pass
+
+func HandleBufferTimers(delta:float) -> void:
+	if(tapped):
+		tappedBufferTime += delta
+		if(tappedBufferTime > tappedMaxBufferTime):
+			tapped = false
+			tappedBufferTime = 0
 
 func press_release() -> void:
 	tapped = true
 	held = false
+
+func drag_release(powerMod:float, dir:Vector2) -> void:
+	dragged = true
+	dragging = false
+	held = false
+
+func drag_triggered() -> void:
+	dragging = true
+
+func drag_cancelled() -> void:
+	dragging = false
 
 func held_triggered() -> void:
 	held = true
@@ -30,12 +56,19 @@ func consume_tapped() -> bool:
 		return true
 	return false
 
+func consume_dragged() -> bool:
+	if(dragged):
+		dragged = false
+		return true
+	return false
+
 func consume_tapped_atEnd() -> bool:
 	if(is_animation_finished()):
 		return consume_tapped()
 	return false
 
 func consume_held() -> bool:
+	print("consume_held")
 	if(held):
 		held = false
 		return true
@@ -61,10 +94,11 @@ func get_current_stateMachinePlayback() -> AnimationNodeStateMachinePlayback:
 	return ret
 
 func clear_held() -> void:
+	print("clear_held")
 	held = false
 
 func clear_buffers() -> bool:
-	print("clear buffers")
+	print("clear_buffers")
 	tapped = false
 	held = false
 	dragging = false
