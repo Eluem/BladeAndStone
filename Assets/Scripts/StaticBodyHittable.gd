@@ -11,7 +11,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func HandleHit(pHitData:HitData) -> void:
-	HitEffect(pHitData.position, pHitData.swingDirection.normalized() * pHitData.knockback)
+	HitEffect(pHitData.position, pHitData.hitDirection.normalized() * pHitData.knockback)
 
 func HitEffect(pPosition:Vector2, pForce:Vector2) -> void:
 	if(debugInfo.debugUIEnabled):

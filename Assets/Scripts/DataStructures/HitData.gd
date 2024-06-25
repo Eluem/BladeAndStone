@@ -6,31 +6,34 @@ var normal:Vector2
 var position:Vector2
 var rid:RID
 var shape:Variant
-var swingDirection:Vector2
+var hitDirection:Vector2
 var lookDirection:Vector2
 var damage:int
 var knockback:float
 	
-func _init(pHitData:Dictionary, pSwingDirection:Vector2 = Vector2.ZERO, pLookDirection:Vector2 = Vector2.ZERO, pDamage:int = 0, pKnockback:float = 0) -> void:
-	collider = pHitData.collider
-	collider_id = pHitData.collider_id
-	normal = pHitData.normal
-	position = pHitData.position
-	rid = pHitData.rid
-	shape = pHitData.shape
-	if(pHitData.has("swingDirection")):
-		swingDirection = pHitData.swingDirection
+func _init(pHitResult:Dictionary, pHitDirection:Vector2 = Vector2.ZERO, pLookDirection:Vector2 = Vector2.ZERO, pDamage:int = 0, pKnockback:float = 0, pPosition:Vector2 = Vector2.ZERO) -> void:
+	collider = pHitResult.collider
+	collider_id = pHitResult.collider_id
+	normal = pHitResult.normal
+	if(pHitResult.has("position")):
+		position = pHitResult.position
 	else:
-		swingDirection = pSwingDirection
-	if(pHitData.has(("lookDirection"))):
-		lookDirection = pHitData.lookDirection
+		position = pPosition
+	rid = pHitResult.rid
+	shape = pHitResult.shape
+	if(pHitResult.has("hitDirection")):
+		hitDirection = pHitResult.hitDirection
+	else:
+		hitDirection = pHitDirection
+	if(pHitResult.has(("lookDirection"))):
+		lookDirection = pHitResult.lookDirection
 	else:
 		lookDirection = pLookDirection
-	if(pHitData.has("damage")):
-		damage = pHitData.damage
+	if(pHitResult.has("damage")):
+		damage = pHitResult.damage
 	else:
 		damage = pDamage
-	if(pHitData.has("knockback")):
-		knockback = pHitData.knockback
+	if(pHitResult.has("knockback")):
+		knockback = pHitResult.knockback
 	else:
 		knockback = pKnockback

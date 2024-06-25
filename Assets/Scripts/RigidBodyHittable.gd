@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 func HandleHit(pHitData:HitData) -> void:
 	ApplyKnockback(pHitData.lookDirection as Vector2, pHitData.knockback as float)
 	ApplyDamage(pHitData.damage as int)
-	HitEffect(pHitData.position as Vector2, (pHitData.swingDirection as Vector2).normalized() * (pHitData.knockback as float))
+	HitEffect(pHitData.position as Vector2, (pHitData.hitDirection as Vector2).normalized() * (pHitData.knockback as float))
 
 func ApplyDamage(pDamage:int) -> void:
 	health -= pDamage

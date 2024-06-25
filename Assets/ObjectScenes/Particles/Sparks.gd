@@ -9,12 +9,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-static func Spawn(pParent:Node, pPostion:Vector2, pDirection:Vector2) -> Sparks:
+static func Spawn(pWorld:Node, pPostion:Vector2, pDirection:Vector2) -> Sparks:
 	var ret:Sparks
 	var scene:PackedScene = preload("res://Assets/ObjectScenes/Particles/Sparks.tscn")
 	ret = scene.instantiate()
 	ret.emitting = true
 	ret.position = pPostion
 	ret.direction = pDirection
-	pParent.add_child(ret)
+	pWorld.add_child(ret)
 	return ret

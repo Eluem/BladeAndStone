@@ -36,7 +36,7 @@ func press_release() -> void:
 	tapped = true
 	held = false
 
-func drag_release(powerMod:float, dir:Vector2) -> void:
+func drag_release(_powerMod:float, _dir:Vector2) -> void:
 	dragged = true
 	dragging = false
 	held = false

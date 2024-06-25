@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdo41h662prh"]
+
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/EyeBolt.gd" id="1_csdbx"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BulletWithCCD.gd" id="2_yl5x5"]
+[ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="3_qr273"]
+[ext_resource type="Texture2D" uid="uid://ca60rjiiqjscm" path="res://Assets/Art/EyeProjectile.png" id="4_o3hkd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3d3te"]
+radius = 15.0
+height = 72.0
+
+[sub_resource type="Curve" id="Curve_iagas"]
+_data = [Vector2(0, 0.483516), 0.0, 2.30078, 0, 0, Vector2(0.279476, 1), 0.0, 0.0, 0, 0, Vector2(0.620087, 0.263736), -0.962185, -0.962185, 0, 0, Vector2(1, 0), -0.359497, 0.0, 0, 0]
+point_count = 4
+
+[node name="EyeBolt" type="RigidBody2D"]
+position = Vector2(-243, -250)
+collision_layer = 0
+collision_mask = 0
+continuous_cd = 2
+linear_damp_mode = 1
+script = ExtResource("1_csdbx")
+damage = 10
+knockback = 1000.0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(12, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3d3te")
+disabled = true
+script = ExtResource("2_yl5x5")
+
+[node name="LightTrail" type="Line2D" parent="."]
+position = Vector2(1.52588e-05, 0)
+width = 30.0
+width_curve = SubResource("Curve_iagas")
+default_color = Color(0.588235, 0.690196, 0.972549, 0.729412)
+script = ExtResource("3_qr273")
+MAX_LENGTH = 30
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_o3hkd")

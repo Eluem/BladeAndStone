@@ -1,12 +1,12 @@
 class_name Golem
-extends DebugResettableRigdbody
+extends RigidBodyHittable
 var targetRotation:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationTree/InputHandler.connect("drag_release", flick)
 	$AnimationTree/InputHandler.connect("drag_update", drag_update)
-	pass
+	super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,7 +30,7 @@ func flick(powerMod:float, dir:Vector2) -> void:
 	apply_central_impulse(1500 * powerMod * dir)
 	targetRotation = dir.angle()
 
-func drag_update(powerMod:float, dir:Vector2) -> void:
+func drag_update(_powerMod:float, dir:Vector2) -> void:
 	targetRotation = dir.angle()
 
 	
@@ -39,8 +39,8 @@ func slash() -> void:
 	apply_central_impulse(500 * transform.x)
 	
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if(resetRequested):
-		targetRotation = initialTransform.get_rotation()
+	#if(resetRequested):
+	#	targetRotation = initialTransform.get_rotation()
 		
 	var xform:Transform2D = state.get_transform()
 	xform.x = Vector2(1, 0)
@@ -49,7 +49,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	#xform = xform.rotated_local(targetRotation - xform.get_rotation())
 	state.set_transform(xform)
 	
-	super._integrate_forces(state)
+	#super._integrate_forces(state)
 	
 """
 func _input(event):

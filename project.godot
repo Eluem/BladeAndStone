@@ -27,6 +27,10 @@ gdscript/warnings/unsafe_call_argument=2
 
 window/handheld/orientation=1
 
+[layer_names]
+
+2d_physics/layer_2="HazardDetect"
+
 [physics]
 
 2d/default_gravity_vector=Vector2(0, 0)

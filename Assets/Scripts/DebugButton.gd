@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 func handle_button_up() -> void:
 		if(buttonToggle < 2):
-			buttonToggle += (1 as ButtonToggle)
+			buttonToggle = ((buttonToggle + 1) as ButtonToggle)
 		else:
 			buttonToggle = (0 as ButtonToggle)
 		match buttonToggle:

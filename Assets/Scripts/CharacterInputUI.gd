@@ -86,18 +86,18 @@ func Draw_GuidePath(pBackEndPoint:Vector2) -> void:
 	
 	#draw points out back
 	for i in range(0,5):
-		Draw_GuideArrow((pBackEndPoint/4) * i, frontEndPoint.normalized(), Color.RED, 5, true)
+		Draw_GuideArrow((pBackEndPoint/4) * i, frontEndPoint.normalized(), 5, true)
 		
 	#draw points out front
 	for i in range(1,4):
-		Draw_GuideArrow((frontEndPoint/3) * i, frontEndPoint.normalized(), Color.RED, 5, true)
+		Draw_GuideArrow((frontEndPoint/3) * i, frontEndPoint.normalized(), 5, true)
 
-func Draw_GuideArrow(pPos:Vector2, pDir:Vector2, pColor:Color, pWidth:float = -1, pAntialiased:bool = false) -> void:
+func Draw_GuideArrow(pPos:Vector2, pDir:Vector2, pWidth:float = -1, pAntialiased:bool = false) -> void:
 	#var arrowLength:Vector2 =  pPos+(pDir * 20)
 	var arrowEndRight:Vector2 = pPos - (pDir.rotated(-PI/4) * 50)
 	var arrowEndLeft:Vector2 = pPos - (pDir.rotated(PI/4) * 50)
 	
-	var vectArray:PackedVector2Array
+	var vectArray:PackedVector2Array = []
 	vectArray.append(arrowEndLeft)
 	vectArray.append(pPos)
 	vectArray.append(arrowEndRight)
