@@ -26,7 +26,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(target == null):
 		visionSensor.monitoring = true
+		can_sleep = true
 	else:
+		can_sleep = false
 		visionSensor.monitoring = false
 		ChargeEyeBolt(delta)
 
@@ -57,3 +59,7 @@ func FireEyeBolt() -> void:
 
 func object_detected(pBody:Node2D) -> void:
 	target = pBody
+
+func HandleHit(pHitData:HitData) -> void:
+	super.HandleHit(pHitData)
+	eyeBoltChargeTimer = 0

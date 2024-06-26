@@ -17,6 +17,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lh3dv"]
 size = Vector2(593.941, 117.085)
 
+[sub_resource type="Curve" id="Curve_85ku3"]
+_data = [Vector2(0, 1), 0.0, -0.40966, 0, 0, Vector2(0.510917, 0.483516), -1.35503, -1.35503, 0, 0, Vector2(1, 0), -0.296057, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_qb5rn"]
+_data = [Vector2(0, 0), 0.0, 1.67766, 0, 0, Vector2(0.327511, 0.318681), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.718995, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Animation" id="Animation_17ds7"]
 resource_name = "Attack_Heavy_Active"
 length = 0.6
@@ -842,7 +850,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:x")
+tracks/7/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:x")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -853,7 +861,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:y")
+tracks/8/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:y")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -864,7 +872,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:x")
+tracks/9/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:x")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -875,7 +883,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:y")
+tracks/10/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:y")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -886,7 +894,7 @@ tracks/10/keys = {
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:x")
+tracks/11/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:x")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -897,7 +905,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:y")
+tracks/12/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:y")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -908,7 +916,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:x")
+tracks/13/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:x")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -919,7 +927,7 @@ tracks/13/keys = {
 tracks/14/type = "bezier"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:y")
+tracks/14/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:y")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -930,7 +938,7 @@ tracks/14/keys = {
 tracks/15/type = "bezier"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:x")
+tracks/15/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:x")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -941,7 +949,7 @@ tracks/15/keys = {
 tracks/16/type = "bezier"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:y")
+tracks/16/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:y")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -952,7 +960,7 @@ tracks/16/keys = {
 tracks/17/type = "bezier"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Weapon/RaycastCollider/RaycastNode10:position:x")
+tracks/17/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:x")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -963,7 +971,7 @@ tracks/17/keys = {
 tracks/18/type = "bezier"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Weapon/RaycastCollider/RaycastNode10:position:y")
+tracks/18/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:y")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -974,7 +982,7 @@ tracks/18/keys = {
 tracks/19/type = "bezier"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Weapon/RaycastCollider/RaycastNode11:position:x")
+tracks/19/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:x")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -985,7 +993,7 @@ tracks/19/keys = {
 tracks/20/type = "bezier"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Weapon/RaycastCollider/RaycastNode11:position:y")
+tracks/20/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:y")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -996,7 +1004,7 @@ tracks/20/keys = {
 tracks/21/type = "bezier"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Weapon/RaycastCollider/RaycastNode12:position:x")
+tracks/21/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:x")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -1007,7 +1015,7 @@ tracks/21/keys = {
 tracks/22/type = "bezier"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Weapon/RaycastCollider/RaycastNode12:position:y")
+tracks/22/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:y")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -1018,7 +1026,7 @@ tracks/22/keys = {
 tracks/23/type = "bezier"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Weapon/RaycastCollider/RaycastNode13:position:x")
+tracks/23/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:x")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
@@ -1029,7 +1037,7 @@ tracks/23/keys = {
 tracks/24/type = "bezier"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("Weapon/RaycastCollider/RaycastNode13:position:y")
+tracks/24/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:y")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
@@ -1364,7 +1372,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:x")
+tracks/6/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:x")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1375,7 +1383,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:y")
+tracks/7/path = NodePath("Weapon/RaycastCollider/RaycastNode:position:y")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1386,7 +1394,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:x")
+tracks/8/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:x")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1397,7 +1405,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:y")
+tracks/9/path = NodePath("Weapon/RaycastCollider/RaycastNode2:position:y")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -1408,7 +1416,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:x")
+tracks/10/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:x")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1419,7 +1427,7 @@ tracks/10/keys = {
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:y")
+tracks/11/path = NodePath("Weapon/RaycastCollider/RaycastNode3:position:y")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1430,7 +1438,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:x")
+tracks/12/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:x")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1441,7 +1449,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:y")
+tracks/13/path = NodePath("Weapon/RaycastCollider/RaycastNode4:position:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1452,7 +1460,7 @@ tracks/13/keys = {
 tracks/14/type = "bezier"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:x")
+tracks/14/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:x")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -1463,7 +1471,7 @@ tracks/14/keys = {
 tracks/15/type = "bezier"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:y")
+tracks/15/path = NodePath("Weapon/RaycastCollider/RaycastNode5:position:y")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -1474,7 +1482,7 @@ tracks/15/keys = {
 tracks/16/type = "bezier"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Weapon/RaycastCollider/RaycastNode10:position:x")
+tracks/16/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:x")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -1485,7 +1493,7 @@ tracks/16/keys = {
 tracks/17/type = "bezier"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Weapon/RaycastCollider/RaycastNode10:position:y")
+tracks/17/path = NodePath("Weapon/RaycastCollider/RaycastNode6:position:y")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -1496,7 +1504,7 @@ tracks/17/keys = {
 tracks/18/type = "bezier"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Weapon/RaycastCollider/RaycastNode11:position:x")
+tracks/18/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:x")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -1507,7 +1515,7 @@ tracks/18/keys = {
 tracks/19/type = "bezier"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Weapon/RaycastCollider/RaycastNode11:position:y")
+tracks/19/path = NodePath("Weapon/RaycastCollider/RaycastNode7:position:y")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -1518,7 +1526,7 @@ tracks/19/keys = {
 tracks/20/type = "bezier"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Weapon/RaycastCollider/RaycastNode12:position:x")
+tracks/20/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:x")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -1529,7 +1537,7 @@ tracks/20/keys = {
 tracks/21/type = "bezier"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Weapon/RaycastCollider/RaycastNode12:position:y")
+tracks/21/path = NodePath("Weapon/RaycastCollider/RaycastNode8:position:y")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -1540,7 +1548,7 @@ tracks/21/keys = {
 tracks/22/type = "bezier"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Weapon/RaycastCollider/RaycastNode13:position:x")
+tracks/22/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:x")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -1551,7 +1559,7 @@ tracks/22/keys = {
 tracks/23/type = "bezier"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Weapon/RaycastCollider/RaycastNode13:position:y")
+tracks/23/path = NodePath("Weapon/RaycastCollider/RaycastNode9:position:y")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
@@ -1849,14 +1857,6 @@ states/Start/position = Vector2(123, 197)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_f23j1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_p4xae"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_dsjer")]
 graph_offset = Vector2(-116, 109)
 
-[sub_resource type="Curve" id="Curve_85ku3"]
-_data = [Vector2(0, 1), 0.0, -0.40966, 0, 0, Vector2(0.510917, 0.483516), -1.35503, -1.35503, 0, 0, Vector2(1, 0), -0.296057, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_qb5rn"]
-_data = [Vector2(0, 0), 0.0, 1.67766, 0, 0, Vector2(0.327511, 0.318681), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.718995, 0.0, 0, 0]
-point_count = 3
-
 [node name="World2D" type="Node2D"]
 script = ExtResource("1_k22hi")
 
@@ -1914,23 +1914,6 @@ linear_damp = 3.0
 angular_damp = 10.0
 script = ExtResource("6_eep1i")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Golem"]
-libraries = {
-"": SubResource("AnimationLibrary_ixbfl")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="Golem"]
-libraries = {
-"": SubResource("AnimationLibrary_ixbfl")
-}
-tree_root = SubResource("AnimationNodeStateMachine_vv4ts")
-anim_player = NodePath("../AnimationPlayer")
-script = ExtResource("10_db6d7")
-
-[node name="InputHandler" type="Node2D" parent="Golem/AnimationTree"]
-script = ExtResource("11_5dfd4")
-debugEnabled = false
-
 [node name="Weapon" type="Node2D" parent="Golem"]
 position = Vector2(52, 64)
 rotation = 2.672
@@ -1945,7 +1928,7 @@ width_curve = SubResource("Curve_85ku3")
 default_color = Color(0.588235, 0.690196, 0.972549, 0.729412)
 script = ExtResource("9_acf7s")
 forceTipAlignmentLength = 1.0
-forceTipAlignmentDirection = 3
+forceTipAlignmentDirection = 2
 
 [node name="HeavyTrail" type="Line2D" parent="Golem/Weapon/SlashTrailTarget"]
 position = Vector2(1.52588e-05, 7.62939e-06)
@@ -1954,8 +1937,7 @@ width_curve = SubResource("Curve_85ku3")
 default_color = Color(0.862745, 0.0784314, 0.0784314, 0.729412)
 script = ExtResource("9_acf7s")
 forceTipAlignmentLength = 1.0
-forceTipAlignmentDirection = 3
-debugMode = true
+forceTipAlignmentDirection = 2
 
 [node name="ThrustTrailTarget" type="Node2D" parent="Golem/Weapon"]
 position = Vector2(275, 0)
@@ -1980,54 +1962,38 @@ weaponDamage = 30
 weaponKnockback = 0.0
 
 [node name="RaycastNode" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
-position = Vector2(-60, 0)
-rotation = 1.5708
-
-[node name="RaycastNode2" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
-position = Vector2(-40, 0)
-rotation = 1.5708
-
-[node name="RaycastNode3" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
-position = Vector2(-10, 0)
-rotation = 1.5708
-
-[node name="RaycastNode4" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
-position = Vector2(20, 0)
-rotation = 1.5708
-
-[node name="RaycastNode5" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(50, 7.62939e-06)
 rotation = 1.5708
 
-[node name="RaycastNode6" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode2" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(80, 0)
 rotation = 1.5708
 
-[node name="RaycastNode7" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode3" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(110, 1.52588e-05)
 rotation = 1.5708
 
-[node name="RaycastNode8" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode4" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(140, 7.62939e-06)
 rotation = 1.5708
 
-[node name="RaycastNode9" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode5" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(170, 1.52588e-05)
 rotation = 1.5708
 
-[node name="RaycastNode10" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode6" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(200, 2.28882e-05)
 rotation = 1.5708
 
-[node name="RaycastNode11" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode7" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(230, 2.28882e-05)
 rotation = 1.5708
 
-[node name="RaycastNode12" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode8" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(260, 1.14441e-05)
 rotation = 1.5708
 
-[node name="RaycastNode13" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
+[node name="RaycastNode9" type="Node2D" parent="Golem/Weapon/RaycastCollider"]
 position = Vector2(267, 7.62939e-06)
 rotation = 1.5708
 
@@ -2043,6 +2009,23 @@ position = Vector2(0, 0.351616)
 rotation = -1.5708
 scale = Vector2(1, 1.00403)
 polygon = PackedVector2Array(0, 75, 20, 65, 34, 48, 39, 10, 51, -49, 44, -65, 16, -75, -16, -75, -44, -65, -51, -49, -39, 10, -34, 48, -20, 65)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Golem"]
+libraries = {
+"": SubResource("AnimationLibrary_ixbfl")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Golem"]
+libraries = {
+"": SubResource("AnimationLibrary_ixbfl")
+}
+tree_root = SubResource("AnimationNodeStateMachine_vv4ts")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("10_db6d7")
+
+[node name="InputHandler" type="Node2D" parent="Golem/AnimationTree"]
+script = ExtResource("11_5dfd4")
+debugEnabled = false
 
 [node name="BasicEyeEnemy" parent="." instance=ExtResource("12_k1bmn")]
 rotation = 2.73525

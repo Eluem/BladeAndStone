@@ -1,3 +1,5 @@
 res://Assets/GameScenes/TestScene.tscn
 res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn
 res://Assets/ObjectScenes/Hazards/EyeBolt.tscn
+res://Assets/Scripts/BasicEyeEnemy.gd
+res://Assets/Scripts/Trail.gd
