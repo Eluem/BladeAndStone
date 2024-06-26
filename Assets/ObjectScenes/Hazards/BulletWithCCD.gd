@@ -25,8 +25,8 @@ func AddExceptionRID(pRID:RID) -> void:
 	shapeCast.add_exception_rid(pRID)
 
 func _physics_process(_delta: float) -> void:
+	#shapeCast.force_shapecast_update()
 	shapeCast.target_position = global_position - prevPos
-	shapeCast.force_shapecast_update()
 	
 	var ridCasted:RID
 	var hitResult:Dictionary

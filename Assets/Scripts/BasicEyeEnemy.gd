@@ -6,19 +6,27 @@ var maxSpeed:float = 50 #TODO: Implement max speed
 var maxFollowDist:float = 500**2
 var minFollowDist:float = 300**2
 var eyeBoltChargeTimer:float = 0
-var eyeBoltChargeWaitTime:float = 2
+var eyeBoltChargeWaitTime:float = 4
+var eyeBoltAlmostCharged:float = 2
+var eyeBoltRechargeDelayTimer:float = 1
+var eyeBoltRechargeDelay:float = 1
 var searchTimer:float = 0
 var searchWaitTime:float = 0.5
 var visionSensor:Area2D
+var chargeEffect:GPUParticles2D
+var standardChargeParticleProcessMaterial:ParticleProcessMaterial
+var standardChargeEffectLifeTime:float
+var interruptedChargeParticleProcessMaterial:ParticleProcessMaterial
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
-	
-	
-	#TODO: Make this dynamic.. ideally not in ready, make it when the player gets close enough
-	#to detect
-	#target = (get_node("../Golem") as Node2D)
+	chargeEffect = $ChargeEffect
+	standardChargeParticleProcessMaterial = chargeEffect.process_material
+	standardChargeEffectLifeTime = chargeEffect.lifetime
+	interruptedChargeParticleProcessMaterial = chargeEffect.process_material.duplicate(true)
+	interruptedChargeParticleProcessMaterial.radial_velocity_min = 400
+	interruptedChargeParticleProcessMaterial.orbit_velocity_max = 0
 	visionSensor = $VisionSensor
 	visionSensor.connect("object_detected", object_detected)
 
@@ -48,14 +56,30 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	state.transform = newTransform.looking_at(target.global_position)
 
 func ChargeEyeBolt(delta:float) -> void:
+	if(eyeBoltRechargeDelayTimer < eyeBoltRechargeDelay):
+		eyeBoltRechargeDelayTimer += delta
+		return
+	if(chargeEffect.process_material != standardChargeParticleProcessMaterial):
+		chargeEffect.process_material = standardChargeParticleProcessMaterial
+		chargeEffect.lifetime = standardChargeEffectLifeTime
+		chargeEffect.restart()
 	eyeBoltChargeTimer += delta
+	chargeEffect.emitting = true
+	if(eyeBoltChargeTimer > eyeBoltAlmostCharged):
+		chargeEffect.amount_ratio = 0
+	else:
+		chargeEffect.amount_ratio = clampf(eyeBoltChargeTimer/eyeBoltAlmostCharged, 0, 1)
 	if(eyeBoltChargeTimer >= eyeBoltChargeWaitTime):
 		FireEyeBolt()
+		chargeEffect.emitting = false
 		eyeBoltChargeTimer = 0
+		eyeBoltRechargeDelayTimer = 0
 
 func FireEyeBolt() -> void:
 	var eyeBolt:EyeBolt = EyeBolt.Spawn(get_node("/root"), position, transform.x)
 	eyeBolt.AddCollisionException(get_rid())
+	#Recoil
+	apply_central_impulse(transform.x.normalized() * -500)
 
 func object_detected(pBody:Node2D) -> void:
 	target = pBody
@@ -63,3 +87,13 @@ func object_detected(pBody:Node2D) -> void:
 func HandleHit(pHitData:HitData) -> void:
 	super.HandleHit(pHitData)
 	eyeBoltChargeTimer = 0
+	eyeBoltRechargeDelayTimer = 0
+	chargeEffect.emitting = false
+	chargeEffect.process_material = interruptedChargeParticleProcessMaterial
+	chargeEffect.lifetime = 4
+
+func Die() -> void:
+	chargeEffect.one_shot = true
+	chargeEffect.reparent(get_tree().root.get_child(0))
+	chargeEffect.set_script(load("res://Assets/Scripts/DeleteFinishedParticles.gd"))
+	super.Die()

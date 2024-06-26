@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkfau5cnacjck"]
+[gd_scene load_steps=15 format=3 uid="uid://bkfau5cnacjck"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="1_0dwv7"]
 [ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/BasicEyeEnemy_03202024.png" id="2_rj7tf"]
 [ext_resource type="Script" path="res://Assets/ObjectScenes/Enemies/VisionSensor.gd" id="3_io86t"]
 [ext_resource type="Texture2D" uid="uid://dumms4qtc2q7p" path="res://Assets/Art/Particles/Particle_Bolt.png" id="4_yqy1g"]
-[ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="5_huxja"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jurdh"]
 radius = 48.0
@@ -15,18 +14,6 @@ point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_ce2dp"]
 curve = SubResource("Curve_6eush")
-
-[sub_resource type="Curve" id="Curve_0vwm4"]
-_data = [Vector2(nan, nan), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0, Vector2(nan, nan), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_0vnf7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_1oc5f"]
-curve_x = SubResource("Curve_0vwm4")
-curve_y = SubResource("Curve_0vnf7")
 
 [sub_resource type="Curve" id="Curve_cwplj"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -50,7 +37,6 @@ point_count = 2
 curve = SubResource("Curve_ir7w6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v2t7d"]
-resource_local_to_scene = true
 particle_flag_align_y = true
 particle_flag_disable_z = true
 emission_shape = 6
@@ -58,9 +44,6 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 100.0
 emission_ring_inner_radius = 90.0
-directional_velocity_min = 0.0
-directional_velocity_max = 0.0
-directional_velocity_curve = SubResource("CurveXYZTexture_1oc5f")
 orbit_velocity_min = 1.0
 orbit_velocity_max = 1.0
 orbit_velocity_curve = SubResource("CurveTexture_te03y")
@@ -101,6 +84,3 @@ process_material = SubResource("ParticleProcessMaterial_v2t7d")
 texture = ExtResource("4_yqy1g")
 lifetime = 1.8
 local_coords = true
-
-[node name="DeleteOnFinish" type="Node" parent="ChargeEffect"]
-script = ExtResource("5_huxja")
