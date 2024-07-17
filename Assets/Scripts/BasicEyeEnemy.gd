@@ -1,10 +1,12 @@
 extends RigidBodyHittable
 
 var target:Node2D
+var hasTarget:bool
 var force:float = 500
 var maxSpeed:float = 50 #TODO: Implement max speed
 var maxFollowDist:float = 500**2
 var minFollowDist:float = 300**2
+var rotationSpeed:float = 3
 var eyeBoltChargeTimer:float = 0
 var eyeBoltChargeWaitTime:float = 4
 var eyeBoltAlmostCharged:float = 2
@@ -32,13 +34,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(target == null):
-		visionSensor.monitoring = true
-		can_sleep = true
-	else:
-		can_sleep = false
-		visionSensor.monitoring = false
+	if(target != null):
+		if(!hasTarget):
+			TargetFound()
 		ChargeEyeBolt(delta)
+	elif(hasTarget):
+		TargetLost()
+
 
 func _physics_process(_delta: float) -> void:
 	if(target == null):
@@ -52,8 +54,12 @@ func _physics_process(_delta: float) -> void:
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if(target == null):
 		return
-	var newTransform:Transform2D = state.transform
-	state.transform = newTransform.looking_at(target.global_position)
+	#var newTransform:Transform2D = state.transform
+	#state.transform = newTransform.looking_at(target.global_position)
+	var newTransform:Transform2D
+	newTransform = state.transform.looking_at(target.global_position)
+	newTransform = state.transform.rotated_local(lerp_angle(0, newTransform.get_rotation() - state.transform.get_rotation(), rotationSpeed*state.step))
+	state.transform = newTransform
 
 func ChargeEyeBolt(delta:float) -> void:
 	if(eyeBoltRechargeDelayTimer < eyeBoltRechargeDelay):
@@ -71,8 +77,7 @@ func ChargeEyeBolt(delta:float) -> void:
 		chargeEffect.amount_ratio = clampf(eyeBoltChargeTimer/eyeBoltAlmostCharged, 0, 1)
 	if(eyeBoltChargeTimer >= eyeBoltChargeWaitTime):
 		FireEyeBolt()
-		chargeEffect.emitting = false
-		eyeBoltChargeTimer = 0
+		StopCharging()
 		eyeBoltRechargeDelayTimer = 0
 
 func FireEyeBolt() -> void:
@@ -86,14 +91,29 @@ func object_detected(pBody:Node2D) -> void:
 
 func HandleHit(pHitData:HitData) -> void:
 	super.HandleHit(pHitData)
-	eyeBoltChargeTimer = 0
+	StopCharging()
 	eyeBoltRechargeDelayTimer = 0
-	chargeEffect.emitting = false
 	chargeEffect.process_material = interruptedChargeParticleProcessMaterial
 	chargeEffect.lifetime = 4
+
+func TargetFound() -> void:
+	can_sleep = false
+	visionSensor.monitoring = false
+	hasTarget = true
+
+func TargetLost() -> void:
+	StopCharging()
+	visionSensor.monitoring = true
+	can_sleep = true
+	hasTarget = false
+
+func StopCharging() -> void:
+	eyeBoltChargeTimer = 0
+	chargeEffect.emitting = false
 
 func Die() -> void:
 	chargeEffect.one_shot = true
 	chargeEffect.reparent(get_tree().root.get_child(0))
 	chargeEffect.set_script(load("res://Assets/Scripts/DeleteFinishedParticles.gd"))
 	super.Die()
+	

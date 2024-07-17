@@ -1,4 +1,5 @@
 extends Camera2D
+class_name TrackingCamera
 
 enum TrackingMode {process, physics_process, interpolated}
 
@@ -9,10 +10,7 @@ var prevTransform:Transform2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#TODO: Make this more dynamic?
-	if(trackTarget == null):
-		trackTarget = get_node("../Golem")
-	prevTransform = Transform2D(trackTarget.transform)
+	prevTransform = Transform2D(transform)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,3 +32,7 @@ func UpdateTracking(_delta: float) -> void:
 func UpdateTracking_Interpolated(_delta: float) -> void:
 	transform.origin = prevTransform.interpolate_with(trackTarget.transform, Engine.get_physics_interpolation_fraction()).origin
 	prevTransform = Transform2D(trackTarget.transform)
+
+func SetTrackTarget(pTrackTarget:Node2D) -> void:
+	trackTarget = pTrackTarget
+	#prevTransform = Transform2D(trackTarget.transform)

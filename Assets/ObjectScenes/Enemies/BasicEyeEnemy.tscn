@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="1_0dwv7"]
 [ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/BasicEyeEnemy_03202024.png" id="2_rj7tf"]
-[ext_resource type="Script" path="res://Assets/ObjectScenes/Enemies/VisionSensor.gd" id="3_io86t"]
+[ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="3_io86t"]
 [ext_resource type="Texture2D" uid="uid://dumms4qtc2q7p" path="res://Assets/Art/Particles/Particle_Bolt.png" id="4_yqy1g"]
 [ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="5_huxja"]
 
@@ -91,7 +91,7 @@ script = ExtResource("3_io86t")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionSensor"]
 position = Vector2(-109, 0)
-polygon = PackedVector2Array(0, -50, 0, 50, 1000, 500, 1000, -500)
+polygon = PackedVector2Array(0, -50, 0, 50, 200, 300, 2000, 500, 2000, -500, 200, -300)
 
 [node name="ChargeEffect" type="GPUParticles2D" parent="."]
 position = Vector2(18, 0)

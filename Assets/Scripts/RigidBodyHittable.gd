@@ -3,6 +3,8 @@ class_name RigidBodyHittable
 @export var health:int = 100
 var debugInfo:DebugInfo
 
+signal health_changed(pHealth:int)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
@@ -18,8 +20,13 @@ func HandleHit(pHitData:HitData) -> void:
 
 func ApplyDamage(pDamage:int) -> void:
 	health -= pDamage
+	health_changed.emit(health)
 	if(health <= 0):
 		Die()
+
+func ApplyHeal(pHeal:int) -> void:
+	health += pHeal
+	health_changed.emit(health)
 
 func ApplyKnockback(pDirection:Vector2, pKnockback:float) -> void:
 	apply_central_impulse(pDirection.normalized() * pKnockback)

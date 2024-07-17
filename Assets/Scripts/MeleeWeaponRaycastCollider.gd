@@ -1,4 +1,6 @@
 extends Node2D
+class_name RaycastCollider
+
 @export var enabled:bool = false
 @export var excludeCollision:Array[CollisionObject2D]
 @export var weaponDamage:int = 10

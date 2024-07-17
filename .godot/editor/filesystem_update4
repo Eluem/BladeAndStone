@@ -1,5 +1,9 @@
+res://Assets/GameScenes/VerticalSlice.tscn
+res://Assets/Scripts/PlayerSpawner.gd
+res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn
 res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn
-res://Assets/Scripts/BasicEyeEnemy.gd
+res://Assets/ObjectScenes/Golem.tscn
 res://Assets/GameScenes/TestScene.tscn
-res://Assets/GameScenes/EyeParticleTestScene.tscn
-res://Assets/ObjectScenes/Hazards/Hazard.gd
+res://Assets/ObjectScenes/Hazards/EyeBolt.tscn
+res://Assets/Scripts/DashSmashEnemy.gd
+res://Assets/Scripts/BasicEyeEnemy.gd

@@ -37,6 +37,9 @@ func drag_update(_powerMod:float, dir:Vector2) -> void:
 func slash() -> void:
 	#Add slight lunge
 	apply_central_impulse(500 * transform.x)
+
+func lunge(pForce:float) -> void:
+	apply_central_impulse(pForce * transform.x)
 	
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	#if(resetRequested):
