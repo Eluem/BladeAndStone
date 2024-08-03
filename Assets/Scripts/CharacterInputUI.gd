@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	if((pressing && is_dragging()) || released):
+	if(is_dragging()): #(pressing && is_dragging()) || released):
 		#Calculate end point with length capped at max power
 		var endPoint:Vector2 = currPosRelative - startPosRelative
 		endPoint = startPosRelative + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
@@ -69,7 +69,8 @@ func _draw() -> void:
 	draw_arc(startPosLocal, dragThreshold, 0, 360, 360, touchCircleColorFaded, 1, true)
 
 func is_dragging() -> bool:
-	return pressing && (startPos - currPos).length_squared() > dragThreshold*dragThreshold
+	#return pressing && (startPos - currPos).length_squared() > dragThreshold*dragThreshold
+	return (startPos - currPos).length_squared() > dragThreshold*dragThreshold
 
 func ScreenPosToLocalPos(pScreenPos:Vector2) -> Vector2:
 	return pScreenPos * (get_viewport_transform() * global_transform);

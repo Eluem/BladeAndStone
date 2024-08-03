@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtfhd601lsqa7"]
+[gd_scene load_steps=10 format=3 uid="uid://dtfhd601lsqa7"]
 
 [ext_resource type="Texture2D" uid="uid://nx3tjh03dga8" path="res://Assets/Art/DashSmashEnemy.png" id="1_8e2t7"]
 [ext_resource type="Script" path="res://Assets/Scripts/DashSmashEnemy.gd" id="1_xb7ov"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="2_03b1j"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="2_wycji"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="3_5q65g"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Enemies/SmasherVisualEffect.gd" id="3_agb2v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dfrsi"]
 radius = 71.0
@@ -14,21 +15,27 @@ height = 232.0
 _data = [Vector2(0, 0), 0.0, 0.733974, 0, 0, Vector2(1, 0), -0.331116, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_oswpf"]
+offsets = PackedFloat32Array(0, 0.349206)
+colors = PackedColorArray(0.862745, 0.658824, 0.658824, 0.631373, 0.666667, 0, 0, 0.631373)
+
 [node name="DashSmashEnemy" type="RigidBody2D"]
 mass = 5.0
 script = ExtResource("1_xb7ov")
+health = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-17, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dfrsi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="MainSprite" type="Sprite2D" parent="."]
 rotation = 1.5708
 scale = Vector2(0.18, 0.18)
 texture = ExtResource("1_8e2t7")
 
 [node name="Smasher" type="Node2D" parent="."]
+script = ExtResource("3_agb2v")
 
 [node name="RaycastCollider" type="Node2D" parent="Smasher" node_paths=PackedStringArray("excludeCollision")]
 script = ExtResource("2_03b1j")
@@ -43,12 +50,12 @@ position = Vector2(145, 0)
 width = 60.0
 width_curve = SubResource("Curve_un6cq")
 default_color = Color(0.666667, 0, 0, 0.631373)
+gradient = SubResource("Gradient_oswpf")
 script = ExtResource("3_5q65g")
 forceTipAlignment = false
 
 [node name="RaycastNode2" type="Node2D" parent="Smasher/RaycastCollider"]
 position = Vector2(134, -35)
-rotation = 1.5708
 
 [node name="ThrustTrail" type="Line2D" parent="Smasher/RaycastCollider/RaycastNode2"]
 width = 60.0
@@ -59,7 +66,6 @@ forceTipAlignment = false
 
 [node name="RaycastNode3" type="Node2D" parent="Smasher/RaycastCollider"]
 position = Vector2(134, 35)
-rotation = 1.5708
 
 [node name="ThrustTrail" type="Line2D" parent="Smasher/RaycastCollider/RaycastNode3"]
 width = 60.0
@@ -70,7 +76,6 @@ forceTipAlignment = false
 
 [node name="RaycastNode4" type="Node2D" parent="Smasher/RaycastCollider"]
 position = Vector2(117, -13)
-rotation = 1.5708
 
 [node name="ThrustTrail" type="Line2D" parent="Smasher/RaycastCollider/RaycastNode4"]
 width = 60.0
@@ -81,7 +86,6 @@ forceTipAlignment = false
 
 [node name="RaycastNode5" type="Node2D" parent="Smasher/RaycastCollider"]
 position = Vector2(117, 13)
-rotation = 1.5708
 
 [node name="ThrustTrail" type="Line2D" parent="Smasher/RaycastCollider/RaycastNode5"]
 width = 60.0
@@ -92,7 +96,6 @@ forceTipAlignment = false
 
 [node name="RaycastNode6" type="Node2D" parent="Smasher/RaycastCollider"]
 position = Vector2(101, -60)
-rotation = 1.5708
 
 [node name="ThrustTrail" type="Line2D" parent="Smasher/RaycastCollider/RaycastNode6"]
 width = 60.0
@@ -103,7 +106,6 @@ forceTipAlignment = false
 
 [node name="RaycastNode7" type="Node2D" parent="Smasher/RaycastCollider"]
 position = Vector2(101, 60)
-rotation = 1.5708
 
 [node name="ThrustTrail" type="Line2D" parent="Smasher/RaycastCollider/RaycastNode7"]
 width = 60.0

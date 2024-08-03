@@ -15,7 +15,7 @@ var dir:Vector2
 var power:float
 var maxLength:float = 400 #The max length that you can drag, anything more is ignored
 var dirUpdateThreshold:float = 10 #The max length you can drag before direction info starts updating
-var dragThreshold:float = 40 #The max length that you can drag that will count as a tap
+var dragThreshold:float = 80 #The max length that you can drag that will count as a tap
 							 #before converting to a drag
 var heldTreshold:float = 0.2 #Time before "held" trigger fires, if not dragging
 var heldFired:bool = false #Prevent echoing held

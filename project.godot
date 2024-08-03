@@ -27,6 +27,10 @@ gdscript/warnings/unsafe_call_argument=2
 
 window/handheld/orientation=1
 
+[filesystem]
+
+import/blender/enabled=false
+
 [layer_names]
 
 2d_physics/layer_2="HazardDetect"

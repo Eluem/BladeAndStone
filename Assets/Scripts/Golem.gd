@@ -1,6 +1,7 @@
 class_name Golem
 extends RigidBodyHittable
 var targetRotation:float
+signal exploded(pMainChunk:RigidBody2D)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,11 +27,15 @@ func _physics_process(_delta: float) -> void:
 		apply_torque(10)
 		
 func flick(powerMod:float, dir:Vector2) -> void:
+	if(!isTurningAllowed()):
+		return
 	#apply_central_force(50000 * powerMod * dir)
 	apply_central_impulse(1500 * powerMod * dir)
 	targetRotation = dir.angle()
 
 func drag_update(_powerMod:float, dir:Vector2) -> void:
+	if(!isTurningAllowed()):
+		return
 	targetRotation = dir.angle()
 
 	
@@ -59,3 +64,14 @@ func _input(event):
 	if(event.is_action_pressed("ui_accept")):
 		apply_central_force(Vector2(10, 10))
 """
+
+func Die(pDir:Vector2, pForce:float) -> void:
+	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40))
+	exploded.emit(chunks[0])
+	queue_free()
+
+func GetMainSprite() -> Sprite2D:
+	return $MaskSpriteContainer/MaskSprite
+
+func isTurningAllowed() -> bool:
+	return !($Weapon/RaycastCollider as RaycastCollider).enabled

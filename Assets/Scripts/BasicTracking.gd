@@ -35,4 +35,6 @@ func UpdateTracking_Interpolated(_delta: float) -> void:
 
 func SetTrackTarget(pTrackTarget:Node2D) -> void:
 	trackTarget = pTrackTarget
+	if(trackTarget is Golem):
+		(trackTarget as Golem).exploded.connect(SetTrackTarget)
 	#prevTransform = Transform2D(trackTarget.transform)

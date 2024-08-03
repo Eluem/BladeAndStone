@@ -1,9 +1,9 @@
-res://Assets/GameScenes/VerticalSlice.tscn
-res://Assets/Scripts/PlayerSpawner.gd
 res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn
+res://Assets/Scripts/DashSmashEnemy.gd
+res://Assets/GameScenes/TestScene.tscn
+res://Assets/GameScenes/VerticalSlice.tscn
 res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn
 res://Assets/ObjectScenes/Golem.tscn
-res://Assets/GameScenes/TestScene.tscn
 res://Assets/ObjectScenes/Hazards/EyeBolt.tscn
-res://Assets/Scripts/DashSmashEnemy.gd
-res://Assets/Scripts/BasicEyeEnemy.gd
+res://Assets/Scripts/Golem.gd
+res://Assets/ObjectScenes/Enemies/SmasherVisualEffect.gd

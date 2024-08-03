@@ -111,9 +111,9 @@ func StopCharging() -> void:
 	eyeBoltChargeTimer = 0
 	chargeEffect.emitting = false
 
-func Die() -> void:
+func Die(pDir:Vector2, pForce:float) -> void:
 	chargeEffect.one_shot = true
 	chargeEffect.reparent(get_tree().root.get_child(0))
 	chargeEffect.set_script(load("res://Assets/Scripts/DeleteFinishedParticles.gd"))
-	super.Die()
+	super.Die(pDir, pForce)
 	

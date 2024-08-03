@@ -39,8 +39,8 @@ position = Vector2(10.66, 0)
 [node name="DebugButton" type="Button" parent="CanvasLayer"]
 offset_left = 28.0
 offset_top = 23.0
-offset_right = 86.0
-offset_bottom = 54.0
+offset_right = 161.0
+offset_bottom = 94.0
 text = "Debug"
 script = ExtResource("2_i2dnh")
 
@@ -49,8 +49,8 @@ script = ExtResource("2_i2dnh")
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
 offset_left = 194.0
 offset_top = 29.0
-offset_right = 494.0
-offset_bottom = 56.0
+offset_right = 570.0
+offset_bottom = 87.0
 theme = SubResource("Theme_64y1f")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 value = 50.0

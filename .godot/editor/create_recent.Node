@@ -1,6 +1,7 @@
+Polygon2D
+Node2D
 Timer
 Node
-Node2D
 ProgressBar
 RigidBody2D
 Sprite2D
@@ -12,4 +13,3 @@ Area2D
 ShapeCast2D
 Line2D
 CPUParticles2D
-TileMap

@@ -25,8 +25,9 @@ offset_bottom = 54.0
 text = "Debug"
 script = ExtResource("2_i76sk")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("trackTarget")]
 script = ExtResource("3_ngnro")
+trackTarget = NodePath("../Golem")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(98, 155)
@@ -73,5 +74,11 @@ position = Vector2(-2428, 2033)
 rotation = 5.56395
 
 [node name="DashSmashEnemy" parent="." instance=ExtResource("8_3rh18")]
-position = Vector2(-13, -674)
+position = Vector2(20.0001, -860)
 rotation = -0.757606
+isDummyMode = true
+
+[node name="DashSmashEnemy2" parent="." instance=ExtResource("8_3rh18")]
+position = Vector2(20.0001, -860)
+rotation = -0.757606
+isDummyMode = true
