@@ -1,0 +1,159 @@
+[gd_scene load_steps=15 format=3 uid="uid://cllrar4snib86"]
+
+[ext_resource type="Texture2D" uid="uid://cygn12m6t7nx8" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_B.png" id="1_7300q"]
+[ext_resource type="Texture2D" uid="uid://ql1dag31w1b6" path="res://Assets/Art/UI/PrototypeFont/Font_L.tres" id="2_il1ca"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/ShatterTextOnClick.gd" id="2_skkyn"]
+[ext_resource type="Texture2D" uid="uid://cpycen2rwtl2c" path="res://Assets/Art/UI/PrototypeFont/Font_A1.tres" id="3_mx1jh"]
+[ext_resource type="Texture2D" uid="uid://ct7753ootxwl4" path="res://Assets/Art/UI/PrototypeFont/Font_D.tres" id="4_t2id3"]
+[ext_resource type="Texture2D" uid="uid://drfsdsx3133hg" path="res://Assets/Art/UI/PrototypeFont/Font_E1.tres" id="5_tf2yp"]
+[ext_resource type="Texture2D" uid="uid://65pxx5ikmysy" path="res://Assets/Art/UI/PrototypeFont/Font_Amp.tres" id="6_5tvy1"]
+[ext_resource type="Texture2D" uid="uid://drkecrrydu1es" path="res://Assets/Art/UI/PrototypeFont/Font_S1.tres" id="7_u2gem"]
+[ext_resource type="Texture2D" uid="uid://b8v3qje8vin84" path="res://Assets/Art/UI/PrototypeFont/Font_T1.tres" id="8_c0xhj"]
+[ext_resource type="Texture2D" uid="uid://by6gnjyjy8pd6" path="res://Assets/Art/UI/PrototypeFont/Font_O.tres" id="9_j5tnn"]
+[ext_resource type="Texture2D" uid="uid://nn8t0xjtvx0a" path="res://Assets/Art/UI/PrototypeFont/Font_N.tres" id="10_2fol4"]
+[ext_resource type="Texture2D" uid="uid://b3imu8hry7phm" path="res://Assets/Art/UI/PrototypeFont/Font_E2.tres" id="11_u65yy"]
+[ext_resource type="Texture2D" uid="uid://de7q44ytkx3l6" path="res://Assets/Art/UI/PrototypeFont/Start.tres" id="12_u6wpw"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/StartButton.gd" id="14_ne5bn"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.337255, 0.337255, 1)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 573.0
+offset_top = 225.0
+offset_right = 613.0
+offset_bottom = 265.0
+scale = Vector2(0.57972, 0.57972)
+
+[node name="B" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -342.0
+offset_top = -304.0
+offset_right = -182.0
+offset_bottom = -60.0
+action_mode = 0
+texture_normal = ExtResource("1_7300q")
+stretch_mode = 3
+script = ExtResource("2_skkyn")
+
+[node name="L" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -170.772
+offset_top = -279.445
+offset_right = -68.7721
+offset_bottom = -108.445
+action_mode = 0
+texture_normal = ExtResource("2_il1ca")
+stretch_mode = 3
+
+[node name="A" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -20.6996
+offset_top = -294.97
+offset_right = 77.3004
+offset_bottom = -103.97
+action_mode = 0
+texture_normal = ExtResource("3_mx1jh")
+stretch_mode = 3
+
+[node name="D" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 124.198
+offset_top = -296.695
+offset_right = 208.198
+offset_bottom = -88.695
+action_mode = 0
+texture_normal = ExtResource("4_t2id3")
+stretch_mode = 3
+
+[node name="E" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 265.646
+offset_top = -267.37
+offset_right = 379.646
+offset_bottom = -101.37
+action_mode = 0
+texture_normal = ExtResource("5_tf2yp")
+stretch_mode = 3
+
+[node name="Amp" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -43.1243
+offset_top = -37.9493
+offset_right = 67.8757
+offset_bottom = 117.051
+action_mode = 0
+texture_normal = ExtResource("6_5tvy1")
+stretch_mode = 3
+
+[node name="S" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -369.144
+offset_top = 98.3233
+offset_right = -220.144
+offset_bottom = 339.323
+action_mode = 0
+texture_normal = ExtResource("7_u2gem")
+stretch_mode = 3
+
+[node name="T" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -194.922
+offset_top = 162.147
+offset_right = -74.9217
+offset_bottom = 303.147
+action_mode = 0
+texture_normal = ExtResource("8_c0xhj")
+stretch_mode = 3
+
+[node name="O" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -44.8493
+offset_top = 143.173
+offset_right = 71.1507
+offset_bottom = 314.173
+action_mode = 0
+texture_normal = ExtResource("9_j5tnn")
+stretch_mode = 3
+
+[node name="N" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 115.573
+offset_top = 167.322
+offset_right = 227.573
+offset_bottom = 304.322
+action_mode = 0
+texture_normal = ExtResource("10_2fol4")
+stretch_mode = 3
+
+[node name="E2" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 277.72
+offset_top = 175.947
+offset_right = 355.72
+offset_bottom = 296.947
+action_mode = 0
+texture_normal = ExtResource("11_u65yy")
+stretch_mode = 3
+
+[node name="Start" type="TextureButton" parent="CanvasLayer"]
+offset_left = 361.0
+offset_top = 483.0
+offset_right = 1309.0
+offset_bottom = 740.0
+scale = Vector2(0.468253, 0.468253)
+action_mode = 0
+texture_normal = ExtResource("12_u6wpw")
+stretch_mode = 3
+script = ExtResource("14_ne5bn")

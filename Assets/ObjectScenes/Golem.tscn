@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="2_6q84m"]
 [ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="3_t7135"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="4_emk4k"]
-[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/BasicSwordTest.png" id="5_lksyh"]
+[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/Characters/BasicSwordTest.png" id="5_g7rrp"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="6_5cw8i"]
-[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Golem_Mask_12302023.png" id="7_ifb75"]
+[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Characters/Golem_Mask_12302023.png" id="7_w3f5p"]
 
 [sub_resource type="Animation" id="Animation_17ds7"]
 resource_name = "Attack_Heavy_Active"
@@ -1942,7 +1942,7 @@ forceTipAlignment = false
 position = Vector2(105.165, 0)
 rotation = 1.5708
 scale = Vector2(0.435, 0.551)
-texture = ExtResource("5_lksyh")
+texture = ExtResource("5_g7rrp")
 
 [node name="RaycastCollider" type="Node2D" parent="Weapon" node_paths=PackedStringArray("excludeCollision")]
 script = ExtResource("6_5cw8i")
@@ -2007,7 +2007,7 @@ rotation = 1.5708
 [node name="MaskSprite" type="Sprite2D" parent="MaskSpriteContainer"]
 rotation = -1.5708
 scale = Vector2(0.12, 0.1)
-texture = ExtResource("7_ifb75")
+texture = ExtResource("7_w3f5p")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 0.351616)

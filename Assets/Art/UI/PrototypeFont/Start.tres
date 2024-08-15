@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://de7q44ytkx3l6"]
+
+[ext_resource type="Texture2D" uid="uid://dqkoi47fq3525" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont.png" id="1_c0ier"]
+
+[resource]
+atlas = ExtResource("1_c0ier")
+region = Rect2(9.81126, 533.961, 948.737, 257.682)

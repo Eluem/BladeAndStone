@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpkty60cnxnri"
-path="res://.godot/imported/Golem_Mask_12302023.png-cf5fc70312ae29c35d93aae098d447f6.ctex"
+uid="uid://dv0adyju5746f"
+path="res://.godot/imported/BasicEyeEnemy_03202024.png-a708df897eb4720f8560f64ce85d6b92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Golem_Mask_12302023.png"
-dest_files=["res://.godot/imported/Golem_Mask_12302023.png-cf5fc70312ae29c35d93aae098d447f6.ctex"]
+source_file="res://Assets/Art/Characters/BasicEyeEnemy_03202024.png"
+dest_files=["res://.godot/imported/BasicEyeEnemy_03202024.png-a708df897eb4720f8560f64ce85d6b92.ctex"]
 
 [params]
 

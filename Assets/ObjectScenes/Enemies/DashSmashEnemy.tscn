@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dtfhd601lsqa7"]
 
-[ext_resource type="Texture2D" uid="uid://nx3tjh03dga8" path="res://Assets/Art/DashSmashEnemy.png" id="1_8e2t7"]
+[ext_resource type="Texture2D" uid="uid://nx3tjh03dga8" path="res://Assets/Art/Characters/DashSmashEnemy.png" id="1_8e2t7"]
 [ext_resource type="Script" path="res://Assets/Scripts/DashSmashEnemy.gd" id="1_xb7ov"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="2_03b1j"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="2_wycji"]

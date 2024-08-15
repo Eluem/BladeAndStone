@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SlingShotExperiments"
-run/main_scene="res://Assets/GameScenes/VerticalSlice.tscn"
+run/main_scene="res://Assets/GameScenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.png"
 
@@ -43,4 +43,4 @@ import/blender/enabled=false
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.313726, 0.466667, 0.286275, 1)
+environment/defaults/default_clear_color=Color(0.0745098, 0.427451, 0.0823529, 1)

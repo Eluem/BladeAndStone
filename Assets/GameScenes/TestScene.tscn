@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://wodc5823bj3f"]
+[gd_scene load_steps=11 format=3 uid="uid://wodc5823bj3f"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_k22hi"]
 [ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="2_i76sk"]
 [ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="3_ngnro"]
 [ext_resource type="Script" path="res://Assets/Scripts/StaticBodyHittable.gd" id="4_5cyuo"]
+[ext_resource type="Texture2D" uid="uid://cp05bc756uhh1" path="res://Assets/Art/Environment/MapSizeTest.png" id="4_f33ux"]
 [ext_resource type="Script" path="res://Assets/Scripts/DrawCollisionShape.gd" id="5_fyc66"]
 [ext_resource type="PackedScene" uid="uid://bduaw211b10ea" path="res://Assets/ObjectScenes/Golem.tscn" id="6_cbhst"]
 [ext_resource type="PackedScene" uid="uid://dtfhd601lsqa7" path="res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn" id="8_3rh18"]
@@ -28,6 +29,10 @@ script = ExtResource("2_i76sk")
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("trackTarget")]
 script = ExtResource("3_ngnro")
 trackTarget = NodePath("../Golem")
+
+[node name="MapSizeTest" type="Sprite2D" parent="."]
+position = Vector2(277, -142)
+texture = ExtResource("4_f33ux")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(98, 155)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brtt16ntpko2"
-path="res://.godot/imported/BasicEyeEnemy_ScaledForParticles.png-0b3d62d747fbac09605d04d34c6cd77a.ctex"
+uid="uid://snqag14hyeef"
+path="res://.godot/imported/BladeAndStonePrototypeFont_L.png-5b506902ba7b6ad32b275ef3aa44e31d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/BasicEyeEnemy_ScaledForParticles.png"
-dest_files=["res://.godot/imported/BasicEyeEnemy_ScaledForParticles.png-0b3d62d747fbac09605d04d34c6cd77a.ctex"]
+source_file="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_L.png"
+dest_files=["res://.godot/imported/BladeAndStonePrototypeFont_L.png-5b506902ba7b6ad32b275ef3aa44e31d.ctex"]
 
 [params]
 

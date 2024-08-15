@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv0adyju5746f"
-path="res://.godot/imported/BasicEyeEnemy_03202024.png-4b36c3b9444628f704f88030e578a674.ctex"
+uid="uid://d3xligh222wth"
+path="res://.godot/imported/BasicSwordTest.png-e11e150030958a2051e0b1d230ad6c98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/BasicEyeEnemy_03202024.png"
-dest_files=["res://.godot/imported/BasicEyeEnemy_03202024.png-4b36c3b9444628f704f88030e578a674.ctex"]
+source_file="res://Assets/Art/Characters/BasicSwordTest.png"
+dest_files=["res://.godot/imported/BasicSwordTest.png-e11e150030958a2051e0b1d230ad6c98.ctex"]
 
 [params]
 

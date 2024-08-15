@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://bkfau5cnacjck"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="1_0dwv7"]
-[ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/BasicEyeEnemy_03202024.png" id="2_rj7tf"]
+[ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/Characters/BasicEyeEnemy_03202024.png" id="2_rj7tf"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="3_io86t"]
 [ext_resource type="Texture2D" uid="uid://dumms4qtc2q7p" path="res://Assets/Art/Particles/Particle_Bolt.png" id="4_yqy1g"]
 [ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="5_huxja"]
@@ -10,8 +10,8 @@
 radius = 48.0
 
 [sub_resource type="Curve" id="Curve_6eush"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.656085, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.90385, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ce2dp"]
 curve = SubResource("Curve_6eush")
@@ -43,8 +43,8 @@ point_count = 2
 curve = SubResource("Curve_b8j2j")
 
 [sub_resource type="Curve" id="Curve_ir7w6"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 1.63636, 0, 0, Vector2(0.486772, 1), -0.0546556, -0.0546556, 0, 0, Vector2(1, 0), -3.46154, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_mst8j"]
 curve = SubResource("Curve_ir7w6")
@@ -68,6 +68,8 @@ radial_velocity_min = -100.0
 radial_velocity_max = -100.0
 radial_velocity_curve = SubResource("CurveTexture_h4eja")
 gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
 scale_curve = SubResource("CurveTexture_mst8j")
 color = Color(0.470588, 0.784314, 0.921569, 1)
 alpha_curve = SubResource("CurveTexture_ce2dp")

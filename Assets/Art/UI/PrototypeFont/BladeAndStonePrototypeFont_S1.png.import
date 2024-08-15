@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nx3tjh03dga8"
-path="res://.godot/imported/DashSmashEnemy.png-9f4606a71c7bc5502e63059b21eaac75.ctex"
+uid="uid://wkc2r36acnd3"
+path="res://.godot/imported/BladeAndStonePrototypeFont_S1.png-8a385ffa2de5ddec60c547045c4d736b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/DashSmashEnemy.png"
-dest_files=["res://.godot/imported/DashSmashEnemy.png-9f4606a71c7bc5502e63059b21eaac75.ctex"]
+source_file="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_S1.png"
+dest_files=["res://.godot/imported/BladeAndStonePrototypeFont_S1.png-8a385ffa2de5ddec60c547045c4d736b.ctex"]
 
 [params]
 

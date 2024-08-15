@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://lqp0l322q8jp"]
 
-[ext_resource type="Texture2D" uid="uid://brtt16ntpko2" path="res://Assets/Art/BasicEyeEnemy_ScaledForParticles.png" id="1_8ly5n"]
-[ext_resource type="Texture2D" uid="uid://d4hfhayapxap5" path="res://Assets/Art/Pixel.png" id="2_8pkll"]
+[ext_resource type="Texture2D" uid="uid://brtt16ntpko2" path="res://Assets/Art/Characters/BasicEyeEnemy_ScaledForParticles.png" id="1_8ly5n"]
+[ext_resource type="Texture2D" uid="uid://d4hfhayapxap5" path="res://Assets/Art/Particles/Pixel.png" id="2_8pkll"]
 
 [sub_resource type="Shader" id="Shader_ap13h"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's ParticleProcessMaterial.
