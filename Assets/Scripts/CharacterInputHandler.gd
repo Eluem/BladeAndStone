@@ -1,7 +1,7 @@
 class_name CharacterInputHandler
 extends Node2D
 
-@export var debugEnabled:bool = true
+@export var debugEnabled:bool = false
 var pressed:bool = false
 var justPressed:bool = false
 var pressing:bool = false

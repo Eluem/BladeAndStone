@@ -241,6 +241,7 @@ static func CreateChunks(pBasePoly:Polygon2D, pClipper:Polygon2D) -> Array[Polyg
 		poly = pBasePoly.duplicate()
 		poly.polygon = data
 		poly.polygons = []
+		poly.visible = true
 		ret.append(poly)
 	return ret
 
@@ -289,7 +290,6 @@ static func CreateRigidbodyFromPolygon(pPolygon:Polygon2D) -> RigidBody2D:
 	xForm = Transform2D(0, center)
 	pPolygon.polygon *= xForm
 	pPolygon.texture_offset += center
-	
 	collider.polygon *= xForm
 	
 	ret.add_child(pPolygon)

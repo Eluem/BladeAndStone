@@ -31,6 +31,7 @@ script = ExtResource("3_ngnro")
 trackTarget = NodePath("../Golem")
 
 [node name="MapSizeTest" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(277, -142)
 texture = ExtResource("4_f33ux")
 
@@ -64,8 +65,6 @@ position = Vector2(0.758202, -0.222382)
 shape = SubResource("RectangleShape2D_lh3dv")
 script = ExtResource("5_fyc66")
 
-[node name="Golem" parent="." instance=ExtResource("6_cbhst")]
-
 [node name="BasicEyeEnemy" parent="." instance=ExtResource("12_k1bmn")]
 position = Vector2(-2684, 1776)
 rotation = 2.73525
@@ -81,9 +80,9 @@ rotation = 5.56395
 [node name="DashSmashEnemy" parent="." instance=ExtResource("8_3rh18")]
 position = Vector2(20.0001, -860)
 rotation = -0.757606
-isDummyMode = true
 
 [node name="DashSmashEnemy2" parent="." instance=ExtResource("8_3rh18")]
 position = Vector2(20.0001, -860)
 rotation = -0.757606
-isDummyMode = true
+
+[node name="Golem" parent="." instance=ExtResource("6_cbhst")]

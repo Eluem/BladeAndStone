@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://wodc5823bj3f"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_k22hi"]
+[ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="2_i76sk"]
+[ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="3_ngnro"]
+[ext_resource type="Script" path="res://Assets/Scripts/StaticBodyHittable.gd" id="4_5cyuo"]
+[ext_resource type="Texture2D" uid="uid://cp05bc756uhh1" path="res://Assets/Art/Environment/MapSizeTest.png" id="4_f33ux"]
+[ext_resource type="Script" path="res://Assets/Scripts/DrawCollisionShape.gd" id="5_fyc66"]
+[ext_resource type="PackedScene" uid="uid://bduaw211b10ea" path="res://Assets/ObjectScenes/Golem.tscn" id="6_cbhst"]
+[ext_resource type="PackedScene" uid="uid://dtfhd601lsqa7" path="res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn" id="8_3rh18"]
+[ext_resource type="PackedScene" uid="uid://bkfau5cnacjck" path="res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn" id="12_k1bmn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh3dv"]
+size = Vector2(593.941, 117.085)
+
+[node name="World2D" type="Node2D"]
+script = ExtResource("1_k22hi")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugButton" type="Button" parent="CanvasLayer"]
+offset_left = 28.0
+offset_top = 23.0
+offset_right = 86.0
+offset_bottom = 54.0
+text = "Debug"
+script = ExtResource("2_i76sk")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("trackTarget")]
+script = ExtResource("3_ngnro")
+trackTarget = NodePath("../Golem")
+
+[node name="MapSizeTest" type="Sprite2D" parent="."]
+position = Vector2(277, -142)
+texture = ExtResource("4_f33ux")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(98, 155)
+rotation = -0.425295
+script = ExtResource("4_5cyuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("5_fyc66")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(438, -226)
+rotation = -1.38282
+script = ExtResource("4_5cyuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("5_fyc66")
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2(-167, -57)
+rotation = -1.38282
+script = ExtResource("4_5cyuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("5_fyc66")
+
+[node name="Golem" parent="." instance=ExtResource("6_cbhst")]
+
+[node name="BasicEyeEnemy" parent="." instance=ExtResource("12_k1bmn")]
+position = Vector2(-2684, 1776)
+rotation = 2.73525
+
+[node name="BasicEyeEnemy2" parent="." instance=ExtResource("12_k1bmn")]
+position = Vector2(-2005, 1486)
+rotation = 3.7624
+
+[node name="BasicEyeEnemy3" parent="." instance=ExtResource("12_k1bmn")]
+position = Vector2(-2428, 2033)
+rotation = 5.56395
+
+[node name="DashSmashEnemy" parent="." instance=ExtResource("8_3rh18")]
+position = Vector2(20.0001, -860)
+rotation = -0.757606
+isDummyMode = true
+
+[node name="DashSmashEnemy2" parent="." instance=ExtResource("8_3rh18")]
+position = Vector2(20.0001, -860)
+rotation = -0.757606
+isDummyMode = true

@@ -61,7 +61,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	#super._integrate_forces(state)
 
 func Die(pDir:Vector2, pForce:float) -> void:
-	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40))
+	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40), spritePolygon)
 	exploded.emit(chunks[0])
 	queue_free()
 

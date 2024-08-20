@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://0b3msi2brjup"]
+
+[ext_resource type="Texture2D" uid="uid://dbvi2vjvhoph5" path="res://BladeAndStoneTitleAIConcept.png" id="1_nhecs"]
+
+[node name="MenuTextCreating" type="Node2D"]
+
+[node name="BladeAndStoneTitleAiConcept" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(470, 299)
+scale = Vector2(0.494629, 0.494629)
+texture = ExtResource("1_nhecs")
+
+[node name="B_Upper" type="Polygon2D" parent="."]
+visible = false
+position = Vector2(307, 191)
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+polygon = PackedVector2Array(-60, -85, -25, -80, 25, -80, 40, -65, 40, -15, 25, 0, -40, 0, -40, -50)
+uv = PackedVector2Array(86.9995, 53.6055, 95.9369, 54.8823, 108.705, 54.8823, 112.535, 58.7126, 112.535, 71.4802, 108.705, 75.3105, 112.535, 79.1409, 112.535, 91.9085, 108.705, 95.7388, 95.9369, 95.7388, 86.9995, 97.0156, 92.1066, 88.0782, 92.1066, 62.5429)
+
+[node name="B_Lower" type="Polygon2D" parent="."]
+position = Vector2(307, 191)
+color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+polygon = PackedVector2Array(-60, -85, -25, -80, 25, -80, 40, -65, 40, -15, 25, 0, 40, 15, 40, 65, 25, 80, -25, 80, -60, 85, -40, 50, -40, -54, -10, -54, -10, 47, 14, 47, 14, 18, -12, 18, -12, -17, 14, -17, 14, -50, -40, -50)
+uv = PackedVector2Array(86.9995, 53.6055, 95.9369, 54.8823, 108.705, 54.8823, 112.535, 58.7126, 112.535, 71.4802, 108.705, 75.3105, 112.535, 79.1409, 112.535, 91.9085, 108.705, 95.7388, 95.9369, 95.7388, 86.9995, 97.0156, 92.1066, 88.0782, 92.1066, 62.5429)

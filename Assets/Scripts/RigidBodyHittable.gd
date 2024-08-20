@@ -12,7 +12,8 @@ signal health_changed(pHealth:int)
 func _ready() -> void:
 	debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
 	mainSprite = GetMainSprite()
-	spritePolygon = Geometry2DHelper.CreatePolygonFromSprite(mainSprite)[0]
+	#spritePolygon = Geometry2DHelper.CreatePolygonFromSprite(mainSprite)[0]
+	spritePolygon = (mainSprite as SpritePolygonGenerator).spritePolygon
 	GenerateBoundingPolygon()
 	GenerateOutline()
 
@@ -58,5 +59,5 @@ func GenerateBoundingPolygon() -> void:
 	#boundingPolygon.polygon = mainSprite.transform.scaled(Vector2(1/mainSprite.scale.y, 1/mainSprite.scale.x)) * spritePolygon.polygon
 
 func GenerateOutline() -> void:
-	mainSprite.get_parent().add_child(Geometry2DHelper.CreateOutlineFromPolygon(boundingPolygon.polygon, 1.5))
-
+	var outline:Line2D = Geometry2DHelper.CreateOutlineFromPolygon(boundingPolygon.polygon, 1.5)
+	mainSprite.get_parent().add_child(outline)

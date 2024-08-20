@@ -1,8 +1,7 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cjpfk3iq3dreq"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q7n52"]
-load_path = "res://.godot/imported/BladeAndStonePrototypeFont.png-21db872a7dbde2f3078dd54e8e3783f8.ctex"
+[ext_resource type="Texture2D" uid="uid://dqkoi47fq3525" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont.png" id="1_c0ier"]
 
 [resource]
-atlas = SubResource("CompressedTexture2D_q7n52")
+atlas = ExtResource("1_c0ier")
 region = Rect2(30, 18, 135, 237)

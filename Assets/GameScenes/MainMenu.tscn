@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cllrar4snib86"]
+[gd_scene load_steps=17 format=3 uid="uid://cllrar4snib86"]
 
 [ext_resource type="Texture2D" uid="uid://cygn12m6t7nx8" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_B.png" id="1_7300q"]
-[ext_resource type="Texture2D" uid="uid://ql1dag31w1b6" path="res://Assets/Art/UI/PrototypeFont/Font_L.tres" id="2_il1ca"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/ShatterTextOnClick.gd" id="2_skkyn"]
+[ext_resource type="Texture2D" uid="uid://snqag14hyeef" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_L.png" id="3_jp8jy"]
 [ext_resource type="Texture2D" uid="uid://cpycen2rwtl2c" path="res://Assets/Art/UI/PrototypeFont/Font_A1.tres" id="3_mx1jh"]
 [ext_resource type="Texture2D" uid="uid://ct7753ootxwl4" path="res://Assets/Art/UI/PrototypeFont/Font_D.tres" id="4_t2id3"]
 [ext_resource type="Texture2D" uid="uid://drfsdsx3133hg" path="res://Assets/Art/UI/PrototypeFont/Font_E1.tres" id="5_tf2yp"]
@@ -14,12 +14,18 @@
 [ext_resource type="Texture2D" uid="uid://b3imu8hry7phm" path="res://Assets/Art/UI/PrototypeFont/Font_E2.tres" id="11_u65yy"]
 [ext_resource type="Texture2D" uid="uid://de7q44ytkx3l6" path="res://Assets/Art/UI/PrototypeFont/Start.tres" id="12_u6wpw"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/StartButton.gd" id="14_ne5bn"]
+[ext_resource type="Texture2D" uid="uid://cjpfk3iq3dreq" path="res://Assets/Art/UI/PrototypeFont/Font_B.tres" id="15_v0rlk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkl5w"]
+atlas = ExtResource("6_5tvy1")
+region = Rect2(0, 0, 111, 155)
 
 [node name="MainMenu" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = -100
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,11 +35,17 @@ color = Color(0.337255, 0.337255, 0.337255, 1)
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 573.0
-offset_top = 225.0
-offset_right = 613.0
-offset_bottom = 265.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -94.0
+offset_right = -8.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.57972, 0.57972)
 
 [node name="B" type="TextureButton" parent="CanvasLayer/Control"]
@@ -49,13 +61,14 @@ script = ExtResource("2_skkyn")
 
 [node name="L" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_left = -170.772
-offset_top = -279.445
-offset_right = -68.7721
-offset_bottom = -108.445
+offset_left = -189.747
+offset_top = -312.22
+offset_right = -29.7468
+offset_bottom = -68.2197
 action_mode = 0
-texture_normal = ExtResource("2_il1ca")
+texture_normal = ExtResource("3_jp8jy")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="A" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -66,6 +79,7 @@ offset_bottom = -103.97
 action_mode = 0
 texture_normal = ExtResource("3_mx1jh")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="D" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -76,6 +90,7 @@ offset_bottom = -88.695
 action_mode = 0
 texture_normal = ExtResource("4_t2id3")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="E" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -86,6 +101,7 @@ offset_bottom = -101.37
 action_mode = 0
 texture_normal = ExtResource("5_tf2yp")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="Amp" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -94,8 +110,9 @@ offset_top = -37.9493
 offset_right = 67.8757
 offset_bottom = 117.051
 action_mode = 0
-texture_normal = ExtResource("6_5tvy1")
+texture_normal = SubResource("AtlasTexture_wkl5w")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="S" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -106,6 +123,7 @@ offset_bottom = 339.323
 action_mode = 0
 texture_normal = ExtResource("7_u2gem")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="T" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -116,6 +134,7 @@ offset_bottom = 303.147
 action_mode = 0
 texture_normal = ExtResource("8_c0xhj")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="O" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -126,6 +145,7 @@ offset_bottom = 314.173
 action_mode = 0
 texture_normal = ExtResource("9_j5tnn")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="N" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -136,6 +156,7 @@ offset_bottom = 304.322
 action_mode = 0
 texture_normal = ExtResource("10_2fol4")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
 [node name="E2" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -146,14 +167,28 @@ offset_bottom = 296.947
 action_mode = 0
 texture_normal = ExtResource("11_u65yy")
 stretch_mode = 3
+script = ExtResource("2_skkyn")
 
-[node name="Start" type="TextureButton" parent="CanvasLayer"]
-offset_left = 361.0
-offset_top = 483.0
-offset_right = 1309.0
-offset_bottom = 740.0
-scale = Vector2(0.468253, 0.468253)
+[node name="Start" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -320.845
+offset_top = 443.318
+offset_right = 627.156
+offset_bottom = 700.318
+scale = Vector2(0.73973, 0.73973)
 action_mode = 0
 texture_normal = ExtResource("12_u6wpw")
+stretch_mode = 3
+script = ExtResource("14_ne5bn")
+
+[node name="Start2" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 96.5984
+offset_top = -50.0242
+offset_right = 1044.6
+offset_bottom = 206.976
+scale = Vector2(0.73973, 0.73973)
+action_mode = 0
+texture_normal = ExtResource("15_v0rlk")
 stretch_mode = 3
 script = ExtResource("14_ne5bn")

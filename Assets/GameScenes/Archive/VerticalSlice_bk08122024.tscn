@@ -1,0 +1,185 @@
+[gd_scene load_steps=13 format=3 uid="uid://cc23kn18aoerc"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_s37cg"]
+[ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_y0pa3"]
+[ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="3_4g4ic"]
+[ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="4_fuas5"]
+[ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="5_s51d2"]
+[ext_resource type="Script" path="res://Assets/Scripts/StaticBodyHittable.gd" id="6_hpq3w"]
+[ext_resource type="Script" path="res://Assets/Scripts/DrawCollisionShape.gd" id="7_ogc7g"]
+[ext_resource type="PackedScene" uid="uid://bkfau5cnacjck" path="res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn" id="8_gp3yb"]
+[ext_resource type="PackedScene" uid="uid://dtfhd601lsqa7" path="res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn" id="9_7enrj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8ih"]
+bg_color = Color(1, 0.0705882, 0, 1)
+
+[sub_resource type="Theme" id="Theme_64y1f"]
+/colors/background_color = Color(0.843137, 0, 0, 1)
+ProgressBar/colors/backColor = Color(0, 0, 0, 1)
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_my8ih")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh3dv"]
+size = Vector2(593.941, 117.085)
+
+[node name="World2D" type="Node2D"]
+script = ExtResource("1_s37cg")
+
+[node name="PlayerManager" type="Node" parent="."]
+
+[node name="Spawner" type="Node" parent="PlayerManager" node_paths=PackedStringArray("HUD", "mainCamera")]
+script = ExtResource("2_y0pa3")
+HUD = NodePath("../../CanvasLayer/HUD")
+mainCamera = NodePath("../../Camera2D")
+
+[node name="SpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
+position = Vector2(10.66, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugButton" type="Button" parent="CanvasLayer"]
+offset_left = 28.0
+offset_top = 23.0
+offset_right = 161.0
+offset_bottom = 94.0
+text = "Debug"
+script = ExtResource("3_4g4ic")
+
+[node name="HUD" type="Node" parent="CanvasLayer"]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+offset_left = 194.0
+offset_top = 29.0
+offset_right = 570.0
+offset_bottom = 87.0
+theme = SubResource("Theme_64y1f")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+value = 50.0
+show_percentage = false
+script = ExtResource("4_fuas5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("5_s51d2")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Environment"]
+position = Vector2(0, 500)
+rotation = -0.000139743
+scale = Vector2(2.83999, 1)
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall4" type="StaticBody2D" parent="Environment"]
+position = Vector2(0, -500)
+rotation = -0.000139743
+scale = Vector2(2.83999, 1)
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall4"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall5" type="StaticBody2D" parent="Environment"]
+position = Vector2(-946, -1191)
+rotation = 0.960223
+scale = Vector2(2.83999, 1)
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall5"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall6" type="StaticBody2D" parent="Environment"]
+position = Vector2(-946, 1191)
+rotation = 2.18166
+scale = Vector2(2.83999, 1)
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall6"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall3" type="StaticBody2D" parent="Environment"]
+position = Vector2(781, 0)
+rotation = 1.5708
+scale = Vector2(1.63999, 1)
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall3"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall2" type="StaticBody2D" parent="Environment"]
+position = Vector2(-1746, 0)
+rotation = 1.5708
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall2"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall9" type="StaticBody2D" parent="Environment"]
+position = Vector2(-4630, 0)
+rotation = 1.5708
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall9"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall7" type="StaticBody2D" parent="Environment"]
+position = Vector2(-3232, 997)
+rotation = 0.471601
+scale = Vector2(6.92642, 1)
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall7"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="Wall8" type="StaticBody2D" parent="Environment"]
+position = Vector2(-3232, -997)
+rotation = 2.67035
+scale = Vector2(6.92642, 1)
+script = ExtResource("6_hpq3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Wall8"]
+position = Vector2(0.758202, -0.222382)
+shape = SubResource("RectangleShape2D_lh3dv")
+script = ExtResource("7_ogc7g")
+
+[node name="BasicEyeEnemy" parent="." instance=ExtResource("8_gp3yb")]
+position = Vector2(-814, -639)
+rotation = 2.73525
+
+[node name="BasicEyeEnemy4" parent="." instance=ExtResource("8_gp3yb")]
+position = Vector2(-817, 639)
+rotation = -2.73493
+
+[node name="BasicEyeEnemy2" parent="." instance=ExtResource("8_gp3yb")]
+position = Vector2(-3851, 287)
+
+[node name="BasicEyeEnemy3" parent="." instance=ExtResource("8_gp3yb")]
+position = Vector2(-3851, -287)
+
+[node name="DashSmashEnemy" parent="." instance=ExtResource("9_7enrj")]
+position = Vector2(-3371, 2)
+
+[node name="DashSmashEnemy2" parent="." instance=ExtResource("9_7enrj")]
+position = Vector2(-2780, -956)
+rotation = -0.333358
+
+[node name="DashSmashEnemy3" parent="." instance=ExtResource("9_7enrj")]
+position = Vector2(-2780, 956)
+rotation = 0.333358
