@@ -49,13 +49,19 @@ func _physics_process(_delta: float) -> void:
 			queuedHits.append(HitData.new(hitResult, nodeData.node.global_position - nodeData.prevPos, wielder.global_transform.x, weaponDamage, weaponKnockback))
 	
 	#Process all queued hits
+	var staticBodyHittable:StaticBodyHittable #just to hide the unsafe cast warning
+	var rigidBodyHittable:RigidBodyHittable #just to hide the unsafe cast warning
 	for queuedHit:HitData in queuedHits:
 		#TODO: Expand this to work for any "hittableObject" and consider some kind of "sturdiness" value
 		if(queuedHit.collider is StaticBodyHittable):
-			(queuedHit.collider as StaticBodyHittable).HandleHit(queuedHit)
+			staticBodyHittable = queuedHit.collider #as StaticBodyHittable #This as also causes unsafe cast
+			staticBodyHittable.HandleHit(queuedHit)
+			#(queuedHit.collider as StaticBodyHittable).HandleHit(queuedHit) #Causes unsafe cast
 			break
 		if(queuedHit.collider is RigidBodyHittable && hitRIDs.find(queuedHit.rid) == -1 ):
-			(queuedHit.collider as RigidBodyHittable).HandleHit(queuedHit)
+			rigidBodyHittable = queuedHit.collider #as RigidBodyHittable #This as also causes unsafe cast
+			rigidBodyHittable.HandleHit(queuedHit)
+			#(queuedHit.collider as RigidBodyHittable).HandleHit(queuedHit) #Causes unsafe cast
 			hitRIDs.append(queuedHit.rid)
 
 #Allows the weapon to hit objects that were hit previously

@@ -182,6 +182,7 @@ script = ExtResource("3_tckbx")
 script = ExtResource("3_6a74p")
 
 [node name="ReferenceArt" type="Node2D" parent="."]
+visible = false
 
 [node name="MapSketch" type="Sprite2D" parent="ReferenceArt"]
 position = Vector2(553, -2681)
@@ -520,6 +521,7 @@ polygons = [PackedInt32Array(22, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32,
 internal_vertex_count = 22
 
 [node name="Enemies" type="Node2D" parent="."]
+visible = false
 
 [node name="BasicEyeEnemy" parent="Enemies" instance=ExtResource("7_h5d36")]
 position = Vector2(1773, -2393)
@@ -637,6 +639,10 @@ rotation = -0.205952
 position = Vector2(369, -3168)
 rotation = 3.12904
 
+[node name="DashSmashEnemy3" parent="Enemies" instance=ExtResource("8_g3mjo")]
+position = Vector2(-1555, -2322)
+rotation = 0.0759289
+
 [node name="DashSmashEnemy4" parent="Enemies" instance=ExtResource("8_g3mjo")]
 position = Vector2(1079, -4033)
 rotation = -0.820114
@@ -688,10 +694,6 @@ rotation = -0.324472
 [node name="DashSmashEnemy16" parent="Enemies" instance=ExtResource("8_g3mjo")]
 position = Vector2(1656, 1329)
 rotation = -0.66369
-
-[node name="DashSmashEnemy3" parent="Enemies" instance=ExtResource("8_g3mjo")]
-position = Vector2(-2780, 956)
-rotation = 0.333358
 
 [node name="Consumables" type="Node2D" parent="."]
 

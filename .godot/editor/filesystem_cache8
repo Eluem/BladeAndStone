@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1724347631
+::res://::1724356464
 BladeAndStoneTitleAIConcept.png::CompressedTexture2D::7273337897787813640::1723934105::1723934162::1::::<><>::
 export_presets.cfg::TextFile::-1::1723823478::0::1::::<><>::
 icon.png::CompressedTexture2D::775028251715326431::1710963067::1710963103::1::::<><>::
@@ -35,9 +35,8 @@ MapSketch.jpg::CompressedTexture2D::2751832796083328368::1723476776::1723647028:
 RockTexture3.png::CompressedTexture2D::5874350969794600289::1723492241::1723647027::1::::<><>::
 RockTextures.png::CompressedTexture2D::6839546727530858810::1723660071::1723660076::1::::<><>::
 VinedBranch2.png::CompressedTexture2D::8087038107574276151::1723476539::1723647027::1::::<><>::
-::res://Assets/Art/Items/::1724350774
+::res://Assets/Art/Items/::1724356464
 HealthPickup.png::CompressedTexture2D::3548236170334599475::1724350774::1724350777::1::::<><>::
-HealthPickup_old.png::CompressedTexture2D::421105492002805965::1724347135::1724350777::1::::<><>::
 ::res://Assets/Art/Particles/::1723761719
 Particle_Bolt.png::CompressedTexture2D::8588573753853205223::1719415868::1719415874::1::::<><>::
 Particle_Wave.png::CompressedTexture2D::2573442675733777965::1711410730::1711410733::1::::<><>::
@@ -80,13 +79,14 @@ Font_T1.tres::AtlasTexture::4747733585500495971::1724338256::0::1::::<><>::
 Font_T2.tres::AtlasTexture::2954862026422662708::1723774297::0::1::::<><>::
 Font_T3.tres::AtlasTexture::7753270911663652084::1723774297::0::1::::<><>::
 Start.tres::AtlasTexture::7507102334798884285::1723774330::0::1::::<><>::uid://dqkoi47fq3525::::res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont.png
-::res://Assets/Art/WIP/::1723761719
+::res://Assets/Art/WIP/::1724356464
 EyeProjectileWIP.png::CompressedTexture2D::818135350967286245::1718995810::1718996179::1::::<><>::
-::res://Assets/GameScenes/::1724350625
-MainMenu.tscn::PackedScene::5568659930108053013::1724350625::0::1::::<><>::uid://cygn12m6t7nx8::::res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_B.png<>res://Assets/Scripts/Menu/ShatterTextOnClick.gd<>uid://snqag14hyeef::::res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_L.png<>uid://cpycen2rwtl2c::::res://Assets/Art/UI/PrototypeFont/Font_A1.tres<>uid://ct7753ootxwl4::::res://Assets/Art/UI/PrototypeFont/Font_D.tres<>uid://drfsdsx3133hg::::res://Assets/Art/UI/PrototypeFont/Font_E1.tres<>uid://65pxx5ikmysy::::res://Assets/Art/UI/PrototypeFont/Font_Amp.tres<>uid://drkecrrydu1es::::res://Assets/Art/UI/PrototypeFont/Font_S1.tres<>uid://b8v3qje8vin84::::res://Assets/Art/UI/PrototypeFont/Font_T1.tres<>uid://by6gnjyjy8pd6::::res://Assets/Art/UI/PrototypeFont/Font_O.tres<>uid://nn8t0xjtvx0a::::res://Assets/Art/UI/PrototypeFont/Font_N.tres<>uid://b3imu8hry7phm::::res://Assets/Art/UI/PrototypeFont/Font_E2.tres<>uid://de7q44ytkx3l6::::res://Assets/Art/UI/PrototypeFont/Start.tres<>res://Assets/Scripts/Menu/StartButton.gd<>uid://cjpfk3iq3dreq::::res://Assets/Art/UI/PrototypeFont/Font_B.tres
+HealthPickup_old.png::CompressedTexture2D::421105492002805965::1724347135::1724356464::1::::<><>::
+::res://Assets/GameScenes/::1724356425
+MainMenu.tscn::PackedScene::5568659930108053013::1724350915::0::1::::<><>::uid://cygn12m6t7nx8::::res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_B.png<>res://Assets/Scripts/Menu/ShatterTextOnClick.gd<>uid://snqag14hyeef::::res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_L.png<>uid://cpycen2rwtl2c::::res://Assets/Art/UI/PrototypeFont/Font_A1.tres<>uid://ct7753ootxwl4::::res://Assets/Art/UI/PrototypeFont/Font_D.tres<>uid://drfsdsx3133hg::::res://Assets/Art/UI/PrototypeFont/Font_E1.tres<>uid://65pxx5ikmysy::::res://Assets/Art/UI/PrototypeFont/Font_Amp.tres<>uid://drkecrrydu1es::::res://Assets/Art/UI/PrototypeFont/Font_S1.tres<>uid://b8v3qje8vin84::::res://Assets/Art/UI/PrototypeFont/Font_T1.tres<>uid://by6gnjyjy8pd6::::res://Assets/Art/UI/PrototypeFont/Font_O.tres<>uid://nn8t0xjtvx0a::::res://Assets/Art/UI/PrototypeFont/Font_N.tres<>uid://b3imu8hry7phm::::res://Assets/Art/UI/PrototypeFont/Font_E2.tres<>uid://de7q44ytkx3l6::::res://Assets/Art/UI/PrototypeFont/Start.tres<>res://Assets/Scripts/Menu/StartButton.gd<>uid://cjpfk3iq3dreq::::res://Assets/Art/UI/PrototypeFont/Font_B.tres
 MenuTextCreating.tscn::PackedScene::1758507933036699091::1723938293::0::1::::<><>::uid://dbvi2vjvhoph5::::res://BladeAndStoneTitleAIConcept.png
 TestScene.tscn::PackedScene::1573243199102933065::1723933971::0::1::::<><>::res://Assets/Scripts/DebugInfo.gd<>res://Assets/Scripts/DebugButton.gd<>res://Assets/Scripts/BasicTracking.gd<>res://Assets/Scripts/StaticBodyHittable.gd<>uid://cp05bc756uhh1::::res://Assets/Art/Environment/MapSizeTest.png<>res://Assets/Scripts/DrawCollisionShape.gd<>uid://bduaw211b10ea::::res://Assets/ObjectScenes/Golem.tscn<>uid://dtfhd601lsqa7::::res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn<>uid://bkfau5cnacjck::::res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn
-VerticalSlice.tscn::PackedScene::3854756171810023174::1724350625::0::1::::<><>::res://Assets/Scripts/DebugInfo.gd<>res://Assets/Scripts/PlayerSpawner.gd<>res://Assets/Scripts/DebugButton.gd<>res://Assets/Scripts/BasicTracking.gd<>res://Assets/Scripts/UI/HealthUI.gd<>res://CustomEditorTools/PathWallGenerator.gd<>uid://bfhajwon8t2jk::::res://Assets/Art/Environment/MapSketch.jpg<>uid://bkfau5cnacjck::::res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn<>uid://cgpfmdybxiqy0::::res://Assets/Art/Environment/BaseGrassTile.png<>res://Assets/Scripts/StaticBodyHittable.gd<>uid://dmdm5cmhu7y8e::::res://Assets/Art/Environment/GrassTileTexturing.png<>uid://dtfhd601lsqa7::::res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn<>uid://dnholosdpshyl::::res://Assets/Art/Environment/VinedBranch2.png<>uid://cu5w6yxkjfud::::res://Assets/Art/Environment/GrassTileDetailing.png<>uid://cpxtx41awrwe0::::res://Assets/Art/Environment/RockTexture3.png<>uid://c4pelnv5oo5he::::res://Assets/Art/Environment/RockTextures.png<>uid://bk5o0ipghhwdy::::res://Assets/ObjectScenes/Items/HealthPickup.tscn
+VerticalSlice.tscn::PackedScene::3854756171810023174::1724356425::0::1::::<><>::res://Assets/Scripts/DebugInfo.gd<>res://Assets/Scripts/PlayerSpawner.gd<>res://Assets/Scripts/DebugButton.gd<>res://Assets/Scripts/BasicTracking.gd<>res://Assets/Scripts/UI/HealthUI.gd<>res://CustomEditorTools/PathWallGenerator.gd<>uid://bfhajwon8t2jk::::res://Assets/Art/Environment/MapSketch.jpg<>uid://bkfau5cnacjck::::res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn<>uid://cgpfmdybxiqy0::::res://Assets/Art/Environment/BaseGrassTile.png<>res://Assets/Scripts/StaticBodyHittable.gd<>uid://dmdm5cmhu7y8e::::res://Assets/Art/Environment/GrassTileTexturing.png<>uid://dtfhd601lsqa7::::res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn<>uid://dnholosdpshyl::::res://Assets/Art/Environment/VinedBranch2.png<>uid://cu5w6yxkjfud::::res://Assets/Art/Environment/GrassTileDetailing.png<>uid://cpxtx41awrwe0::::res://Assets/Art/Environment/RockTexture3.png<>uid://c4pelnv5oo5he::::res://Assets/Art/Environment/RockTextures.png<>uid://bk5o0ipghhwdy::::res://Assets/ObjectScenes/Items/HealthPickup.tscn
 ::res://Assets/GameScenes/Archive/::1724268296
 EyeParticleTestScene.tscn::PackedScene::4897873677640036198::1723837527::0::1::::<><>::uid://bkfau5cnacjck::::res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn
 VerticalSlice_bk08122024.tscn::PackedScene::4970675912226781924::1723761813::0::1::::<><>::res://Assets/Scripts/DebugInfo.gd<>res://Assets/Scripts/PlayerSpawner.gd<>res://Assets/Scripts/DebugButton.gd<>res://Assets/Scripts/UI/HealthUI.gd<>res://Assets/Scripts/BasicTracking.gd<>res://Assets/Scripts/StaticBodyHittable.gd<>res://Assets/Scripts/DrawCollisionShape.gd<>uid://bkfau5cnacjck::::res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn<>uid://dtfhd601lsqa7::::res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn
@@ -104,8 +104,8 @@ EyeBolt.gd::GDScript::-1::1719276163::0::1::::EyeBolt<>Projectile<>::
 EyeBolt.tscn::PackedScene::77285180693922541::1723647011::0::1::::<><>::res://Assets/ObjectScenes/Hazards/EyeBolt.gd<>res://Assets/ObjectScenes/Hazards/BulletWithCCD.gd<>res://Assets/Scripts/Trail.gd<>uid://ca60rjiiqjscm::::res://Assets/Art/Characters/EyeProjectile.png
 Hazard.gd::GDScript::-1::1719433503::0::1::::Hazard<>RigidBody2D<>::
 Projectile.gd::GDScript::-1::1719246237::0::1::::Projectile<>Hazard<>::
-::res://Assets/ObjectScenes/Items/::1724350626
-HealthPickup.tscn::PackedScene::3151135579082706046::1724350626::0::1::::<><>::res://Assets/Scripts/HealthPickup.gd<>uid://bqs16wuwuvblr::::res://Assets/Art/Items/HealthPickup.png<>res://Assets/Scripts/SlowSpin.gd<>res://Assets/Scripts/PulseColor.gd
+::res://Assets/ObjectScenes/Items/::1724350915
+HealthPickup.tscn::PackedScene::3151135579082706046::1724350915::0::1::::<><>::res://Assets/Scripts/HealthPickup.gd<>uid://bqs16wuwuvblr::::res://Assets/Art/Items/HealthPickup.png<>res://Assets/Scripts/SlowSpin.gd<>res://Assets/Scripts/PulseColor.gd
 ::res://Assets/ObjectScenes/Particles/::1723761719
 ExplodingSprite.tscn::PackedScene::806063346097312085::1723647035::0::1::::<><>::uid://brtt16ntpko2::::res://Assets/Art/Characters/BasicEyeEnemy_ScaledForParticles.png<>uid://d4hfhayapxap5::::res://Assets/Art/Particles/Pixel.png
 LivingRockHit.gd::GDScript::-1::1719245215::0::1::::LivingRockHit<>GPUParticles2D<>::
