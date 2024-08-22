@@ -91,6 +91,7 @@ spritePolygon = NodePath("../poly_sprite")
 shape = SubResource("CircleShape2D_jurdh")
 
 [node name="VisionSensor" type="Area2D" parent="."]
+visible = false
 monitorable = false
 script = ExtResource("3_io86t")
 

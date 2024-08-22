@@ -521,7 +521,6 @@ polygons = [PackedInt32Array(22, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32,
 internal_vertex_count = 22
 
 [node name="Enemies" type="Node2D" parent="."]
-visible = false
 
 [node name="BasicEyeEnemy" parent="Enemies" instance=ExtResource("7_h5d36")]
 position = Vector2(1773, -2393)

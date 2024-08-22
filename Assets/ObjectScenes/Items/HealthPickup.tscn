@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/PulseColor.gd" id="4_bs22p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twypt"]
-radius = 51.0098
+radius = 52.0
 
 [sub_resource type="Gradient" id="Gradient_opurg"]
 offsets = PackedFloat32Array(0, 0.58011)
@@ -35,7 +35,7 @@ script = ExtResource("1_wqldf")
 shape = SubResource("CircleShape2D_twypt")
 
 [node name="HealthPickup2" type="Sprite2D" parent="."]
-scale = Vector2(0.075, 0.075)
+scale = Vector2(0.115, 0.115)
 texture = ExtResource("2_ig755")
 script = ExtResource("3_wein2")
 
@@ -46,6 +46,14 @@ color = Color(0.111197, 0.111197, 0.111197, 1)
 texture = SubResource("GradientTexture2D_hl7ol")
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 uv = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
+
+[node name="PlusOutline" type="Line2D" parent="HealthPickup2"]
+points = PackedVector2Array(-90, -25, -35, -35, -25, -90, 25, -90, 35, -35, 90, -25, 90, 25, 35, 35, 25, 90, -25, 90, -35, 35, -90, 25)
+closed = true
+width = 13.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+antialiased = true
 
 [node name="CentralGlow" type="Polygon2D" parent="HealthPickup2"]
 scale = Vector2(13.3333, 13.3333)

@@ -118,6 +118,7 @@ script = ExtResource("3_5q65g")
 forceTipAlignment = false
 
 [node name="VisionSensor" type="Area2D" parent="."]
+visible = false
 monitorable = false
 script = ExtResource("2_wycji")
 

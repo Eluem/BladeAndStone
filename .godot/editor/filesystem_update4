@@ -16,3 +16,5 @@ res://Assets/Scripts/SlowSpin.gd
 res://Assets/ObjectScenes/Items/HealthPickup.tscn
 res://Assets/Scripts/PulseColor.gd
 res://Assets/Scripts/MeleeWeaponRaycastCollider.gd
+res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn
+res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn
