@@ -9,3 +9,9 @@ res://Assets/Art/UI/PrototypeFont/Font_O.tres
 res://Assets/Art/UI/PrototypeFont/Font_N.tres
 res://Assets/Art/UI/PrototypeFont/Font_E2.tres
 res://Assets/Art/UI/PrototypeFont/Font_B.tres
+res://Assets/GameScenes/HealthPickup.gd
+res://Assets/Scripts/VisionSensor.gd
+res://Assets/GameScenes/MainMenu.tscn
+res://Assets/Scripts/SlowSpin.gd
+res://Assets/ObjectScenes/Items/HealthPickup.tscn
+res://Assets/Scripts/PulseColor.gd

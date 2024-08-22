@@ -9,7 +9,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if(monitoring):
 		scan_vision()
-	queue_redraw()
+	#queue_redraw() I don't know why this was here... typo?
 	
 func scan_vision() -> void:
 	var bodies: Array[Node2D] = get_overlapping_bodies()

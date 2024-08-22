@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://bk5o0ipghhwdy"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/HealthPickup.gd" id="1_wqldf"]
+[ext_resource type="Texture2D" uid="uid://bqs16wuwuvblr" path="res://Assets/Art/Items/HealthPickup.png" id="2_ig755"]
+[ext_resource type="Script" path="res://Assets/Scripts/SlowSpin.gd" id="3_wein2"]
+[ext_resource type="Script" path="res://Assets/Scripts/PulseColor.gd" id="4_bs22p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twypt"]
+radius = 51.0098
+
+[sub_resource type="Gradient" id="Gradient_opurg"]
+offsets = PackedFloat32Array(0, 0.58011)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hl7ol"]
+gradient = SubResource("Gradient_opurg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_e332k"]
+offsets = PackedFloat32Array(0, 0.994475)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_polo4"]
+gradient = SubResource("Gradient_e332k")
+fill = 1
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="HealthPickup" type="Area2D"]
+position = Vector2(1136, -2856)
+script = ExtResource("1_wqldf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_twypt")
+
+[node name="HealthPickup2" type="Sprite2D" parent="."]
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("2_ig755")
+script = ExtResource("3_wein2")
+
+[node name="Shadow" type="Polygon2D" parent="HealthPickup2"]
+z_index = -1
+scale = Vector2(12.6875, 9.16806)
+color = Color(0.111197, 0.111197, 0.111197, 1)
+texture = SubResource("GradientTexture2D_hl7ol")
+polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+uv = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
+
+[node name="CentralGlow" type="Polygon2D" parent="HealthPickup2"]
+scale = Vector2(13.3333, 13.3333)
+color = Color(0.855, 0.161, 0.161, 0.4)
+texture = SubResource("GradientTexture2D_hl7ol")
+polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
+uv = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
+script = ExtResource("4_bs22p")
+pulseRate = 0.4
+pulseRange = Vector2(0, 0.4)
+
+[node name="RightGlow" type="Polygon2D" parent="HealthPickup2"]
+z_index = -1
+color = Color(0.858824, 0.168627, 0.168627, 1)
+texture = SubResource("GradientTexture2D_polo4")
+polygon = PackedVector2Array(300, -100, 300, 100, 800, 280, 800, -280)
+uv = PackedVector2Array(0, 20, 0, 40, 64, 64, 64, 0)
+script = ExtResource("4_bs22p")
+
+[node name="LeftGlow" type="Polygon2D" parent="HealthPickup2"]
+z_index = -1
+rotation = 3.14159
+color = Color(0.858824, 0.168627, 0.168627, 1)
+texture = SubResource("GradientTexture2D_polo4")
+polygon = PackedVector2Array(300, -100, 300, 100, 800, 280, 800, -280)
+uv = PackedVector2Array(0, 20, 0, 40, 64, 64, 64, 0)
+script = ExtResource("4_bs22p")
+
+[node name="BottomGlow" type="Polygon2D" parent="HealthPickup2"]
+z_index = -1
+rotation = 1.5708
+color = Color(0.858824, 0.168627, 0.168627, 1)
+texture = SubResource("GradientTexture2D_polo4")
+polygon = PackedVector2Array(200, -20, 200, 20, 650, 180, 650, -180)
+uv = PackedVector2Array(0, 20, 0, 40, 64, 64, 64, 0)
+script = ExtResource("4_bs22p")
+
+[node name="TopGlow" type="Polygon2D" parent="HealthPickup2"]
+z_index = -1
+rotation = -1.5708
+color = Color(0.858824, 0.168627, 0.168627, 1)
+texture = SubResource("GradientTexture2D_polo4")
+polygon = PackedVector2Array(200, -20, 200, 20, 650, 180, 650, -180)
+uv = PackedVector2Array(0, 20, 0, 40, 64, 64, 64, 0)
+script = ExtResource("4_bs22p")

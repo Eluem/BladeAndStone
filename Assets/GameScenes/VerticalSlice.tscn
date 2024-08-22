@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bu6jjhh6lcr8a"]
+[gd_scene load_steps=35 format=4 uid="uid://bu6jjhh6lcr8a"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_77jdw"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_ef1l8"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cu5w6yxkjfud" path="res://Assets/Art/Environment/GrassTileDetailing.png" id="9_0he5r"]
 [ext_resource type="Texture2D" uid="uid://cpxtx41awrwe0" path="res://Assets/Art/Environment/RockTexture3.png" id="9_dloam"]
 [ext_resource type="Texture2D" uid="uid://c4pelnv5oo5he" path="res://Assets/Art/Environment/RockTextures.png" id="14_kkh6s"]
+[ext_resource type="PackedScene" uid="uid://bk5o0ipghhwdy" path="res://Assets/ObjectScenes/Items/HealthPickup.tscn" id="17_ojhxu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8ih"]
 bg_color = Color(1, 0.0705882, 0, 1)
@@ -181,7 +182,6 @@ script = ExtResource("3_tckbx")
 script = ExtResource("3_6a74p")
 
 [node name="ReferenceArt" type="Node2D" parent="."]
-visible = false
 
 [node name="MapSketch" type="Sprite2D" parent="ReferenceArt"]
 position = Vector2(553, -2681)
@@ -215,7 +215,6 @@ scale = Vector2(0.667781, 0.510632)
 script = ExtResource("7_suwsw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rock3"]
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(-120.55, -67.9692, -147.04, 12.9443, -155.548, 92.0752, -117.687, 153.562, -56.5308, 132.821, 5.09082, 148.078, 89.5364, 208.535, 143.936, 239.448, 228.786, 248.391, 271.711, 210.048, 268.663, 138.098, 151.671, -64.2915, 66.7271, -245.229, 26.6025, -236.033, -34.196, -187.6, -82.2537, -136.679)
 
 [node name="Polygon2D" type="Polygon2D" parent="Environment/Rock3"]
@@ -505,7 +504,8 @@ scale = Vector2(1, 0.5)
 texture = ExtResource("14_kkh6s")
 
 [node name="Rock7" type="StaticBody2D" parent="Environment"]
-position = Vector2(2062, 1082)
+position = Vector2(1980, 1085)
+scale = Vector2(0.495344, 0.495344)
 script = ExtResource("7_suwsw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rock7"]
@@ -685,8 +685,27 @@ rotation = 2.54119
 position = Vector2(3638, 713)
 rotation = -0.324472
 
+[node name="DashSmashEnemy16" parent="Enemies" instance=ExtResource("8_g3mjo")]
+position = Vector2(1656, 1329)
+rotation = -0.66369
+
 [node name="DashSmashEnemy3" parent="Enemies" instance=ExtResource("8_g3mjo")]
 position = Vector2(-2780, 956)
 rotation = 0.333358
 
 [node name="Consumables" type="Node2D" parent="."]
+
+[node name="HealthPickup" parent="Consumables" instance=ExtResource("17_ojhxu")]
+position = Vector2(1138, -2739)
+
+[node name="HealthPickup2" parent="Consumables" instance=ExtResource("17_ojhxu")]
+position = Vector2(3077, -2689)
+
+[node name="HealthPickup3" parent="Consumables" instance=ExtResource("17_ojhxu")]
+position = Vector2(-213, -4541)
+
+[node name="HealthPickup4" parent="Consumables" instance=ExtResource("17_ojhxu")]
+position = Vector2(-77, -4542)
+
+[node name="HealthPickup5" parent="Consumables" instance=ExtResource("17_ojhxu")]
+position = Vector2(3367, 1015)
