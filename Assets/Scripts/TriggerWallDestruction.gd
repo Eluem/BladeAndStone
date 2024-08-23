@@ -11,10 +11,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
-func on_tracked_hit(pMaxHealth:int, pHealth:int) -> void:
+func on_tracked_hit(_pMaxHealth:int, pHealth:int) -> void:
 	if(pHealth <= 0):
 		var castParent:RigidBodyHittable = get_parent()
 		castParent.Die(deathDir, deathForce)

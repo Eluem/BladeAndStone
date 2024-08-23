@@ -40,11 +40,9 @@ script = ExtResource("2_5h8fq")
 spritePolygon = NodePath("../poly_sprite")
 
 [node name="Cracks" type="Node2D" parent="MainSprite"]
-scale = Vector2(1, 1)
 script = ExtResource("3_s36pm")
 
 [node name="Crack" type="Line2D" parent="MainSprite/Cracks"]
-scale = Vector2(1, 1)
 points = PackedVector2Array(0, 0, 171.949, -18.6218, 223.533, -83.7976, 275.118, -167.595, 378.287, -176.906, 447.067, -186.217, 498.651, -297.947)
 width = 20.0
 width_curve = SubResource("Curve_xtueu")
@@ -57,7 +55,6 @@ antialiased = true
 
 [node name="Crack2" type="Line2D" parent="MainSprite/Cracks"]
 rotation = -1.20673
-scale = Vector2(1, 1)
 points = PackedVector2Array(0, 0, 96.6731, 18.3654, 194.474, -64.904, 273.746, -39.9079, 320.31, -48.4507)
 width = 20.0
 width_curve = SubResource("Curve_xtueu")
@@ -70,7 +67,6 @@ antialiased = true
 
 [node name="Crack3" type="Line2D" parent="MainSprite/Cracks"]
 rotation = -2.08282
-scale = Vector2(1, 1)
 points = PackedVector2Array(0, 0, 171.949, -18.6218, 258.909, -61.5941, 305.244, -144.037, 433.362, -219.966, 463.771, -331.084)
 width = 20.0
 width_curve = SubResource("Curve_xtueu")
@@ -83,7 +79,6 @@ antialiased = true
 
 [node name="Crack4" type="Line2D" parent="MainSprite/Cracks"]
 rotation = -2.48647
-scale = Vector2(1, 1)
 points = PackedVector2Array(0, 0, 198.75, -23.5454, 276.033, -106.406, 307.934, -248.333, 454.433, -255.217, 498.651, -297.947)
 width = 20.0
 width_curve = SubResource("Curve_xtueu")
@@ -96,7 +91,6 @@ antialiased = true
 
 [node name="Crack5" type="Line2D" parent="MainSprite/Cracks"]
 rotation = -3.02781
-scale = Vector2(1, 1)
 points = PackedVector2Array(0, 0, 171.949, -18.6218, 223.533, -83.7976, 275.118, -167.595, 378.287, -176.906, 447.067, -186.217, 498.651, -297.947)
 width = 20.0
 width_curve = SubResource("Curve_xtueu")
@@ -109,7 +103,6 @@ antialiased = true
 
 [node name="Crack6" type="Line2D" parent="MainSprite/Cracks"]
 rotation = 1.64388
-scale = Vector2(1, 1)
 points = PackedVector2Array(0, 0, 104.029, 18.2453, 164.637, -46.535, 224.119, 0.832947)
 width = 20.0
 width_curve = SubResource("Curve_xtueu")
@@ -122,7 +115,6 @@ antialiased = true
 
 [node name="Crack7" type="Line2D" parent="MainSprite/Cracks"]
 rotation = 0.901098
-scale = Vector2(1, 1)
 points = PackedVector2Array(0, 0, 114.589, -84.7288, 208.934, -53.8937, 251.077, -152.118, 368.181, -180.026, 372.413, -275.368, 472.955, -327.355)
 width = 20.0
 width_curve = SubResource("Curve_xtueu")

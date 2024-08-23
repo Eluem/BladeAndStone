@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4v1r7j3o44ux"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/RoofTransparency.gd" id="1_kuvrb"]
+[ext_resource type="Texture2D" uid="uid://nac5joltxc8l" path="res://Assets/Art/Environment/CaveRoof.png" id="2_4pksf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ba1wd"]
+size = Vector2(543.582, 369.103)
+
+[node name="CaveRoof" type="Area2D"]
+script = ExtResource("1_kuvrb")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="CaveRoof" type="Sprite2D" parent="Visuals"]
+modulate = Color(0.633757, 0.633757, 0.633757, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_4pksf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, -38.5)
+shape = SubResource("RectangleShape2D_ba1wd")

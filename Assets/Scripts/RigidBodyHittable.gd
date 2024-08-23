@@ -30,17 +30,17 @@ func _process(_delta: float) -> void:
 	pass
 
 func HandleHit(pHitData:HitData) -> void:
-	ApplyKnockback(pHitData.lookDirection as Vector2, pHitData.knockback as float)
-	ApplyDamage(pHitData.damage as int)
 	HitEffect(pHitData.position as Vector2, (pHitData.hitDirection as Vector2).normalized() * (pHitData.knockback as float))
-	if(health <= 0):
-		Die((pHitData.hitDirection as Vector2).normalized(), (pHitData.knockback as float))
+	ApplyKnockback(pHitData.lookDirection as Vector2, pHitData.knockback as float)
+	ApplyDamage(pHitData.damage as int, (pHitData.hitDirection as Vector2).normalized(), (pHitData.knockback as float))
 
-func ApplyDamage(pDamage:int) -> void:
+func ApplyDamage(pDamage:int, pDir:Vector2 = Vector2.ZERO, pForce:float = 0) -> void:
 	if(invulnerable):
 		return
 	health -= pDamage
 	health_changed.emit(maxHealth, health)
+	if(health <= 0):
+		Die(pDir, pForce)
 
 func ApplyHeal(pHeal:int) -> void:
 	health += pHeal
@@ -60,7 +60,10 @@ func HitEffect(pPosition:Vector2, pForce:Vector2) -> void:
 func Die(pDir:Vector2, pForce:float) -> void:
 	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40), spritePolygon, 0, 1)
 	if(mainSprite.texture is ViewportTexture):
-		get_node((mainSprite.texture as ViewportTexture).viewport_path).reparent(chunks[0])
+		var viewportNode:SubViewport = owner.get_node_or_null((mainSprite.texture as ViewportTexture).viewport_path)
+		if(viewportNode == null):
+			viewportNode = get_node((mainSprite.texture as ViewportTexture).viewport_path)
+		viewportNode.reparent(chunks[0])
 	queue_free()
 
 func GetMainSprite() -> Sprite2D:
