@@ -1,4 +1,4 @@
-res://Assets/GameScenes/VerticalSlice.tscn
+res://Assets/ObjectScenes/Destructibles/DestructibleWall.tscn
 res://Assets/Art/UI/PrototypeFont/Font_A1.tres
 res://Assets/Art/UI/PrototypeFont/Font_D.tres
 res://Assets/Art/UI/PrototypeFont/Font_E1.tres
@@ -9,12 +9,12 @@ res://Assets/Art/UI/PrototypeFont/Font_O.tres
 res://Assets/Art/UI/PrototypeFont/Font_N.tres
 res://Assets/Art/UI/PrototypeFont/Font_E2.tres
 res://Assets/Art/UI/PrototypeFont/Font_B.tres
-res://Assets/GameScenes/HealthPickup.gd
-res://Assets/Scripts/VisionSensor.gd
 res://Assets/GameScenes/MainMenu.tscn
-res://Assets/Scripts/SlowSpin.gd
-res://Assets/ObjectScenes/Items/HealthPickup.tscn
-res://Assets/Scripts/PulseColor.gd
+res://Assets/GameScenes/VerticalSlice.tscn
+res://Assets/Scripts/RigidBodyHittable.gd
+res://Assets/Scripts/VisionSensor.gd
 res://Assets/Scripts/MeleeWeaponRaycastCollider.gd
-res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn
-res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn
+res://Assets/Scripts/CrackDamageVisualUpdater.gd
+res://Assets/Scripts/UI/HealthUI.gd
+res://Assets/Scripts/PlayerSpawner.gd
+res://Assets/Scripts/TriggerWallDestruction.gd

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://bu6jjhh6lcr8a"]
+[gd_scene load_steps=38 format=4 uid="uid://bu6jjhh6lcr8a"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_77jdw"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_ef1l8"]
@@ -15,9 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://dnholosdpshyl" path="res://Assets/Art/Environment/VinedBranch2.png" id="8_xl6v1"]
 [ext_resource type="Texture2D" uid="uid://cu5w6yxkjfud" path="res://Assets/Art/Environment/GrassTileDetailing.png" id="9_0he5r"]
 [ext_resource type="Texture2D" uid="uid://cpxtx41awrwe0" path="res://Assets/Art/Environment/RockTexture3.png" id="9_dloam"]
-[ext_resource type="Script" path="res://Assets/Scripts/TriggerWallDestruction.gd" id="11_dwtts"]
 [ext_resource type="Texture2D" uid="uid://c4pelnv5oo5he" path="res://Assets/Art/Environment/RockTextures.png" id="14_kkh6s"]
-[ext_resource type="PackedScene" uid="uid://8iy8vssh3tbp" path="res://Assets/ObjectScenes/Destructibles/DestructibleWall.tscn" id="15_h3sfn"]
+[ext_resource type="Script" path="res://Assets/Scripts/RigidBodyHittable.gd" id="15_3ll0h"]
 [ext_resource type="PackedScene" uid="uid://bk5o0ipghhwdy" path="res://Assets/ObjectScenes/Items/HealthPickup.tscn" id="17_ojhxu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8ih"]
@@ -144,6 +143,12 @@ point_count = 3
 [sub_resource type="ViewportTexture" id="ViewportTexture_yavc0"]
 viewport_path = NodePath("Environment/Rock6/SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_runyi"]
+viewport_path = NodePath("Environment/DestructibleWall/SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1l7o"]
+size = Vector2(200, 40)
+
 [node name="World2D" type="Node2D"]
 script = ExtResource("1_77jdw")
 
@@ -184,6 +189,7 @@ script = ExtResource("3_tckbx")
 script = ExtResource("3_6a74p")
 
 [node name="ReferenceArt" type="Node2D" parent="."]
+visible = false
 
 [node name="MapSketch" type="Sprite2D" parent="ReferenceArt"]
 position = Vector2(553, -2681)
@@ -209,60 +215,6 @@ z_index = -80
 use_parent_material = true
 tile_map_data = PackedByteArray("AAABAP//AQACAAMAAAABAAAAAQACAAAAAAD+/wEAAQABAAEAAAD//wEAAQACAAIAAAAAAP7/AQABAAEAAAAAAAEAAQADAAIAAAABAP7/AQACAAAAAAABAAEAAQABAAMAAAD/////AQAAAAEAAAAAAAAAAQABAAIAAAACAP7/AQAAAAMAAAACAP//AQABAAEAAAACAAAAAQABAAMAAAACAAEAAQADAAMAAAD8/wAAAQAAAAAAAAD8/wEAAQADAAEAAAD9//7/AQACAAAAAAD9/wEAAQAAAAAAAAADAP7/AQACAAMAAAADAP//AQAAAAAAAAADAAAAAQACAAIAAAADAAEAAQACAAIAAAD9/wIAAQACAAMAAAD+/wIAAQABAAIAAAD//wIAAQACAAIAAAAAAAIAAQABAAEAAAABAAIAAQADAAEAAAACAAIAAQACAAEAAAADAAIAAQACAAIAAAA=")
 tile_set = SubResource("TileSet_8t6qw")
-
-[node name="DestructibleWall" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(-1244, -1318)
-rotation = -1.57076
-scale = Vector2(2.60002, 1.8)
-
-[node name="DestructibleWall2" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(-242, -3087)
-rotation = -1.57076
-scale = Vector2(2.47032, 1.83693)
-
-[node name="DestructibleWall3" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(1545, -1387)
-rotation = -1.53126
-scale = Vector2(1.95419, 1.89228)
-
-[node name="DestructibleWall4" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(3031, -2151)
-rotation = 3.02847
-scale = Vector2(5.2019, 3.11592)
-
-[node name="DestructibleWall5" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(-1260, -4309)
-rotation = -1.72375
-scale = Vector2(2.47032, 1.83693)
-
-[node name="TriggerWall" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(1422, -4408)
-rotation = -1.55878
-scale = Vector2(2.47032, 1.83693)
-
-[node name="TriggeredWall" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(1860, -3918)
-rotation = 3.05428
-scale = Vector2(2.47032, 1.83693)
-invulnerable = true
-
-[node name="TriggerDestruction" type="Node2D" parent="Environment/TriggeredWall" node_paths=PackedStringArray("trackedWall")]
-script = ExtResource("11_dwtts")
-trackedWall = NodePath("../../TriggerWall")
-
-[node name="TriggeredWall2" parent="Environment" instance=ExtResource("15_h3sfn")]
-position = Vector2(1874, -4724)
-rotation = -0.0787217
-scale = Vector2(2.47032, 1.83693)
-invulnerable = true
-
-[node name="TriggerDestruction2" type="Node2D" parent="Environment/TriggeredWall2" node_paths=PackedStringArray("trackedWall")]
-position = Vector2(-31.3082, 436.817)
-rotation = 3.13004
-scale = Vector2(1.00003, 0.999984)
-skew = 0.0051657
-script = ExtResource("11_dwtts")
-trackedWall = NodePath("../../TriggerWall")
 
 [node name="Rock3" type="StaticBody2D" parent="Environment"]
 position = Vector2(-213, -2638)
@@ -574,6 +526,27 @@ polygon = PackedVector2Array(161.353, 127.221, 104.035, 176.462, 52.117, 197.718
 uv = PackedVector2Array(86.4247, 80.6424, 172.388, 45.5697, 249.189, 25.8798, 312.614, 30.9538, 396.334, 44.9073, 439.926, 76.7056, 503.349, 126.291, 537.944, 226.618, 540.251, 286.583, 542.557, 351.161, 507.962, 450.335, 468.639, 504.104, 408.789, 556.427, 336.138, 593.329, 257.722, 594.482, 196.603, 589.869, 104.117, 545.702, 33.0812, 420.121, 15.82, 355.387, 3.54091, 326.224, 18.8897, 251.014, 41.913, 152.782, 141.68, 119.014, 103.308, 177.34, 84.8898, 217.247, 55.727, 293.991, 53.6099, 350.008, 81.2852, 433.037, 109.191, 479.741, 162.468, 510.185, 222.088, 557.119, 329.91, 545.703, 390.338, 521.831, 428.393, 480.317, 449.15, 450.334, 475.672, 374.225, 495.277, 306.187, 486.054, 234.691, 472.216, 180.492, 408.791, 117.067, 349.978, 89.3905, 304.539, 72.5558, 261.183, 70.9397, 191.993, 88.2374)
 polygons = [PackedInt32Array(22, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23), PackedInt32Array(22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 0), PackedInt32Array(0, 22, 43, 1)]
 internal_vertex_count = 22
+
+[node name="DestructibleWall" type="RigidBody2D" parent="Environment"]
+position = Vector2(0, -252)
+freeze = true
+script = ExtResource("15_3ll0h")
+maxHealth = 60
+invulnerable = true
+
+[node name="MainSprite" type="Sprite2D" parent="Environment/DestructibleWall"]
+texture = SubResource("ViewportTexture_runyi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/DestructibleWall"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_o1l7o")
+
+[node name="SubViewport" type="SubViewport" parent="Environment/DestructibleWall"]
+transparent_bg = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Environment/DestructibleWall/SubViewport"]
+position = Vector2(256, 256)
+polygon = PackedVector2Array(-108, -29, 102, -20, 101, 19, -97, 18)
 
 [node name="Enemies" type="Node2D" parent="."]
 

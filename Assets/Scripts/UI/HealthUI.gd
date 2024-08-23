@@ -4,5 +4,5 @@ class_name HealthBar
 func _ready() -> void:
 	pass # Replace with function body.
 
-func UpdateHealth(pHealth:int) -> void:
+func UpdateHealth(_pMaxHealth:int, pHealth:int) -> void:
 	value = pHealth

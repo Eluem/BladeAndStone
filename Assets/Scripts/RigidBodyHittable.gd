@@ -1,21 +1,29 @@
 extends RigidBody2D
 class_name RigidBodyHittable
-@export var health:int = 100
+@export var maxHealth:int = 100
+@export var health:int = maxHealth
+@export var invulnerable:bool = false
+@export var generateOutline:bool = true
+@export var blockLineOfSight:bool = false
+@export var blockAttacks:bool = false
 var debugInfo:DebugInfo
 var spritePolygon:Polygon2D
 var boundingPolygon:Polygon2D
 var mainSprite:Sprite2D
 
-signal health_changed(pHealth:int)
+signal health_changed(pMaxHealth:int, pHealth:int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
 	mainSprite = GetMainSprite()
+	if(mainSprite is not SpritePolygonGenerator):
+		push_error("(Node Name: " + name + ") mainSprite must be a properly configured SpritePolygonGenerator")
 	#spritePolygon = Geometry2DHelper.CreatePolygonFromSprite(mainSprite)[0]
 	spritePolygon = (mainSprite as SpritePolygonGenerator).spritePolygon
 	GenerateBoundingPolygon()
-	GenerateOutline()
+	if(generateOutline):
+		GenerateOutline()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -29,12 +37,16 @@ func HandleHit(pHitData:HitData) -> void:
 		Die((pHitData.hitDirection as Vector2).normalized(), (pHitData.knockback as float))
 
 func ApplyDamage(pDamage:int) -> void:
+	if(invulnerable):
+		return
 	health -= pDamage
-	health_changed.emit(health)
+	health_changed.emit(maxHealth, health)
 
 func ApplyHeal(pHeal:int) -> void:
 	health += pHeal
-	health_changed.emit(health)
+	if(health > maxHealth):
+		health = maxHealth
+	health_changed.emit(maxHealth, health)
 
 func ApplyKnockback(pDirection:Vector2, pKnockback:float) -> void:
 	apply_central_impulse(pDirection.normalized() * pKnockback)
@@ -46,7 +58,9 @@ func HitEffect(pPosition:Vector2, pForce:Vector2) -> void:
 		LivingRockHit.Spawn(get_node("/root"), pPosition, pForce)
 		
 func Die(pDir:Vector2, pForce:float) -> void:
-	Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40), spritePolygon, 0, 1)
+	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40), spritePolygon, 0, 1)
+	if(mainSprite.texture is ViewportTexture):
+		get_node((mainSprite.texture as ViewportTexture).viewport_path).reparent(chunks[0])
 	queue_free()
 
 func GetMainSprite() -> Sprite2D:

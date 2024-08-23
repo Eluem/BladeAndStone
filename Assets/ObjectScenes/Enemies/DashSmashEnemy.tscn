@@ -23,6 +23,7 @@ colors = PackedColorArray(0.862745, 0.658824, 0.658824, 0.631373, 0.666667, 0, 0
 [node name="DashSmashEnemy" type="RigidBody2D"]
 mass = 5.0
 script = ExtResource("1_xb7ov")
+maxHealth = 60
 health = 60
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

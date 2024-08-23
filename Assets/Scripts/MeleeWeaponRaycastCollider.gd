@@ -58,11 +58,14 @@ func _physics_process(_delta: float) -> void:
 			staticBodyHittable.HandleHit(queuedHit)
 			#(queuedHit.collider as StaticBodyHittable).HandleHit(queuedHit) #Causes unsafe cast
 			break
-		if(queuedHit.collider is RigidBodyHittable && hitRIDs.find(queuedHit.rid) == -1 ):
+		if(queuedHit.collider is RigidBodyHittable):
 			rigidBodyHittable = queuedHit.collider #as RigidBodyHittable #This as also causes unsafe cast
-			rigidBodyHittable.HandleHit(queuedHit)
-			#(queuedHit.collider as RigidBodyHittable).HandleHit(queuedHit) #Causes unsafe cast
-			hitRIDs.append(queuedHit.rid)
+			if(hitRIDs.find(queuedHit.rid) == -1):
+				rigidBodyHittable.HandleHit(queuedHit)
+				#(queuedHit.collider as RigidBodyHittable).HandleHit(queuedHit) #Causes unsafe cast
+				hitRIDs.append(queuedHit.rid)
+			if(rigidBodyHittable.blockAttacks):
+				break
 
 #Allows the weapon to hit objects that were hit previously
 func ClearHits() -> void:

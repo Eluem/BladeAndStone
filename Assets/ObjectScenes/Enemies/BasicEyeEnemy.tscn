@@ -78,6 +78,7 @@ alpha_curve = SubResource("CurveTexture_ce2dp")
 [node name="BasicEyeEnemy" type="RigidBody2D"]
 linear_damp = 3.0
 script = ExtResource("1_0dwv7")
+maxHealth = 30
 health = 30
 
 [node name="MainSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("spritePolygon")]

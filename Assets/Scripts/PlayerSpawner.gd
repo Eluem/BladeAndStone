@@ -28,7 +28,7 @@ func SpawnPlayer() -> Golem:
 	ret.rotation = spawnPoints[currSpawnPoint].rotation
 	var healthBar:HealthBar = (HUD.get_node("HealthBar") as HealthBar)
 	ret.connect("health_changed", healthBar.UpdateHealth)
-	healthBar.UpdateHealth(ret.health)
+	healthBar.UpdateHealth(ret.maxHealth, ret.health)
 	get_tree().root.get_child(0).add_child(ret)
 	mainCamera.SetTrackTarget(ret)
 	return ret
