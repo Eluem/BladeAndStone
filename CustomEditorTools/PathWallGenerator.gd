@@ -4,6 +4,7 @@ extends Path2D
 @export var bakeLineToPath:bool = false
 @export var lineResetOffset:bool = false
 @export var bakePolygonToLine:bool = false
+@export var bakeCollisionToLine:bool = false
 
 @export var targetLine:Line2D
 @export var insideOut:bool = false
@@ -11,6 +12,7 @@ extends Path2D
 @export var targetPolygon:Polygon2D
 @export var targetColliderPolygon:CollisionPolygon2D
 @export var wallWidth:float = 10
+@export var shadowWidth:float = 30
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +25,7 @@ func _process(_delta: float) -> void:
 	_BakeLineToPath()
 	_ResetOffset()
 	_BakePolygonToLine2D()
+	_BakeCollisionToLine2D()
 
 func _BakeLineToPath() -> void:
 	if(bakeLineToPath):
@@ -49,16 +52,21 @@ func ResetOffset() -> void:
 
 func _BakePolygonToLine2D() -> void:
 	if(bakePolygonToLine):
-		BakePolygonToLine2D(targetLine)
+		targetPolygon.polygon = BakePolygonToLine2D(targetLine, shadowWidth)
 		bakePolygonToLine = false
 
-func BakePolygonToLine2D(pLine:Line2D) -> void:
+func _BakeCollisionToLine2D() -> void:
+	if(bakeCollisionToLine):
+		targetColliderPolygon.polygon = BakePolygonToLine2D(targetLine, wallWidth)
+		bakeCollisionToLine = false
+
+func BakePolygonToLine2D(pLine:Line2D, pWidth:float) -> PackedVector2Array:
 	var halfA:PackedVector2Array = []
 	var halfB:PackedVector2Array = []
 	var finalPolyData:PackedVector2Array
 	var perpendicular:Vector2
 	var pointCount:int = pLine.points.size()
-	var halfWidth:float = wallWidth/2.0  #pLine.width/2
+	var halfWidth:float = pWidth/2.0  #pLine.width/2
 	for i in range(pointCount):
 		if(i < pointCount-1):
 			perpendicular = pLine.points[i + 1] - pLine.points[i]
@@ -80,7 +88,5 @@ func BakePolygonToLine2D(pLine:Line2D) -> void:
 	halfB.reverse()
 	finalPolyData = halfA
 	finalPolyData.append_array(halfB)
-	if(targetPolygon != null):
-		targetPolygon.polygon = finalPolyData
-	if(targetColliderPolygon != null):
-		targetColliderPolygon.polygon = finalPolyData
+	
+	return finalPolyData

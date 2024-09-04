@@ -1,0 +1,144 @@
+[gd_scene load_steps=21 format=3 uid="uid://b88ycqw0o3m5h"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="1_hn6ka"]
+[ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="4_h2kuy"]
+[ext_resource type="Texture2D" uid="uid://dumms4qtc2q7p" path="res://Assets/Art/Particles/Particle_Bolt.png" id="5_y8wv0"]
+[ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="6_r2y5t"]
+[ext_resource type="Texture2D" uid="uid://x8wyrc0duqll" path="res://Assets/Art/Characters/EyeTurret_Shield.png" id="8_wpv2y"]
+[ext_resource type="Texture2D" uid="uid://duucge7rttlit" path="res://Assets/Art/Characters/EyeTurret_Eye.png" id="9_57p2i"]
+[ext_resource type="Texture2D" uid="uid://bjwxpuvp6m1bb" path="res://Assets/Art/Characters/EyeTurret_Lid.png" id="10_87w28"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jurdh"]
+radius = 48.0
+
+[sub_resource type="Curve" id="Curve_6eush"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.656085, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.90385, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ce2dp"]
+curve = SubResource("Curve_6eush")
+
+[sub_resource type="Curve" id="Curve_0vwm4"]
+_data = [Vector2(nan, nan), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0, Vector2(nan, nan), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_0vnf7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_1oc5f"]
+curve_x = SubResource("Curve_0vwm4")
+curve_y = SubResource("Curve_0vnf7")
+
+[sub_resource type="Curve" id="Curve_cwplj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_te03y"]
+curve = SubResource("Curve_cwplj")
+
+[sub_resource type="Curve" id="Curve_b8j2j"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h4eja"]
+curve = SubResource("Curve_b8j2j")
+
+[sub_resource type="Curve" id="Curve_ir7w6"]
+_data = [Vector2(0, 0), 0.0, 1.63636, 0, 0, Vector2(0.486772, 1), -0.0546556, -0.0546556, 0, 0, Vector2(1, 0), -3.46154, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mst8j"]
+curve = SubResource("Curve_ir7w6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v2t7d"]
+resource_local_to_scene = true
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 90.0
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_1oc5f")
+orbit_velocity_min = 1.0
+orbit_velocity_max = 1.0
+orbit_velocity_curve = SubResource("CurveTexture_te03y")
+radial_velocity_min = -100.0
+radial_velocity_max = -100.0
+radial_velocity_curve = SubResource("CurveTexture_h4eja")
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_mst8j")
+color = Color(0.836587, 0.2288, 0.88, 1)
+alpha_curve = SubResource("CurveTexture_ce2dp")
+
+[node name="EyeTurret" type="RigidBody2D"]
+linear_damp = 3.0
+script = ExtResource("1_hn6ka")
+maxHealth = 30
+health = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jurdh")
+
+[node name="VisionSensor" type="Area2D" parent="."]
+visible = false
+monitorable = false
+script = ExtResource("4_h2kuy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionSensor"]
+position = Vector2(-109, 0)
+polygon = PackedVector2Array(0, -50, 0, 50, 200, 300, 2000, 500, 2000, -500, 200, -300)
+
+[node name="EyeTurretEye" type="Sprite2D" parent="."]
+scale = Vector2(0.381663, 0.381663)
+texture = ExtResource("9_57p2i")
+offset = Vector2(13.5, 0)
+
+[node name="Line2D" type="Line2D" parent="EyeTurretEye"]
+visible = false
+position = Vector2(13.5119, 0)
+scale = Vector2(2.62011, 2.62011)
+points = PackedVector2Array(-14.1215, -107.82, -27.4797, -105.911, -44.2729, -100.95, -58.7761, -94.0799, -71.7526, -85.3017, -86.2558, -71.9435, -93.5074, -62.7836, -100.377, -51.7153, -106.866, -37.2121, -110.682, -24.2356, -112.972, -8.96908, -113.354, 8.96908, -109.919, 27.2889, -103.812, 44.4637, -96.9424, 57.4403, -86.6375, 71.1801, -77.0959, 81.1034, -63.3561, 91.4083, -50.7612, 98.2782, -36.6396, 103.622, -25.5714, 106.293, -14.1215, 108.201, 3.81663, 108.201, 18.7015, 105.53, 30.9147, 102.095, 45.0362, 95.9882, 55.7228, 89.5, 66.791, 80.7217, 77.8593, 69.6535, 87.4008, 56.2953, 94.6524, 41.7921, 102.667, 34.5405, 106.484, 28.8156, 111.064, 17.3657, 112.591, 10.114, 112.886, 0, 112.591, -10.1141, 109.537, -21.9456, 106.866, -28.0522, 103.049, -33.7772, 94.6524, -41.7921, 87.7825, -55.532, 81.2942, -65.0735, 67.1727, -80.7217, 49.2345, -93.6983, 32.0597, -101.713, 10.6866, -107.056)
+closed = true
+width = 1.5
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+
+[node name="EyeTurretLid" type="Sprite2D" parent="."]
+modulate = Color(0.71, 0.71, 0.71, 1)
+position = Vector2(-50, 0)
+scale = Vector2(0.381663, 0.381663)
+texture = ExtResource("10_87w28")
+
+[node name="Line2D" type="Line2D" parent="EyeTurretLid"]
+visible = false
+scale = Vector2(2.62011, 2.62011)
+points = PackedVector2Array(46.5629, -115.071, 26.3347, -112.4, 11.0682, -108.201, 3.43497, -105.148, -14.5032, -95.2249, -29.7697, -82.2484, -41.6013, -66.9819, -51.1428, -48.662, -55.7228, -36.0672, -58.7761, -24.2356, -61.4477, -6.6791, -61.8294, 6.6791, -59.9211, 18.129, -56.1045, 34.5405, -53.0512, 43.7004, -45.4179, 60.4936, -41.9829, 66.2185, -33.2047, 78.0501, -25.9531, 86.065, -14.1215, 95.6066, -6.10661, 100.568, 4.96162, 105.911, 14.5032, 109.346, 28.2431, 112.781, 46.5629, 115.071, 57.6311, 115.453, 60.6844, 112.781, 61.8294, 110.873, 61.8294, 103.24, 60.6844, 99.8049, 40.0746, 39.8838, 35.113, 19.6556, 33.5863, 8.58742, 33.5863, -2.48081, 33.5863, -8.58742, 36.6396, -26.9072, 44.6546, -54.0053, 59.5394, -95.2249, 61.4477, -103.24, 61.8294, -110.873, 59.1578, -114.308)
+closed = true
+width = 1.5
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.45098)
+scale = Vector2(0.489071, 0.489071)
+texture = ExtResource("8_wpv2y")
+
+[node name="ChargeEffect" type="GPUParticles2D" parent="."]
+position = Vector2(101, 0)
+scale = Vector2(0.831289, 0.831289)
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_v2t7d")
+texture = ExtResource("5_y8wv0")
+lifetime = 1.8
+local_coords = true
+
+[node name="DeleteOnFinish" type="Node" parent="ChargeEffect"]
+script = ExtResource("6_r2y5t")

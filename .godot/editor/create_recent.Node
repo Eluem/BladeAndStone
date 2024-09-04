@@ -1,10 +1,10 @@
-Polygon2D
-CollisionShape2D
-Node2D
-Area2D
 Line2D
-SubViewport
+Polygon2D
 Sprite2D
+Node2D
+CollisionShape2D
+Area2D
+SubViewport
 RigidBodyHittable
 CollisionPolygon2D
 StaticBodyHittable

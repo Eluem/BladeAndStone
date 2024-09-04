@@ -1,1 +1,6 @@
+res://Assets/ObjectScenes/Environment/DestructibleWall.tscn
 res://Assets/GameScenes/VerticalSlice.tscn
+res://Assets/ObjectScenes/Golem.tscn
+res://Assets/GameScenes/Archive/EyeParticleTestScene.tscn
+res://Assets/ObjectScenes/Particles/ExplodingSprite.tscn
+res://Assets/ObjectScenes/Enemies/EyeTurret.tscn
