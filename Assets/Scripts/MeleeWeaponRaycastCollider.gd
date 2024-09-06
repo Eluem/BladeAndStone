@@ -24,9 +24,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if(!enabled):
 		return
+	var debugFullScanEmpty:bool = true
+	if(debugInfo.debugUIEnabled || debugInfo.forceDebugTrails):
+		for nodeData:RaycastNodeData in raycastNodes:
+			if(!nodeData.hitResults.is_empty()):
+				debugFullScanEmpty = false
+				break
 	for nodeData:RaycastNodeData in raycastNodes:
-		if(debugInfo.debugUIEnabled):
-			DrawDebugTrail(nodeData)
+		if(debugInfo.debugUIEnabled || debugInfo.forceDebugTrails):
+			DrawDebugTrail(nodeData, debugFullScanEmpty)
 		nodeData.UpdatePrevPos()
 
 func _physics_process(_delta: float) -> void:
@@ -87,10 +93,12 @@ func InitRaycastNodes() -> void:
 	for i:int in nodesTempSize:
 		raycastNodes[i] = RaycastNodeData.new(nodesTemp[i] as Node2D)
 
-func DrawDebugTrail(pNodeData:RaycastNodeData) -> void:
+func DrawDebugTrail(pNodeData:RaycastNodeData, pFullScanEmpty:bool) -> void:
 	var lineColor:Color = Color.GREEN #Default debug line color
 	if(!pNodeData.hitResults.is_empty()):
 		lineColor = Color.RED
+	if(pFullScanEmpty):
+		lineColor = Color.PURPLE
 	#Draw debug line
 	get_node("/root").add_child(DebugLine.new(pNodeData.prevPos, pNodeData.node.global_position, lineColor))
 

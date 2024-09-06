@@ -2,6 +2,7 @@ class_name DebugInfo
 extends Node2D
 var debugUIEnabled:bool = false
 var effectsEnabled:bool = true
+var forceDebugTrails:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

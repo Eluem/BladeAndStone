@@ -1,4 +1,4 @@
-res://Assets/ObjectScenes/Particles/ExplodingSprite.tscn::3ed66842e51f7f57729c132230110ee0::1723647035::res://.godot/exported/133200997/export-f1b721dc676964e28001ef16be5f51a7-ExplodingSprite.scn
+res://Assets/ObjectScenes/Particles/ExplodingSprite.tscn::3ed66842e51f7f57729c132230110ee0::1725416015::res://.godot/exported/133200997/export-f1b721dc676964e28001ef16be5f51a7-ExplodingSprite.scn
 res://Assets/ObjectScenes/Particles/LivingRockHit.tscn::77f7c09e8f7ac0bc81ade3243b755cbe::1719245403::res://.godot/exported/133200997/export-e8ed1098b3be6001d01770296381866d-LivingRockHit.scn
 res://Assets/ObjectScenes/Particles/Sparks.tscn::fe2f3927ed7663d2767261aaa7d807bf::1719245583::res://.godot/exported/133200997/export-955872276f34ad723c2fb2ecc8485962-Sparks.scn
 res://ArchivedStuff/TransformMatrixLearning/DebugLabelSettings.tres::de89fef4037e5b2605f06909bec5365c::1710962830::res://.godot/exported/133200997/export-5cb43602a04b6cb3b7442a18dc74fe43-DebugLabelSettings.res
@@ -6,10 +6,10 @@ res://ArchivedStuff/TransformMatrixLearning/TransformMatrixLearning.tscn::0468f2
 res://ArchivedStuff/TargetDummy.tscn::fa61d73e408c1464bfb7476bef924851::1719062676::res://.godot/exported/133200997/export-93272b88f635c45270778dd35f689469-TargetDummy.scn
 res://Assets/GameScenes/TestScene.tscn::ec6de4958306b6c6e3f0c6d63354ee0f::1723933971::res://.godot/exported/133200997/export-233c259b70d5c6da129ee45f44c7a538-TestScene.scn
 res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn::b86ce3fe089d0261582a4e141346a75a::1724359911::res://.godot/exported/133200997/export-b8a014cdd005c30431d9fe7f6d7e17d6-BasicEyeEnemy.scn
-res://Assets/GameScenes/VerticalSlice.tscn::c5bf3a5a075c16079c705369a6945b34::1724697213::res://.godot/exported/133200997/export-dc71c17c24eb52f328c46a4bf61df16c-VerticalSlice.scn
+res://Assets/GameScenes/VerticalSlice.tscn::a2d0dd59b6dc5ba3c01aa8056640eed8::1725537466::res://.godot/exported/133200997/export-dc71c17c24eb52f328c46a4bf61df16c-VerticalSlice.scn
 res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn::634ddc5947b6158d0cd6c338d9ebcc3a::1724359936::res://.godot/exported/133200997/export-a4f1b4b180c6662141d591e54405250d-DashSmashEnemy.scn
 res://Assets/ObjectScenes/Hazards/EyeBolt.tscn::fadc115b800101c91acd43ddac98e2e3::1723647011::res://.godot/exported/133200997/export-da7d1b1fe423db42d97497390e016b69-EyeBolt.scn
-res://Assets/ObjectScenes/Golem.tscn::ea7666da428689c0b9851c821f8356aa::1723837527::res://.godot/exported/133200997/export-0f4a1d8a2a29ef6e3a95079d1e577837-Golem.scn
+res://Assets/ObjectScenes/Golem.tscn::cef6e0504968d7c88858107bcf8f6d0c::1725479117::res://.godot/exported/133200997/export-0f4a1d8a2a29ef6e3a95079d1e577837-Golem.scn
 res://Assets/Art/UI/PrototypeFont/Font_A1.tres::7584eaf970b91874d30349c98e954229::1724413872::res://.godot/exported/133200997/export-833baf3b94b8576a542e40c94a80e48e-Font_A1.res
 res://Assets/Art/UI/PrototypeFont/Font_A2.tres::23b02a27d11ee5a80467fb2ad4599e94::1723773891::res://.godot/exported/133200997/export-84d61a8e2f31e8bc0b5903d693cd0697-Font_A2.res
 res://Assets/Art/UI/PrototypeFont/Font_Amp.tres::ff7be3421f17fa74160d7b36195d8745::1724413872::res://.godot/exported/133200997/export-92bd89f3db0f51d98cf3464825f7c177-Font_Amp.res
@@ -28,7 +28,7 @@ res://Assets/Art/UI/PrototypeFont/Font_T2.tres::87f7b51f2be44fe8db84d0abc65a02ce
 res://Assets/Art/UI/PrototypeFont/Font_T3.tres::e1b3ed86ae61dda789e8f3c1f762f0e3::1723774297::res://.godot/exported/133200997/export-376c778d181d9db6da0f467a21548f1f-Font_T3.res
 res://Assets/Art/UI/PrototypeFont/Start.tres::ce18708565cb4b8e8592697390623532::1723774330::res://.godot/exported/133200997/export-9568b3e9a8041ae665571e398fe8da46-Start.res
 res://Assets/GameScenes/MainMenu.tscn::2e033dfddcb96d3816e6fa708ff06996::1724418763::res://.godot/exported/133200997/export-dffc87e8a14a4aae20244e0d7bbc5984-MainMenu.scn
-res://Assets/GameScenes/Archive/EyeParticleTestScene.tscn::a1fcd907f7fdea6105f47b8a5696ee66::1723837527::res://.godot/exported/133200997/export-624ea6ddee5ef0ee31dcf72742413052-EyeParticleTestScene.scn
+res://Assets/GameScenes/Archive/EyeParticleTestScene.tscn::a1fcd907f7fdea6105f47b8a5696ee66::1725416015::res://.godot/exported/133200997/export-624ea6ddee5ef0ee31dcf72742413052-EyeParticleTestScene.scn
 res://Assets/GameScenes/Archive/VerticalSlice_bk08122024.tscn::eaf8eb690865a062fee35de5c100ccc3::1723761813::res://.godot/exported/133200997/export-f6ba105d1de8126e6463f8ad8a0ac548-VerticalSlice_bk08122024.scn
 res://Assets/GameScenes/Archive/VerticalSlice_bk08152024.tscn::5ca91b0bd52adeead25519fd3feca670::1723757832::res://.godot/exported/133200997/export-4799d0dddd8972e9e6f44916ee4d8f6c-VerticalSlice_bk08152024.scn
 res://Assets/GameScenes/Archive/VerticalSlice_bk08162024.tscn::e682a367ef428e702bf64c057e1e82e8::1723832942::res://.godot/exported/133200997/export-df7e1d859fa7edf6f96194ce78809ba0-VerticalSlice_bk08162024.scn
@@ -36,5 +36,10 @@ res://Assets/GameScenes/Archive/VerticalSlice_bk08212024.tscn::2e0762b1b71842565
 res://Assets/GameScenes/Archive/VerticalSlice_bk08232024.tscn::c256b1aec8b67e1c02bd2389dd92d4e1::1724444343::res://.godot/exported/133200997/export-d3ef6602d354992da69f48783356d3a4-VerticalSlice_bk08232024.scn
 res://Assets/GameScenes/MenuTextCreating.tscn::2a50468da6080194e9024385bf38c6e0::1723938293::res://.godot/exported/133200997/export-2b4169b6ed91817d49c266eadbe3bf99-MenuTextCreating.scn
 res://Assets/ObjectScenes/Environment/CaveRoof.tscn::d9c0c8f60c8092041f9dba6679877188::1724444488::res://.godot/exported/133200997/export-5cb44941b59195db4fbd2e12cbed96fa-CaveRoof.scn
-res://Assets/ObjectScenes/Environment/DestructibleWall.tscn::410fd2d5536c4ff570c69f4483d54352::1724444488::res://.godot/exported/133200997/export-cf8fb0c5228ac3ff2897ffee74fa081c-DestructibleWall.scn
+res://Assets/ObjectScenes/Environment/DestructibleWall.tscn::c718ea337a396e364a771a1bafa16f71::1725479117::res://.godot/exported/133200997/export-cf8fb0c5228ac3ff2897ffee74fa081c-DestructibleWall.scn
 res://Assets/ObjectScenes/Items/HealthPickup.tscn::c2512f642e1ac19a795ba224fcf8b6a5::1724418764::res://.godot/exported/133200997/export-64ee195edc62f6d9dfbf0894ffe50f88-HealthPickup.scn
+res://Assets/Art/Particles/ExplodingSprite.tres::7369e5fc6316b00b9cf1153d88c883e0::1724951247::res://.godot/exported/133200997/export-2ccba30a740ee449e00e20489d7e5fc9-ExplodingSprite.res
+res://Assets/ObjectScenes/Enemies/EyeTurret.tscn::958357f76ab2f4d4185676afff22e578::1725479117::res://.godot/exported/133200997/export-2fa49b7251d2f2c18840f6cb41248b5c-EyeTurret.scn
+res://Assets/ObjectScenes/Environment/DestructibleWall_bk.tscn::0cfec986c7d5a5c6dbc31427196e3f3e::1725414374::res://.godot/exported/133200997/export-53f7603c1319cd5e002bdf116de902ef-DestructibleWall_bk.scn
+res://Assets/ObjectScenes/Hazards/EyeTurretBolt.tscn::581827de13156a9bbb9062ee0100f122::1725479117::res://.godot/exported/133200997/export-5ed6d0b9b0f00c33a955297c20772e75-EyeTurretBolt.scn
+res://Assets/GameScenes/Archive/VerticalSlice_bk09052024.tscn::4b910b84b81ecf912803d63924a88732::1725537422::res://.godot/exported/133200997/export-d84e3015417213091e231f117dc15e76-VerticalSlice_bk09052024.scn

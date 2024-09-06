@@ -13,18 +13,22 @@ func _process(_delta: float) -> void:
 	
 func scan_vision() -> void:
 	var bodies: Array[Node2D] = get_overlapping_bodies()
-	var castHittable:RigidBodyHittable
+	#var castHittable:RigidBodyHittable
+	var spaceState:PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	for body in bodies:
 		if(body is Golem):
-			var query:PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(global_position, body.global_position)
-			var results:Array[Dictionary]
-			results = RaycastHelper.RaycastAll(get_world_2d().direct_space_state, query)
-			for result in results:
-				if(result.collider is StaticBodyHittable):
-					return
-				if(result.collider is RigidBodyHittable):
-					castHittable = result.collider #as RigidBodyHittable
-					if(castHittable.blockLineOfSight):
-						return
-				if(result.collider == body):
-					object_detected.emit(body)
+			if(RaycastHelper.CheckLineOfSight(spaceState, global_position, body)):
+				object_detected.emit(body)
+			#var query:PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(global_position, body.global_position)
+			#var results:Array[Dictionary]
+			#results = RaycastHelper.RaycastAll(get_world_2d().direct_space_state, query)
+			#for result in results:
+				#if(result.collider is StaticBodyHittable):
+					#return
+				#if(result.collider is RigidBodyHittable):
+					#castHittable = result.collider #as RigidBodyHittable
+					#if(castHittable.blockLineOfSight):
+						#return
+				#if(result.collider == body):
+					#object_detected.emit(body)
+					
