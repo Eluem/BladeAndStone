@@ -1878,6 +1878,7 @@ point_count = 3
 
 [node name="Golem" type="RigidBody2D"]
 position = Vector2(270, -271)
+collision_layer = 3
 inertia = 1.0
 can_sleep = false
 lock_rotation = true
@@ -1933,7 +1934,6 @@ width = 180.0
 width_curve = SubResource("Curve_qb5rn")
 default_color = Color(0.592157, 0.0784314, 1, 0.729412)
 script = ExtResource("4_emk4k")
-MAX_LENGTH = 20.0
 forceTipAlignment = false
 
 [node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
@@ -1945,8 +1945,8 @@ texture = ExtResource("5_g7rrp")
 [node name="RaycastCollider" type="Node2D" parent="Weapon" node_paths=PackedStringArray("excludeCollision")]
 script = ExtResource("6_5cw8i")
 excludeCollision = [NodePath("../..")]
-weaponDamage = 20
-weaponKnockback = 1000.0
+weaponDamage = 0
+weaponKnockback = 0.0
 
 [node name="RaycastNode" type="Node2D" parent="Weapon/RaycastCollider"]
 position = Vector2(-60, 0)

@@ -1,5 +1,8 @@
 extends StaticBodyHittable
 
+@export var isEyeOpen:bool = true
+@export var damage:int = 30
+
 @onready var eye: Node2D = $EyeTurretEye
 @onready var projectileSpawnPoint:Node2D = $EyeTurretEye/ProjectileSpawnPoint
 @onready var shieldSprite:Sprite2D = $Shield
@@ -42,12 +45,15 @@ func _process(delta: float) -> void:
 		ValidateTarget(delta)
 		if(!hasTarget):
 			TargetFound()
-		ChargeEyeBolt(delta)
+		if(isEyeOpen):
+			ChargeEyeBolt(delta)
 	elif(hasTarget):
 		TargetLost()
 	HandleShieldEffect(delta)
 
 func _physics_process(delta: float) -> void:
+	if(!isEyeOpen):
+		return
 	if(target == null):
 		eye.rotation = lerp_angle(eye.rotation, 0, rotationSpeed*delta)
 		eye.rotation = clampf(eye.rotation, maxRotationRange.x, maxRotationRange.y)
@@ -77,6 +83,7 @@ func ChargeEyeBolt(delta:float) -> void:
 func FireProjectile() -> void:
 	var projectile:EyeTurretBolt = EyeTurretBolt.Spawn(get_node("/root"), projectileSpawnPoint.global_position, projectileSpawnPoint.global_transform.x)
 	projectile.z_index = -2
+	projectile.damage = damage
 	projectile.AddCollisionException(get_rid())
 
 func object_detected(pBody:Node2D) -> void:

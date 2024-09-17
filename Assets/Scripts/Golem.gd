@@ -1,6 +1,7 @@
 class_name Golem
 extends RigidBodyHittable
 var targetRotation:float
+var bossKey:BossKey
 signal exploded(pMainChunk:RigidBody2D)
 
 # Called when the node enters the scene tree for the first time.
@@ -60,13 +61,20 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	
 	#super._integrate_forces(state)
 
+
 func Die(pDir:Vector2, pForce:float) -> void:
 	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40), spritePolygon)
 	exploded.emit(chunks[0])
 	queue_free()
 
+
 func GetMainSprite() -> Sprite2D:
 	return $MaskSpriteContainer/MaskSprite
 
+
 func isTurningAllowed() -> bool:
 	return !($Weapon/RaycastCollider as RaycastCollider).enabled
+
+
+func hasKey() -> bool:
+	return bossKey != null
