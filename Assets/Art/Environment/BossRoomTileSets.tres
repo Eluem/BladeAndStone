@@ -1,0 +1,110 @@
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://d33hvftjovh37"]
+
+[ext_resource type="Texture2D" uid="uid://bmtw58ogf2r5o" path="res://Assets/Art/Environment/BossRoomTileset_Background.png" id="1_4bjga"]
+[ext_resource type="Texture2D" uid="uid://bmrkfmk5vkvdu" path="res://Assets/Art/Environment/BossRoomTileset_Texturing.png" id="2_slffn"]
+[ext_resource type="Texture2D" uid="uid://b3w05rm0qonjr" path="res://Assets/Art/Environment/BossRoomTileSet_Design.png" id="3_m45re"]
+[ext_resource type="Texture2D" uid="uid://klk6xdpuovx" path="res://Assets/Art/Environment/BossRoomTileset_Border.png" id="4_1dnht"]
+[ext_resource type="Texture2D" uid="uid://i4u8x724xpr4" path="res://Assets/Art/Environment/BossRoomTileset_Transition_Background.png" id="5_3kmkj"]
+[ext_resource type="Texture2D" uid="uid://cjmko0ybfs48p" path="res://Assets/Art/Environment/BossRoomTileset_Transition_Texturing.png" id="6_dv0ys"]
+[ext_resource type="Texture2D" uid="uid://di81kgv3ksqpo" path="res://Assets/Art/Environment/BossRoomTileset_Transition_Design.png" id="7_4veah"]
+[ext_resource type="Texture2D" uid="uid://bvwcfjfmvpf7k" path="res://Assets/Art/Environment/BossRoomTileset_Transition_Border.png" id="8_nnkci"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejvwb"]
+texture = ExtResource("1_4bjga")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l8diw"]
+texture = ExtResource("2_slffn")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ceib"]
+texture = ExtResource("3_m45re")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j2dfl"]
+texture = ExtResource("4_1dnht")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f36pq"]
+texture = ExtResource("5_3kmkj")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sfegi"]
+texture = ExtResource("6_dv0ys")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cbvt2"]
+texture = ExtResource("7_4veah")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ly6ob"]
+texture = ExtResource("8_nnkci")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[resource]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_ejvwb")
+sources/1 = SubResource("TileSetAtlasSource_l8diw")
+sources/2 = SubResource("TileSetAtlasSource_7ceib")
+sources/3 = SubResource("TileSetAtlasSource_j2dfl")
+sources/4 = SubResource("TileSetAtlasSource_f36pq")
+sources/5 = SubResource("TileSetAtlasSource_sfegi")
+sources/6 = SubResource("TileSetAtlasSource_cbvt2")
+sources/7 = SubResource("TileSetAtlasSource_ly6ob")

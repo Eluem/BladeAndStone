@@ -1,7 +1,192 @@
-[gd_scene load_steps=12 format=3 uid="uid://brudcg26fol1o"]
+[gd_scene load_steps=13 format=3 uid="uid://brudcg26fol1o"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/StaticBodyHittable.gd" id="2_3jl37"]
+[ext_resource type="Texture2D" uid="uid://d0i8ww3jk52jc" path="res://Assets/Art/Environment/ShadowGradient.png" id="3_q7w0f"]
 [ext_resource type="Texture2D" uid="uid://q7kpi4kxfcwy" path="res://Assets/Art/Environment/BossEntranceGate.png" id="3_t8lxd"]
+
+[sub_resource type="Animation" id="Animation_vp8u6"]
+resource_name = "Closing_BounceBack_LargeFirst"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftGate/BossEntranceGate3:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightGate/BossEntranceGate3:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftGate/BossEntranceGate2:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 206, 0, 0, 0, 0, 221, 0, 0, 0, 0, 216, 0, 0, 0, 0, 221, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightGate/BossEntranceGate2:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 206, 0, 0, 0, 0, 221, 0, 0, 0, 0, 216, 0, 0, 0, 0, 221, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftGate/BossEntranceGate:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0, 77, 0, 0, 0, 0, 79, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightGate/BossEntranceGate:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0, 77, 0, 0, 0, 0, 79, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LeftGate/CollisionPolygon2D:scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RightGate/CollisionPolygon2D:scale:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
+}
+
+[sub_resource type="Animation" id="Animation_2jvww"]
+resource_name = "Closing_BounceBack_SmallFirst"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftGate/BossEntranceGate3:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 57, 0, 0, 0, 0, 57, 0, 0, 0, 0, 199, 0, 0, 0, 0, 199, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightGate/BossEntranceGate3:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, 57, 0, 0, 0, 0, 57, 0, 0, 0, 0, 199, 0, 0, 0, 0, 199, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftGate/BossEntranceGate2:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 76, 0, 0, 0, 0, 76, 0, 0, 0, 0, 221, 0, 0, 0, 0, 201, 0, 0, 0, 0, 221, 0, 0, 0, 0, 211, 0, 0, 0, 0, 221, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightGate/BossEntranceGate2:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 76, 0, 0, 0, 0, 76, 0, 0, 0, 0, 221, 0, 0, 0, 0, 201, 0, 0, 0, 0, 221, 0, 0, 0, 0, 211, 0, 0, 0, 0, 221, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftGate/BossEntranceGate:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 59, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightGate/BossEntranceGate:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 59, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LeftGate/CollisionPolygon2D:scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RightGate/CollisionPolygon2D:scale:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
+}
 
 [sub_resource type="Animation" id="Animation_k86hl"]
 resource_name = "Closing_Smooth"
@@ -554,190 +739,6 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_2jvww"]
-resource_name = "Closing_BounceBack_SmallFirst"
-length = 1.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftGate/BossEntranceGate3:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 57, 0, 0, 0, 0, 57, 0, 0, 0, 0, 199, 0, 0, 0, 0, 199, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RightGate/BossEntranceGate3:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 57, 0, 0, 0, 0, 57, 0, 0, 0, 0, 199, 0, 0, 0, 0, 199, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftGate/BossEntranceGate2:position:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 76, 0, 0, 0, 0, 76, 0, 0, 0, 0, 221, 0, 0, 0, 0, 201, 0, 0, 0, 0, 221, 0, 0, 0, 0, 211, 0, 0, 0, 0, 221, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightGate/BossEntranceGate2:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 76, 0, 0, 0, 0, 76, 0, 0, 0, 0, 221, 0, 0, 0, 0, 201, 0, 0, 0, 0, 221, 0, 0, 0, 0, 211, 0, 0, 0, 0, 221, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("LeftGate/BossEntranceGate:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 59, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("RightGate/BossEntranceGate:position:x")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, -66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 59, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("LeftGate/CollisionPolygon2D:scale:x")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("RightGate/CollisionPolygon2D:scale:x")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.3, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
-}
-
-[sub_resource type="Animation" id="Animation_vp8u6"]
-resource_name = "Closing_BounceBack_LargeFirst"
-length = 1.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftGate/BossEntranceGate3:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RightGate/BossEntranceGate3:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 344, 0, 0, 0, 0, 324, 0, 0, 0, 0, 344, 0, 0, 0, 0, 334, 0, 0, 0, 0, 344, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftGate/BossEntranceGate2:position:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 206, 0, 0, 0, 0, 221, 0, 0, 0, 0, 216, 0, 0, 0, 0, 221, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightGate/BossEntranceGate2:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 221, 0, 0, 0, 0, 206, 0, 0, 0, 0, 221, 0, 0, 0, 0, 216, 0, 0, 0, 0, 221, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("LeftGate/BossEntranceGate:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0, 77, 0, 0, 0, 0, 79, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("RightGate/BossEntranceGate:position:x")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-66, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 79, 0, 0, 0, 0, 69, 0, 0, 0, 0, 79, 0, 0, 0, 0, 77, 0, 0, 0, 0, 79, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 0.866667, 1.13333, 1.2, 1.5)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("LeftGate/CollisionPolygon2D:scale:x")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("RightGate/CollisionPolygon2D:scale:x")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(0.045, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.39, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 0.7, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.5, 0.6, 0.8, 1.5)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sysny"]
 _data = {
 "Closing_BounceBack_LargeFirst": SubResource("Animation_vp8u6"),
@@ -758,22 +759,64 @@ position = Vector2(-411.976, -0.000488281)
 script = ExtResource("2_3jl37")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftGate"]
+visible = false
 polygon = PackedVector2Array(0, -40, 0, 40, 415, 30, 415, -30)
+
+[node name="Shadow" type="Line2D" parent="LeftGate/CollisionPolygon2D"]
+visible = false
+z_index = -1
+points = PackedVector2Array(400, 0, 1.97601, 0.000488281, 1.97601, -12.9995, 4.97601, -24.9995, 9.97601, -31.9995, 19.976, -33.9995, 29.976, -35.9995, 43.976, -37.9995, 55.976, -39.9995, 66.976, -40.9995, 81.976, -41.9995, 93.976, -41.9995, 111.976, -41.9995, 137.976, -40.9995, 149.976, -36.9995, 156.976, -32.9995, 161.976, -31.9995, 167.976, -31.9995, 210.976, -37.9995, 227.976, -37.9995, 253.976, -36.9995, 268.976, -35.9995, 284.976, -32.9995, 299.976, -27.9995, 344.976, -31.9995, 380.976, -31.9995, 395.976, -29.9995, 405.976, -24.9995, 410.976, -11.9995, 410.976, 11.9995, 405.976, 24.9995, 395.976, 29.9995, 380.976, 31.9995, 344.976, 31.9995, 299.976, 27.9995, 284.976, 32.9995, 268.976, 35.9995, 253.976, 36.9995, 227.976, 37.9995, 210.976, 37.9995, 167.976, 31.9995, 161.976, 31.9995, 156.976, 32.9995, 149.976, 36.9995, 137.976, 40.9995, 111.976, 41.9995, 93.976, 41.9995, 81.976, 41.9995, 66.976, 40.9995, 55.976, 39.9995, 43.976, 37.9995, 29.976, 35.9995, 19.976, 33.9995, 9.97601, 31.9995, 4.97601, 24.9995, 1.97601, 12.9995, 1.97601, -0.000488281, 400, 0)
+width = 22.61
+default_color = Color(1, 1, 1, 0.290196)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
 
 [node name="BossEntranceGate3" type="Sprite2D" parent="LeftGate"]
 position = Vector2(344, 0)
 scale = Vector2(0.243, 0.243)
 texture = ExtResource("3_t8lxd")
 
+[node name="Shadow" type="Line2D" parent="LeftGate/BossEntranceGate3"]
+z_index = -1
+points = PackedVector2Array(220, 0, -251.128, 0.00200939, -247.012, -41.1503, -230.551, -78.1873, -201.745, -94.6482, -131.786, -111.109, -24.7901, -123.455, 73.9754, -127.57, 180.971, -123.455, 213.893, -115.224, 238.584, -106.994, 259.161, -65.8416, 263.276, -12.3437, 263.276, 12.3437, 259.161, 65.8416, 238.584, 106.994, 213.893, 115.224, 180.971, 123.455, 73.9754, 127.57, -24.7901, 123.455, -131.786, 111.109, -201.745, 94.6482, -230.551, 78.1873, -247.012, 41.1503, -251.128, 0.00200939, 220, 0)
+width = 90.0
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
+
 [node name="BossEntranceGate2" type="Sprite2D" parent="LeftGate"]
 position = Vector2(221, 0)
 scale = Vector2(0.27, 0.27)
 texture = ExtResource("3_t8lxd")
 
+[node name="Shadow" type="Line2D" parent="LeftGate/BossEntranceGate2"]
+z_index = -1
+points = PackedVector2Array(220, 0, -251.128, 0.00200939, -247.012, -41.1503, -230.551, -78.1873, -201.745, -94.6482, -131.786, -111.109, -24.7901, -123.455, 73.9754, -127.57, 180.971, -123.455, 213.893, -115.224, 238.584, -106.994, 259.161, -65.8416, 263.276, -12.3437, 263.276, 12.3437, 259.161, 65.8416, 238.584, 106.994, 213.893, 115.224, 180.971, 123.455, 73.9754, 127.57, -24.7901, 123.455, -131.786, 111.109, -201.745, 94.6482, -230.551, 78.1873, -247.012, 41.1503, -251.128, 0.00200939, 220, 0)
+width = 90.0
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
+
 [node name="BossEntranceGate" type="Sprite2D" parent="LeftGate"]
 position = Vector2(79, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_t8lxd")
+
+[node name="Shadow" type="Line2D" parent="LeftGate/BossEntranceGate"]
+z_index = -1
+points = PackedVector2Array(220, 0, -251.128, 0.00200939, -247.012, -41.1503, -230.551, -78.1873, -201.745, -94.6482, -131.786, -111.109, -24.7901, -123.455, 73.9754, -127.57, 180.971, -123.455, 213.893, -115.224, 238.584, -106.994, 259.161, -65.8416, 263.276, -12.3437, 263.276, 12.3437, 259.161, 65.8416, 238.584, 106.994, 213.893, 115.224, 180.971, 123.455, 73.9754, 127.57, -24.7901, 123.455, -131.786, 111.109, -201.745, 94.6482, -230.551, 78.1873, -247.012, 41.1503, -251.128, 0.00200939, 220, 0)
+width = 90.0
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
 
 [node name="RightGate" type="AnimatableBody2D" parent="."]
 z_index = -1
@@ -782,22 +825,64 @@ scale = Vector2(-1, 1)
 script = ExtResource("2_3jl37")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightGate"]
+visible = false
 polygon = PackedVector2Array(0, -40, 0, 40, 415, 30, 415, -30)
+
+[node name="Shadow" type="Line2D" parent="RightGate/CollisionPolygon2D"]
+visible = false
+z_index = -1
+points = PackedVector2Array(400, 0, 1.97601, 0.000488281, 1.97601, -12.9995, 4.97601, -24.9995, 9.97601, -31.9995, 19.976, -33.9995, 29.976, -35.9995, 43.976, -37.9995, 55.976, -39.9995, 66.976, -40.9995, 81.976, -41.9995, 93.976, -41.9995, 111.976, -41.9995, 137.976, -40.9995, 149.976, -36.9995, 156.976, -32.9995, 161.976, -31.9995, 167.976, -31.9995, 210.976, -37.9995, 227.976, -37.9995, 253.976, -36.9995, 268.976, -35.9995, 284.976, -32.9995, 299.976, -27.9995, 344.976, -31.9995, 380.976, -31.9995, 395.976, -29.9995, 405.976, -24.9995, 410.976, -11.9995, 410.976, 11.9995, 405.976, 24.9995, 395.976, 29.9995, 380.976, 31.9995, 344.976, 31.9995, 299.976, 27.9995, 284.976, 32.9995, 268.976, 35.9995, 253.976, 36.9995, 227.976, 37.9995, 210.976, 37.9995, 167.976, 31.9995, 161.976, 31.9995, 156.976, 32.9995, 149.976, 36.9995, 137.976, 40.9995, 111.976, 41.9995, 93.976, 41.9995, 81.976, 41.9995, 66.976, 40.9995, 55.976, 39.9995, 43.976, 37.9995, 29.976, 35.9995, 19.976, 33.9995, 9.97601, 31.9995, 4.97601, 24.9995, 1.97601, 12.9995, 1.97601, -0.000488281, 400, 0)
+width = 22.61
+default_color = Color(1, 1, 1, 0.290196)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
 
 [node name="BossEntranceGate3" type="Sprite2D" parent="RightGate"]
 position = Vector2(344, 0)
 scale = Vector2(0.243, 0.243)
 texture = ExtResource("3_t8lxd")
 
+[node name="Shadow" type="Line2D" parent="RightGate/BossEntranceGate3"]
+z_index = -1
+points = PackedVector2Array(220, 0, -251.128, 0.00200939, -247.012, -41.1503, -230.551, -78.1873, -201.745, -94.6482, -131.786, -111.109, -24.7901, -123.455, 73.9754, -127.57, 180.971, -123.455, 213.893, -115.224, 238.584, -106.994, 259.161, -65.8416, 263.276, -12.3437, 263.276, 12.3437, 259.161, 65.8416, 238.584, 106.994, 213.893, 115.224, 180.971, 123.455, 73.9754, 127.57, -24.7901, 123.455, -131.786, 111.109, -201.745, 94.6482, -230.551, 78.1873, -247.012, 41.1503, -251.128, 0.00200939, 220, 0)
+width = 90.0
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
+
 [node name="BossEntranceGate2" type="Sprite2D" parent="RightGate"]
 position = Vector2(221, 0)
 scale = Vector2(0.27, 0.27)
 texture = ExtResource("3_t8lxd")
 
+[node name="Shadow" type="Line2D" parent="RightGate/BossEntranceGate2"]
+z_index = -1
+points = PackedVector2Array(220, 0, -251.128, 0.00200939, -247.012, -41.1503, -230.551, -78.1873, -201.745, -94.6482, -131.786, -111.109, -24.7901, -123.455, 73.9754, -127.57, 180.971, -123.455, 213.893, -115.224, 238.584, -106.994, 259.161, -65.8416, 263.276, -12.3437, 263.276, 12.3437, 259.161, 65.8416, 238.584, 106.994, 213.893, 115.224, 180.971, 123.455, 73.9754, 127.57, -24.7901, 123.455, -131.786, 111.109, -201.745, 94.6482, -230.551, 78.1873, -247.012, 41.1503, -251.128, 0.00200939, 220, 0)
+width = 90.0
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
+
 [node name="BossEntranceGate" type="Sprite2D" parent="RightGate"]
 position = Vector2(79, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_t8lxd")
+
+[node name="Shadow" type="Line2D" parent="RightGate/BossEntranceGate"]
+z_index = -1
+points = PackedVector2Array(220, 0, -251.128, 0.00200939, -247.012, -41.1503, -230.551, -78.1873, -201.745, -94.6482, -131.786, -111.109, -24.7901, -123.455, 73.9754, -127.57, 180.971, -123.455, 213.893, -115.224, 238.584, -106.994, 259.161, -65.8416, 263.276, -12.3437, 263.276, 12.3437, 259.161, 65.8416, 238.584, 106.994, 213.893, 115.224, 180.971, 123.455, 73.9754, 127.57, -24.7901, 123.455, -131.786, 111.109, -201.745, 94.6482, -230.551, 78.1873, -247.012, 41.1503, -251.128, 0.00200939, 220, 0)
+width = 90.0
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("3_q7w0f")
+texture_mode = 2
+joint_mode = 2
+round_precision = 32
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 deterministic = true

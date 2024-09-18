@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/PulseColor.gd" id="4_bs22p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twypt"]
+resource_local_to_scene = true
 radius = 52.0
 
 [sub_resource type="Gradient" id="Gradient_opurg"]

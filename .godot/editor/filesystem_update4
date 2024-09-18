@@ -1,7 +1,3 @@
 res://Assets/GameScenes/VerticalSlice.tscn
-res://Assets/ObjectScenes/Enemies/EyeTurret.tscn
-res://Assets/Scripts/EyeTurretScanAnimationPlayer.gd
-res://CustomEditorTools/GeneratePolygonCircle.gd
-res://Assets/Scripts/BossKey.gd
-res://Assets/Scripts/KeyHoleAnimationPlayer.gd
-res://Assets/Scripts/BossFoyer.gd
+res://Assets/Art/Environment/BossRoomTileSets.tres
+res://CustomEditorTools/ShiftLine2DPoints.gd

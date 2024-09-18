@@ -1,12 +1,12 @@
-res://Assets/Scripts
-res://CustomEditorTools
 C:/Users/eulmm/source/repos/SlingShotExperiment
+res://CustomEditorTools
+res://Assets/Art/Environment
+res://Assets/Scripts
 res://Assets/ObjectScenes/Environment
 res://Assets/Art/Particles
 res://Assets/ObjectScenes/Items
 res://Assets/Art/UI/PrototypeFont
 res://Assets/Art/UI
-res://Assets/Art/Environment
 res://Assets/Art
 res://Assets/ObjectScenes
 res://Assets/ObjectScenes/Enemies
