@@ -81,7 +81,7 @@ func ChargeEyeBolt(delta:float) -> void:
 		eyeBoltRechargeDelayTimer = 0
 
 func FireProjectile() -> void:
-	var projectile:EyeTurretBolt = EyeTurretBolt.Spawn(get_node("/root"), projectileSpawnPoint.global_position, projectileSpawnPoint.global_transform.x)
+	var projectile:EyeTurretBolt = EyeTurretBolt.Spawn(get_node("/root"), self, projectileSpawnPoint.global_position, projectileSpawnPoint.global_transform.x)
 	projectile.z_index = -2
 	projectile.damage = damage
 	projectile.AddCollisionException(get_rid())

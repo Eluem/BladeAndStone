@@ -4,6 +4,13 @@ class_name Hazard
 @export var knockback:float
 @export var lifetime:float = 5
 @export var destroySelfOnHit:bool = true
+var originator:Node2D:
+	get:
+		return originator
+	set(pValue):
+		originator = pValue
+		if(originator):
+			originator.tree_exited.connect(originator_destroyed)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,12 +26,12 @@ func on_hit(pHitResult:Dictionary) -> void:
 	#Apply damage to hittable objects
 	if(pHitResult.collider is RigidBodyHittable):
 		var hittable:RigidBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(pHitResult, linear_velocity, linear_velocity, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, linear_velocity, linear_velocity, damage, knockback)
 		hittable.HandleHit(hitData)
 	#Handle hitting static hittable objects
 	elif(pHitResult.collider is StaticBodyHittable):
 		var hittable:StaticBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(pHitResult, linear_velocity, linear_velocity, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, linear_velocity, linear_velocity, damage, knockback)
 		hittable.HandleHit(hitData)
 	#Destroy self after hitting
 	if(destroySelfOnHit):
@@ -32,3 +39,6 @@ func on_hit(pHitResult:Dictionary) -> void:
 
 func lifetime_end() -> void:
 	queue_free()
+
+func originator_destroyed() -> void:
+	originator = null

@@ -1,7 +1,6 @@
 extends RigidBodyHittable
 
 var target:Node2D
-var hasTarget:bool
 var force:float = 500
 var maxSpeed:float = 50 #TODO: Implement max speed
 var maxFollowDist:float = 500**2
@@ -35,11 +34,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(target != null):
-		if(!hasTarget):
-			TargetFound()
 		ChargeEyeBolt(delta)
-	elif(hasTarget):
-		TargetLost()
 
 
 func _physics_process(_delta: float) -> void:
@@ -81,13 +76,13 @@ func ChargeEyeBolt(delta:float) -> void:
 		eyeBoltRechargeDelayTimer = 0
 
 func FireEyeBolt() -> void:
-	var eyeBolt:EyeBolt = EyeBolt.Spawn(get_node("/root"), position, transform.x)
+	var eyeBolt:EyeBolt = EyeBolt.Spawn(get_node("/root"), self, position, transform.x)
 	eyeBolt.AddCollisionException(get_rid())
 	#Recoil
 	apply_central_impulse(transform.x.normalized() * -500)
 
 func object_detected(pBody:Node2D) -> void:
-	target = pBody
+	TargetFound(pBody)
 
 func HandleHit(pHitData:HitData) -> void:
 	super.HandleHit(pHitData)
@@ -95,17 +90,20 @@ func HandleHit(pHitData:HitData) -> void:
 	eyeBoltRechargeDelayTimer = 0
 	chargeEffect.process_material = interruptedChargeParticleProcessMaterial
 	chargeEffect.lifetime = 4
+	if(pHitData.hitOwner is Golem && !target):
+		TargetFound(pHitData.hitOwner)
 
-func TargetFound() -> void:
+func TargetFound(pTarget:Node2D) -> void:
+	target = pTarget
+	target.tree_exited.connect(TargetLost)
 	can_sleep = false
 	visionSensor.monitoring = false
-	hasTarget = true
 
 func TargetLost() -> void:
 	StopCharging()
 	visionSensor.monitoring = true
 	can_sleep = true
-	hasTarget = false
+	target = null
 
 func StopCharging() -> void:
 	eyeBoltChargeTimer = 0

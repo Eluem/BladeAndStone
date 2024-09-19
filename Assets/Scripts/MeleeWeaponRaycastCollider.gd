@@ -52,7 +52,7 @@ func _physics_process(_delta: float) -> void:
 					continue
 			#If hit isn't already queued by another node, add it to the queue
 			#queuedHits.append(GenerateHitData(hitResult, nodeData.node.global_position - nodeData.prevPos))
-			queuedHits.append(HitData.new(hitResult, nodeData.node.global_position - nodeData.prevPos, wielder.global_transform.x, weaponDamage, weaponKnockback))
+			queuedHits.append(HitData.new(wielder, hitResult, nodeData.node.global_position - nodeData.prevPos, wielder.global_transform.x, weaponDamage, weaponKnockback))
 	
 	#Process all queued hits
 	var staticBodyHittable:StaticBodyHittable #just to hide the unsafe cast warning

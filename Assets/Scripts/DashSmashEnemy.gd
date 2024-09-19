@@ -30,12 +30,7 @@ func _process(delta: float) -> void:
 		return
 	if(IsAttackActive()):
 		HandleActiveAttack(delta)
-	if(target == null):
-		visionSensor.monitoring = true
-		can_sleep = true
-	else:
-		can_sleep = false
-		visionSensor.monitoring = false
+	if(target):
 		if(IsChargeAttackAllowed()):
 			ChargeAttack(delta)
 
@@ -75,10 +70,27 @@ func BeginAttack() -> void:
 	($Smasher/RaycastCollider as RaycastCollider).Enable()
 	ToggleTrails(true)
 	attackActiveTimer = 0
-	
+
+func StopCharging() -> void:
+	if(IsAttackActive()):
+		return
+	attackChargeTimer = 0
+	UpdateSmasherVisualEffect(GetAttackChargePercentage())
 
 func object_detected(pBody:Node2D) -> void:
-	target = pBody
+	TargetFound(pBody)
+
+func TargetFound(pTarget:Node2D) -> void:
+	target = pTarget
+	target.tree_exited.connect(TargetLost)
+	can_sleep = false
+	visionSensor.monitoring = false
+
+func TargetLost() -> void:
+	StopCharging()
+	visionSensor.monitoring = true
+	can_sleep = true
+	target = null
 
 func ToggleTrails(pEnabled:bool) -> void:
 	var maxLen:int = 0
@@ -104,3 +116,8 @@ func IsChargeAttackAllowed() -> bool:
 
 func UpdateSmasherVisualEffect(pAttackChargePercentage:float) -> void:
 	($Smasher as SmasherVisualEffect).UpdateAttackChargePercentage(pAttackChargePercentage)
+
+func HandleHit(pHitData:HitData) -> void:
+	super.HandleHit(pHitData)
+	if(pHitData.hitOwner is Golem && !target):
+		TargetFound(pHitData.hitOwner)

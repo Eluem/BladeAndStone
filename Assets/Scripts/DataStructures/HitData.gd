@@ -1,5 +1,6 @@
 class_name HitData
 extends Object
+var hitOwner:Node2D
 var collider:Variant
 var collider_id:Variant
 var normal:Vector2
@@ -10,8 +11,9 @@ var hitDirection:Vector2
 var lookDirection:Vector2
 var damage:int
 var knockback:float
-	
-func _init(pHitResult:Dictionary, pHitDirection:Vector2 = Vector2.ZERO, pLookDirection:Vector2 = Vector2.ZERO, pDamage:int = 0, pKnockback:float = 0, pPosition:Vector2 = Vector2.ZERO) -> void:
+
+func _init(pHitOwner:Node2D, pHitResult:Dictionary, pHitDirection:Vector2 = Vector2.ZERO, pLookDirection:Vector2 = Vector2.ZERO, pDamage:int = 0, pKnockback:float = 0, pPosition:Vector2 = Vector2.ZERO) -> void:
+	hitOwner = pHitOwner
 	collider = pHitResult.collider
 	collider_id = pHitResult.collider_id
 	normal = pHitResult.normal

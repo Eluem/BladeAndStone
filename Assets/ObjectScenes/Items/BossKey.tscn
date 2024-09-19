@@ -1,0 +1,162 @@
+[gd_scene load_steps=11 format=3 uid="uid://bm02n2el0n7si"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/BossKey.gd" id="1_peb52"]
+[ext_resource type="Texture2D" uid="uid://t0djwuvg8ms2" path="res://Assets/Art/Items/ChainLinks.png" id="2_nxtot"]
+[ext_resource type="Script" path="res://Assets/Scripts/Helpers/PIDControllerJoint.gd" id="3_6binr"]
+[ext_resource type="Texture2D" uid="uid://cjfnyodyeat7f" path="res://Assets/Art/Items/BossKey.png" id="4_6qcvs"]
+[ext_resource type="Texture2D" uid="uid://d0i8ww3jk52jc" path="res://Assets/Art/Environment/ShadowGradient.png" id="5_8cs1r"]
+[ext_resource type="Texture2D" uid="uid://chsfi441ne0ip" path="res://Assets/Art/Environment/KeyHole_Filled.png" id="6_s2iav"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5ptf"]
+radius = 4.75
+height = 26.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eh6ud"]
+radius = 570.976
+
+[sub_resource type="Gradient" id="Gradient_18rxj"]
+offsets = PackedFloat32Array(0, 0.359833, 1)
+colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.717647, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nqmj0"]
+gradient = SubResource("Gradient_18rxj")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.782051, 0.24359)
+
+[node name="BossKey" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_peb52")
+
+[node name="Chain" type="Line2D" parent="."]
+visible = false
+top_level = true
+z_index = -1
+texture_repeat = 2
+points = PackedVector2Array(253, -29, 35, 1)
+width = 20.0
+texture = ExtResource("2_nxtot")
+texture_mode = 1
+
+[node name="PIDControllerJoint" type="Node2D" parent="."]
+script = ExtResource("3_6binr")
+trackDist = 300.0
+frequency = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b5ptf")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+scale = Vector2(0.128139, 0.128139)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_eh6ud")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="FullKey" type="Sprite2D" parent="Sprites"]
+rotation = 1.5708
+scale = Vector2(0.168, 0.168)
+texture = ExtResource("4_6qcvs")
+
+[node name="PolyShadow" type="Polygon2D" parent="Sprites/FullKey"]
+visible = false
+z_index = -1
+texture = SubResource("GradientTexture2D_nqmj0")
+polygon = PackedVector2Array(-249.998, 398.811, -285.711, 297.62, -303.568, 226.191, -297.619, 142.858, -261.904, 47.6201, -136.904, -59.5229, -243.779, -173.293, -321.428, -255.951, -269.126, -410.107, -208.334, -589.285, -78.7096, -589.285, 135.334, -589.286, 232.143, -589.287, 273.206, -397.662, 303.572, -255.953, 220.175, -163.62, 136.906, -71.4287, 226.191, 53.5708, 291.668, 160.713, 297.621, 279.761, 261.908, 380.952, 190.479, 488.095, 125.002, 529.762, 47.6211, 559.524, -95, 559.524, -178.568, 482.144, -150.039, -491.951, 50.6005, -496.967, 160.952, -489.443, 181.016, -326.423, -160.071, -348.995, -89.8469, -158.388, 90.7284, -138.324, -134.991, 225.335, -64.7671, 355.75, 145.904, 255.431, 63.1405, 107.459, -74.799, 102.443, 70.6644, 358.258, -7.08319, 9.64709, -4.5752, 222.826)
+uv = PackedVector2Array(29.8296, 102.792, 23.6677, 99.7113, 17.5058, 90.7486, 15.6699, 83.7336, 14.3968, 74.3125, 15.2651, 49.0155, 18.0659, 41.4531, 22.5448, 33.5725, 33.7483, 21.0958, 46.7342, 14.221, 57.6831, 10.9108, 73.9791, 11.9293, 88.4927, 14.9848, 107.694, 29.1293, 116.657, 47.0549, 117.497, 58.2584, 116.823, 68.062, 113.446, 82.4605, 111.154, 89.0807, 108.353, 96.9741, 105.298, 108.687, 94.8099, 114.836, 79.125, 117.917, 62.8799, 117.917, 45.461, 112.506, 35.5307, 108.432, 49.1556, 27.7289, 65.9609, 21.847, 77.4445, 24.928, 84.4467, 35.5713, 39.9128, 40.3328, 37.6721, 46.2146, 92.5692, 51.5363, 41.3132, 88.5079, 52.7968, 101.952, 88.648, 82.0658, 75.764, 68.9017, 36.5517, 66.9411, 74.0834, 100.272, 56.718, 61.6194, 63.4593, 82.577)
+polygons = [PackedInt32Array(9, 26, 10), PackedInt32Array(26, 27, 10), PackedInt32Array(27, 11, 10), PackedInt32Array(27, 28, 11), PackedInt32Array(28, 12, 11), PackedInt32Array(26, 8, 9), PackedInt32Array(8, 30, 26), PackedInt32Array(8, 7, 30), PackedInt32Array(7, 6, 30), PackedInt32Array(6, 31, 30), PackedInt32Array(30, 26, 27), PackedInt32Array(27, 28, 29), PackedInt32Array(27, 30, 29), PackedInt32Array(30, 31, 29), PackedInt32Array(31, 6, 5), PackedInt32Array(31, 32, 5), PackedInt32Array(32, 16, 5), PackedInt32Array(32, 15, 16), PackedInt32Array(29, 32, 31), PackedInt32Array(29, 15, 32), PackedInt32Array(29, 14, 15), PackedInt32Array(13, 14, 29), PackedInt32Array(13, 29, 28), PackedInt32Array(13, 28, 12), PackedInt32Array(5, 4, 37), PackedInt32Array(5, 39, 37), PackedInt32Array(5, 39, 16), PackedInt32Array(39, 37, 36), PackedInt32Array(39, 16, 36), PackedInt32Array(37, 40, 36), PackedInt32Array(37, 33, 40), PackedInt32Array(33, 34, 40), PackedInt32Array(34, 38, 40), PackedInt32Array(38, 35, 40), PackedInt32Array(35, 36, 40), PackedInt32Array(36, 16, 17), PackedInt32Array(36, 17, 35), PackedInt32Array(18, 17, 35), PackedInt32Array(18, 19, 35), PackedInt32Array(35, 19, 20), PackedInt32Array(35, 38, 20), PackedInt32Array(38, 21, 20), PackedInt32Array(38, 22, 21), PackedInt32Array(38, 23, 22), PackedInt32Array(38, 34, 23), PackedInt32Array(34, 24, 23), PackedInt32Array(34, 25, 24), PackedInt32Array(34, 0, 25), PackedInt32Array(34, 33, 0), PackedInt32Array(33, 1, 0), PackedInt32Array(33, 2, 1), PackedInt32Array(33, 3, 2), PackedInt32Array(3, 4, 33), PackedInt32Array(4, 37, 33)]
+internal_vertex_count = 15
+
+[node name="LineShadow" type="Node2D" parent="Sprites/FullKey"]
+z_index = -1
+
+[node name="Line2D" type="Line2D" parent="Sprites/FullKey/LineShadow"]
+points = PackedVector2Array(-17.8574, -511.905, -83.334, -482.142, -142.857, -482.142, -190.477, -392.856, -255.951, -303.57, -196.428, -273.809, -160.713, -232.142, -107.143, -148.809, -65.4746, -119.047, -35.7129, 29.7622, -23.8066, 214.286, 23.8066, 214.286, 35.7129, 29.7622, 65.4746, -119.047, 107.143, -148.809, 160.713, -232.142, 196.428, -273.809, 255.951, -303.57, 190.477, -392.856, 142.857, -482.142, 83.334, -482.142, 17.8574, -511.905)
+closed = true
+width = 99.165
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_8cs1r")
+texture_mode = 2
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Sprites/FullKey/LineShadow"]
+position = Vector2(-5.9515, 244.048)
+points = PackedVector2Array(0.00178003, 0, -41.6681, -113.095, -95.238, -71.428, -107.143, -83.333, -107.143, -95.238, -77.381, -113.095, -95.238, -142.857, -125, -130.952, -148.811, -148.809, -172.619, -178.571, -190.477, -166.666, -208.334, -142.857, -226.192, -101.19, -214.285, -89.285, -196.43, -83.333, -190.477, -130.952, -178.572, -148.809, -142.858, -101.19, -119.049, -71.428, -89.2834, -47.619, -47.6193, -77.381, -35.715, -53.571, -65.4748, -35.714, -47.6174, -17.858, -5.9513, 5.952)
+width = 21.935
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_8cs1r")
+texture_mode = 2
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Sprites/FullKey/LineShadow"]
+position = Vector2(-5.9515, 244.048)
+rotation = -1.07157
+points = PackedVector2Array(0.00178003, 0, -41.6681, -113.095, -95.238, -71.428, -107.143, -83.333, -107.143, -95.238, -77.381, -113.095, -95.238, -142.857, -125, -130.952, -148.811, -148.809, -172.619, -178.571, -190.477, -166.666, -208.334, -142.857, -226.192, -101.19, -214.285, -89.285, -196.43, -83.333, -190.477, -130.952, -178.572, -148.809, -142.858, -101.19, -119.049, -71.428, -89.2834, -47.619, -47.6193, -77.381, -35.715, -53.571, -65.4748, -35.714, -47.6174, -17.858, -5.9513, 5.952)
+width = 21.935
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_8cs1r")
+texture_mode = 2
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Sprites/FullKey/LineShadow"]
+position = Vector2(-5.131, 246.123)
+rotation = -2.12143
+points = PackedVector2Array(0.00178003, 0, -41.6681, -113.095, -95.238, -71.428, -107.143, -83.333, -107.143, -95.238, -77.381, -113.095, -95.238, -142.857, -125, -130.952, -148.811, -148.809, -172.619, -178.571, -190.477, -166.666, -208.334, -142.857, -226.192, -101.19, -214.285, -89.285, -196.43, -83.333, -190.477, -130.952, -178.572, -148.809, -142.858, -101.19, -119.049, -71.428, -89.2834, -47.619, -47.6193, -77.381, -35.715, -53.571, -65.4748, -35.714, -47.6174, -17.858, -5.9513, 5.952)
+width = 21.935
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_8cs1r")
+texture_mode = 2
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Sprites/FullKey/LineShadow"]
+position = Vector2(-5.104, 248.39)
+rotation = -3.17431
+points = PackedVector2Array(0.00178003, 0, -41.6681, -113.095, -95.238, -71.428, -107.143, -83.333, -107.143, -95.238, -77.381, -113.095, -95.238, -142.857, -125, -130.952, -148.811, -148.809, -172.619, -178.571, -190.477, -166.666, -208.334, -142.857, -226.192, -101.19, -214.285, -89.285, -196.43, -83.333, -190.477, -130.952, -178.572, -148.809, -142.858, -101.19, -119.049, -71.428, -89.2834, -47.619, -47.6193, -77.381, -35.715, -53.571, -65.4748, -35.714, -47.6174, -17.858, -5.9513, 5.952)
+width = 21.935
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_8cs1r")
+texture_mode = 2
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Sprites/FullKey/LineShadow"]
+position = Vector2(0.000880718, 244.048)
+rotation = -4.20278
+points = PackedVector2Array(0.00178003, 0, -41.6681, -113.095, -95.238, -71.428, -107.143, -83.333, -107.143, -95.238, -77.381, -113.095, -95.238, -142.857, -125, -130.952, -148.811, -148.809, -172.619, -178.571, -190.477, -166.666, -208.334, -142.857, -226.192, -101.19, -214.285, -89.285, -196.43, -83.333, -190.477, -130.952, -178.572, -148.809, -142.858, -101.19, -119.049, -71.428, -89.2834, -47.619, -47.6193, -77.381, -35.715, -53.571, -65.4748, -35.714, -47.6174, -17.858, -5.9513, 5.952)
+width = 21.935
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_8cs1r")
+texture_mode = 2
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Sprites/FullKey/LineShadow"]
+position = Vector2(-4.469, 241.168)
+rotation = -5.24821
+points = PackedVector2Array(0.00178003, 0, -41.6681, -113.095, -95.238, -71.428, -107.143, -83.333, -107.143, -95.238, -77.381, -113.095, -95.238, -142.857, -125, -130.952, -148.811, -148.809, -172.619, -178.571, -190.477, -166.666, -208.334, -142.857, -226.192, -101.19, -214.285, -89.285, -196.43, -83.333, -190.477, -130.952, -178.572, -148.809, -142.858, -101.19, -119.049, -71.428, -89.2834, -47.619, -47.6193, -77.381, -35.715, -53.571, -65.4748, -35.714, -47.6174, -17.858, -5.9513, 5.952)
+width = 21.935
+default_color = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_8cs1r")
+texture_mode = 2
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="KeyEnd" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(-40.805, -0.64)
+rotation = 1.5708
+scale = Vector2(0.168, 0.168)
+texture = ExtResource("6_s2iav")
