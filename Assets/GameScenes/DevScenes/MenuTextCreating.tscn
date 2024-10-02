@@ -1,14 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://0b3msi2brjup"]
-
-[ext_resource type="Texture2D" uid="uid://dbvi2vjvhoph5" path="res://BladeAndStoneTitleAIConcept.png" id="1_nhecs"]
+[gd_scene format=3 uid="uid://0b3msi2brjup"]
 
 [node name="MenuTextCreating" type="Node2D"]
-
-[node name="BladeAndStoneTitleAiConcept" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(470, 299)
-scale = Vector2(0.494629, 0.494629)
-texture = ExtResource("1_nhecs")
 
 [node name="B_Upper" type="Polygon2D" parent="."]
 visible = false

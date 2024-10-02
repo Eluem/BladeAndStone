@@ -1,6 +1,7 @@
 extends Node
-@export var HUD:Node
-@export var mainCamera:TrackingCamera
+class_name PlayerSpawner
+
+@export var mainCamera:CameraMultitracking
 var currPlayer:Golem
 
 var spawnPoints:Array[Node2D]
@@ -10,15 +11,18 @@ var respawnTimer:float = respawnWaitTime
 
 func _ready() -> void:
 	PopulateSpawnPoints()
-	
+	currSpawnPoint = GameStateManager.usingCheckPoint
+	SpawnPlayer.call_deferred()
 	pass
 
-func _process(delta: float) -> void:
-	if(currPlayer == null):
-		respawnTimer += delta
-		if(respawnTimer >= respawnWaitTime):
-			respawnTimer = 0
-			currPlayer = SpawnPlayer()
+
+#func _process(delta: float) -> void:
+	#if(currPlayer == null):
+		#respawnTimer += delta
+		#if(respawnTimer >= respawnWaitTime):
+			#respawnTimer = 0
+			#currPlayer = SpawnPlayer()
+
 
 func SpawnPlayer() -> Golem:
 	var ret:Golem
@@ -26,11 +30,15 @@ func SpawnPlayer() -> Golem:
 	ret = scene.instantiate()
 	ret.global_position = spawnPoints[currSpawnPoint].position
 	ret.rotation = spawnPoints[currSpawnPoint].rotation
-	var healthBar:HealthBar = (HUD.get_node("HealthBar") as HealthBar)
-	ret.connect("health_changed", healthBar.UpdateHealth)
-	healthBar.UpdateHealth(ret.maxHealth, ret.health)
-	get_tree().root.get_child(0).add_child(ret)
-	mainCamera.SetTrackTarget(ret)
+	#GameStateManager.canvasManager.ConnectToNewPlayer(ret)
+	CanvasManagerScene.ConnectToNewPlayer(ret)
+	
+	#get_tree().root.get_child(0).add_child(ret)
+	get_tree().current_scene.add_child(ret)
+	mainCamera.AddTrackTarget(ret, 20)
+	mainCamera.SetMainTarget(ret)
+	mainCamera.global_position = ret.global_position
+	currPlayer = ret
 	return ret
 
 func PopulateSpawnPoints() -> void:

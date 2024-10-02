@@ -1,4 +1,7 @@
 extends Area2D
+class_name BossFoyer
+@export var bossFightManager:BossFightManager
+
 @onready var bossDoor1:AnimationPlayer = $"../BossDoor/AnimationPlayer"
 @onready var bossDoor2:AnimationPlayer = $"../BossDoor2/AnimationPlayer"
 @onready var bossDoor3:AnimationPlayer = $"../BossDoor3/AnimationPlayer"
@@ -73,6 +76,7 @@ func _on_exit(pBody:PhysicsBody2D) -> void:
 		alreadyExited = true
 		bossDoor2.play("Closing_BounceBack_LargeFirst")
 		bossDoor3.play("Closing_BounceBack_LargeFirst")
+		bossFightManager.BossRoomEntered()
 	else:
 		alreadyEntered = false
 		bossDoor1.play("Opening_BounceBack")

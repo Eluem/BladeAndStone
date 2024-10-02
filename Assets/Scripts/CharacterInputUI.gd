@@ -24,8 +24,11 @@ var guidePathStartColor:Color = Color(0.8, 0.1, 0.1, 0.2)
 var guidePathEndColor:Color = Color(0.8, 0.1, 0.1, 0.7)
 var touchCircleColor:Color = Color(0.5765, 0.4392, 0.8588, 0.8)
 
+var viewport:Viewport
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	viewport = get_viewport()
 	UpdateLocalPositions()
 
 func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pStartPos:Vector2, pCurrPos:Vector2, pPrevPos:Vector2, pDir:Vector2, pPower:float, pMaxLength:float, pDragThreshold:float) -> void:
@@ -73,7 +76,16 @@ func is_dragging() -> bool:
 	return (startPos - currPos).length_squared() > dragThreshold*dragThreshold
 
 func ScreenPosToLocalPos(pScreenPos:Vector2) -> Vector2:
-	return pScreenPos * (get_viewport_transform() * global_transform);
+	var viewportXform:Transform2D = viewport.canvas_transform
+	
+	var inverseScale:Vector2 = viewportXform.get_scale()
+	inverseScale.x = 1/inverseScale.x**2
+	inverseScale.y = 1/inverseScale.y**2
+	
+	pScreenPos = pScreenPos * (viewportXform * global_transform);
+	
+	pScreenPos *= inverseScale
+	return pScreenPos
 
 func UpdateLocalPositions() -> void:
 	currPosLocal = ScreenPosToLocalPos(currPos)

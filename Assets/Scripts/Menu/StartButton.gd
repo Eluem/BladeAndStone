@@ -12,4 +12,4 @@ func _process(_delta: float) -> void:
 	pass
 
 func StartGame() -> void:
-	get_tree().change_scene_to_file("res://Assets/GameScenes/VerticalSlice.tscn")
+	GameStateManager.SceneChange(GameStateManager.SceneType.Game)

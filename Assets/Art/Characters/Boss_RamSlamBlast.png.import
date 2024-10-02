@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfu8g1s0kfaim"
-path="res://.godot/imported/BasicSwordTest_bk.png-9debc2db31033f0210e5edb7e97780cc.ctex"
+uid="uid://bb5btnhhwelqm"
+path="res://.godot/imported/Boss_RamSlamBlast.png-ed7c2a9f5d6b738be3684f3393db36c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/BasicSwordTest_bk.png"
-dest_files=["res://.godot/imported/BasicSwordTest_bk.png-9debc2db31033f0210e5edb7e97780cc.ctex"]
+source_file="res://Assets/Art/Characters/Boss_RamSlamBlast.png"
+dest_files=["res://.godot/imported/Boss_RamSlamBlast.png-ed7c2a9f5d6b738be3684f3393db36c5.ctex"]
 
 [params]
 

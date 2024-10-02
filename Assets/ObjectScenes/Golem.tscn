@@ -1566,6 +1566,20 @@ tracks/23/keys = {
 "points": PackedFloat32Array(7.62939e-06, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/24/type = "method"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Weapon/RaycastCollider")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Disable"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixbfl"]
 _data = {
@@ -1839,7 +1853,7 @@ states/Attack_Thrust_WindDown/position = Vector2(497, 409)
 states/End/position = Vector2(1012, 55)
 states/Start/position = Vector2(-25, 55)
 transitions = ["Start", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_LightRight_WindUp", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_Heavy_Charging", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_f3mon"), "Attack_LightRight_WindUp", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Heavy_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_biy3r"), "Attack_LightLeft_WindUp", "Attack_LightLeft_Active", SubResource("AnimationNodeStateMachineTransition_cyvjb"), "Attack_LightLeft_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_msixp"), "Attack_LightRight_WindDown_1", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_4jah7"), "Attack_LightLeft_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2kh8l"), "Attack_Heavy_HoldCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_wufvn"), "Attack_Heavy_Active", "Attack_Heavy_WindDown", SubResource("AnimationNodeStateMachineTransition_x5f6l"), "Attack_Heavy_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_e4gpj"), "Attack_LightRight_Active", "Attack_LightRight_FollowThrough", SubResource("AnimationNodeStateMachineTransition_cf1b0"), "Attack_LightRight_FollowThrough", "Attack_LightRight_WindDown_1", SubResource("AnimationNodeStateMachineTransition_hg0q3"), "Attack_LightRight_FollowThrough", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_uuxf6"), "Attack_LightLeft_Active", "Attack_LightLeft_FollowThrough", SubResource("AnimationNodeStateMachineTransition_3y1e4"), "Attack_LightLeft_FollowThrough", "Attack_LightLeft_WindDown", SubResource("AnimationNodeStateMachineTransition_eakdr"), "Attack_LightLeft_FollowThrough", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2k6ni"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindDown_2", SubResource("AnimationNodeStateMachineTransition_2l3fj"), "Attack_LightRight_WindDown_2", "End", SubResource("AnimationNodeStateMachineTransition_16k8i"), "Attack_LightRight_WindDown_2", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_tmqk6"), "Attack_LightRight_WindUp", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_1r6n5"), "Attack_Heavy_Charging", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_yqlu0"), "Attack_Thrust_Charging", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_ifmkw"), "Attack_Thrust_Charging", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_awuxk"), "Attack_Thrust_HoldCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_lq10a"), "Attack_Heavy_HoldCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_l0umt"), "Attack_Thrust_HoldCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_s34y7"), "Attack_Thrust_Active", "Attack_Thrust_WindDown", SubResource("AnimationNodeStateMachineTransition_a0ad8"), "Attack_Thrust_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_7j68x"), "Attack_Thrust_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_pbiku"), "Attack_Thrust_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_twkkv"), "Attack_Heavy_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_nmvn6")]
-graph_offset = Vector2(-159.341, 106.959)
+graph_offset = Vector2(-129.341, -96.041)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3gsh"]
 animation = &"Idle"
@@ -1945,8 +1959,8 @@ texture = ExtResource("5_g7rrp")
 [node name="RaycastCollider" type="Node2D" parent="Weapon" node_paths=PackedStringArray("excludeCollision")]
 script = ExtResource("6_5cw8i")
 excludeCollision = [NodePath("../..")]
-weaponDamage = 0
-weaponKnockback = 0.0
+weaponDamage = 30
+weaponKnockback = 1000.0
 
 [node name="RaycastNode" type="Node2D" parent="Weapon/RaycastCollider"]
 position = Vector2(-60, 0)

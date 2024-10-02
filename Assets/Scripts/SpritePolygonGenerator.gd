@@ -42,3 +42,5 @@ func DebugGenerateSpriteExplosion() -> void:
 		chunk.reparent(get_owner())
 		chunk.set_owner(get_owner())
 		chunk.get_child(0).set_owner(get_owner())
+		chunk.get_child(1).set_owner(get_owner())
+		chunk.get_child(2).set_owner(get_owner())

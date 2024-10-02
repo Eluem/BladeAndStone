@@ -1,12 +1,15 @@
 class_name PlayerStateMachine
 extends AnimationTree
-var playbackRoot:AnimationNodeStateMachinePlayback = get("parameters/playback")
-var inputHandler:CharacterInputHandler
 
 @export var tapped:bool
 @export var held:bool
 @export var dragging:bool
 @export var dragged:bool
+
+@onready var animationPlayer: AnimationPlayer = $"../AnimationPlayer"
+
+var playbackRoot:AnimationNodeStateMachinePlayback = get("parameters/playback")
+var inputHandler:CharacterInputHandler
 
 var tappedMaxBufferTime:float = 0.35
 var tappedBufferTime:float = 0
@@ -18,12 +21,13 @@ func _ready() -> void:
 	$InputHandler.connect("held_triggered", held_triggered)
 	$InputHandler.connect("drag_triggered", drag_triggered)
 	$InputHandler.connect("drag_cancelled", drag_cancelled)
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
 	HandleBufferTimers(delta)
 	pass
+
 
 func HandleBufferTimers(delta:float) -> void:
 	if(tapped):
@@ -32,23 +36,34 @@ func HandleBufferTimers(delta:float) -> void:
 			tapped = false
 			tappedBufferTime = 0
 
+
+func JumpToIdle() -> void:
+	animationPlayer.play("RESET")
+	playbackRoot.start("Idle", true)
+
+
 func press_release() -> void:
 	tapped = true
 	held = false
+
 
 func drag_release(_powerMod:float, _dir:Vector2) -> void:
 	dragged = true
 	dragging = false
 	held = false
 
+
 func drag_triggered() -> void:
 	dragging = true
+
 
 func drag_cancelled() -> void:
 	dragging = false
 
+
 func held_triggered() -> void:
 	held = true
+
 
 func consume_tapped() -> bool:
 	if(tapped):
@@ -56,16 +71,19 @@ func consume_tapped() -> bool:
 		return true
 	return false
 
+
 func consume_dragged() -> bool:
 	if(dragged):
 		dragged = false
 		return true
 	return false
 
+
 func consume_tapped_atEnd() -> bool:
 	if(is_animation_finished()):
 		return consume_tapped()
 	return false
+
 
 func consume_held() -> bool:
 	print("consume_held")
@@ -74,16 +92,19 @@ func consume_held() -> bool:
 		return true
 	return false
 
+
 #This doesn't seem to work reliably...???
 func consume_held_atEnd() -> bool:
 	if(is_animation_finished()):
 		return consume_held()
 	return false
 
+
 #This doesn't seem to be reliable....
 func is_animation_finished() -> bool:
 	var currPlayback:AnimationNodeStateMachinePlayback = get_current_stateMachinePlayback()
 	return currPlayback.get_current_play_position() >= currPlayback.get_current_length()
+
 
 func get_current_stateMachinePlayback() -> AnimationNodeStateMachinePlayback:
 	var ret:AnimationNodeStateMachinePlayback = playbackRoot
@@ -93,12 +114,12 @@ func get_current_stateMachinePlayback() -> AnimationNodeStateMachinePlayback:
 		ret = get(nodePath + "/playback")
 	return ret
 
+
 func clear_held() -> void:
-	print("clear_held")
 	held = false
 
+
 func clear_buffers() -> bool:
-	print("clear_buffers")
 	tapped = false
 	held = false
 	dragging = false

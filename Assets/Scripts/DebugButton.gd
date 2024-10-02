@@ -1,5 +1,5 @@
 extends Button
-var debugInfo:DebugInfo
+#var debugInfo:DebugInfo
 enum ButtonToggle
 {
 	Effects,
@@ -11,7 +11,7 @@ var buttonToggle:ButtonToggle
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
+	#debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
 	connect("button_up", handle_button_up)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,11 +31,11 @@ func handle_button_up() -> void:
 			buttonToggle = (0 as ButtonToggle)
 		match buttonToggle:
 			ButtonToggle.Effects:
-				debugInfo.effectsEnabled = true
-				debugInfo.debugUIEnabled = false
+				DebugInfo.effectsEnabled = true
+				DebugInfo.debugUIEnabled = false
 			ButtonToggle.Debug:
-				debugInfo.effectsEnabled = false
-				debugInfo.debugUIEnabled = true
+				DebugInfo.effectsEnabled = false
+				DebugInfo.debugUIEnabled = true
 			ButtonToggle.Both:
-				debugInfo.effectsEnabled = true
-				debugInfo.debugUIEnabled = true
+				DebugInfo.effectsEnabled = true
+				DebugInfo.debugUIEnabled = true

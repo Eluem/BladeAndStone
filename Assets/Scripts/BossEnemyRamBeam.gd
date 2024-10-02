@@ -1,4 +1,12 @@
 extends RigidBodyHittable
+class_name BossEnemyRamBeam
+
+@onready var cameraTrackTarget: Node2D = $MainSprite/CameraTrackTarget
+@onready var cameraTrackTarget2: Node2D = $MainSprite/CameraTrackTarget2
+@onready var cameraTrackTarget3: Node2D = $MainSprite/CameraTrackTarget3
+@onready var cameraTrackTarget4: Node2D = $MainSprite/CameraTrackTarget4
+@onready var cameraTrackTarget5: Node2D = $MainSprite/CameraTrackTarget5
+
 
 var target:Node2D
 var force:float = 500
@@ -12,6 +20,8 @@ var attackChargeWarningWaitTime:float = 3.6
 var attackChargeTimer:float = 0
 var attackActiveWaitTime:float = 1.5
 var attackActiveTimer:float = attackActiveWaitTime
+var searchTimer:float = 0
+var searchWaitTime:float = 0.5
 var visionSensor:Area2D
 @export var isDummyMode:bool
 
@@ -20,7 +30,7 @@ func _ready() -> void:
 	super._ready()
 	visionSensor = $VisionSensor
 	visionSensor.connect("object_detected", object_detected)
-	($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
+	#($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -54,7 +64,6 @@ func HandleActiveAttack(delta:float) -> void:
 	if(attackActiveTimer >= attackActiveWaitTime):
 		($Smasher/RaycastCollider as RaycastCollider).Disable()
 		ToggleTrails(false)
-		UpdateSmasherVisualEffect(GetAttackChargePercentage())
 
 func ChargeAttack(delta:float) -> void:
 	attackChargeTimer += delta
@@ -71,10 +80,11 @@ func BeginAttack() -> void:
 	attackActiveTimer = 0
 
 func StopCharging() -> void:
-	if(IsAttackActive()):
-		return
-	attackChargeTimer = 0
-	UpdateSmasherVisualEffect(GetAttackChargePercentage())
+	#if(IsAttackActive()):
+		#return
+	#attackChargeTimer = 0
+	#UpdateSmasherVisualEffect(GetAttackChargePercentage())
+	pass
 
 func object_detected(pBody:Node2D) -> void:
 	TargetFound(pBody)
@@ -87,7 +97,12 @@ func TargetFound(pTarget:Node2D) -> void:
 	visionSensor.monitoring = false
 	
 	var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
-	cameraCast.AddTrackTarget(self, 1)
+	cameraCast.AddTrackTarget(self, 20)
+	cameraCast.AddTrackTarget(cameraTrackTarget, 1)
+	cameraCast.AddTrackTarget(cameraTrackTarget2, 1)
+	cameraCast.AddTrackTarget(cameraTrackTarget3, 1)
+	cameraCast.AddTrackTarget(cameraTrackTarget4, 1)
+	cameraCast.AddTrackTarget(cameraTrackTarget5, 1)
 
 
 func TargetLost() -> void:
@@ -100,6 +115,13 @@ func TargetLost() -> void:
 	if(viewPort):
 		var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
 		cameraCast.RemoveTrackTarget(self)
+		cameraCast.RemoveTrackTarget(cameraTrackTarget)
+		cameraCast.RemoveTrackTarget(cameraTrackTarget2)
+		cameraCast.RemoveTrackTarget(cameraTrackTarget3)
+		cameraCast.RemoveTrackTarget(cameraTrackTarget4)
+		cameraCast.RemoveTrackTarget(cameraTrackTarget5)
+
+
 
 
 func ToggleTrails(pEnabled:bool) -> void:

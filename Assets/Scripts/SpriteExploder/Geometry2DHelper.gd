@@ -327,7 +327,11 @@ static func ExplodeSprite(pSprite:Sprite2D, pForceDir:Vector2 = Vector2.ZERO, pF
 				chunkBody.apply_central_impulse(((chunkBody.global_position-pSprite.global_position).normalized() * randf_range(pForceRange.x, pForceRange.y)))
 			else:
 				chunkBody.apply_central_impulse(pForceDir * randf_range(pForceRange.x, pForceRange.y))
-			pSprite.get_tree().get_root().get_child(0).add_child(chunkBody)
+			#pSprite.get_tree().get_root().get_child(0).add_child(chunkBody)
+			if(pSprite.get_tree().current_scene == null):
+				pSprite.get_owner().add_child(chunkBody)
+			else:
+				pSprite.get_tree().current_scene.add_child(chunkBody)
 			ret.append(chunkBody)
 	return ret
 

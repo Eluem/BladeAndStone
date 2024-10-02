@@ -9,11 +9,11 @@ var wielder:Node2D #Stores the object that this collider's weapon is attached to
 var raycastNodes:Array[RaycastNodeData]
 var excludeCollisionRIDs:Array[RID] #Rids to always ignore
 var hitRIDs:Array[RID] #RIDs to ignore because they were already hit this attack
-var debugInfo:DebugInfo
+#var debugInfo:DebugInfo
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
+	#debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
 	InitRaycastNodes()
 	#TODO: make this more dynamic somehow...
 	wielder = get_parent().get_parent()
@@ -25,13 +25,13 @@ func _process(_delta: float) -> void:
 	if(!enabled):
 		return
 	var debugFullScanEmpty:bool = true
-	if(debugInfo.debugUIEnabled || debugInfo.forceDebugTrails):
+	if(DebugInfo.debugUIEnabled || DebugInfo.forceDebugTrails):
 		for nodeData:RaycastNodeData in raycastNodes:
 			if(!nodeData.hitResults.is_empty()):
 				debugFullScanEmpty = false
 				break
 	for nodeData:RaycastNodeData in raycastNodes:
-		if(debugInfo.debugUIEnabled || debugInfo.forceDebugTrails):
+		if(DebugInfo.debugUIEnabled || DebugInfo.forceDebugTrails):
 			DrawDebugTrail(nodeData, debugFullScanEmpty)
 		nodeData.UpdatePrevPos()
 
@@ -100,7 +100,7 @@ func DrawDebugTrail(pNodeData:RaycastNodeData, pFullScanEmpty:bool) -> void:
 	if(pFullScanEmpty):
 		lineColor = Color.PURPLE
 	#Draw debug line
-	get_node("/root").add_child(DebugLine.new(pNodeData.prevPos, pNodeData.node.global_position, lineColor))
+	get_tree().current_scene.add_child(DebugLine.new(pNodeData.prevPos, pNodeData.node.global_position, lineColor))
 
 """
 #Not needed since the constructor does all the work

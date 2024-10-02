@@ -1,31 +1,24 @@
 class_name Golem
 extends RigidBodyHittable
+@onready var inputHandler: CharacterInputHandler = $AnimationTree/InputHandler
+@onready var animationTree: PlayerStateMachine = $AnimationTree
+
 var targetRotation:float
 var bossKey:BossKey
-signal exploded(pMainChunk:RigidBody2D)
+
+#signal exploded(pMainChunk:RigidBody2D)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
-	$AnimationTree/InputHandler.connect("drag_release", flick)
-	$AnimationTree/InputHandler.connect("drag_update", drag_update)
+	inputHandler.drag_release.connect(flick)
+	inputHandler.drag_update.connect(drag_update)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	super._process(delta)
 	
 func _physics_process(_delta: float) -> void:
-	#if(Input.is_key_pressed(KEY_SPACE)):
-		##apply_central_impulse(Vector2(0, 10))
-		##apply_central_force(global_transform.x * 10)
-		##apply_central_force(global_transform.basis_xform(Vector2.DOWN)*5000)
-		#apply_central_force(global_transform.x * 5000)
-	#
-	#if(Input.is_key_pressed(KEY_LEFT)):
-		#apply_torque(-10)
-		#
-	#if(Input.is_key_pressed(KEY_RIGHT)):
-		#apply_torque(10)
 	pass
 		
 func flick(powerMod:float, dir:Vector2) -> void:
@@ -60,12 +53,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	state.set_transform(xform)
 	
 	#super._integrate_forces(state)
-
-
-func Die(pDir:Vector2, pForce:float) -> void:
-	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40), spritePolygon)
-	exploded.emit(chunks[0])
-	queue_free()
 
 
 func GetMainSprite() -> Sprite2D:

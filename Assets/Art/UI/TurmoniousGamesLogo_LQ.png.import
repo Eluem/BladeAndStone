@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbvi2vjvhoph5"
-path="res://.godot/imported/BladeAndStoneTitleAIConcept.png-fbb78898de624aa847de76fcebae2a4d.ctex"
+uid="uid://mnp371gqmghf"
+path="res://.godot/imported/TurmoniousGamesLogo_LQ.png-b101820953604a522dc9717b8580ef9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BladeAndStoneTitleAIConcept.png"
-dest_files=["res://.godot/imported/BladeAndStoneTitleAIConcept.png-fbb78898de624aa847de76fcebae2a4d.ctex"]
+source_file="res://Assets/Art/UI/TurmoniousGamesLogo_LQ.png"
+dest_files=["res://.godot/imported/TurmoniousGamesLogo_LQ.png-b101820953604a522dc9717b8580ef9f.ctex"]
 
 [params]
 

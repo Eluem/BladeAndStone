@@ -23,4 +23,4 @@ func draw_debug_line() -> void:
 	var lineColor:Color = Color.GREEN
 	if(is_colliding()):
 		lineColor = Color.RED
-	get_node("/root").add_child(DebugLine.new(prevPos, global_position, lineColor))
+	get_tree().current_scene.add_child(DebugLine.new(prevPos, global_position, lineColor))

@@ -2,6 +2,7 @@ class_name CharacterInputHandler
 extends Node2D
 
 @export var debugEnabled:bool = false
+@export var enabled:bool = true
 var pressed:bool = false
 var justPressed:bool = false
 var pressing:bool = false
@@ -36,6 +37,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if(!enabled):
+		return
+
 	released = false
 	justPressed = false
 	currPos = get_viewport().get_mouse_position()
@@ -112,12 +116,34 @@ func UpdateDebugUI() -> void:
 	elif(inputDebugUI != null):
 		inputDebugUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold)
 	if(released):
-		#get_parent().get_parent().remove_child(inputDebugUI)
-		#get_node("/root").add_child(inputDebugUI)
 		inputDebugUI.top_level = true
 		inputDebugUI.global_transform = (get_parent().get_parent() as Node2D).global_transform
-		#print(inputDebugUI.released)
 		inputDebugUI = null
+
+
+func Disable() -> void:
+	if(is_dragging()):
+		drag_release.emit(0, dir.normalized())
+	else:
+		press_release.emit()
+	enabled = false
+	pressed = false
+	justPressed = false
+	pressing = false
+	holdTime = 0
+	released = false
+	startPos = Vector2.ZERO
+	currPos = Vector2.ZERO
+	prevPos = Vector2.ZERO
+	prevDragging = false
+	dir = Vector2.ZERO
+	power = 0
+	if(characterInputUI):
+		characterInputUI.queue_free()
+
+
+func Enable() -> void:
+	enabled = true
 
 """
 func _draw() -> void:

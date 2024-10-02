@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://617rdgddl1mq"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/CameraMultitracking.gd" id="1_1um2f"]
+[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Characters/Golem_Mask_12302023.png" id="2_ovw0c"]
+
+[node name="MultiTrackCameraExperiments" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-503, -225)
+script = ExtResource("1_1um2f")
+margin = Vector2(50, 50)
+zoomRange = Vector2(0.1, 10)
+
+[node name="Golem1" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-497, -250)
+rotation = -0.844251
+scale = Vector2(0.0406678, 0.0406678)
+texture = ExtResource("2_ovw0c")
+
+[node name="Golem2" type="Sprite2D" parent="."]
+position = Vector2(-524, -224)
+rotation = -0.949044
+scale = Vector2(0.0406678, 0.0406678)
+texture = ExtResource("2_ovw0c")
+
+[node name="Golem3" type="Sprite2D" parent="."]
+position = Vector2(-460, -189)
+rotation = -0.844251
+scale = Vector2(0.0406678, 0.0406678)
+texture = ExtResource("2_ovw0c")
+
+[node name="Golem4" type="Sprite2D" parent="."]
+position = Vector2(-452, -263)
+rotation = -0.844251
+scale = Vector2(0.0406678, 0.0406678)
+texture = ExtResource("2_ovw0c")
+
+[node name="Golem5" type="Sprite2D" parent="."]
+position = Vector2(-513, -175)
+rotation = -1.24343
+scale = Vector2(0.0406678, 0.0406678)
+texture = ExtResource("2_ovw0c")
+
+[node name="Golem6" type="Sprite2D" parent="."]
+position = Vector2(330.505, -4)
+rotation = 0.278332
+scale = Vector2(0.0406678, 0.0406678)
+texture = ExtResource("2_ovw0c")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cllrar4snib86"]
+[gd_scene load_steps=16 format=3 uid="uid://cllrar4snib86"]
 
 [ext_resource type="Texture2D" uid="uid://cygn12m6t7nx8" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_B.png" id="1_7300q"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/ShatterTextOnClick.gd" id="2_skkyn"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://b3imu8hry7phm" path="res://Assets/Art/UI/PrototypeFont/Font_E2.tres" id="11_u65yy"]
 [ext_resource type="Texture2D" uid="uid://de7q44ytkx3l6" path="res://Assets/Art/UI/PrototypeFont/Start.tres" id="12_u6wpw"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/StartButton.gd" id="14_ne5bn"]
-[ext_resource type="Texture2D" uid="uid://cjpfk3iq3dreq" path="res://Assets/Art/UI/PrototypeFont/Font_B.tres" id="15_v0rlk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkl5w"]
 atlas = ExtResource("6_5tvy1")
@@ -178,17 +177,5 @@ offset_bottom = 700.318
 scale = Vector2(0.73973, 0.73973)
 action_mode = 0
 texture_normal = ExtResource("12_u6wpw")
-stretch_mode = 3
-script = ExtResource("14_ne5bn")
-
-[node name="Start2" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 96.5984
-offset_top = -50.0242
-offset_right = 1044.6
-offset_bottom = 206.976
-scale = Vector2(0.73973, 0.73973)
-action_mode = 0
-texture_normal = ExtResource("15_v0rlk")
 stretch_mode = 3
 script = ExtResource("14_ne5bn")

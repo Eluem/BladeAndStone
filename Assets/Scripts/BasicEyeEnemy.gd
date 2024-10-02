@@ -11,8 +11,6 @@ var eyeBoltChargeWaitTime:float = 4
 var eyeBoltAlmostCharged:float = 2
 var eyeBoltRechargeDelayTimer:float = 1
 var eyeBoltRechargeDelay:float = 1
-var searchTimer:float = 0
-var searchWaitTime:float = 0.5
 var visionSensor:Area2D
 var chargeEffect:GPUParticles2D
 var standardChargeParticleProcessMaterial:ParticleProcessMaterial
@@ -76,7 +74,7 @@ func ChargeEyeBolt(delta:float) -> void:
 		eyeBoltRechargeDelayTimer = 0
 
 func FireEyeBolt() -> void:
-	var eyeBolt:EyeBolt = EyeBolt.Spawn(get_node("/root"), self, position, transform.x)
+	var eyeBolt:EyeBolt = EyeBolt.Spawn(get_tree().current_scene, self, position, transform.x)
 	eyeBolt.AddCollisionException(get_rid())
 	#Recoil
 	apply_central_impulse(transform.x.normalized() * -500)
@@ -98,12 +96,22 @@ func TargetFound(pTarget:Node2D) -> void:
 	target.tree_exited.connect(TargetLost)
 	can_sleep = false
 	visionSensor.monitoring = false
+	
+	var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
+	cameraCast.AddTrackTarget(self, 1)
+
 
 func TargetLost() -> void:
 	StopCharging()
 	visionSensor.monitoring = true
 	can_sleep = true
 	target = null
+	
+	var viewPort:Viewport = get_viewport()
+	if(viewPort):
+		var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
+		cameraCast.RemoveTrackTarget(self)
+
 
 func StopCharging() -> void:
 	eyeBoltChargeTimer = 0
@@ -111,7 +119,8 @@ func StopCharging() -> void:
 
 func Die(pDir:Vector2, pForce:float) -> void:
 	chargeEffect.one_shot = true
-	chargeEffect.reparent(get_tree().root.get_child(0))
+	#chargeEffect.reparent(get_tree().root.get_child(0))
+	chargeEffect.reparent(get_tree().current_scene)
 	chargeEffect.set_script(load("res://Assets/Scripts/DeleteFinishedParticles.gd"))
 	super.Die(pDir, pForce)
 	

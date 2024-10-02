@@ -11,7 +11,6 @@ extends StaticBodyHittable
 @onready var chargeEffect:GPUParticles2D = $EyeTurretEye/ChargeEffect
 
 var target:Node2D
-var hasTarget:bool
 var force:float = 500
 var maxSpeed:float = 50 #TODO: Implement max speed
 var maxFollowDist:float = 500**2
@@ -22,8 +21,6 @@ var eyeBoltChargeWaitTime:float = 4
 var eyeBoltAlmostCharged:float = 2
 var eyeBoltRechargeDelayTimer:float = 1
 var eyeBoltRechargeDelay:float = 1
-var searchTimer:float = 0
-var searchWaitTime:float = 0.5
 var standardChargeParticleProcessMaterial:ParticleProcessMaterial
 var standardChargeEffectLifeTime:float
 var maxRotationRange:Vector2 = Vector2(deg_to_rad(-70), deg_to_rad(70))
@@ -33,7 +30,8 @@ var targetLossDelay:float = 2.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
-
+	if(!isEyeOpen):
+		visionSensor.monitoring = false
 	standardChargeParticleProcessMaterial = chargeEffect.process_material
 	standardChargeEffectLifeTime = chargeEffect.lifetime
 	
@@ -43,12 +41,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(target != null):
 		ValidateTarget(delta)
-		if(!hasTarget):
-			TargetFound()
 		if(isEyeOpen):
 			ChargeEyeBolt(delta)
-	elif(hasTarget):
-		TargetLost()
 	HandleShieldEffect(delta)
 
 func _physics_process(delta: float) -> void:
@@ -81,22 +75,36 @@ func ChargeEyeBolt(delta:float) -> void:
 		eyeBoltRechargeDelayTimer = 0
 
 func FireProjectile() -> void:
-	var projectile:EyeTurretBolt = EyeTurretBolt.Spawn(get_node("/root"), self, projectileSpawnPoint.global_position, projectileSpawnPoint.global_transform.x)
+	var projectile:EyeTurretBolt = EyeTurretBolt.Spawn(get_tree().current_scene, self, projectileSpawnPoint.global_position, projectileSpawnPoint.global_transform.x)
 	projectile.z_index = -2
 	projectile.damage = damage
 	projectile.AddCollisionException(get_rid())
 
-func object_detected(pBody:Node2D) -> void:
-	target = pBody
 
-func TargetFound() -> void:
+func object_detected(pBody:Node2D) -> void:
+	TargetFound(pBody)
+
+
+func TargetFound(pTarget:Node2D) -> void:
+	target = pTarget
+	target.tree_exited.connect(TargetLost)
 	visionSensor.monitoring = false
-	hasTarget = true
+	
+	var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
+	cameraCast.AddTrackTarget(self, 1)
+
 
 func TargetLost() -> void:
 	StopCharging()
 	visionSensor.monitoring = true
-	hasTarget = false
+	target.tree_exited.disconnect(TargetLost)
+	target = null
+
+	var viewPort:Viewport = get_viewport()
+	if(viewPort):
+		var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
+		cameraCast.RemoveTrackTarget(self)
+
 
 func ValidateTarget(pDelta:float) -> void:
 	var spaceState:PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
@@ -104,7 +112,7 @@ func ValidateTarget(pDelta:float) -> void:
 		if(targetLossTimer < targetLossDelay):
 			targetLossTimer += pDelta
 		else:
-			target = null
+			TargetLost()
 	else:
 		targetLossTimer = 0
 

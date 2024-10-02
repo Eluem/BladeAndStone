@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="SlingShotExperiments"
-run/main_scene="res://Assets/GameScenes/MainMenu.tscn"
+run/main_scene="res://Assets/GameScenes/BootSplash.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/image="res://Assets/Art/UI/TurmoniousGamesLogo_LQ.png"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameStateManager="*res://Assets/Scripts/GameStateManager.gd"
+CanvasManagerScene="*res://Assets/GameScenes/CanvasManagerScene.tscn"
+DebugInfo="*res://Assets/Scripts/DebugInfo.gd"
 
 [debug]
 
