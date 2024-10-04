@@ -18,7 +18,7 @@ var _PIDController:PIDController2D = PIDController2D.new()
 var inDisabledDist:bool = false
 var ignoreTrackNode:bool = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta:float) -> void:
 	if(is_instance_valid(trackNode) && !ignoreTrackNode):
 		targetPos = trackNode.global_position
 	

@@ -3,9 +3,9 @@ extends CanvasLayer
 
 @onready var HUD:Control = $HUD
 @onready var DeathOverlay:Control = $DeathOverlay
-@onready var pauseButton: Button = $PauseButton
-@onready var pauseMenu: Control = $PauseMenu
-@onready var resumeButton: TextureButton = $PauseMenu/ResumeButton
+@onready var pauseButton:Button = $PauseButton
+@onready var pauseMenu:Control = $PauseMenu
+@onready var resumeButton:TextureButton = $PauseMenu/ResumeButton
 
 
 var deathSequenceTimer:float
@@ -17,7 +17,7 @@ func _ready() -> void:
 	pauseButton.pressed.connect(pause_pressed)
 	resumeButton.pressed.connect(resume_pressed)
 
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	ProcessDeathSequence_SoulsLike(delta)
 	#ProcessDeathSequence(delta)
 

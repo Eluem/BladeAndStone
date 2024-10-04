@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(PIDControllerJoint.trackNode):
 		chain.points[0] = global_position + (global_transform.basis_xform(Vector2.RIGHT) * 20)
 		chain.points[1] = PIDControllerJoint.trackNode.global_position
@@ -35,7 +35,7 @@ func picked_up(pBody:Node2D) -> void:
 	sprite.rotation_degrees = 90
 
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	if(PIDControllerJoint.trackNode == null):
 		return
 	state.transform = state.transform.looking_at(PIDControllerJoint.trackNode.global_position)

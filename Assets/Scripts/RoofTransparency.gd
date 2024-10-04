@@ -13,7 +13,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	visuals.modulate.a += transitionSpeed * transitionDirection * delta
 	visuals.modulate.a = clampf(visuals.modulate.a, opacityRange.x, opacityRange.y)	
 	pass

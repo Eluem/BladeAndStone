@@ -17,7 +17,7 @@ func _ready() -> void:
 	$Collider.connect("on_hit", on_hit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	lifetime -= delta
 	if(lifetime <= 0):
 		lifetime_end()

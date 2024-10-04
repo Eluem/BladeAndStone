@@ -1,7 +1,7 @@
 class_name Golem
 extends RigidBodyHittable
-@onready var inputHandler: CharacterInputHandler = $AnimationTree/InputHandler
-@onready var animationTree: PlayerStateMachine = $AnimationTree
+@onready var inputHandler:CharacterInputHandler = $AnimationTree/InputHandler
+@onready var animationTree:PlayerStateMachine = $AnimationTree
 
 var targetRotation:float
 var bossKey:BossKey
@@ -15,10 +15,10 @@ func _ready() -> void:
 	inputHandler.drag_update.connect(drag_update)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	super._process(delta)
 	
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta:float) -> void:
 	pass
 		
 func flick(powerMod:float, dir:Vector2) -> void:
@@ -41,7 +41,7 @@ func slash() -> void:
 func lunge(pForce:float) -> void:
 	apply_central_impulse(pForce * transform.x)
 	
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	#if(resetRequested):
 	#	targetRotation = initialTransform.get_rotation()
 		

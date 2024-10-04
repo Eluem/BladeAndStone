@@ -2,9 +2,9 @@ extends Node2D
 
 class_name TransformMatrixLearning
 
-@export var text: Label
+@export var text:Label
 
-var targetAngle: float = 0
+var targetAngle:float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,13 +12,13 @@ func _ready() -> void:
 		text = get_node("/root/Node2D/MatrixTesterLabel")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta:float) -> void:
 	UpdateLabel()
 	#SetRotation()
 
-func _input(event: InputEvent) -> void:
+func _input(event:InputEvent) -> void:
 	if event is InputEventKey:
-		var keyEvent: InputEventKey = event
+		var keyEvent:InputEventKey = event
 		if keyEvent.pressed and !keyEvent.is_echo() and keyEvent.keycode == KEY_SPACE:
 			transform[0] = Vector2(1, 0)
 			transform[1] = Vector2(0, 1)
@@ -34,14 +34,14 @@ func SetRotation() -> void:
 	transform.x = Vector2(cos(deg_to_rad(targetAngle)), sin(deg_to_rad(targetAngle)))
 	transform.y = Vector2(cos(deg_to_rad(targetAngle + 90)), sin(deg_to_rad(targetAngle + 90)))
 	
-func ApplyRotationMatrix(angle_rad: float) -> void:
-	var rotMatrix: PackedVector2Array = [Vector2(cos(angle_rad),-sin(angle_rad)),
+func ApplyRotationMatrix(angle_rad:float) -> void:
+	var rotMatrix:PackedVector2Array = [Vector2(cos(angle_rad),-sin(angle_rad)),
 										 Vector2(sin(angle_rad),cos(angle_rad))]
 	
 	
 	"""
-	var tempVectorX: Vector2 = transform.x
-	var tempVectorY: Vector2 = transform.y
+	var tempVectorX:Vector2 = transform.x
+	var tempVectorY:Vector2 = transform.y
 	transform.x.x = (tempVectorX.x * cos(angle_rad)) - (tempVectorX.y * sin(angle_rad))
 	transform.x.y = (tempVectorX.x * sin(angle_rad)) + (tempVectorX.y * cos(angle_rad))
 	transform.y.x = (tempVectorY.x * cos(angle_rad)) - (tempVectorY.y * sin(angle_rad))

@@ -6,7 +6,7 @@ var prefadeTime:float = 2.0
 var maxFadeTime:float = 2.0
 var fadeTime:float = maxFadeTime
 
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(prefadeTime > 0):
 		prefadeTime -= delta
 	elif(fadeTime > 0):

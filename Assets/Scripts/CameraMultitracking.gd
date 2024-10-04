@@ -58,7 +58,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(targets.size() == 0):
 		return
 	
@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 		UpdateZoom(delta)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta:float) -> void:
 	if(Engine.is_editor_hint()):
 		return
 	if(targets.size() == 0):
@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		UpdateZoom(delta)
 
 
-func UpdateTracking(pDelta: float) -> void:
+func UpdateTracking(pDelta:float) -> void:
 	var targetPos:Vector2
 	targetPos = GetTargetsCenter()
 	
@@ -102,7 +102,7 @@ func UpdateTracking(pDelta: float) -> void:
 			global_position = targetPos
 
 
-func UpdateTracking_Interpolated(pDelta: float) -> void:
+func UpdateTracking_Interpolated(pDelta:float) -> void:
 	var targetPos:Vector2
 	targetPos = lerp(prevPos, currPos, Engine.get_physics_interpolation_fraction())
 	

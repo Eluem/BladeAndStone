@@ -13,6 +13,8 @@ enum SceneType
 #@onready var currentScene:Node2D = get_tree().current_scene
 #@onready var canvasManager:CanvasManager = ManagerScene
 
+var gameData:GameSaveHelper = GameSaveHelper.new()
+
 var sceneList:Array[String] = [
 							"res://Assets/GameScenes/MainMenu.tscn"
 							,"res://Assets/GameScenes/VerticalSlice.tscn"
@@ -33,9 +35,10 @@ var sceneChanging:bool = false
 
 func _ready() -> void:
 	InitializeFadeToBlack()
+	gameData.LoadData()
 
 
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(Input.is_key_pressed(KEY_A)):
 		SceneChange(SceneType.Game, true)
 		#BeginFadeToScene(SceneType.Game, true)

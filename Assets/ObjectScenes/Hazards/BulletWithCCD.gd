@@ -17,14 +17,14 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(_delta:float) -> void:
 	pass
 
 func AddExceptionRID(pRID:RID) -> void:
 	excludeCollisionRIDs.append(pRID)
 	shapeCast.add_exception_rid(pRID)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta:float) -> void:
 	#shapeCast.force_shapecast_update()
 	shapeCast.target_position = global_position - prevPos
 	

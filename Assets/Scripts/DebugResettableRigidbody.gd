@@ -12,11 +12,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(_delta:float) -> void:
 	if(Input.is_key_pressed(KEY_R)):
 		resetRequested = true
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	if(resetRequested):
 		state.set_transform(initialTransform)
 		linear_velocity = Vector2.ZERO

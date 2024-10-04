@@ -1,9 +1,10 @@
 extends StaticBodyHittable
+class_name EyeTurret
 
 @export var isEyeOpen:bool = true
 @export var damage:int = 30
 
-@onready var eye: Node2D = $EyeTurretEye
+@onready var eye:Node2D = $EyeTurretEye
 @onready var projectileSpawnPoint:Node2D = $EyeTurretEye/ProjectileSpawnPoint
 @onready var shieldSprite:Sprite2D = $Shield
 
@@ -38,14 +39,14 @@ func _ready() -> void:
 	visionSensor.connect("object_detected", object_detected)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(target != null):
 		ValidateTarget(delta)
 		if(isEyeOpen):
 			ChargeEyeBolt(delta)
 	HandleShieldEffect(delta)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta:float) -> void:
 	if(!isEyeOpen):
 		return
 	if(target == null):

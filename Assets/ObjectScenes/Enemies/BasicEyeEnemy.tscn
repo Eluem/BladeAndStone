@@ -76,6 +76,8 @@ color = Color(0.470588, 0.784314, 0.921569, 1)
 alpha_curve = SubResource("CurveTexture_ce2dp")
 
 [node name="BasicEyeEnemy" type="RigidBody2D"]
+collision_layer = 5
+collision_mask = 5
 linear_damp = 3.0
 script = ExtResource("1_0dwv7")
 maxHealth = 30

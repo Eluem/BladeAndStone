@@ -15,7 +15,7 @@ func _ready() -> void:
 	prevTransform = Transform2D(transform)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(trackTarget == null):
 		return
 	
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	elif(trackingMode == TrackingMode.interpolated):
 		UpdateTracking_Interpolated(delta)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta:float) -> void:
 	if(trackTarget == null):
 		return
 	
@@ -35,10 +35,10 @@ func _physics_process(delta: float) -> void:
 	if(trackingMode == TrackingMode.physics_process):
 		UpdateTracking(delta)
 
-func UpdateTracking(_delta: float) -> void:
+func UpdateTracking(_delta:float) -> void:
 	transform.origin = trackTarget.transform.origin
 
-func UpdateTracking_Interpolated(_delta: float) -> void:
+func UpdateTracking_Interpolated(_delta:float) -> void:
 	#transform.origin = prevTransform.interpolate_with(trackTarget.transform, Engine.get_physics_interpolation_fraction()).origin
 	#transform.origin = lerp(prevTransform.origin, currTransform.origin, Engine.get_physics_interpolation_fraction())
 	transform.origin = prevTransform.interpolate_with(currTransform, Engine.get_physics_interpolation_fraction()).origin
@@ -48,7 +48,7 @@ func UpdateTracking_Interpolated(_delta: float) -> void:
 
 #Need to figure out how to makie this work correctly and actually interpolate
 #this just lags behind and freezes on duplicated physics frames
-func UpdateTracking_Interpolated_WorkAround(_delta: float) -> void:
+func UpdateTracking_Interpolated_WorkAround(_delta:float) -> void:
 	var currPhysicsFrame:int = Engine.get_physics_frames()
 	if(prevPhysicsFrame == currPhysicsFrame):
 		return
@@ -59,7 +59,7 @@ func UpdateTracking_Interpolated_WorkAround(_delta: float) -> void:
 	prevPhysicsFrame = currPhysicsFrame
 
 #Need to figure out why this doesn't work correctly
-#func UpdateTracking_Interpolated_TryingToForceProperInterpolation(_delta: float) -> void:
+#func UpdateTracking_Interpolated_TryingToForceProperInterpolation(_delta:float) -> void:
 	#var currPhysicsFrame:int = Engine.get_physics_frames()
 	##if(prevPhysicsFrame == currPhysicsFrame):
 		##return

@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	color.a += pulseRate * pulseDirection * delta
 	if(color.a <= pulseRange.x || color.a >= pulseRange.y):
 		pulseDirection *= -1

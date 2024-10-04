@@ -30,12 +30,12 @@ func _ready() -> void:
 	visionSensor.connect("object_detected", object_detected)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(target != null):
 		ChargeEyeBolt(delta)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta:float) -> void:
 	if(target == null):
 		return
 	var dist:float = (target.global_position - global_position).length_squared()
@@ -44,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 	elif(dist < minFollowDist):
 		apply_central_force(force * (global_position - target.global_position).normalized())
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	if(target == null):
 		return
 	#var newTransform:Transform2D = state.transform

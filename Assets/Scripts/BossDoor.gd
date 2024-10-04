@@ -20,11 +20,11 @@ func _ready() -> void:
 
 
 #Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(_delta:float) -> void:
 	#UpdateClosedPercent(delta)
 	pass
 
-func UpdateClosedPercent(pDelta: float) -> void:
+func UpdateClosedPercent(pDelta:float) -> void:
 	if(IsOpening()):
 		closedPercent -= pDelta * speed
 		closedPercent = clampf(closedPercent, 0, 1)

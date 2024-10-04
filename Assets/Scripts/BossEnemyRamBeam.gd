@@ -1,11 +1,11 @@
 extends RigidBodyHittable
 class_name BossEnemyRamBeam
 
-@onready var cameraTrackTarget: Node2D = $MainSprite/CameraTrackTarget
-@onready var cameraTrackTarget2: Node2D = $MainSprite/CameraTrackTarget2
-@onready var cameraTrackTarget3: Node2D = $MainSprite/CameraTrackTarget3
-@onready var cameraTrackTarget4: Node2D = $MainSprite/CameraTrackTarget4
-@onready var cameraTrackTarget5: Node2D = $MainSprite/CameraTrackTarget5
+@onready var cameraTrackTarget:Node2D = $MainSprite/CameraTrackTarget
+@onready var cameraTrackTarget2:Node2D = $MainSprite/CameraTrackTarget2
+@onready var cameraTrackTarget3:Node2D = $MainSprite/CameraTrackTarget3
+@onready var cameraTrackTarget4:Node2D = $MainSprite/CameraTrackTarget4
+@onready var cameraTrackTarget5:Node2D = $MainSprite/CameraTrackTarget5
 
 
 var target:Node2D
@@ -33,7 +33,7 @@ func _ready() -> void:
 	#($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(isDummyMode):
 		return
 	if(IsAttackActive()):
@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 		if(IsChargeAttackAllowed()):
 			ChargeAttack(delta)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta:float) -> void:
 	if(target == null || IsAttackActive() || isDummyMode):
 		return
 	var dist:float = (target.global_position - global_position).length_squared()
@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	elif(dist < lerp(minFollowDistRange.x, minFollowDistRange.y, GetAttackChargePercentage())):
 		apply_central_force(force * (global_position - target.global_position).normalized())
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	if(target == null || IsAttackActive() || isDummyMode):
 		return
 	var newTransform:Transform2D

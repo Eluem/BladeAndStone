@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dddlxx1wrjq7y"]
+[gd_scene load_steps=2 format=3 uid="uid://dddlxx1wrjq7y"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Credits.gd" id="1_qmho2"]
 
 [node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_qmho2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

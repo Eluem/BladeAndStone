@@ -45,7 +45,7 @@ func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pSta
 	dragThreshold = pDragThreshold
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(released):
 		timeToDecay -= delta
 		if(timeToDecay <= 0):

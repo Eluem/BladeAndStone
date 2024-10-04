@@ -32,13 +32,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(_delta:float) -> void:
 	#if(bossKey && bossKey.PIDControllerJoint.trackDist >= 200):
 		#bossKey.PIDControllerJoint.trackDist -= delta*100
 	pass
 
 
-#func _physics_process(delta: float) -> void:
+#func _physics_process(delta:float) -> void:
 	#if(bossKey):# && bossKey.global_position.y > keyHole.global_position.y):
 		#KeyPIDController.targetPos = Vector2(bossKey.global_position.x, keyHole.global_position.y)
 		#bossKey.apply_central_force(KeyPIDController.Update(delta, bossKey.global_position, bossKey.linear_velocity))
@@ -59,6 +59,8 @@ func _on_enter(pBody:PhysicsBody2D) -> void:
 	rightEyeTurret.play("Opening")
 	
 	if(player.hasKey()):
+		GameStateManager.gameData.checkPointReached = true
+		GameStateManager.gameData.SaveData()
 		bossKey = player.bossKey
 		bossKeySprite = bossKey.sprite
 		leftEyeTurret.animation_set_next("LeftScan", "Closing")

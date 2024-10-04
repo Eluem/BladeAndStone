@@ -36,7 +36,7 @@ func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(!enabled):
 		return
 
@@ -157,12 +157,12 @@ func _draw() -> void:
 		#endPoint = get_viewport().get_mouse_position()
 		
 		#Calculate color based on power
-		var col: Color
+		var col:Color
 		col = Color.GREEN.lerp(Color.RED, power)
 		
 		draw_line(startPos, endPoint, col, 4, true)
 	if(released):
-		var col: Color
+		var col:Color
 		col = Color.GREEN.lerp(Color.RED, holdTime)
 		draw_circle(get_viewport().get_mouse_position(), 10, col)
 """

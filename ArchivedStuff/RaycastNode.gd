@@ -11,11 +11,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	draw_debug_line()
 	prevPos = global_position
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(delta:float) -> void:
 	target_position = prevPos
 
 

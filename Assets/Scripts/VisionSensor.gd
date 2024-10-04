@@ -6,13 +6,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(_delta:float) -> void:
 	if(monitoring):
 		scan_vision()
 	#queue_redraw() I don't know why this was here... typo?
 	
 func scan_vision() -> void:
-	var bodies: Array[Node2D] = get_overlapping_bodies()
+	var bodies:Array[Node2D] = get_overlapping_bodies()
 	#var castHittable:RigidBodyHittable
 	var spaceState:PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	for body in bodies:

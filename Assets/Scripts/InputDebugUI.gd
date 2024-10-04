@@ -35,7 +35,7 @@ func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pSta
 	dragThreshold = pDragThreshold
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(released):
 		timeToDecay -= delta
 		if(timeToDecay <= 0):
@@ -52,12 +52,12 @@ func _draw() -> void:
 		endPoint = startPosLocal + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
 		
 		#Calculate color based on power
-		var lineCol: Color
+		var lineCol:Color
 		lineCol = Color.GREEN.lerp(Color.RED, power)
 		lineCol.a = timeToDecay
 		draw_line(startPosLocal, endPoint, lineCol, 4, true)
 		
-	var pointCol: Color
+	var pointCol:Color
 	pointCol = Color.GREEN.lerp(Color.RED, holdTime)
 	pointCol.a = timeToDecay
 	draw_circle(currPosLocal, 10, pointCol)

@@ -6,7 +6,7 @@ extends AnimationTree
 @export var dragging:bool
 @export var dragged:bool
 
-@onready var animationPlayer: AnimationPlayer = $"../AnimationPlayer"
+@onready var animationPlayer:AnimationPlayer = $"../AnimationPlayer"
 
 var playbackRoot:AnimationNodeStateMachinePlayback = get("parameters/playback")
 var inputHandler:CharacterInputHandler
@@ -39,7 +39,7 @@ func HandleBufferTimers(delta:float) -> void:
 
 func JumpToIdle() -> void:
 	animationPlayer.play("RESET")
-	playbackRoot.start("Idle", true)
+	playbackRoot.start("Idle")
 
 
 func press_release() -> void:

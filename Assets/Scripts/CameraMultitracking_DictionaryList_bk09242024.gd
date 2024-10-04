@@ -54,7 +54,7 @@ func InitializeTargets() -> void:
 			targetData.node = get_node(castNodePath)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(Engine.is_editor_hint()):
 		return
 	
@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 	elif(trackTiming == TrackTiming.interpolated):
 		UpdateTracking_Interpolated(delta)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta:float) -> void:
 	if(Engine.is_editor_hint()):
 		return
 	if(targets.size() == 0):
@@ -87,10 +87,10 @@ func _physics_process(delta: float) -> void:
 	if(trackTiming == TrackTiming.physics_process):
 		UpdateTracking(delta)
 
-func UpdateTracking(_delta: float) -> void:
+func UpdateTracking(_delta:float) -> void:
 	global_position = GetTargetsCenter()
 
-func UpdateTracking_Interpolated(_delta: float) -> void:
+func UpdateTracking_Interpolated(_delta:float) -> void:
 	global_position = lerp(prevPos, currPos, Engine.get_physics_interpolation_fraction())
 
 

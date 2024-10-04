@@ -15,7 +15,7 @@ func _ready() -> void:
 	connect("button_up", handle_button_up)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(button_pressed):
 		buttonHoldTime += delta
 		if(buttonHoldTime >= 1):

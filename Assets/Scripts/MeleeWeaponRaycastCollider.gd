@@ -21,7 +21,7 @@ func _ready() -> void:
 		excludeCollisionRIDs.append(excluded.get_rid())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(_delta:float) -> void:
 	if(!enabled):
 		return
 	var debugFullScanEmpty:bool = true
@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 			DrawDebugTrail(nodeData, debugFullScanEmpty)
 		nodeData.UpdatePrevPos()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(_delta:float) -> void:
 	if(!enabled):
 		return
 	#Get the physics space

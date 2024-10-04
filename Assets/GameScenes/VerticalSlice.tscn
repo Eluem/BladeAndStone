@@ -93,64 +93,6 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 2.26667, 2.66667, 3.06667, 3.46667, 3.66667, 3.86667, 4.2, 4.6)
 }
 
-[sub_resource type="Animation" id="Animation_mmck7"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BossIntroCamera:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-67, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BossIntroCamera:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-5468, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BossIntroCamera:zoom:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BossIntroCamera:zoom:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BossIntroCamera:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="Animation" id="Animation_l3g31"]
 resource_name = "BossIntro_bk10012024"
 length = 4.6
@@ -208,6 +150,64 @@ tracks/4/keys = {
 "handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "points": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.31765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.318, 0, 0, 0, 0, -0.31765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.318, 0, 0, 0, 0, -0.31765, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.318, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.83333, 4.03333, 4.23333, 4.4)
+}
+
+[sub_resource type="Animation" id="Animation_mmck7"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossIntroCamera:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-67, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossIntroCamera:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-5468, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossIntroCamera:zoom:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossIntroCamera:zoom:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossIntroCamera:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jup2w"]
@@ -1587,18 +1587,29 @@ position = Vector2(-66.976, -4223)
 shape = SubResource("SegmentShape2D_bxay8")
 one_way_collision = true
 
-[node name="OneWayWall3" type="StaticBody2D" parent="Environment/BossArea"]
-position = Vector2(-66.976, -4286)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/BossArea/OneWayWall3"]
-shape = SubResource("SegmentShape2D_bxay8")
-one_way_collision = true
-
 [node name="OneWayWall2" type="StaticBody2D" parent="Environment/BossArea"]
-position = Vector2(-66.976, -4974)
+position = Vector2(-66.976, -4286)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/BossArea/OneWayWall2"]
 shape = SubResource("SegmentShape2D_bxay8")
+one_way_collision = true
+
+[node name="OneWayWall_EnemiesOut" type="StaticBody2D" parent="Environment/BossArea"]
+position = Vector2(-66.976, -4223)
+rotation = 3.14159
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/BossArea/OneWayWall_EnemiesOut"]
+shape = SubResource("SegmentShape2D_bxay8")
+one_way_collision = true
+
+[node name="OneWayWall3" type="StaticBody2D" parent="Environment/BossArea"]
+position = Vector2(-66.976, -4974)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/BossArea/OneWayWall3"]
+shape = SubResource("SegmentShape2D_bxay8")
+disabled = true
 one_way_collision = true
 
 [node name="KeyHoleAttraction" type="Area2D" parent="Environment/BossArea"]
