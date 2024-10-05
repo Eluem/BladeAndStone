@@ -222,6 +222,8 @@ func SetMainTarget(pTrackTarget:Node2D) -> void:
 
 
 func RemoveTrackTarget(pTarget:Node2D) -> void:
+	if(pTarget == mainTarget):
+		mainTarget = null
 	pTarget.tree_exited.disconnect(track_target_deleted)
 	targets.erase(pTarget)
 

@@ -22,6 +22,7 @@ var heldTreshold:float = 0.2 #Time before "held" trigger fires, if not dragging
 var heldFired:bool = false #Prevent echoing held
 var characterInputUI:CharacterInputUI
 var inputDebugUI:InputDebugUI
+var startedPressOnPause:bool
 
 signal drag_release(dragPower:float, dragDir:Vector2)
 signal press_release(holdTime:float)
@@ -35,6 +36,7 @@ func _ready() -> void:
 	#top_level = true
 	pass
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
 	if(!enabled):
@@ -44,6 +46,15 @@ func _process(delta:float) -> void:
 	justPressed = false
 	currPos = get_viewport().get_mouse_position()
 	pressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	
+	if(!pressing && pressed && HoveringPause()):
+		startedPressOnPause = true
+		return
+	if(startedPressOnPause):
+		if(!pressed):
+			startedPressOnPause = false
+		else:
+			return
 	
 	#Manage drag state/launch flick on drag release
 	if(pressed && !pressing):
@@ -91,8 +102,10 @@ func _process(delta:float) -> void:
 		queue_redraw()
 	"""
 
+
 func is_dragging() -> bool:
 	return pressing && (startPos - currPos).length_squared() > dragThreshold * dragThreshold
+
 
 func UpdateCharacterInputUI() -> void:
 	if(justPressed):
@@ -106,6 +119,7 @@ func UpdateCharacterInputUI() -> void:
 		characterInputUI.top_level = true
 		characterInputUI.global_transform = (get_parent().get_parent() as Node2D).global_transform
 		characterInputUI = null
+
 
 func UpdateDebugUI() -> void:
 	if(justPressed):
@@ -144,6 +158,10 @@ func Disable() -> void:
 
 func Enable() -> void:
 	enabled = true
+
+
+func HoveringPause() -> bool:
+	return (CanvasManagerScene as CanvasManager).pauseButton.is_hovered()
 
 """
 func _draw() -> void:

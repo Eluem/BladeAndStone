@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dve415r8hxdxd"]
+[gd_scene load_steps=8 format=3 uid="uid://dve415r8hxdxd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/CanvasManager.gd" id="1_b6sii"]
+[ext_resource type="Texture2D" uid="uid://hlilelxhe2np" path="res://Assets/Art/UI/PauseButton.png" id="3_58j4k"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="3_k35mw"]
 [ext_resource type="Texture2D" uid="uid://cjqap71mqdd1w" path="res://Assets/Art/UI/ButtonNormal.png" id="4_60f3r"]
 [ext_resource type="Texture2D" uid="uid://cfsxu03ud2eq7" path="res://Assets/Art/UI/ButtonPressed.png" id="5_6ploj"]
@@ -21,6 +22,7 @@ script = ExtResource("1_b6sii")
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 
 [node name="HealthBar" type="ProgressBar" parent="HUD"]
 layout_mode = 2
@@ -28,6 +30,7 @@ offset_left = 194.0
 offset_top = 29.0
 offset_right = 570.0
 offset_bottom = 87.0
+mouse_filter = 2
 theme = SubResource("Theme_xcfdd")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 value = 50.0
@@ -42,6 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="DeathOverlay"]
 layout_mode = 1
@@ -50,6 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.568627)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DeathOverlay"]
@@ -60,18 +65,19 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_colors/default_color = Color(0.579254, 1.03481e-06, 3.85046e-07, 1)
 theme_override_font_sizes/normal_font_size = 96
 bbcode_enabled = true
 text = "[center]YOU SHATTERED[/center]"
 fit_content = true
 
-[node name="PauseButton" type="Button" parent="."]
-offset_left = 28.0
-offset_top = 23.0
-offset_right = 161.0
-offset_bottom = 94.0
-text = "Pause"
+[node name="PauseButton" type="TextureButton" parent="."]
+offset_left = 34.0
+offset_top = 20.0
+offset_right = 115.0
+offset_bottom = 114.0
+texture_normal = ExtResource("3_58j4k")
 
 [node name="PauseMenu" type="Control" parent="."]
 visible = false

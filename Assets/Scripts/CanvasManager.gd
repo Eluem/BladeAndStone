@@ -1,9 +1,9 @@
 extends CanvasLayer
-#class_name CanvasManager
+class_name CanvasManager
 
 @onready var HUD:Control = $HUD
 @onready var DeathOverlay:Control = $DeathOverlay
-@onready var pauseButton:Button = $PauseButton
+@onready var pauseButton:TextureButton = $PauseButton
 @onready var pauseMenu:Control = $PauseMenu
 @onready var resumeButton:TextureButton = $PauseMenu/ResumeButton
 
