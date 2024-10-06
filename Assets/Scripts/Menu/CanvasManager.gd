@@ -5,8 +5,6 @@ class_name CanvasManager
 @onready var DeathOverlay:Control = $DeathOverlay
 @onready var pauseButton:TextureButton = $PauseButton
 @onready var pauseMenu:Control = $PauseMenu
-@onready var resumeButton:TextureButton = $PauseMenu/ResumeButton
-
 
 var deathSequenceTimer:float
 var playerDied:bool
@@ -15,7 +13,7 @@ var deathSequenceFinished:bool
 func _ready() -> void:
 	GameStateManager.scene_changing.connect(scene_changing)
 	pauseButton.pressed.connect(pause_pressed)
-	resumeButton.pressed.connect(resume_pressed)
+
 
 func _process(delta:float) -> void:
 	ProcessDeathSequence_SoulsLike(delta)
@@ -63,11 +61,13 @@ func scene_changing(pSceneType:GameStateManager.SceneType,) -> void:
 	visible = (pSceneType == GameStateManager.SceneType.Game)
 
 
-func pause_pressed() -> void:
-	get_tree().paused = true
+func ShowPauseMenu() -> void:
 	pauseMenu.visible = true
 
 
-func resume_pressed() -> void:
-	get_tree().paused = false
+func HidePauseMenu() -> void:
 	pauseMenu.visible = false
+
+
+func pause_pressed() -> void:
+	GameStateManager.Pause()

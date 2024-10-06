@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dve415r8hxdxd"]
+[gd_scene load_steps=10 format=3 uid="uid://dve415r8hxdxd"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/CanvasManager.gd" id="1_b6sii"]
+[ext_resource type="Script" path="res://Assets/Scripts/CanvasManager.gd" id="1_b6sii"]
 [ext_resource type="Texture2D" uid="uid://hlilelxhe2np" path="res://Assets/Art/UI/PauseButton.png" id="3_58j4k"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="3_k35mw"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/PauseMenu.gd" id="4_chvpg"]
 [ext_resource type="Texture2D" uid="uid://dmi3ug5mxd6uu" path="res://Assets/Art/UI/CloseButton.png" id="4_n3trl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8ih"]
@@ -85,14 +84,12 @@ offset_bottom = 104.0
 texture_normal = ExtResource("3_58j4k")
 
 [node name="PauseMenu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_chvpg")
 
 [node name="GrayOverlay" type="ColorRect" parent="PauseMenu"]
 layout_mode = 1
@@ -111,9 +108,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -186.0
+offset_top = -250.0
 offset_right = 200.0
-offset_bottom = 186.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(200, 250)
@@ -125,8 +122,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -184.0
-offset_bottom = -101.0
+offset_top = -224.0
+offset_bottom = -201.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -137,32 +134,25 @@ fit_content = true
 
 [node name="CloseButton" type="TextureButton" parent="PauseMenu"]
 layout_mode = 0
-offset_left = 715.0
-offset_top = 148.0
-offset_right = 796.0
-offset_bottom = 242.0
-scale = Vector2(0.646081, 0.646081)
+offset_left = 691.0
+offset_top = 74.0
+offset_right = 772.0
+offset_bottom = 168.0
 texture_normal = ExtResource("4_n3trl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+[node name="ResumeButton" type="Button" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -94.0
-offset_right = 150.0
-offset_bottom = 171.0
+offset_left = -77.5
+offset_top = -126.0
+offset_right = 77.5
+offset_bottom = -71.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(150, 150)
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
@@ -171,8 +161,19 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
 text = "Resume"
 
-[node name="SettingsButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
+[node name="SettingsButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -61.0
+offset_right = 78.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
@@ -182,8 +183,19 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
 text = "Settings
 "
 
-[node name="MainMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
+[node name="MainMenuButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = 6.0
+offset_right = 109.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
@@ -193,8 +205,19 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
 text = "Main Menu
 "
 
-[node name="QuitButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
+[node name="QuitButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = 71.0
+offset_right = 78.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40

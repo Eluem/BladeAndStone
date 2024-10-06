@@ -34,6 +34,7 @@ var fadeUsingCheckPoint:bool = false
 var sceneChanging:bool = false
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	InitializeFadeToBlack()
 	gameData.LoadData()
 
@@ -49,11 +50,26 @@ func _process(delta:float) -> void:
 	ProcessFadeTransition(delta)
 
 
+func Pause() -> void:
+	get_tree().paused = true
+	(CanvasManagerScene as CanvasManager).ShowPauseMenu()
+
+
+func Unpause() -> void:
+	get_tree().paused = false
+	(CanvasManagerScene as CanvasManager).HidePauseMenu()
+
+
+func QuitGame() -> void:
+	get_tree().quit()
+
+
 func SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
 	_SceneChange.bind(pSceneType, pUsingCheckPoint).call_deferred()
 
 
 func _SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
+	Unpause()
 	sceneChanging = true
 	usingCheckPoint = pUsingCheckPoint
 	
