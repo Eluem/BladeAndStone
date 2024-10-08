@@ -22,6 +22,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_my8ih")
 
 [node name="CanvasManagerScene" type="CanvasLayer"]
 process_mode = 3
+visible = false
 script = ExtResource("1_b6sii")
 
 [node name="HUD" type="Control" parent="."]

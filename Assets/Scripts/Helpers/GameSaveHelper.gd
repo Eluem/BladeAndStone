@@ -7,14 +7,8 @@ var invertInputDirection:bool = false
 
 func SaveData() -> void:
 	var file:FileAccess = FileAccess.open("data.dat", FileAccess.WRITE)
-	var data:Dictionary = {
-						 "checkPointReached":checkPointReached
-						,"musicVolume":musicVolume
-						,"sfxVolume":sfxVolume
-						,"invertInputDirection":invertInputDirection
-					   }
+	var data:Dictionary = GetValues()
 	file.store_var(data, true)
-	pass
 
 
 func LoadData() -> void:
@@ -22,9 +16,25 @@ func LoadData() -> void:
 		return
 	var file:FileAccess = FileAccess.open("data.dat", FileAccess.READ)
 	var data:Dictionary = file.get_var(true)
+	SetValues(data)
 
-	checkPointReached = data.checkPointReached
-	musicVolume = data.musicVolume
-	sfxVolume = data.sfxVolume
-	invertInputDirection = data.invertInputDirection
-	pass
+
+func GetValues() -> Dictionary:
+	var ret:Dictionary = {
+							 "checkPointReached":checkPointReached
+							,"musicVolume":musicVolume
+							,"sfxVolume":sfxVolume
+							,"invertInputDirection":invertInputDirection
+						 }
+	return ret
+
+
+func SetValues(pDictionary:Dictionary) -> void:
+	if(pDictionary.has("checkPointReached")):
+		checkPointReached = pDictionary.checkPointReached
+	if(pDictionary.has("musicVolume")):
+		musicVolume = pDictionary.musicVolume
+	if(pDictionary.has("sfxVolume")):
+		sfxVolume = pDictionary.sfxVolume
+	if(pDictionary.has("invertInputDirection")):
+		invertInputDirection = pDictionary.invertInputDirection

@@ -1,10 +1,13 @@
 extends Control
+
+const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/ConfirmationDialogue.tscn")
+const SETTINGS_MENU:PackedScene = preload("res://Assets/GameScenes/SettingsMenu.tscn")
+
 @onready var closeButton:TextureButton = $CloseButton
 @onready var resumeButton: Button = $VBoxContainer/ResumeButton
 @onready var settingsButton: Button = $VBoxContainer/SettingsButton
 @onready var mainMenuButton: Button = $VBoxContainer/MainMenuButton
 @onready var quitButton: Button = $VBoxContainer/QuitButton
-const CONFIRMATION_DIALOGUE = preload("res://Assets/GameScenes/ConfirmationDialogue.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +23,8 @@ func resume_pressed() -> void:
 
 
 func settings_pressed() -> void:
-	print("Implement settings screen!")
+	var settingsMenu:SettingsMenu = SETTINGS_MENU.instantiate()
+	settingsMenu.Initialize(self, settings_menu_response, GameStateManager.gameData.GetValues())
 
 
 func main_menu_pressed() -> void:
@@ -43,3 +47,8 @@ func quit_dialogue_response(pResponse:bool) -> void:
 	if(!pResponse):
 		return
 	GameStateManager.QuitGame()
+
+
+func settings_menu_response(pResponse:Dictionary) -> void:
+	GameStateManager.gameData.SetValues(pResponse)
+	GameStateManager.gameData.SaveData()
