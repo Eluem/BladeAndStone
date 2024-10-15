@@ -3,6 +3,8 @@ var checkPointReached:bool = false
 var musicVolume:float = 0.5
 var sfxVolume:float = 0.5
 var invertInputDirection:bool = false
+var isFirstRun:bool = true
+var highScore:int = 0
 
 
 func SaveData() -> void:
@@ -25,6 +27,8 @@ func GetValues() -> Dictionary:
 							,"musicVolume":musicVolume
 							,"sfxVolume":sfxVolume
 							,"invertInputDirection":invertInputDirection
+							,"isFirstRun":isFirstRun
+							,"highScore":highScore
 						 }
 	return ret
 
@@ -38,3 +42,7 @@ func SetValues(pDictionary:Dictionary) -> void:
 		sfxVolume = pDictionary.sfxVolume
 	if(pDictionary.has("invertInputDirection")):
 		invertInputDirection = pDictionary.invertInputDirection
+	if(pDictionary.has("isFirstRun")):
+		isFirstRun = pDictionary.isFirstRun
+	if(pDictionary.has("highScore")):
+		highScore = pDictionary.highScore

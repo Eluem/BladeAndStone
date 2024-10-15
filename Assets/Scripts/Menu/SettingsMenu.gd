@@ -16,16 +16,18 @@ const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/Confi
 @onready var standardDefaultValues:Dictionary = GetValues()
 
 var defaultValues:Dictionary
+var currValues:Dictionary
 
 
-func Initialize(pParent:Node, pCallback:Callable, pCurrentValues:Dictionary = {}, pDefaultValues:Dictionary = {}) -> void:
+func Initialize(pParent:Node, pCallback:Callable, pCurrValues:Dictionary = {}, pDefaultValues:Dictionary = {}) -> void:
 	pParent.add_child(self)
 	owner = pParent
+	currValues = pCurrValues
 	if(pDefaultValues.is_empty()):
 		defaultValues = standardDefaultValues
 	else:
 		defaultValues = pDefaultValues.duplicate()
-	SetValues(pCurrentValues)
+	SetValues(pCurrValues)
 	settings_menu_response.connect(pCallback)
 	checkButtonSliderGraphic.ForceImmediateUpdate()
 
@@ -38,6 +40,15 @@ func _ready() -> void:
 	
 	if(defaultValues.is_empty()):
 		defaultValues = standardDefaultValues
+
+
+func _input(event: InputEvent) -> void:
+	if(!visible):
+		return
+	if(event.is_action_pressed("ui_cancel")):
+		get_viewport().set_input_as_handled()
+		close_pressed()
+
 
 func GetValues() -> Dictionary:
 	var ret:Dictionary = {
@@ -56,6 +67,14 @@ func SetValues(pValues:Dictionary) -> void:
 	if(pValues.has("invertInputDirection")):
 		invertInputCheck.button_pressed = pValues.invertInputDirection
 
+func IsDataChanged() -> bool:
+	var ret:bool = false
+	var newValues:Dictionary = GetValues()
+	for key:String in newValues.keys():
+		if(newValues[key] != currValues[key]):
+			ret = true
+	return ret
+
 
 func default_pressed() -> void:
 	var confirmationDialogue:ConfirmationDialogue = CONFIRMATION_DIALOGUE.instantiate()
@@ -68,8 +87,11 @@ func save_close_pressed() -> void:
 
 
 func close_pressed() -> void:
-	var confirmationDialogue:ConfirmationDialogue = CONFIRMATION_DIALOGUE.instantiate()
-	confirmationDialogue.Initialize(self, close_dialogue_response, "Are you sure you want to close without saving your changes?")
+	if(IsDataChanged()):
+		var confirmationDialogue:ConfirmationDialogue = CONFIRMATION_DIALOGUE.instantiate()
+		confirmationDialogue.Initialize(self, close_dialogue_response, "Are you sure you want to close without saving your changes?")
+	else:
+		close_dialogue_response(true)
 
 
 func default_dialogue_response(pResponse:bool) -> void:

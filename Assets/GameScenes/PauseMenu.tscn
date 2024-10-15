@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn6qrbc5gxv72"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/PauseMenu.gd" id="1_xsman"]
+[ext_resource type="Texture2D" uid="uid://btfr8oxdeg1mx" path="res://Assets/Art/UI/CloseButton_Normal.png" id="2_l5uhc"]
+[ext_resource type="Texture2D" uid="uid://bgdlb1126254u" path="res://Assets/Art/UI/CloseButton_Pressed.png" id="3_pyohm"]
+[ext_resource type="Texture2D" uid="uid://b28gcdo1jcxxs" path="res://Assets/Art/UI/CloseButton_Hover.png" id="4_x2okc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l77g5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qk07t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0wt2"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xsman")
+
+[node name="GrayOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.568627)
+
+[node name="MenuBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -186.0
+offset_right = 200.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 250)
+color = Color(0.548963, 0.548962, 0.548962, 1)
+
+[node name="HeaderLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -184.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Paused[/center]"
+fit_content = true
+
+[node name="CloseButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 715.0
+offset_top = 148.0
+offset_right = 796.0
+offset_bottom = 242.0
+scale = Vector2(0.646081, 0.646081)
+texture_normal = ExtResource("2_l5uhc")
+texture_pressed = ExtResource("3_pyohm")
+texture_hover = ExtResource("4_x2okc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -94.0
+offset_right = 150.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 150)
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
+text = "Settings
+"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
+text = "Main Menu
+"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
+text = "Quit"

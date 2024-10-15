@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dve415r8hxdxd"]
+[gd_scene load_steps=8 format=3 uid="uid://dve415r8hxdxd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/CanvasManager.gd" id="1_b6sii"]
-[ext_resource type="Texture2D" uid="uid://hlilelxhe2np" path="res://Assets/Art/UI/PauseButton.png" id="3_58j4k"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="3_k35mw"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/PauseMenu.gd" id="4_chvpg"]
-[ext_resource type="Texture2D" uid="uid://dmi3ug5mxd6uu" path="res://Assets/Art/UI/CloseButton.png" id="4_n3trl"]
+[ext_resource type="Texture2D" uid="uid://tyai8h2i0iay" path="res://Assets/Art/UI/PauseButton_Normal.png" id="3_sr8s3"]
+[ext_resource type="Texture2D" uid="uid://b4o8piw208qd4" path="res://Assets/Art/UI/PauseButton_Pressed.png" id="4_y3sdf"]
+[ext_resource type="Texture2D" uid="uid://bo7icgyfridvn" path="res://Assets/Art/UI/PauseButton_Hover.png" id="5_mjqhe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8ih"]
 bg_color = Color(1, 0.0705882, 0, 1)
@@ -14,14 +14,7 @@ bg_color = Color(1, 0.0705882, 0, 1)
 ProgressBar/colors/backColor = Color(0, 0, 0, 1)
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_my8ih")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l77g5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qk07t"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0wt2"]
-
 [node name="CanvasManagerScene" type="CanvasLayer"]
-process_mode = 3
 visible = false
 script = ExtResource("1_b6sii")
 
@@ -83,123 +76,6 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 91.0
 offset_bottom = 104.0
-texture_normal = ExtResource("3_58j4k")
-
-[node name="PauseMenu" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_chvpg")
-
-[node name="GrayOverlay" type="ColorRect" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.568627)
-
-[node name="MenuBackground" type="ColorRect" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -186.0
-offset_right = 200.0
-offset_bottom = 186.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(200, 250)
-color = Color(0.548963, 0.548962, 0.548962, 1)
-
-[node name="HeaderLabel" type="RichTextLabel" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -184.0
-offset_bottom = -101.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 60
-bbcode_enabled = true
-text = "[center]Paused[/center]"
-fit_content = true
-
-[node name="CloseButton" type="TextureButton" parent="PauseMenu"]
-layout_mode = 0
-offset_left = 715.0
-offset_top = 148.0
-offset_right = 796.0
-offset_bottom = 242.0
-scale = Vector2(0.646081, 0.646081)
-texture_normal = ExtResource("4_n3trl")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -94.0
-offset_right = 150.0
-offset_bottom = 171.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(150, 150)
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
-text = "Resume"
-
-[node name="SettingsButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
-text = "Settings
-"
-
-[node name="MainMenuButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
-text = "Main Menu
-"
-
-[node name="QuitButton" type="Button" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxEmpty_l77g5")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_qk07t")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_d0wt2")
-text = "Quit"
+texture_normal = ExtResource("3_sr8s3")
+texture_pressed = ExtResource("4_y3sdf")
+texture_hover = ExtResource("5_mjqhe")

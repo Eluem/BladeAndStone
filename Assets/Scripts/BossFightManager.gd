@@ -80,7 +80,7 @@ func HandleOutroDelay(pDelta:float) -> void:
 	outroDelay -= pDelta
 	if(outroDelay <= 0):
 		outroFinished = true
-		GameStateManager.BeginFadeToScene(GameStateManager.SceneType.Credits)
+		GameStateManager.BeginFadeToScene(GameStateManager.SceneType.RunSummary)
 
 
 func GetPlayer() -> Golem:

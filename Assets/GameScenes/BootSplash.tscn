@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bm3e5lw02maps"]
 
 [ext_resource type="Texture2D" uid="uid://mnp371gqmghf" path="res://Assets/Art/UI/TurmoniousGamesLogo_LQ.png" id="1_1v8pl"]
-[ext_resource type="Script" path="res://Assets/GameScenes/BootSplashAnimation.gd" id="2_hkb2r"]
+[ext_resource type="Script" path="res://Assets/Scripts/BootSplashAnimation.gd" id="2_hkb2r"]
 
 [sub_resource type="Animation" id="Animation_75307"]
 resource_name = "FadeIn"

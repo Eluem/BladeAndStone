@@ -1,181 +1,97 @@
-[gd_scene load_steps=16 format=3 uid="uid://cllrar4snib86"]
+[gd_scene load_steps=7 format=3 uid="uid://dod12hkeum5pe"]
 
-[ext_resource type="Texture2D" uid="uid://cygn12m6t7nx8" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_B.png" id="1_7300q"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/ShatterTextOnClick.gd" id="2_skkyn"]
-[ext_resource type="Texture2D" uid="uid://snqag14hyeef" path="res://Assets/Art/UI/PrototypeFont/BladeAndStonePrototypeFont_L.png" id="3_jp8jy"]
-[ext_resource type="Texture2D" uid="uid://cpycen2rwtl2c" path="res://Assets/Art/UI/PrototypeFont/Font_A1.tres" id="3_mx1jh"]
-[ext_resource type="Texture2D" uid="uid://ct7753ootxwl4" path="res://Assets/Art/UI/PrototypeFont/Font_D.tres" id="4_t2id3"]
-[ext_resource type="Texture2D" uid="uid://drfsdsx3133hg" path="res://Assets/Art/UI/PrototypeFont/Font_E1.tres" id="5_tf2yp"]
-[ext_resource type="Texture2D" uid="uid://65pxx5ikmysy" path="res://Assets/Art/UI/PrototypeFont/Font_Amp.tres" id="6_5tvy1"]
-[ext_resource type="Texture2D" uid="uid://drkecrrydu1es" path="res://Assets/Art/UI/PrototypeFont/Font_S1.tres" id="7_u2gem"]
-[ext_resource type="Texture2D" uid="uid://b8v3qje8vin84" path="res://Assets/Art/UI/PrototypeFont/Font_T1.tres" id="8_c0xhj"]
-[ext_resource type="Texture2D" uid="uid://by6gnjyjy8pd6" path="res://Assets/Art/UI/PrototypeFont/Font_O.tres" id="9_j5tnn"]
-[ext_resource type="Texture2D" uid="uid://nn8t0xjtvx0a" path="res://Assets/Art/UI/PrototypeFont/Font_N.tres" id="10_2fol4"]
-[ext_resource type="Texture2D" uid="uid://b3imu8hry7phm" path="res://Assets/Art/UI/PrototypeFont/Font_E2.tres" id="11_u65yy"]
-[ext_resource type="Texture2D" uid="uid://de7q44ytkx3l6" path="res://Assets/Art/UI/PrototypeFont/Start.tres" id="12_u6wpw"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/StartButton.gd" id="14_ne5bn"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/MainMenu.gd" id="1_b10tp"]
+[ext_resource type="Texture2D" uid="uid://dqm83s61xiy2p" path="res://Assets/Art/UI/GameTitleArt.png" id="2_haulf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wkl5w"]
-atlas = ExtResource("6_5tvy1")
-region = Rect2(0, 0, 111, 155)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cmq"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.54902, 0.54902, 0.54902, 1)
 
-[node name="MainMenu" type="Node2D"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kayjj"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flr3y"]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-z_index = -100
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3imvw"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_b10tp")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.337255, 0.337255, 0.337255, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6cmq")
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -94.0
-offset_right = -8.0
-offset_bottom = -94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.57972, 0.57972)
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
 
-[node name="B" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -342.0
-offset_top = -304.0
-offset_right = -182.0
-offset_bottom = -60.0
-action_mode = 0
-texture_normal = ExtResource("1_7300q")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_haulf")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="L" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -189.747
-offset_top = -312.22
-offset_right = -29.7468
-offset_bottom = -68.2197
-action_mode = 0
-texture_normal = ExtResource("3_jp8jy")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
+[node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.393086, 0.393086, 0.393085, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+disabled = true
+text = "Continue
+"
+flat = true
 
-[node name="A" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -20.6996
-offset_top = -294.97
-offset_right = 77.3004
-offset_bottom = -103.97
-action_mode = 0
-texture_normal = ExtResource("3_mx1jh")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
+[node name="NewGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "New Game"
+flat = true
 
-[node name="D" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 124.198
-offset_top = -296.695
-offset_right = 208.198
-offset_bottom = -88.695
-action_mode = 0
-texture_normal = ExtResource("4_t2id3")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
+[node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "Settings"
+flat = true
 
-[node name="E" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 265.646
-offset_top = -267.37
-offset_right = 379.646
-offset_bottom = -101.37
-action_mode = 0
-texture_normal = ExtResource("5_tf2yp")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
+[node name="CreditsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "Credits
+"
+flat = true
 
-[node name="Amp" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -43.1243
-offset_top = -37.9493
-offset_right = 67.8757
-offset_bottom = 117.051
-action_mode = 0
-texture_normal = SubResource("AtlasTexture_wkl5w")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
-
-[node name="S" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -369.144
-offset_top = 98.3233
-offset_right = -220.144
-offset_bottom = 339.323
-action_mode = 0
-texture_normal = ExtResource("7_u2gem")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
-
-[node name="T" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -194.922
-offset_top = 162.147
-offset_right = -74.9217
-offset_bottom = 303.147
-action_mode = 0
-texture_normal = ExtResource("8_c0xhj")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
-
-[node name="O" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -44.8493
-offset_top = 143.173
-offset_right = 71.1507
-offset_bottom = 314.173
-action_mode = 0
-texture_normal = ExtResource("9_j5tnn")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
-
-[node name="N" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 115.573
-offset_top = 167.322
-offset_right = 227.573
-offset_bottom = 304.322
-action_mode = 0
-texture_normal = ExtResource("10_2fol4")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
-
-[node name="E2" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 277.72
-offset_top = 175.947
-offset_right = 355.72
-offset_bottom = 296.947
-action_mode = 0
-texture_normal = ExtResource("11_u65yy")
-stretch_mode = 3
-script = ExtResource("2_skkyn")
-
-[node name="Start" type="TextureButton" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -320.845
-offset_top = 443.318
-offset_right = 627.156
-offset_bottom = 700.318
-scale = Vector2(0.73973, 0.73973)
-action_mode = 0
-texture_normal = ExtResource("12_u6wpw")
-stretch_mode = 3
-script = ExtResource("14_ne5bn")
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "Quit"
+flat = true

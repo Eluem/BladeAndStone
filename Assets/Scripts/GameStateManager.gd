@@ -1,12 +1,14 @@
 extends Node
 
 signal scene_changing(pSceneType:SceneType)
-signal scene_changed(pNewScene:Node2D, pSceneType:SceneType)
+signal scene_changed(pNewScene:Node, pSceneType:SceneType)
 
 enum SceneType
 {
-	MainMenu
+	BootSplash
+	,MainMenu
 	,Game
+	,RunSummary
 	,Credits
 }
 
@@ -16,8 +18,10 @@ enum SceneType
 var gameData:GameSaveHelper = GameSaveHelper.new()
 
 var sceneList:Array[String] = [
-							"res://Assets/GameScenes/MainMenu.tscn"
+							"res://Assets/GameScenes/BootSplash.tscn"
+							,"res://Assets/GameScenes/MainMenu.tscn"
 							,"res://Assets/GameScenes/VerticalSlice.tscn"
+							,"res://Assets/GameScenes/RunSummary.tscn"
 							,"res://Assets/GameScenes/Credits.tscn"
 							]
 
@@ -32,6 +36,7 @@ var fadeBlackness:ColorRect
 var fadeBlacknessCanvasLayer:CanvasLayer
 var fadeUsingCheckPoint:bool = false
 var sceneChanging:bool = false
+var currentSceneType:SceneType
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
@@ -52,12 +57,12 @@ func _process(delta:float) -> void:
 
 func Pause() -> void:
 	get_tree().paused = true
-	(CanvasManagerScene as CanvasManager).ShowPauseMenu()
+	(CanvasManagerScene as CanvasManager).OpenPauseMenu()
 
 
 func Unpause() -> void:
 	get_tree().paused = false
-	(CanvasManagerScene as CanvasManager).HidePauseMenu()
+	(CanvasManagerScene as CanvasManager).ClosePauseMenu()
 
 
 func QuitGame() -> void:
@@ -69,7 +74,8 @@ func SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
 
 
 func _SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
-	Unpause()
+	if(get_tree().paused):
+		Unpause()
 	sceneChanging = true
 	usingCheckPoint = pUsingCheckPoint
 	
@@ -87,9 +93,9 @@ func _SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
 	
 	get_tree().change_scene_to_file(sceneList[pSceneType])
 	scene_changing.emit(pSceneType)
+	currentSceneType = pSceneType
 	get_tree().node_added.connect(EmitSceneChangedDelayed.bind(pSceneType))
 	#_emit_scene_change.bind(pSceneType).call_deferred()
-
 
 
 func BeginFadeToScene(pSceneType:SceneType, pUsingCheckPoint:bool = false, pFadeOutSpeed:float = 1, pFadeInSpeed:float = 1, pSkipFadeOut:bool = false, pSkipFadeIn:bool = false) -> void:

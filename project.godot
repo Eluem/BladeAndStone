@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 GameStateManager="*res://Assets/Scripts/GameStateManager.gd"
 CanvasManagerScene="*res://Assets/GameScenes/CanvasManagerScene.tscn"
 DebugInfo="*res://Assets/Scripts/DebugInfo.gd"
+StatTracker="*res://Assets/Scripts/StatTracker.gd"
 
 [debug]
 

@@ -1,4 +1,5 @@
 extends RigidBodyHittable
+class_name DashSmashEnemy
 
 var target:Node2D
 var force:float = 500
@@ -91,6 +92,8 @@ func TargetFound(pTarget:Node2D) -> void:
 
 
 func TargetLost() -> void:
+	if(target == null):
+		return
 	StopCharging()
 	visionSensor.monitoring = true
 	can_sleep = true

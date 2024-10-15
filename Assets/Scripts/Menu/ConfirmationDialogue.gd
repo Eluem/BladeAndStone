@@ -22,6 +22,14 @@ func _ready() -> void:
 	noButton.pressed.connect(no_pressed)
 
 
+func _input(event: InputEvent) -> void:
+	if(!visible):
+		return
+	if(event.is_action_pressed("ui_cancel")):
+		get_viewport().set_input_as_handled()
+		no_pressed()
+
+
 func yes_pressed() -> void:
 	dialogue_response.emit(true)
 	queue_free()

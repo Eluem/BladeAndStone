@@ -96,6 +96,8 @@ func TargetFound(pTarget:Node2D) -> void:
 
 
 func TargetLost() -> void:
+	if(target == null):
+		return
 	StopCharging()
 	visionSensor.monitoring = true
 	target.tree_exited.disconnect(TargetLost)

@@ -1,0 +1,123 @@
+[gd_scene load_steps=6 format=3 uid="uid://dq7hsr5kdc8rb"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/RunSummary.gd" id="1_q61dd"]
+[ext_resource type="StyleBox" uid="uid://45kwtphfh610" path="res://Assets/Art/UI/HoverButton_StyleBox.tres" id="2_xlvib"]
+[ext_resource type="StyleBox" uid="uid://ce6u0s0ijn4sk" path="res://Assets/Art/UI/PressedButton_StyleBox.tres" id="3_rsfbp"]
+[ext_resource type="StyleBox" uid="uid://o46762e4hpks" path="res://Assets/Art/UI/NormalButton_StyleBox.tres" id="4_4k3d1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vo4o"]
+content_margin_left = 40.0
+content_margin_top = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 40.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="RunSummary" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6vo4o")
+script = ExtResource("1_q61dd")
+
+[node name="HeaderLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Run Summary"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 115
+theme_override_constants/margin_right = 500
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/h_separation = 20
+columns = 2
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Score:"
+horizontal_alignment = 2
+
+[node name="ScoreValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Time:"
+horizontal_alignment = 2
+
+[node name="TimeValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+
+[node name="DamageDealtLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Damage Dealt:"
+horizontal_alignment = 2
+
+[node name="DamageDealtValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+
+[node name="DamageTakenLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Damage Taken:"
+horizontal_alignment = 2
+
+[node name="DamageTakenValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+
+[node name="EnemiesShatteredLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Enemies Shattered:"
+horizontal_alignment = 2
+
+[node name="EnemiesShatteredValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0
+"
+
+[node name="NewHighScore" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "New High Score!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = ExtResource("2_xlvib")
+theme_override_styles/pressed = ExtResource("3_rsfbp")
+theme_override_styles/normal = ExtResource("4_4k3d1")
+text = "Continue"

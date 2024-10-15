@@ -1,10 +1,13 @@
 extends CanvasLayer
 class_name CanvasManager
 
+const PAUSE_MENU:PackedScene = preload("res://Assets/GameScenes/PauseMenu.tscn")
+
 @onready var HUD:Control = $HUD
 @onready var DeathOverlay:Control = $DeathOverlay
 @onready var pauseButton:TextureButton = $PauseButton
-@onready var pauseMenu:Control = $PauseMenu
+
+var currPauseMenu:PauseMenu
 
 var deathSequenceTimer:float
 var playerDied:bool
@@ -18,6 +21,14 @@ func _ready() -> void:
 func _process(delta:float) -> void:
 	ProcessDeathSequence_SoulsLike(delta)
 	#ProcessDeathSequence(delta)
+
+
+func _input(event: InputEvent) -> void:
+	if(!visible):
+		return
+	if(event.is_action_pressed("ui_cancel")):
+		get_viewport().set_input_as_handled()
+		pause_pressed()
 
 
 func ConnectToNewPlayer(pPlayer:Golem) -> void:
@@ -61,12 +72,17 @@ func scene_changing(pSceneType:GameStateManager.SceneType,) -> void:
 	visible = (pSceneType == GameStateManager.SceneType.Game)
 
 
-func ShowPauseMenu() -> void:
-	pauseMenu.visible = true
+func OpenPauseMenu() -> void:
+	if(currPauseMenu != null):
+		push_error("Pause menu already open!")
+	
+	currPauseMenu = PAUSE_MENU.instantiate()
+	add_child(currPauseMenu)
+	currPauseMenu.owner = self
 
 
-func HidePauseMenu() -> void:
-	pauseMenu.visible = false
+func ClosePauseMenu() -> void:
+	currPauseMenu.Close()
 
 
 func pause_pressed() -> void:

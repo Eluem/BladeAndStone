@@ -1,13 +1,14 @@
 extends Control
+class_name PauseMenu
 
 const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/ConfirmationDialogue.tscn")
 const SETTINGS_MENU:PackedScene = preload("res://Assets/GameScenes/SettingsMenu.tscn")
 
 @onready var closeButton:TextureButton = $CloseButton
-@onready var resumeButton: Button = $VBoxContainer/ResumeButton
-@onready var settingsButton: Button = $VBoxContainer/SettingsButton
-@onready var mainMenuButton: Button = $VBoxContainer/MainMenuButton
-@onready var quitButton: Button = $VBoxContainer/QuitButton
+@onready var resumeButton:Button = $VBoxContainer/ResumeButton
+@onready var settingsButton:Button = $VBoxContainer/SettingsButton
+@onready var mainMenuButton:Button = $VBoxContainer/MainMenuButton
+@onready var quitButton:Button = $VBoxContainer/QuitButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,16 @@ func _ready() -> void:
 	settingsButton.pressed.connect(settings_pressed)
 	mainMenuButton.pressed.connect(main_menu_pressed)
 	quitButton.pressed.connect(quit_pressed)
+
+
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed("ui_cancel")):
+		get_viewport().set_input_as_handled()
+		resume_pressed()
+
+
+func Close() -> void:
+	queue_free()
 
 
 func resume_pressed() -> void:

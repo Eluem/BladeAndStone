@@ -9,26 +9,28 @@ class_name BossFoyer
 @onready var rightEyeTurret:EyeTurretScanAnimationPlayer = $"../../../Enemies/EyeTurret4/AnimationPlayer"
 @onready var keyHole:Node2D = $KeyHole
 @onready var keyHoleAnim:KeyHoleAnimationPlayer = $KeyHole/AnimationPlayer
+@onready var keyHoleFilledSprite: Sprite2D = $KeyHole/FilledSprite
 
 var alreadyEntered:bool = false
 var alreadyExited:bool = false
 var player:Golem
 var bossKey:BossKey
-var bossKeySprite:Sprite2D
-#var KeyPIDController:PIDController2D = PIDController2D.new()
 var keyScanSuccess:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if(GameStateManager.usingCheckPoint):
+		ForceCheckPointLoadState()
+	
 	#KeyPIDController.frequency = 10
 	body_entered.connect(_on_enter)
 	body_exited.connect(_on_exit)
+	bossDoor1.animation_finished.connect(boss_door1_done)
 	bossDoor2.animation_finished.connect(boss_door2_done)
 	leftEyeTurret.animation_finished.connect(successful_scan)
 	leftEyeTurret.scanned.connect(scanned)
 	keyHoleAnim.key_split.connect(key_split)
 	keyHoleAnim.animation_finished.connect(key_inserted)
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,7 +64,6 @@ func _on_enter(pBody:PhysicsBody2D) -> void:
 		GameStateManager.gameData.checkPointReached = true
 		GameStateManager.gameData.SaveData()
 		bossKey = player.bossKey
-		bossKeySprite = bossKey.sprite
 		leftEyeTurret.animation_set_next("LeftScan", "Closing")
 		rightEyeTurret.animation_set_next("RightScan", "Closing")
 		#bossKey.apply_central_impulse((keyHole.global_position-bossKey.global_position).normalized()*500)
@@ -86,6 +87,12 @@ func _on_exit(pBody:PhysicsBody2D) -> void:
 		rightEyeTurret.animation_set_next("Deactivate", "Closing")
 		leftEyeTurret.play("Deactivate")
 		rightEyeTurret.play("Deactivate")
+
+
+func boss_door1_done(pAnimName:String) -> void:
+	if(pAnimName != "Closing_BounceBack_LargeFirst"):
+		return
+	ForceAllEnemiesToLoseTarget()
 
 
 func boss_door2_done(pAnimName:String) -> void:
@@ -115,3 +122,28 @@ func key_inserted(pAnimName:String) -> void:
 	if(pAnimName != "InsertKey"):
 		return
 	bossDoor2.play("Opening_BounceBack")
+
+
+func ForceAllEnemiesToLoseTarget() -> void:
+	var enemies:Node2D = $"../../../Enemies"
+	for child:Node in enemies.get_children():
+		if(child is DashSmashEnemy):
+			(child as DashSmashEnemy).TargetLost()
+		elif(child is BasicEyeEnemy):
+			(child as BasicEyeEnemy).TargetLost()
+		elif(child is EyeTurret):
+			(child as EyeTurret).TargetLost()
+
+
+#Forces all boss room entrance details into a post key scan state
+func ForceCheckPointLoadState() -> void:
+	keyScanSuccess = true
+	alreadyEntered = true
+	bossDoor1.play("Opening_BounceBack")
+	bossDoor1.stop()
+	bossDoor2.play("Closing_BounceBack_LargeFirst")
+	bossDoor2.stop()
+	bossDoor3.play("Closing_BounceBack_LargeFirst")
+	bossDoor3.stop()
+	keyHoleFilledSprite.visible = true
+	keyHoleFilledSprite.z_index = 0

@@ -7,7 +7,12 @@ func _ready() -> void:
 	play("FadeIn")
 	pass # Replace with function body.
 
+func _input(event: InputEvent) -> void:
+	if(GameStateManager.gameData.isFirstRun):
+		return
+	if(event is InputEventMouseButton):
+		GameStateManager.SceneChange(GameStateManager.SceneType.MainMenu)
+
 
 func boot_splash_finished(_pAnimName:String) -> void:
-	#GameStateManager.SceneChange(GameStateManager.SceneType.MainMenu)
 	GameStateManager.BeginFadeToScene(GameStateManager.SceneType.MainMenu)

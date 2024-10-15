@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cixn40iqilc6u"
-path="res://.godot/imported/icon_default.svg-1303cb4e3f160ef3ce205f08b5888732.ctex"
+uid="uid://btfr8oxdeg1mx"
+path="res://.godot/imported/CloseButton_Normal.png-645e8b51db0d9d178923466413c8cb58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon_default.svg"
-dest_files=["res://.godot/imported/icon_default.svg-1303cb4e3f160ef3ce205f08b5888732.ctex"]
+source_file="res://Assets/Art/UI/CloseButton_Normal.png"
+dest_files=["res://.godot/imported/CloseButton_Normal.png-645e8b51db0d9d178923466413c8cb58.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
