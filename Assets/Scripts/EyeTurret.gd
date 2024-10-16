@@ -31,6 +31,7 @@ var targetLossDelay:float = 2.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
+	add_to_group("Enemies")
 	if(!isEyeOpen):
 		visionSensor.monitoring = false
 	standardChargeParticleProcessMaterial = chargeEffect.process_material

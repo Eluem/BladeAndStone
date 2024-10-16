@@ -1,40 +1,112 @@
-[gd_scene load_steps=8 format=3 uid="uid://dve415r8hxdxd"]
+[gd_scene load_steps=10 format=3 uid="uid://dve415r8hxdxd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/CanvasManager.gd" id="1_b6sii"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="3_k35mw"]
+[ext_resource type="Script" path="res://Assets/Scripts/UI/ScoreUI.gd" id="3_mim8f"]
 [ext_resource type="Texture2D" uid="uid://tyai8h2i0iay" path="res://Assets/Art/UI/PauseButton_Normal.png" id="3_sr8s3"]
 [ext_resource type="Texture2D" uid="uid://b4o8piw208qd4" path="res://Assets/Art/UI/PauseButton_Pressed.png" id="4_y3sdf"]
 [ext_resource type="Texture2D" uid="uid://bo7icgyfridvn" path="res://Assets/Art/UI/PauseButton_Hover.png" id="5_mjqhe"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8ih"]
-bg_color = Color(1, 0.0705882, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arvj1"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0.556863)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.336608, 0.336608, 0.336607, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
-[sub_resource type="Theme" id="Theme_xcfdd"]
-/colors/background_color = Color(0.843137, 0, 0, 1)
-ProgressBar/colors/backColor = Color(0, 0, 0, 1)
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_my8ih")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8ih"]
+bg_color = Color(0.788613, 0.0454251, 3.85046e-07, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xnit"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6, 0.6, 0.6, 0.556863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="CanvasManagerScene" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_b6sii")
 
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
+[node name="HUD" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
 
-[node name="HealthBar" type="ProgressBar" parent="HUD"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 layout_mode = 2
-offset_left = 130.0
-offset_top = 29.0
-offset_right = 506.0
-offset_bottom = 87.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="PauseButton" type="TextureButton" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_sr8s3")
+texture_pressed = ExtResource("4_y3sdf")
+texture_hover = ExtResource("5_mjqhe")
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/HBoxContainer"]
+custom_minimum_size = Vector2(376, 58)
+layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
-theme = SubResource("Theme_xcfdd")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_arvj1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_my8ih")
+step = 1.0
 value = 50.0
 show_percentage = false
 script = ExtResource("3_k35mw")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xnit")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="HUD/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Score:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ScoreValue" type="Label" parent="HUD/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("3_mim8f")
 
 [node name="DeathOverlay" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -70,12 +142,3 @@ theme_override_font_sizes/normal_font_size = 96
 bbcode_enabled = true
 text = "[center]YOU SHATTERED[/center]"
 fit_content = true
-
-[node name="PauseButton" type="TextureButton" parent="."]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 91.0
-offset_bottom = 104.0
-texture_normal = ExtResource("3_sr8s3")
-texture_pressed = ExtResource("4_y3sdf")
-texture_hover = ExtResource("5_mjqhe")

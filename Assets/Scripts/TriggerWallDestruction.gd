@@ -6,15 +6,10 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	trackedWall.connect("health_changed", on_tracked_hit)
-	pass # Replace with function body.
+	trackedWall.health_changed.connect(on_tracked_hit)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta:float) -> void:
-	pass
-
-func on_tracked_hit(_pMaxHealth:int, pHealth:int) -> void:
+func on_tracked_hit(_pMaxHealth:int, pHealth:int, pHitOwner:Node2D) -> void:
 	if(pHealth <= 0):
 		var castParent:RigidBodyHittable = get_parent()
-		castParent.Die(deathDir, deathForce)
+		castParent.Die(pHitOwner, deathDir, deathForce)

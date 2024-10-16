@@ -5,10 +5,9 @@ const PAUSE_MENU:PackedScene = preload("res://Assets/GameScenes/PauseMenu.tscn")
 
 @onready var HUD:Control = $HUD
 @onready var DeathOverlay:Control = $DeathOverlay
-@onready var pauseButton:TextureButton = $PauseButton
+@onready var pauseButton:TextureButton = $HUD/HBoxContainer/PauseButton
 
 var currPauseMenu:PauseMenu
-
 var deathSequenceTimer:float
 var playerDied:bool
 var deathSequenceFinished:bool
@@ -32,14 +31,14 @@ func _input(event: InputEvent) -> void:
 
 
 func ConnectToNewPlayer(pPlayer:Golem) -> void:
-	var healthBar:HealthBar = $HUD/HealthBar
+	var healthBar:HealthBar = $HUD/HBoxContainer/HealthBar
 	pPlayer.health_changed.connect(healthBar.UpdateHealth)
-	healthBar.UpdateHealth(pPlayer.maxHealth, pPlayer.health)
+	healthBar.UpdateHealth(pPlayer.maxHealth, pPlayer.health, null)
 	
 	pPlayer.exploded.connect(player_died)
 
 
-func player_died(_pMainChunk:Array[RigidBody2D]) -> void:
+func player_died(_pMainChunk:Array[RigidBody2D], _pHitOwner:Node2D) -> void:
 	playerDied = true
 
 
@@ -67,7 +66,7 @@ func ResetDeathSequence() -> void:
 	playerDied = false
 
 
-func scene_changing(pSceneType:GameStateManager.SceneType,) -> void:
+func scene_changing(pSceneType:GameStateManager.SceneType) -> void:
 	ResetDeathSequence()
 	visible = (pSceneType == GameStateManager.SceneType.Game)
 

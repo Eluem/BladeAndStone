@@ -17,6 +17,8 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [node name="DestructibleWall" type="RigidBody2D"]
 position = Vector2(0, -252)
+collision_layer = 17
+collision_mask = 17
 freeze = true
 script = ExtResource("1_s0ws4")
 maxHealth = 40

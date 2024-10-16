@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://dnrormugsubpb"]
+[gd_scene load_steps=82 format=4 uid="uid://dnrormugsubpb"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BossFightManager.gd" id="1_s177x"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_o75yw"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://oo7nen8f85w5" path="res://Assets/Art/Environment/KeyHole_Empty.png" id="26_l55k1"]
 [ext_resource type="Script" path="res://Assets/Scripts/KeyHoleAnimationPlayer.gd" id="29_3d4ur"]
 [ext_resource type="PackedScene" uid="uid://ouyrxptl688w" path="res://Assets/ObjectScenes/Enemies/BossEnemyRamBeam.tscn" id="30_esg27"]
+[ext_resource type="PackedScene" uid="uid://caterry5ptusm" path="res://Assets/ObjectScenes/Items/SmallGem.tscn" id="34_qayb0"]
 [ext_resource type="PackedScene" uid="uid://bm02n2el0n7si" path="res://Assets/ObjectScenes/Items/BossKey.tscn" id="35_bbatl"]
 
 [sub_resource type="Animation" id="Animation_y0nuj"]
@@ -716,7 +717,7 @@ radius = 115.0
 resource_local_to_scene = true
 radius = 115.0
 
-[node name="World2D" type="Node2D"]
+[node name="World2D" type="Node2D" groups=["Enemies", "Player"]]
 
 [node name="BossFightManager" type="Node" parent="." node_paths=PackedStringArray("mainCamera", "boss", "playerSpawner")]
 script = ExtResource("1_s177x")
@@ -745,6 +746,7 @@ script = ExtResource("2_o75yw")
 mainCamera = NodePath("../../Camera2D")
 
 [node name="DefaultSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
+position = Vector2(-833, -4093)
 
 [node name="CheckPointSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
 position = Vector2(-67, -4484)
@@ -960,6 +962,8 @@ deathForce = 500.0
 position = Vector2(-213, -2638)
 rotation = -2.33929
 scale = Vector2(0.667781, 0.510632)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/Rock3"]
@@ -974,6 +978,8 @@ polygons = [PackedInt32Array(1, 9, 0), PackedInt32Array(0, 9, 8), PackedInt32Arr
 internal_vertex_count = 4
 
 [node name="VineWall8" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall8"]
@@ -1009,6 +1015,8 @@ wallWidth = 30.0
 shadowWidth = 80.0
 
 [node name="VineWall5" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall5"]
@@ -1043,6 +1051,8 @@ targetColliderPolygon = NodePath("../CollisionPolygon2D")
 wallWidth = 30.0
 
 [node name="VineWall6" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall6"]
@@ -1077,6 +1087,8 @@ targetColliderPolygon = NodePath("../CollisionPolygon2D")
 wallWidth = 30.0
 
 [node name="VineWall1" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall1"]
@@ -1111,6 +1123,8 @@ targetColliderPolygon = NodePath("../CollisionPolygon2D")
 wallWidth = 30.0
 
 [node name="VineWall4" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall4"]
@@ -1145,6 +1159,8 @@ targetColliderPolygon = NodePath("../CollisionPolygon2D")
 wallWidth = 30.0
 
 [node name="VineWall2" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall2"]
@@ -1179,6 +1195,8 @@ targetColliderPolygon = NodePath("../CollisionPolygon2D")
 wallWidth = 30.0
 
 [node name="VineWall3" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall3"]
@@ -1213,6 +1231,8 @@ targetColliderPolygon = NodePath("../CollisionPolygon2D")
 wallWidth = 30.0
 
 [node name="VineWall7" type="StaticBody2D" parent="Environment/WoodsArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/VineWall7"]
@@ -1249,6 +1269,8 @@ wallWidth = 30.0
 [node name="Rock1" type="StaticBody2D" parent="Environment/WoodsArea"]
 position = Vector2(-2605, -3233)
 rotation = -0.22138
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/Rock1"]
@@ -1275,6 +1297,8 @@ internal_vertex_count = 4
 [node name="Rock2" type="StaticBody2D" parent="Environment/WoodsArea"]
 position = Vector2(1458, 864)
 rotation = -1.19239
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/Rock2"]
@@ -1302,6 +1326,8 @@ internal_vertex_count = 11
 [node name="Rock4" type="StaticBody2D" parent="Environment/WoodsArea"]
 position = Vector2(3110, -3879)
 rotation = -1.19239
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/Rock4"]
@@ -1327,6 +1353,8 @@ internal_vertex_count = 35
 
 [node name="Rock5" type="StaticBody2D" parent="Environment/WoodsArea"]
 position = Vector2(2334, -25)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/Rock5"]
@@ -1353,6 +1381,8 @@ internal_vertex_count = 22
 
 [node name="Rock6" type="StaticBody2D" parent="Environment/WoodsArea"]
 position = Vector2(2972, 645)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/Rock6"]
@@ -1395,6 +1425,8 @@ texture = ExtResource("13_qnix3")
 [node name="Rock7" type="StaticBody2D" parent="Environment/WoodsArea"]
 position = Vector2(1980, 1085)
 scale = Vector2(0.495344, 0.495344)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/WoodsArea/Rock7"]
@@ -1456,6 +1488,8 @@ polygon = PackedVector2Array(267.112, 124.825, 240.337, 132.514, 194.635, 138.54
 [node name="BossArea" type="Node2D" parent="Environment"]
 
 [node name="BossWallLeft" type="StaticBody2D" parent="Environment/BossArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/BossArea/BossWallLeft"]
@@ -1482,6 +1516,8 @@ texture = ExtResource("23_4upsp")
 texture_mode = 1
 
 [node name="BossWallRight" type="StaticBody2D" parent="Environment/BossArea"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/BossArea/BossWallRight"]
@@ -1520,6 +1556,8 @@ texture_mode = 1
 z_index = 10
 position = Vector2(-593, -4616)
 scale = Vector2(0.401171, 0.401171)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/BossArea/BossEntranceLeft"]
@@ -1532,6 +1570,8 @@ texture = ExtResource("24_mttnr")
 z_index = 10
 position = Vector2(459, -4616)
 scale = Vector2(0.401171, 0.401171)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("12_j5rj1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/BossArea/BossEntranceRight"]
@@ -1914,6 +1954,12 @@ position = Vector2(3470, 1260)
 
 [node name="BossKey" parent="Consumables" instance=ExtResource("35_bbatl")]
 position = Vector2(3640, 1500)
+
+[node name="BossKey2" parent="Consumables" instance=ExtResource("35_bbatl")]
+position = Vector2(-94, -4026)
+
+[node name="SmallGem" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-323, -4841)
 
 [editable path="Environment/WoodsArea/DestructibleWall"]
 [editable path="Environment/WoodsArea/DestructibleWall2"]

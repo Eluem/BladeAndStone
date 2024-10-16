@@ -154,5 +154,5 @@ func track_target_deleted(pTargetData:Dictionary) -> void:
 	targets.remove_at(targets.find(pTargetData))
 
 
-func track_target_exploded(pChunks:Array[RigidBody2D]) -> void:
+func track_target_exploded(pChunks:Array[RigidBody2D], _pHitOwner:Node2D, pTrackTarget:Node2D) -> void:
 	AddTrackTarget(pChunks[0])

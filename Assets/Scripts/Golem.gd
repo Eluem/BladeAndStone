@@ -11,16 +11,22 @@ var bossKey:BossKey
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
+	damage_taken.connect(StatTracker.character_took_damage.bind(self))
+	exploded.connect(StatTracker.character_exploded.bind(self))
+	add_to_group("Player")
 	inputHandler.drag_release.connect(flick)
 	inputHandler.drag_update.connect(drag_update)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
 	super._process(delta)
-	
+
+
 func _physics_process(_delta:float) -> void:
 	pass
-		
+
+
 func flick(powerMod:float, dir:Vector2) -> void:
 	if(!isTurningAllowed()):
 		return
@@ -38,9 +44,11 @@ func slash() -> void:
 	#Add slight lunge
 	apply_central_impulse(500 * transform.x)
 
+
 func lunge(pForce:float) -> void:
 	apply_central_impulse(pForce * transform.x)
-	
+
+
 func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	#if(resetRequested):
 	#	targetRotation = initialTransform.get_rotation()

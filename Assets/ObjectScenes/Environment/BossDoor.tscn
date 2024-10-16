@@ -756,6 +756,8 @@ _data = {
 [node name="LeftGate" type="AnimatableBody2D" parent="."]
 z_index = -1
 position = Vector2(-411.976, -0.000488281)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("2_3jl37")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftGate"]
@@ -822,6 +824,8 @@ round_precision = 32
 z_index = -1
 position = Vector2(411.976, 0)
 scale = Vector2(-1, 1)
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("2_3jl37")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightGate"]

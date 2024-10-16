@@ -19,6 +19,9 @@ var visionSensor:Area2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
+	damage_taken.connect(StatTracker.character_took_damage.bind(self))
+	exploded.connect(StatTracker.character_exploded.bind(self))
+	add_to_group("Enemies")
 	visionSensor = $VisionSensor
 	visionSensor.connect("object_detected", object_detected)
 	($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)

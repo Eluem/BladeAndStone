@@ -74,7 +74,7 @@ func UpdateTracking_Interpolated_WorkAround(_delta:float) -> void:
 	#currTransform = Transform2D(trackTarget.transform)
 	#prevPhysicsFrame = currPhysicsFrame
 
-func SetTrackTarget(pTrackTarget:Node2D) -> void:
+func SetTrackTarget(pTrackTarget:Node2D, _pHitOwner:Node2D) -> void:
 	trackTarget = pTrackTarget
 	if(trackTarget is Golem):
 		(trackTarget as Golem).exploded.connect(SetTrackTarget)

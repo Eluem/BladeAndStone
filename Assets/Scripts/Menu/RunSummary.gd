@@ -21,6 +21,7 @@ func _ready() -> void:
 	UpdateStatLabels()
 	continueButton.pressed.connect(on_click_continue)
 
+
 func _process(delta: float) -> void:
 	if(isHighScore):
 		HandleHighScoreFlashing(delta)
@@ -29,11 +30,12 @@ func _process(delta: float) -> void:
 func UpdateStatLabels() -> void:
 	isHighScore = StatTracker.CheckForHighScore()
 	newHighScore.visible = isHighScore
-	scoreValue.text = str(StatTracker.currentScore)
-	timeValue.text = str(StatTracker.runTime)
+	scoreValue.text = str(StatTracker.GetTotalScore())
+	timeValue.text = StatTracker.GetTimeString()
 	damageDealtValue.text = str(StatTracker.damageDealt)
 	damageTakenValue.text = str(StatTracker.damageTaken)
 	enemiesShatteredValue.text = str(StatTracker.enemiesShattered)
+
 
 func HandleHighScoreFlashing(pDelta:float) -> void:
 	highScoreColorWeight += highScoreColorCycleSpeed * pDelta
@@ -47,6 +49,7 @@ func HandleHighScoreFlashing(pDelta:float) -> void:
 	scoreLabel.set("theme_override_colors/font_color", newColor)
 	scoreValue.set("theme_override_colors/font_color", newColor)
 	newHighScore.set("theme_override_colors/font_color", newColor)
+
 
 func on_click_continue() -> void:
 	GameStateManager.BeginFadeToScene(GameStateManager.SceneType.Credits)

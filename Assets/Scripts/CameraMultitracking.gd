@@ -228,7 +228,7 @@ func RemoveTrackTarget(pTarget:Node2D) -> void:
 	targets.erase(pTarget)
 
 
-func track_target_exploded(pChunks:Array[RigidBody2D], pTrackTarget:Node2D) -> void:
+func track_target_exploded(pChunks:Array[RigidBody2D], _pHitOwner:Node2D, pTrackTarget:Node2D) -> void:
 	var weight:float = targets[pTrackTarget]
 	AddTrackTarget(pChunks[0], weight)
 

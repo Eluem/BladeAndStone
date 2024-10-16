@@ -21,6 +21,9 @@ var interruptedChargeParticleProcessMaterial:ParticleProcessMaterial
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super._ready()
+	damage_taken.connect(StatTracker.character_took_damage.bind(self))
+	exploded.connect(StatTracker.character_exploded.bind(self))
+	add_to_group("Enemies")
 	chargeEffect = $ChargeEffect
 	standardChargeParticleProcessMaterial = chargeEffect.process_material
 	standardChargeEffectLifeTime = chargeEffect.lifetime
@@ -120,10 +123,11 @@ func StopCharging() -> void:
 	eyeBoltChargeTimer = 0
 	chargeEffect.emitting = false
 
-func Die(pDir:Vector2, pForce:float) -> void:
+
+func Die(pHitOwner:Node2D, pDir:Vector2, pForce:float) -> void:
 	chargeEffect.one_shot = true
 	#chargeEffect.reparent(get_tree().root.get_child(0))
 	chargeEffect.reparent(get_tree().current_scene)
 	chargeEffect.set_script(load("res://Assets/Scripts/DeleteFinishedParticles.gd"))
-	super.Die(pDir, pForce)
+	super.Die(pHitOwner, pDir, pForce)
 	

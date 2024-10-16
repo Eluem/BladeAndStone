@@ -2,6 +2,7 @@ extends Node
 
 signal scene_changing(pSceneType:SceneType)
 signal scene_changed(pNewScene:Node, pSceneType:SceneType)
+signal scene_ready(pNewScene:Node, pSceneType:SceneType)
 
 enum SceneType
 {
@@ -152,3 +153,8 @@ func EmitSceneChangedDelayed(pScene:Node, pSceneType:SceneType) -> void:
 		push_error("Scene change desync! (" + str(pScene) + " != " + str(sceneTree.current_scene))
 	sceneTree.node_added.disconnect(EmitSceneChangedDelayed)
 	scene_changed.emit(sceneTree.current_scene, pSceneType)
+	sceneTree.current_scene.ready.connect(_scene_ready.bind(sceneTree.current_scene, pSceneType))
+
+
+func _scene_ready(pScene:Node, pSceneType:SceneType) -> void:
+	scene_ready.emit(pScene, pSceneType)
