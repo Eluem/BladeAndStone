@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dve415r8hxdxd"]
+[gd_scene load_steps=13 format=3 uid="uid://dve415r8hxdxd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/CanvasManager.gd" id="1_b6sii"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="3_k35mw"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://tyai8h2i0iay" path="res://Assets/Art/UI/PauseButton_Normal.png" id="3_sr8s3"]
 [ext_resource type="Texture2D" uid="uid://b4o8piw208qd4" path="res://Assets/Art/UI/PauseButton_Pressed.png" id="4_y3sdf"]
 [ext_resource type="Texture2D" uid="uid://bo7icgyfridvn" path="res://Assets/Art/UI/PauseButton_Hover.png" id="5_mjqhe"]
+[ext_resource type="AudioStream" uid="uid://mmm85hl5bm7c" path="res://Assets/Audio/ButtonPress.wav" id="7_onacr"]
+[ext_resource type="AudioStream" uid="uid://cbgrdd4bbkrdu" path="res://Assets/Audio/TogglePress.wav" id="8_e0sfa"]
+[ext_resource type="AudioStream" uid="uid://ebm0nv7jxb62" path="res://Assets/Audio/SliderDrag.wav" id="9_7ugu7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arvj1"]
 content_margin_left = 5.0
@@ -44,6 +47,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="CanvasManagerScene" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_b6sii")
 
 [node name="HUD" type="MarginContainer" parent="."]
@@ -142,3 +146,14 @@ theme_override_font_sizes/normal_font_size = 96
 bbcode_enabled = true
 text = "[center]YOU SHATTERED[/center]"
 fit_content = true
+
+[node name="ButtonPressSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_onacr")
+
+[node name="TogglePressSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_e0sfa")
+
+[node name="SliderDragSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_7ugu7")
+volume_db = -5.0
+pitch_scale = 4.0

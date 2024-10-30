@@ -27,10 +27,12 @@ func _ready() -> void:
 
 
 func continue_button_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	GameStateManager.SceneChange(GameStateManager.SceneType.Game, true)
 
 
 func new_game_button_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	if(GameStateManager.gameData.checkPointReached):
 		var dialogue:ConfirmationDialogue = CONFIRMATION_DIALOGUE.instantiate()
 		dialogue.Initialize(self, lose_check_point_dialogue_response, "Are you sure you want to start a new game and lose your checkpoint?")
@@ -39,15 +41,18 @@ func new_game_button_pressed() -> void:
 
 
 func settings_button_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	var settingsMenu:SettingsMenu = SETTINGS_MENU.instantiate()
 	settingsMenu.Initialize(self, settings_menu_response, GameStateManager.gameData.GetValues())
 
 
 func credits_button_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	GameStateManager.BeginFadeToScene(GameStateManager.SceneType.Credits)
 
 
 func quit_button_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	var dialogue:ConfirmationDialogue = CONFIRMATION_DIALOGUE.instantiate()
 	dialogue.Initialize(self, quit_dialogue_response, "Are you sure you want to quit?")
 

@@ -4,8 +4,11 @@ class_name CanvasManager
 const PAUSE_MENU:PackedScene = preload("res://Assets/GameScenes/PauseMenu.tscn")
 
 @onready var HUD:Control = $HUD
-@onready var DeathOverlay:Control = $DeathOverlay
+@onready var deathOverlay:Control = $DeathOverlay
 @onready var pauseButton:TextureButton = $HUD/HBoxContainer/PauseButton
+@onready var buttonPressSFX:AudioStreamPlayer = $ButtonPressSFX
+@onready var togglePressSFX:AudioStreamPlayer = $TogglePressSFX
+@onready var sliderDragSFX:AudioStreamPlayer = $SliderDragSFX
 
 var currPauseMenu:PauseMenu
 var deathSequenceTimer:float
@@ -53,7 +56,7 @@ func ProcessDeathSequence(pDelta:float) -> void:
 func ProcessDeathSequence_SoulsLike(pDelta:float) -> void:
 	if(playerDied && !deathSequenceFinished):
 		deathSequenceTimer += pDelta
-		DeathOverlay.modulate.a = clampf(deathSequenceTimer - 4, 0, 1)
+		deathOverlay.modulate.a = clampf(deathSequenceTimer - 4, 0, 1)
 		if(deathSequenceTimer >= 7):
 			deathSequenceFinished = true
 			GameStateManager.BeginFadeToScene(GameStateManager.SceneType.Game, GameStateManager.usingCheckPoint)
@@ -61,7 +64,7 @@ func ProcessDeathSequence_SoulsLike(pDelta:float) -> void:
 
 func ResetDeathSequence() -> void:
 	deathSequenceTimer = 0
-	DeathOverlay.modulate.a = 0
+	deathOverlay.modulate.a = 0
 	deathSequenceFinished = false
 	playerDied = false
 
@@ -85,4 +88,5 @@ func ClosePauseMenu() -> void:
 
 
 func pause_pressed() -> void:
+	buttonPressSFX.play()
 	GameStateManager.Pause()

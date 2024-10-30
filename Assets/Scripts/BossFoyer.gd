@@ -139,11 +139,8 @@ func ForceAllEnemiesToLoseTarget() -> void:
 func ForceCheckPointLoadState() -> void:
 	keyScanSuccess = true
 	alreadyEntered = true
-	bossDoor1.play("Opening_BounceBack")
-	bossDoor1.stop()
-	bossDoor2.play("Closing_BounceBack_LargeFirst")
-	bossDoor2.stop()
-	bossDoor3.play("Closing_BounceBack_LargeFirst")
-	bossDoor3.stop()
+	bossDoor1.play("Closed")
+	bossDoor2.play("Opened")
+	bossDoor3.play("Opened")
 	keyHoleFilledSprite.visible = true
 	keyHoleFilledSprite.z_index = 0

@@ -31,10 +31,12 @@ func _input(event: InputEvent) -> void:
 
 
 func yes_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	dialogue_response.emit(true)
 	queue_free()
 
 
 func no_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	dialogue_response.emit(false)
 	queue_free()

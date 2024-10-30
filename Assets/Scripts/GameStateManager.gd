@@ -67,6 +67,7 @@ func Unpause() -> void:
 
 
 func QuitGame() -> void:
+	await((CanvasManagerScene as CanvasManager).buttonPressSFX.finished)
 	get_tree().quit()
 
 

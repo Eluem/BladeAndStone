@@ -30,20 +30,24 @@ func Close() -> void:
 
 
 func resume_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	GameStateManager.Unpause()
 
 
 func settings_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	var settingsMenu:SettingsMenu = SETTINGS_MENU.instantiate()
 	settingsMenu.Initialize(self, settings_menu_response, GameStateManager.gameData.GetValues())
 
 
 func main_menu_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	var dialogue:ConfirmationDialogue = CONFIRMATION_DIALOGUE.instantiate()
 	dialogue.Initialize(self, main_menu_dialogue_response, "Are you sure you want to quit to the main menu and lose all progress since the last check point?")
 
 
 func quit_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	var dialogue:ConfirmationDialogue = CONFIRMATION_DIALOGUE.instantiate()
 	dialogue.Initialize(self, quit_dialogue_response, "Are you sure you want to quit the game and lose all progress since the last check point?")
 
