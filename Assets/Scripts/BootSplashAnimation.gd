@@ -7,7 +7,7 @@ func _ready() -> void:
 	play("FadeIn")
 	pass # Replace with function body.
 
-func _input(event: InputEvent) -> void:
+func _input(event:InputEvent) -> void:
 	if(GameStateManager.gameData.isFirstRun):
 		return
 	if(event is InputEventMouseButton):

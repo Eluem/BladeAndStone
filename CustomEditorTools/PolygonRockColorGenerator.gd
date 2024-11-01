@@ -52,7 +52,7 @@ func GenerateInternalPolygons() -> void:
 	#Generate rings
 	var currRings:Array[PackedVector2Array]
 	var prevDataSize:int = mainPolygon.size()
-	for i:int in range(ringScaling.size()): 
+	for i:int in range(ringScaling.size()):
 		currRings = Geometry2D.offset_polygon(polygon, ringScaling[i], Geometry2D.JOIN_SQUARE)
 		for currRing:PackedVector2Array in currRings:
 			newPolygonData.append_array(NewPolyDataMinusBadVectors(currRing, newPolygonData))

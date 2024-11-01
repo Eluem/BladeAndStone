@@ -5,7 +5,7 @@ const CONFIRMATION_DIALOGUE = preload("res://Assets/GameScenes/ConfirmationDialo
 const SETTINGS_MENU = preload("res://Assets/GameScenes/SettingsMenu.tscn")
 
 @onready var continueButton:Button = $PanelContainer/VBoxContainer/ContinueButton
-@onready var newGameButton: Button = $PanelContainer/VBoxContainer/NewGameButton
+@onready var newGameButton:Button = $PanelContainer/VBoxContainer/NewGameButton
 @onready var settingsButton:Button = $PanelContainer/VBoxContainer/SettingsButton
 @onready var creditsButton:Button = $PanelContainer/VBoxContainer/CreditsButton
 @onready var quitButton:Button = $PanelContainer/VBoxContainer/QuitButton

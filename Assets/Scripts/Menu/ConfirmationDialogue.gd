@@ -4,9 +4,9 @@ class_name ConfirmationDialogue
 signal dialogue_response(pResponse:bool)
 
 @onready var closeButton:TextureButton = $PanelContainer/MarginContainer/VBoxContainer/Top/CloseButtonScaleEnabler/CloseButton
-@onready var yesButton: Button = $PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/YesButton
-@onready var noButton: Button = $PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/NoButton
-@onready var promptLabel: RichTextLabel = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PromptLabel
+@onready var yesButton:Button = $PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/YesButton
+@onready var noButton:Button = $PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/NoButton
+@onready var promptLabel:RichTextLabel = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PromptLabel
 
 func Initialize(pParent:Node, pCallback:Callable, pPromptText:String) -> void:
 	pParent.add_child(self)
@@ -22,7 +22,7 @@ func _ready() -> void:
 	noButton.pressed.connect(no_pressed)
 
 
-func _input(event: InputEvent) -> void:
+func _input(event:InputEvent) -> void:
 	if(!visible):
 		return
 	if(event.is_action_pressed("ui_cancel")):

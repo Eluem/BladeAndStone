@@ -9,7 +9,7 @@ class_name BossFoyer
 @onready var rightEyeTurret:EyeTurretScanAnimationPlayer = $"../../../Enemies/EyeTurret4/AnimationPlayer"
 @onready var keyHole:Node2D = $KeyHole
 @onready var keyHoleAnim:KeyHoleAnimationPlayer = $KeyHole/AnimationPlayer
-@onready var keyHoleFilledSprite: Sprite2D = $KeyHole/FilledSprite
+@onready var keyHoleFilledSprite:Sprite2D = $KeyHole/FilledSprite
 
 var alreadyEntered:bool = false
 var alreadyExited:bool = false

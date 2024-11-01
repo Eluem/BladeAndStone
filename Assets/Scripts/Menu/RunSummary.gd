@@ -22,7 +22,7 @@ func _ready() -> void:
 	continueButton.pressed.connect(on_click_continue)
 
 
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(isHighScore):
 		HandleHighScoreFlashing(delta)
 

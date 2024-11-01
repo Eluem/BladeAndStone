@@ -16,7 +16,7 @@ func check_button_toggled(pToggledOn:bool) -> void:
 	value = pToggledOn
 
 
-func _process(delta: float) -> void:
+func _process(delta:float) -> void:
 	if(toggleAnimSpeed > 0):
 		value = move_toward(value, checkButton.button_pressed, delta*toggleAnimSpeed)
 
