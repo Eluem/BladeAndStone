@@ -159,3 +159,15 @@ func EmitSceneChangedDelayed(pScene:Node, pSceneType:SceneType) -> void:
 
 func _scene_ready(pScene:Node, pSceneType:SceneType) -> void:
 	scene_ready.emit(pScene, pSceneType)
+
+
+func SetMasterVolume(pValue:float) -> void:
+	AudioServer.set_bus_volume_db(0, linear_to_db(pValue))
+
+
+func SetMusicVolume(pValue:float) -> void:
+	AudioServer.set_bus_volume_db(1, linear_to_db(pValue))
+
+
+func SetSFXVolume(pValue:float) -> void:
+	AudioServer.set_bus_volume_db(2, linear_to_db(pValue))

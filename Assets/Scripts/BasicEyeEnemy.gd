@@ -1,6 +1,9 @@
 extends RigidBodyHittable
 class_name BasicEyeEnemy
 
+@onready var chargeUpSFX:AudioStreamPlayer2D = $ChargeUpSFX
+@onready var fireSFX:AudioStreamPlayer2D = $FireSFX
+
 var target:Node2D
 var force:float = 500
 var maxSpeed:float = 50 #TODO: Implement max speed
@@ -48,6 +51,7 @@ func _physics_process(_delta:float) -> void:
 	elif(dist < minFollowDist):
 		apply_central_force(force * (global_position - target.global_position).normalized())
 
+
 func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	if(target == null):
 		return
@@ -66,8 +70,11 @@ func ChargeEyeBolt(delta:float) -> void:
 		chargeEffect.process_material = standardChargeParticleProcessMaterial
 		chargeEffect.lifetime = standardChargeEffectLifeTime
 		chargeEffect.restart()
+		chargeEffect.emitting = false
 	eyeBoltChargeTimer += delta
-	chargeEffect.emitting = true
+	if(!chargeEffect.emitting):
+		chargeEffect.emitting = true
+		chargeUpSFX.play()
 	if(eyeBoltChargeTimer > eyeBoltAlmostCharged):
 		chargeEffect.amount_ratio = 0
 	else:
@@ -82,6 +89,7 @@ func FireEyeBolt() -> void:
 	eyeBolt.AddCollisionException(get_rid())
 	#Recoil
 	apply_central_impulse(transform.x.normalized() * -500)
+	fireSFX.play()
 
 func object_detected(pBody:Node2D) -> void:
 	TargetFound(pBody)
@@ -109,6 +117,7 @@ func TargetLost() -> void:
 	if(target == null):
 		return
 	StopCharging()
+	eyeBoltRechargeDelayTimer = eyeBoltRechargeDelay
 	visionSensor.monitoring = true
 	can_sleep = true
 	target = null
@@ -120,6 +129,7 @@ func TargetLost() -> void:
 
 
 func StopCharging() -> void:
+	chargeUpSFX.stop()
 	eyeBoltChargeTimer = 0
 	chargeEffect.emitting = false
 

@@ -1,15 +1,22 @@
 extends StaticBodyHittable
 class_name EyeTurret
 
-@export var isEyeOpen:bool = true
-@export var damage:int = 30
-
 @onready var eye:Node2D = $EyeTurretEye
 @onready var projectileSpawnPoint:Node2D = $EyeTurretEye/ProjectileSpawnPoint
 @onready var shieldSprite:Sprite2D = $Shield
 
 @onready var visionSensor:Area2D = $VisionSensor
 @onready var chargeEffect:GPUParticles2D = $EyeTurretEye/ChargeEffect
+@onready var hurtSFX:AudioStreamPlayer2D = $HurtSFX
+@onready var chargeUpSFX:AudioStreamPlayer2D = $ChargeUpSFX
+@onready var fireSFX:AudioStreamPlayer2D = $FireSFX
+
+@export var isEyeOpen:bool = true:
+	set(pValue):
+		isEyeOpen = pValue
+		if(visionSensor):
+			visionSensor.monitoring = isEyeOpen
+@export var damage:int = 30
 
 var target:Node2D
 var force:float = 500
@@ -27,6 +34,7 @@ var standardChargeEffectLifeTime:float
 var maxRotationRange:Vector2 = Vector2(deg_to_rad(-70), deg_to_rad(70))
 var targetLossTimer:float = 0
 var targetLossDelay:float = 2.0
+var lastHitSFXTime:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,13 +47,15 @@ func _ready() -> void:
 	
 	visionSensor.connect("object_detected", object_detected)
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
 	if(target != null):
 		ValidateTarget(delta)
-		if(isEyeOpen):
+		if(isEyeOpen && target != null):
 			ChargeEyeBolt(delta)
 	HandleShieldEffect(delta)
+
 
 func _physics_process(delta:float) -> void:
 	if(!isEyeOpen):
@@ -57,6 +67,7 @@ func _physics_process(delta:float) -> void:
 		eye.global_rotation = lerp_angle(eye.global_rotation, eye.global_transform.looking_at(target.global_position).get_rotation(), rotationSpeed*delta)
 		eye.rotation = clampf(eye.rotation, maxRotationRange.x, maxRotationRange.y)
 
+
 func ChargeEyeBolt(delta:float) -> void:
 	if(eyeBoltRechargeDelayTimer < eyeBoltRechargeDelay):
 		eyeBoltRechargeDelayTimer += delta
@@ -65,8 +76,11 @@ func ChargeEyeBolt(delta:float) -> void:
 		chargeEffect.process_material = standardChargeParticleProcessMaterial
 		chargeEffect.lifetime = standardChargeEffectLifeTime
 		chargeEffect.restart()
+		chargeEffect.emitting = false
 	eyeBoltChargeTimer += delta
-	chargeEffect.emitting = true
+	if(!chargeEffect.emitting):
+		chargeEffect.emitting = true
+		chargeUpSFX.play()
 	if(eyeBoltChargeTimer > eyeBoltAlmostCharged):
 		chargeEffect.amount_ratio = 0
 	else:
@@ -81,6 +95,7 @@ func FireProjectile() -> void:
 	projectile.z_index = -2
 	projectile.damage = damage
 	projectile.AddCollisionException(get_rid())
+	fireSFX.play()
 
 
 func object_detected(pBody:Node2D) -> void:
@@ -100,6 +115,7 @@ func TargetLost() -> void:
 	if(target == null):
 		return
 	StopCharging()
+	eyeBoltRechargeDelayTimer = eyeBoltRechargeDelay
 	visionSensor.monitoring = true
 	target.tree_exited.disconnect(TargetLost)
 	target = null
@@ -120,14 +136,28 @@ func ValidateTarget(pDelta:float) -> void:
 	else:
 		targetLossTimer = 0
 
+
 func StopCharging() -> void:
+	chargeUpSFX.stop()
 	eyeBoltChargeTimer = 0
 	chargeEffect.emitting = false
+
 
 func HandleShieldEffect(pDelta:float) -> void:
 	if(shieldSprite.modulate.a > 0):
 		shieldSprite.modulate.a -= pDelta
 
+
 func HitEffect(pPosition:Vector2, pForce:Vector2) -> void:
 	super.HitEffect(pPosition, pForce)
 	shieldSprite.modulate.a = 0.9
+	
+	var currHitSFXTime:float = Time.get_ticks_msec()
+	if(currHitSFXTime-lastHitSFXTime > 20):
+		var hurtSFXClone:AudioStreamPlayer2D = hurtSFX.duplicate()
+		add_child(hurtSFXClone)
+		hurtSFXClone.finished.connect(hurtSFXClone.queue_free)
+		hurtSFXClone.play()
+		lastHitSFXTime = currHitSFXTime
+	#if(!hurtSFX.playing || hurtSFX.get_playback_position() + AudioServer.get_time_since_last_mix() > 0.8):
+	#	hurtSFX.play()

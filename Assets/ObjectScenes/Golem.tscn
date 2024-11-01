@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bduaw211b10ea"]
+[gd_scene load_steps=102 format=3 uid="uid://bduaw211b10ea"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="1_tsbc7"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="2_6q84m"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="6_5cw8i"]
 [ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Characters/Golem_Mask_12302023.png" id="7_w3f5p"]
 [ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="8_3sa48"]
+[ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="9_yq2nt"]
 
 [sub_resource type="Animation" id="Animation_17ds7"]
 resource_name = "Attack_Heavy_Active"
@@ -453,6 +454,17 @@ tracks/7/keys = {
 "update": 0,
 "values": [400.0]
 }
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MaskSpriteContainer:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.315, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
+}
 
 [sub_resource type="Animation" id="Animation_2ao27"]
 resource_name = "Attack_LightLeft_FollowThrough"
@@ -678,6 +690,17 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [400.0]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MaskSpriteContainer:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(1, 1),
+"points": PackedFloat32Array(0.316, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
 }
 
 [sub_resource type="Animation" id="Animation_64nr0"]
@@ -2127,8 +2150,14 @@ point_count = 3
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.804878, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -17.0496, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Curve" id="Curve_ybjv6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_h5x2g"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
 [node name="Golem" type="RigidBody2D"]
-position = Vector2(270, -271)
 collision_layer = 3
 inertia = 1.0
 can_sleep = false
@@ -2272,10 +2301,84 @@ texture = ExtResource("7_w3f5p")
 script = ExtResource("8_3sa48")
 spritePolygon = NodePath("../../poly_sprite")
 
+[node name="Cracks" type="Node2D" parent="MaskSpriteContainer"]
+script = ExtResource("9_yq2nt")
+widthRange = Vector2(0, 6)
+
+[node name="Crack" type="Line2D" parent="MaskSpriteContainer/Cracks"]
+rotation = 0.188239
+points = PackedVector2Array(0, 0, 27.0623, 0.796448, 43.0226, -6.85986, 57.1093, -1.87604, 64.4309, -10.472)
+width = 5.0
+width_curve = SubResource("Curve_ybjv6")
+default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+gradient = SubResource("Gradient_h5x2g")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Crack6" type="Line2D" parent="MaskSpriteContainer/Cracks"]
+rotation = -1.96737
+points = PackedVector2Array(0, 0, 21.1863, 0.37738, 32.2634, -9.38461, 41.2946, -4.97571, 48.6205, -16.1261)
+width = 5.0
+width_curve = SubResource("Curve_ybjv6")
+default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+gradient = SubResource("Gradient_h5x2g")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Crack2" type="Line2D" parent="MaskSpriteContainer/Cracks"]
+rotation = 0.693181
+points = PackedVector2Array(0, 0, 18.0074, 7.98343, 25.5656, -1.54932, 38.4193, -3.73642, 52.7941, -22.1311)
+width = 5.0
+width_curve = SubResource("Curve_ybjv6")
+default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+gradient = SubResource("Gradient_h5x2g")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Crack3" type="Line2D" parent="MaskSpriteContainer/Cracks"]
+rotation = 2.93173
+points = PackedVector2Array(0, 0, 13.6098, -16.0241, 28.5418, -17.0401, 38.5525, -27.5446, 58.5879, -28.6436)
+width = 5.0
+width_curve = SubResource("Curve_ybjv6")
+default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+gradient = SubResource("Gradient_h5x2g")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Crack4" type="Line2D" parent="MaskSpriteContainer/Cracks"]
+rotation = -2.4238
+points = PackedVector2Array(0, 0, 14.2818, -5.29422, 25.2638, -19.868, 42.8816, -17.2964, 50.7835, -22.0461, 59.7384, -12.6223, 71.7734, -13.0225)
+width = 5.0
+width_curve = SubResource("Curve_ybjv6")
+default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+gradient = SubResource("Gradient_h5x2g")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Crack5" type="Line2D" parent="MaskSpriteContainer/Cracks"]
+rotation = -0.708921
+points = PackedVector2Array(0, 0, 13.0392, -10.0986, 25.6117, -0.202545, 37.7484, -5.92094, 47.0106, 0.0967865)
+width = 5.0
+width_curve = SubResource("Curve_ybjv6")
+default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+gradient = SubResource("Gradient_h5x2g")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 0.351616)
 rotation = -1.5708
-scale = Vector2(1, 1.00403)
 polygon = PackedVector2Array(0, 75, 20, 65, 34, 48, 39, 10, 51, -49, 44, -65, 16, -75, -16, -75, -44, -65, -51, -49, -39, 10, -34, 48, -20, 65)
 
 [node name="poly_sprite" type="Polygon2D" parent="."]

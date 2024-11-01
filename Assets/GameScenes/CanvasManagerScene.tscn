@@ -149,11 +149,14 @@ fit_content = true
 
 [node name="ButtonPressSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_onacr")
+bus = &"SFX"
 
 [node name="TogglePressSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_e0sfa")
+bus = &"SFX"
 
 [node name="SliderDragSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_7ugu7")
 volume_db = -5.0
 pitch_scale = 4.0
+bus = &"SFX"

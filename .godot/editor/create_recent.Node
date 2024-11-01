@@ -1,5 +1,5 @@
-AudioStreamPlayer
 AudioStreamPlayer2D
+AudioStreamPlayer
 MarginContainer
 HBoxContainer
 PanelContainer
@@ -12,4 +12,3 @@ RigidBody2D
 VBoxContainer
 GridContainer
 Node
-CanvasLayer

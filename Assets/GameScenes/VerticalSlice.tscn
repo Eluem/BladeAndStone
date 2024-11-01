@@ -746,7 +746,7 @@ script = ExtResource("2_o75yw")
 mainCamera = NodePath("../../Camera2D")
 
 [node name="DefaultSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
-position = Vector2(-833, -4093)
+position = Vector2(-860, -4120)
 
 [node name="CheckPointSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
 position = Vector2(-67, -4484)
@@ -1959,7 +1959,19 @@ position = Vector2(3640, 1500)
 position = Vector2(-94, -4026)
 
 [node name="SmallGem" parent="Consumables" instance=ExtResource("34_qayb0")]
-position = Vector2(-323, -4841)
+position = Vector2(-895, -1145)
+
+[node name="SmallGem2" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-679, -961)
+
+[node name="SmallGem3" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-463, -656)
+
+[node name="SmallGem4" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-317, -319)
+
+[node name="SmallGem5" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-317, -319)
 
 [editable path="Environment/WoodsArea/DestructibleWall"]
 [editable path="Environment/WoodsArea/DestructibleWall2"]

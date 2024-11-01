@@ -72,6 +72,8 @@ func _process(delta:float) -> void:
 
 	#Update drag direction and power	
 	if(pressed):
+		if(GameStateManager.gameData.invertInputDirection):
+			currPos = startPos - (currPos - startPos)
 		dir = startPos - currPos
 		power = (clamp(dir.length(), 0, maxLength)/maxLength)
 		holdTime += delta

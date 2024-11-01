@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b88ycqw0o3m5h"]
+[gd_scene load_steps=38 format=3 uid="uid://b88ycqw0o3m5h"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/EyeTurret.gd" id="1_gi1cx"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="4_h2kuy"]
@@ -7,7 +7,10 @@
 [ext_resource type="Script" path="res://Assets/Scripts/EyeTurretScanAnimationPlayer.gd" id="8_jar2v"]
 [ext_resource type="Texture2D" uid="uid://x8wyrc0duqll" path="res://Assets/Art/Characters/EyeTurret_Shield.png" id="8_wpv2y"]
 [ext_resource type="Texture2D" uid="uid://duucge7rttlit" path="res://Assets/Art/Characters/EyeTurret_Eye.png" id="9_57p2i"]
+[ext_resource type="AudioStream" uid="uid://crcapb51om810" path="res://Assets/Audio/ForceFieldHit.wav" id="9_dnait"]
+[ext_resource type="AudioStream" uid="uid://byypc0t0rgtnx" path="res://Assets/Audio/EyeTurret_ChargeUp.wav" id="10_3lq63"]
 [ext_resource type="Texture2D" uid="uid://bjwxpuvp6m1bb" path="res://Assets/Art/Characters/EyeTurret_Lid.png" id="10_87w28"]
+[ext_resource type="AudioStream" uid="uid://dniuoudta4vni" path="res://Assets/Audio/EyeTurret_Fire.wav" id="11_pcdof"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jurdh"]
 radius = 117.004
@@ -538,3 +541,15 @@ libraries = {
 "": SubResource("AnimationLibrary_d7adb")
 }
 script = ExtResource("8_jar2v")
+
+[node name="HurtSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_dnait")
+bus = &"SFX"
+
+[node name="ChargeUpSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_3lq63")
+bus = &"SFX"
+
+[node name="FireSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_pcdof")
+bus = &"SFX"

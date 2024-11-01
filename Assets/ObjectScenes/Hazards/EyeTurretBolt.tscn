@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7qtcnuf857mp"]
+[gd_scene load_steps=8 format=3 uid="uid://c7qtcnuf857mp"]
 
 [ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/EyeTurretBolt.gd" id="1_vd5is"]
 [ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BulletWithCCD.gd" id="2_wyeih"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="3_l5a6k"]
 [ext_resource type="Texture2D" uid="uid://ca60rjiiqjscm" path="res://Assets/Art/Characters/EyeProjectile.png" id="4_1xofr"]
+[ext_resource type="AudioStream" uid="uid://w13g8qbnwiql" path="res://Assets/Audio/EyeTurret_BoltHit.wav" id="5_vdecp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3d3te"]
 radius = 20.0
@@ -42,3 +43,7 @@ MAX_LENGTH = 30
 modulate = Color(1, 0, 0.713726, 1)
 scale = Vector2(0.147566, 0.147566)
 texture = ExtResource("4_1xofr")
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vdecp")
+bus = &"SFX"

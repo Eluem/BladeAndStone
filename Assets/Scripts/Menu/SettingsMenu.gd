@@ -8,6 +8,7 @@ const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/Confi
 @onready var defaultButton:Button = $PanelContainer/BottomContainer/DefaultButton
 @onready var saveCloseButton:Button = $PanelContainer/BottomContainer/SaveCloseButton
 @onready var closeButton:Button = $PanelContainer/BottomContainer/CloseButton
+@onready var masterVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MasterVolumeSlider
 @onready var musicVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MusicVolumeSlider
 @onready var effectsVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/EffectsVolumeSlider
 @onready var invertInputCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck
@@ -39,11 +40,17 @@ func _ready() -> void:
 	saveCloseButton.pressed.connect(save_close_pressed)
 	closeButton.pressed.connect(close_pressed)
 	invertInputCheck.pressed.connect(toggle_pressed_SFX)
+	masterVolumeSlider.drag_started.connect(slider_drag_started_SFX.bind(masterVolumeSlider))
+	masterVolumeSlider.drag_ended.connect(slider_drag_ended_SFX)
+	masterVolumeSlider.value_changed.connect(master_volume_slider_value_changed)
+	masterVolumeSlider.value_changed.connect(slider_value_changed_SFX)
 	musicVolumeSlider.drag_started.connect(slider_drag_started_SFX.bind(musicVolumeSlider))
 	musicVolumeSlider.drag_ended.connect(slider_drag_ended_SFX)
+	musicVolumeSlider.value_changed.connect(music_volume_slider_value_changed)
 	musicVolumeSlider.value_changed.connect(slider_value_changed_SFX)
 	effectsVolumeSlider.drag_started.connect(slider_drag_started_SFX.bind(effectsVolumeSlider))
 	effectsVolumeSlider.drag_ended.connect(slider_drag_ended_SFX)
+	effectsVolumeSlider.value_changed.connect(effects_volume_slider_value_changed)
 	effectsVolumeSlider.value_changed.connect(slider_value_changed_SFX)
 	
 	if(defaultValues.is_empty()):
@@ -60,7 +67,8 @@ func _input(event:InputEvent) -> void:
 
 func GetValues() -> Dictionary:
 	var ret:Dictionary = {
-							"musicVolume":musicVolumeSlider.value
+							 "masterVolume":masterVolumeSlider.value
+							,"musicVolume":musicVolumeSlider.value
 							,"sfxVolume":effectsVolumeSlider.value
 							,"invertInputDirection":invertInputCheck.button_pressed
 						 }
@@ -68,12 +76,22 @@ func GetValues() -> Dictionary:
 
 
 func SetValues(pValues:Dictionary) -> void:
+	var floatCast:float
+	if(pValues.has("masterVolume")):
+		floatCast = pValues.masterVolume
+		masterVolumeSlider.set_value_no_signal(floatCast)
+		GameStateManager.SetMasterVolume(floatCast)
 	if(pValues.has("musicVolume")):
-		musicVolumeSlider.value = pValues.musicVolume
+		floatCast = pValues.musicVolume
+		musicVolumeSlider.set_value_no_signal(floatCast)
+		GameStateManager.SetMusicVolume(floatCast)
 	if(pValues.has("sfxVolume")):
-		effectsVolumeSlider.value = pValues.sfxVolume
+		floatCast = pValues.sfxVolume
+		effectsVolumeSlider.set_value_no_signal(floatCast)
+		GameStateManager.SetSFXVolume(floatCast)
 	if(pValues.has("invertInputDirection")):
 		invertInputCheck.button_pressed = pValues.invertInputDirection
+
 
 func IsDataChanged() -> bool:
 	var ret:bool = false
@@ -124,6 +142,18 @@ func slider_value_changed_SFX(pValue:float) -> void:
 	if(int(prevSliderValue / 0.05) != int(pValue / 0.05) || (prevSliderValue > 0 and pValue <= 0)):
 		(CanvasManagerScene as CanvasManager).sliderDragSFX.play()
 	prevSliderValue = pValue
+
+
+func master_volume_slider_value_changed(pValue:float) -> void:
+	GameStateManager.SetMasterVolume(pValue)
+
+
+func music_volume_slider_value_changed(pValue:float) -> void:
+	GameStateManager.SetMusicVolume(pValue)
+
+
+func effects_volume_slider_value_changed(pValue:float) -> void:
+	GameStateManager.SetSFXVolume(pValue)
 
 
 func default_dialogue_response(pResponse:bool) -> void:

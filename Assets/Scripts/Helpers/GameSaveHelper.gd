@@ -1,5 +1,6 @@
 class_name GameSaveHelper
 var checkPointReached:bool = false
+var masterVolume:float = 0.5
 var musicVolume:float = 0.5
 var sfxVolume:float = 0.5
 var invertInputDirection:bool = false
@@ -24,6 +25,7 @@ func LoadData() -> void:
 func GetValues() -> Dictionary:
 	var ret:Dictionary = {
 							 "checkPointReached":checkPointReached
+							,"masterVolume":masterVolume
 							,"musicVolume":musicVolume
 							,"sfxVolume":sfxVolume
 							,"invertInputDirection":invertInputDirection
@@ -36,10 +38,15 @@ func GetValues() -> Dictionary:
 func SetValues(pDictionary:Dictionary) -> void:
 	if(pDictionary.has("checkPointReached")):
 		checkPointReached = pDictionary.checkPointReached
+	if(pDictionary.has("masterVolume")):
+		masterVolume = pDictionary.masterVolume
+		GameStateManager.SetMasterVolume(masterVolume)
 	if(pDictionary.has("musicVolume")):
 		musicVolume = pDictionary.musicVolume
+		GameStateManager.SetMusicVolume(musicVolume)
 	if(pDictionary.has("sfxVolume")):
 		sfxVolume = pDictionary.sfxVolume
+		GameStateManager.SetSFXVolume(sfxVolume)
 	if(pDictionary.has("invertInputDirection")):
 		invertInputDirection = pDictionary.invertInputDirection
 	if(pDictionary.has("isFirstRun")):

@@ -195,6 +195,50 @@ theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 15
 columns = 2
 
+[node name="MasterVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_vertical = 1
+focus_mode = 0
+theme_override_constants/center_grabber = 0
+theme_override_icons/grabber = SubResource("GradientTexture2D_wvwyk")
+theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_bdfxh")
+theme_override_styles/slider = SubResource("StyleBoxFlat_yh5hl")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_reckg")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_18pju")
+max_value = 1.0
+step = 0.0
+value = 0.5
+scrollable = false
+
+[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MasterVolumeSlider"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -21.5
+offset_right = 72.0
+offset_bottom = 21.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_jpy0t")
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_nqtk5")
+
 [node name="MusicVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

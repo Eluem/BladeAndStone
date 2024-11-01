@@ -1,9 +1,13 @@
 extends RigidBody2D
 class_name Hazard
+
+@onready var hitSFX:AudioStreamPlayer2D = get_node_or_null("HitSFX")
+
 @export var damage:int
 @export var knockback:float
 @export var lifetime:float = 5
 @export var destroySelfOnHit:bool = true
+
 var originator:Node2D:
 	get:
 		return originator
@@ -35,7 +39,19 @@ func on_hit(pHitResult:Dictionary) -> void:
 		hittable.HandleHit(hitData)
 	#Destroy self after hitting
 	if(destroySelfOnHit):
+		#Detatch on hit sound effect and play it, causing it to destroy self at end
+		if(hitSFX && hitSFX.get_parent() == self):
+			hitSFX.reparent(get_tree().current_scene)
+			hitSFX.finished.connect(hitSFX.queue_free)
+			hitSFX.play()
 		queue_free()
+	else:
+		#Clone on hit sound effect and play it, causing it to destroy self at end
+		if(hitSFX):
+			var hitSFXClone:AudioStreamPlayer2D = hitSFX.duplicate()
+			get_tree().current_scene.add_child(hitSFXClone)
+			hitSFXClone.finished.connect(hitSFXClone.queue_free)
+			hitSFXClone.play()
 
 func lifetime_end() -> void:
 	queue_free()
