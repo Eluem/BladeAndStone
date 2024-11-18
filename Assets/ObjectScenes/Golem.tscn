@@ -2237,8 +2237,6 @@ default_color = Color(0.592157, 0.0784314, 1, 0)
 [node name="RaycastCollider" type="Node2D" parent="Weapon" node_paths=PackedStringArray("excludeCollision")]
 script = ExtResource("6_5cw8i")
 excludeCollision = [NodePath("../..")]
-weaponDamage = 0
-weaponKnockback = 0.0
 
 [node name="RaycastNode" type="Node2D" parent="Weapon/RaycastCollider"]
 position = Vector2(-60, 0)
