@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name BossKey
 
+const KEY_PICKUP_SFX = preload("res://Assets/Audio/KeyPickup.wav")
+
 @onready var PIDControllerJoint:PIDControllerJoint2D = $PIDControllerJoint
 @onready var pickupCollider:Area2D = $Area2D
 @onready var chain:Line2D = $Chain
@@ -33,12 +35,14 @@ func picked_up(pBody:Node2D) -> void:
 	pickupCollider.set_deferred("monitoring", false)
 	chain.visible = true
 	sprite.rotation_degrees = 90
+	GameStateManager.PlaySFX(global_position, KEY_PICKUP_SFX, null, &"SFX", 10)
 
 
 func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	if(PIDControllerJoint.trackNode == null):
 		return
 	state.transform = state.transform.looking_at(PIDControllerJoint.trackNode.global_position)
+
 
 func key_holder_destroyed() -> void:
 	PIDControllerJoint.trackNode = null

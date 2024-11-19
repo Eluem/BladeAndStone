@@ -1,15 +1,21 @@
 extends Node2D
 class_name RaycastCollider
 
+@onready var hitSFXPlayer:AudioStreamPlayer2D = $HitSFXPlayer
+
 @export var enabled:bool = false
 @export var excludeCollision:Array[CollisionObject2D]
 @export var weaponDamage:int = 10
 @export var weaponKnockback:float = 400
+@export var hitSFX:Array[AudioStream]
+
 var wielder:Node2D #Stores the object that this collider's weapon is attached to
 var raycastNodes:Array[RaycastNodeData]
 var excludeCollisionRIDs:Array[RID] #Rids to always ignore
 var hitRIDs:Array[RID] #RIDs to ignore because they were already hit this attack
+var staticHitRIDs:Array[RID] #RIDs to pass true to "alreadyHit"
 #var debugInfo:DebugInfo
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +25,7 @@ func _ready() -> void:
 	wielder = get_parent().get_parent()
 	for excluded:CollisionObject2D in excludeCollision:
 		excludeCollisionRIDs.append(excluded.get_rid())
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta:float) -> void:
@@ -34,6 +41,7 @@ func _process(_delta:float) -> void:
 		if(DebugInfo.debugUIEnabled || DebugInfo.forceDebugTrails):
 			DrawDebugTrail(nodeData, debugFullScanEmpty)
 		nodeData.UpdatePrevPos()
+
 
 func _physics_process(_delta:float) -> void:
 	if(!enabled):
@@ -61,30 +69,42 @@ func _physics_process(_delta:float) -> void:
 		#TODO: Expand this to work for any "hittableObject" and consider some kind of "sturdiness" value
 		if(queuedHit.collider is StaticBodyHittable):
 			staticBodyHittable = queuedHit.collider #as StaticBodyHittable #This as also causes unsafe cast
+			if(staticHitRIDs.has(queuedHit.rid)):
+				queuedHit.alreadyHit = true
+			else:
+				PlayHitSFX(queuedHit.position)
+				staticHitRIDs.append(queuedHit.rid)
+				staticHitRIDs.append_array(staticBodyHittable.groupedStaticBodyRIDs)
 			staticBodyHittable.HandleHit(queuedHit)
 			#(queuedHit.collider as StaticBodyHittable).HandleHit(queuedHit) #Causes unsafe cast
 			break
 		if(queuedHit.collider is RigidBodyHittable):
 			rigidBodyHittable = queuedHit.collider #as RigidBodyHittable #This as also causes unsafe cast
-			if(hitRIDs.find(queuedHit.rid) == -1):
+			if(!hitRIDs.has(queuedHit.rid)):
+				PlayHitSFX(queuedHit.position)
 				rigidBodyHittable.HandleHit(queuedHit)
 				#(queuedHit.collider as RigidBodyHittable).HandleHit(queuedHit) #Causes unsafe cast
 				hitRIDs.append(queuedHit.rid)
 			if(rigidBodyHittable.blockAttacks):
 				break
 
+
 #Allows the weapon to hit objects that were hit previously
 func ClearHits() -> void:
 	hitRIDs.clear()
+	staticHitRIDs.clear()
+
 
 func Disable() -> void:
 	enabled = false
 	ClearHits()
 
+
 func Enable() -> void:
 	enabled = true
 	for nodeData:RaycastNodeData in raycastNodes:
 		nodeData.UpdatePrevPos()
+
 
 func InitRaycastNodes() -> void:
 	var nodesTemp:Array[Node] = get_children()
@@ -92,6 +112,7 @@ func InitRaycastNodes() -> void:
 	raycastNodes.resize(nodesTempSize)
 	for i:int in nodesTempSize:
 		raycastNodes[i] = RaycastNodeData.new(nodesTemp[i] as Node2D)
+
 
 func DrawDebugTrail(pNodeData:RaycastNodeData, pFullScanEmpty:bool) -> void:
 	var lineColor:Color = Color.GREEN #Default debug line color
@@ -101,6 +122,13 @@ func DrawDebugTrail(pNodeData:RaycastNodeData, pFullScanEmpty:bool) -> void:
 		lineColor = Color.PURPLE
 	#Draw debug line
 	get_tree().current_scene.add_child(DebugLine.new(pNodeData.prevPos, pNodeData.node.global_position, lineColor))
+
+
+func PlayHitSFX(pPosition:Vector2) -> void:
+	if(hitSFX.is_empty()):
+		return
+	var audioStreamCast:AudioStream = hitSFX.pick_random()
+	GameStateManager.PlaySFX(pPosition, audioStreamCast, hitSFXPlayer)
 
 """
 #Not needed since the constructor does all the work

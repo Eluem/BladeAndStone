@@ -1,6 +1,11 @@
 extends RigidBodyHittable
 class_name DashSmashEnemy
 
+@onready var attackWindUpSFXPlayer:AudioStreamPlayer2D = $AttackWindUpSFXPlayer
+@onready var attackReleaseSFXPlayer:AudioStreamPlayer2D = $AttackReleaseSFXPlayer
+
+@export var isDummyMode:bool = false
+
 var target:Node2D
 var force:float = 500
 var maxSpeed:float = 50 #TODO: Implement max speed
@@ -14,7 +19,6 @@ var attackChargeTimer:float = 0
 var attackActiveWaitTime:float = 1.5
 var attackActiveTimer:float = attackActiveWaitTime
 var visionSensor:Area2D
-@export var isDummyMode:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,6 +65,8 @@ func HandleActiveAttack(delta:float) -> void:
 		UpdateSmasherVisualEffect(GetAttackChargePercentage())
 
 func ChargeAttack(delta:float) -> void:
+	if(attackChargeTimer >= attackChargeWaitTime - 1.2 && attackChargeTimer < attackChargeWaitTime - 1 && !attackWindUpSFXPlayer.playing):
+		attackWindUpSFXPlayer.play()
 	attackChargeTimer += delta
 	UpdateSmasherVisualEffect(GetAttackChargePercentage())
 	if(attackChargeTimer >= attackChargeWaitTime):
@@ -68,6 +74,7 @@ func ChargeAttack(delta:float) -> void:
 		attackChargeTimer = 0
 
 func BeginAttack() -> void:
+	attackReleaseSFXPlayer.play()
 	UpdateSmasherVisualEffect(0.99)
 	apply_central_impulse(transform.x.normalized() * 5000)
 	($Smasher/RaycastCollider as RaycastCollider).Enable()

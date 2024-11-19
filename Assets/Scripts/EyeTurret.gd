@@ -7,9 +7,8 @@ class_name EyeTurret
 
 @onready var visionSensor:Area2D = $VisionSensor
 @onready var chargeEffect:GPUParticles2D = $EyeTurretEye/ChargeEffect
-@onready var hurtSFX:AudioStreamPlayer2D = $HurtSFX
-@onready var chargeUpSFX:AudioStreamPlayer2D = $ChargeUpSFX
-@onready var fireSFX:AudioStreamPlayer2D = $FireSFX
+@onready var chargeUpSFXPlayer:AudioStreamPlayer2D = $ChargeUpSFXPlayer
+@onready var fireSFXPlayer:AudioStreamPlayer2D = $FireSFXPlayer
 
 @export var isEyeOpen:bool = true:
 	set(pValue):
@@ -34,7 +33,6 @@ var standardChargeEffectLifeTime:float
 var maxRotationRange:Vector2 = Vector2(deg_to_rad(-70), deg_to_rad(70))
 var targetLossTimer:float = 0
 var targetLossDelay:float = 2.0
-var lastHitSFXTime:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,7 +44,6 @@ func _ready() -> void:
 	standardChargeEffectLifeTime = chargeEffect.lifetime
 	
 	visionSensor.connect("object_detected", object_detected)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
@@ -80,7 +77,7 @@ func ChargeEyeBolt(delta:float) -> void:
 	eyeBoltChargeTimer += delta
 	if(!chargeEffect.emitting):
 		chargeEffect.emitting = true
-		chargeUpSFX.play()
+		chargeUpSFXPlayer.play()
 	if(eyeBoltChargeTimer > eyeBoltAlmostCharged):
 		chargeEffect.amount_ratio = 0
 	else:
@@ -95,7 +92,7 @@ func FireProjectile() -> void:
 	projectile.z_index = -2
 	projectile.damage = damage
 	projectile.AddCollisionException(get_rid())
-	fireSFX.play()
+	fireSFXPlayer.play()
 
 
 func object_detected(pBody:Node2D) -> void:
@@ -138,7 +135,7 @@ func ValidateTarget(pDelta:float) -> void:
 
 
 func StopCharging() -> void:
-	chargeUpSFX.stop()
+	chargeUpSFXPlayer.stop()
 	eyeBoltChargeTimer = 0
 	chargeEffect.emitting = false
 
@@ -151,13 +148,6 @@ func HandleShieldEffect(pDelta:float) -> void:
 func HitEffect(pPosition:Vector2, pForce:Vector2) -> void:
 	super.HitEffect(pPosition, pForce)
 	shieldSprite.modulate.a = 0.9
-	
-	var currHitSFXTime:float = Time.get_ticks_msec()
-	if(currHitSFXTime-lastHitSFXTime > 20):
-		var hurtSFXClone:AudioStreamPlayer2D = hurtSFX.duplicate()
-		add_child(hurtSFXClone)
-		hurtSFXClone.finished.connect(hurtSFXClone.queue_free)
-		hurtSFXClone.play()
-		lastHitSFXTime = currHitSFXTime
+
 	#if(!hurtSFX.playing || hurtSFX.get_playback_position() + AudioServer.get_time_since_last_mix() > 0.8):
 	#	hurtSFX.play()

@@ -10,6 +10,8 @@ class_name BossFoyer
 @onready var keyHole:Node2D = $KeyHole
 @onready var keyHoleAnim:KeyHoleAnimationPlayer = $KeyHole/AnimationPlayer
 @onready var keyHoleFilledSprite:Sprite2D = $KeyHole/FilledSprite
+@onready var keyLockingInSFXPlayer:AudioStreamPlayer2D = $KeyLockingInSFXPlayer
+@onready var keyLockedInSFXPlayer:AudioStreamPlayer2D = $KeyLockedInSFXPlayer
 
 var alreadyEntered:bool = false
 var alreadyExited:bool = false
@@ -105,12 +107,15 @@ func successful_scan(pAnimName:String) -> void:
 	if(pAnimName != "Closing" || !keyScanSuccess):
 		return
 	keyHoleAnim.play("InsertKey")
+	keyLockingInSFXPlayer.finished.connect(keyLockedInSFXPlayer.play)
+	keyLockingInSFXPlayer.play()
 
 
 func scanned() -> void:
 	if(!is_instance_valid(player) || !player.hasKey()):
 		return
 	keyHoleAnim.play("KeyScanned")
+
 
 func key_split() -> void:
 	keyScanSuccess = true

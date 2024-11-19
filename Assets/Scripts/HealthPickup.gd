@@ -1,4 +1,5 @@
 extends Area2D
+const HEALTH_PICKUP_SFX = preload("res://Assets/Audio/HealthPickup.wav")
 @export var healValue:int = 50
 
 # Called when the node enters the scene tree for the first time.
@@ -17,5 +18,7 @@ func _body_entered(pBody:Node2D) -> void:
 	
 	var player:Golem = pBody
 	player.ApplyHeal(healValue)
+	
+	GameStateManager.PlaySFX(global_position, HEALTH_PICKUP_SFX, null, &"SFX", 8)
 	
 	queue_free()

@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name RigidBodyHittable
 
+@onready var hurtSFXPlayer:AudioStreamPlayer2D = $HurtSFXPlayer
+
 @export var maxHealth:int = 100
 @export var health:int = maxHealth
 @export var invulnerable:bool = false
@@ -9,6 +11,8 @@ class_name RigidBodyHittable
 @export var blockAttacks:bool = false
 @export var smallGemValue:int = 0
 @export var largeGemValue:int = 0
+@export var hurtSFX:Array[AudioStream]
+@export var deathSFX:Array[AudioStream]
 
 #var debugInfo:DebugInfo
 var spritePolygon:Polygon2D
@@ -30,6 +34,7 @@ func _ready() -> void:
 	GenerateBoundingPolygon()
 	if(generateOutline):
 		GenerateOutline()
+	hurtSFXPlayer = get_node_or_null("HurtSFXPlayer")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,6 +45,7 @@ func _process(_delta:float) -> void:
 func HandleHit(pHitData:HitData) -> void:
 	HitEffect(pHitData.position as Vector2, (pHitData.hitDirection as Vector2).normalized() * (pHitData.knockback as float))
 	ApplyKnockback(pHitData.lookDirection as Vector2, pHitData.knockback as float)
+	PlayHurtSFX()
 	ApplyDamage(pHitData.hitOwner, pHitData.damage, (pHitData.hitDirection as Vector2).normalized(), pHitData.knockback)
 
 
@@ -72,6 +78,27 @@ func HitEffect(pPosition:Vector2, pForce:Vector2) -> void:
 		livingRockHit = LivingRockHit.Spawn(get_tree().current_scene, pPosition, pForce)
 		livingRockHit.z_index = z_index
 
+func PlayHurtSFX() -> void:
+	if(hurtSFX.is_empty()):
+		return
+	var hurtSFXPlayerClone:AudioStreamPlayer2D = hurtSFXPlayer.duplicate()
+	get_tree().current_scene.add_child(hurtSFXPlayerClone)
+	hurtSFXPlayerClone.global_position = hurtSFXPlayer.global_position
+	hurtSFXPlayerClone.stream = hurtSFX.pick_random()
+	hurtSFXPlayerClone.finished.connect(hurtSFXPlayerClone.queue_free)
+	hurtSFXPlayerClone.play()
+
+
+func PlayDeathSFX() -> void:
+	if(deathSFX.is_empty()):
+		return
+	var deathSFXPlayer:AudioStreamPlayer2D = hurtSFXPlayer.duplicate()
+	get_tree().current_scene.add_child(deathSFXPlayer)
+	deathSFXPlayer.global_position = hurtSFXPlayer.global_position
+	deathSFXPlayer.stream = deathSFX.pick_random()
+	deathSFXPlayer.finished.connect(deathSFXPlayer.queue_free)
+	deathSFXPlayer.play()
+
 
 func Die(pHitOwner:Node2D, pDir:Vector2, pForce:float) -> void:
 	var chunks:Array[RigidBody2D] = Geometry2DHelper.ExplodeSprite(mainSprite, pDir, Vector2(pForce*0.5, pForce), Vector2(-pForce/40, pForce/40), spritePolygon, 0, 1)
@@ -83,6 +110,7 @@ func Die(pHitOwner:Node2D, pDir:Vector2, pForce:float) -> void:
 	Gem.LaunchGems(self, smallGemValue, Gem.GemType.Small)
 	Gem.LaunchGems(self, largeGemValue, Gem.GemType.Large)
 	exploded.emit(chunks, pHitOwner)
+	PlayDeathSFX()
 	queue_free()
 
 

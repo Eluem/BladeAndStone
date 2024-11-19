@@ -1,6 +1,7 @@
 extends RigidBody2D
 class_name Gem
 
+const GEM_PICKUP_SFX = preload("res://Assets/Audio/GemPickup.wav")
 const SMALL_GEM = preload("res://Assets/ObjectScenes/Items/SmallGem.tscn")
 const LARGE_GEM = preload("res://Assets/ObjectScenes/Items/LargeGem.tscn")
 
@@ -99,10 +100,15 @@ func SyncAutoAttractAreaMintorMode() -> void:
 	autoAttractArea.monitoring = canAttract && pickUpPlayer == null && autoAttractDelay <= 0
 
 
+func GemCollected() -> void:
+	GameStateManager.PlaySFX(global_position, GEM_PICKUP_SFX)
+	gem_collected.emit(value, type)
+
+
 func pick_up_area_entered(pBody:Node2D) -> void:
 	if(pBody is not Golem):
 		return
-	gem_collected.emit(value, type)
+	GemCollected()
 	queue_free()
 
 

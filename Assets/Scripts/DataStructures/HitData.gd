@@ -11,8 +11,9 @@ var hitDirection:Vector2
 var lookDirection:Vector2
 var damage:int
 var knockback:float
+var alreadyHit:bool #Indicates that this the object being hit was already hit by this attack before
 
-func _init(pHitOwner:Node2D, pHitResult:Dictionary, pHitDirection:Vector2 = Vector2.ZERO, pLookDirection:Vector2 = Vector2.ZERO, pDamage:int = 0, pKnockback:float = 0, pPosition:Vector2 = Vector2.ZERO) -> void:
+func _init(pHitOwner:Node2D, pHitResult:Dictionary, pHitDirection:Vector2 = Vector2.ZERO, pLookDirection:Vector2 = Vector2.ZERO, pDamage:int = 0, pKnockback:float = 0, pPosition:Vector2 = Vector2.ZERO, pAlreadyHit:bool = false) -> void:
 	hitOwner = pHitOwner
 	collider = pHitResult.collider
 	collider_id = pHitResult.collider_id
@@ -39,3 +40,4 @@ func _init(pHitOwner:Node2D, pHitResult:Dictionary, pHitDirection:Vector2 = Vect
 		knockback = pHitResult.knockback
 	else:
 		knockback = pKnockback
+	alreadyHit = pAlreadyHit

@@ -171,3 +171,21 @@ func SetMusicVolume(pValue:float) -> void:
 
 func SetSFXVolume(pValue:float) -> void:
 	AudioServer.set_bus_volume_db(2, linear_to_db(pValue))
+
+##Plays pAudioStream at pPosition, duplicating pAudioStreamPlayer if it's passed
+func PlaySFX(pPosition:Vector2, pAudioStream:AudioStream = null, pAudioStreamPlayer:AudioStreamPlayer2D = null, pBus:StringName = &"SFX", pVolumedB:float = 0) -> void:
+	var sfxPlayer:AudioStreamPlayer2D
+	if(pAudioStreamPlayer == null):
+		sfxPlayer = AudioStreamPlayer2D.new()
+		sfxPlayer.bus = pBus
+		sfxPlayer.volume_db = pVolumedB
+	else:
+		sfxPlayer = pAudioStreamPlayer.duplicate()
+	if(pAudioStream != null):
+		sfxPlayer.stream = pAudioStream
+	if(sfxPlayer.stream == null):
+		return
+	get_tree().current_scene.add_child(sfxPlayer)
+	sfxPlayer.global_position = pPosition
+	sfxPlayer.finished.connect(sfxPlayer.queue_free)
+	sfxPlayer.play()
