@@ -29,7 +29,7 @@ func _process(delta:float) -> void:
 	if(isTransitonCameraDone):
 		WIP_AutoEndDelay += delta
 		if(WIP_AutoEndDelay >= 3):
-			boss_exploded([])
+			boss_exploded([], null)
 
 
 func BossRoomEntered() -> void:
@@ -105,6 +105,6 @@ func intro_camera_animation_finished(_pAnimName:String) -> void:
 	#mainCamera.make_current() #redundant, automatically becomes active when all others are false
 
 
-func boss_exploded(_pChunk:Array[RigidBody2D]) -> void:
+func boss_exploded(_pChunks:Array[RigidBody2D], _pHitOwner:Node2D) -> void:
 	isBossDead = true
 	StatTracker.EndRunTimer()

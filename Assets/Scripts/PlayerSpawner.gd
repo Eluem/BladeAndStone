@@ -1,6 +1,8 @@
 extends Node
 class_name PlayerSpawner
 
+signal player_spawned(pPlayer:Golem)
+
 @export var mainCamera:CameraMultitracking
 var currPlayer:Golem
 
@@ -39,6 +41,7 @@ func SpawnPlayer() -> Golem:
 	mainCamera.SetMainTarget(ret)
 	mainCamera.global_position = ret.global_position
 	currPlayer = ret
+	player_spawned.emit(ret)
 	return ret
 
 func PopulateSpawnPoints() -> void:

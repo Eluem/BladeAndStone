@@ -1,4 +1,5 @@
 Node2D
+Node
 AudioStreamPlayer2D
 AudioStreamPlayer
 MarginContainer
@@ -11,4 +12,3 @@ Area2D
 CollisionShape2D
 RigidBody2D
 VBoxContainer
-GridContainer

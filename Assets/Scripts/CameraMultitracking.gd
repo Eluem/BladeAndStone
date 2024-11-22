@@ -224,6 +224,8 @@ func SetMainTarget(pTrackTarget:Node2D) -> void:
 func RemoveTrackTarget(pTarget:Node2D) -> void:
 	if(pTarget == mainTarget):
 		mainTarget = null
+	if(pTarget is RigidBodyHittable):
+		(pTarget as RigidBodyHittable).exploded.disconnect(track_target_exploded)
 	pTarget.tree_exited.disconnect(track_target_deleted)
 	targets.erase(pTarget)
 
