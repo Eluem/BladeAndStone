@@ -1,5 +1,11 @@
 class_name CharacterInputUI
 extends Node2D
+
+const PLAYER_INPUT_DIRECTION_ARROW = preload("res://Assets/Art/UI/PlayerInput_DirectionArrow.png")
+
+var guideArrowParent:Node2D
+var arrowSprites:Array[Sprite2D]
+
 var pressed:bool = false
 var pressing:bool = false
 var holdTime:float
@@ -20,16 +26,19 @@ var startPosLocal:Vector2
 var currPosRelative:Vector2
 var startPosRelative:Vector2 = Vector2.ZERO
 
-var guidePathStartColor:Color = Color(0.8, 0.1, 0.1, 0.2)
-var guidePathEndColor:Color = Color(0.8, 0.1, 0.1, 0.7)
+var guidePathStartColor:Color = Color(1, 1, 1, 0.2) #Color(0.8, 0.1, 0.1, 0.2)
+var guidePathEndColor:Color = Color(1, 1, 1, 0.7) #Color(0.8, 0.1, 0.1, 0.7)
 var touchCircleColor:Color = Color(0.5765, 0.4392, 0.8588, 0.8)
 
 var viewport:Viewport
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	PopulateArrowSprites()
+	
 	viewport = get_viewport()
 	UpdateLocalPositions()
+
 
 func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pStartPos:Vector2, pCurrPos:Vector2, pPrevPos:Vector2, pDir:Vector2, pPower:float, pMaxLength:float, pDragThreshold:float) -> void:
 	pressed = pPressed
@@ -44,6 +53,7 @@ func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pSta
 	maxLength = pMaxLength
 	dragThreshold = pDragThreshold
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
 	if(released):
@@ -54,15 +64,17 @@ func _process(delta:float) -> void:
 		UpdateLocalPositions()
 		UpdateRelativePositions()
 	
+	UpdateGuidePath()
 	queue_redraw()
 
+
 func _draw() -> void:
-	if(is_dragging()): #(pressing && is_dragging()) || released):
-		#Calculate end point with length capped at max power
-		var endPoint:Vector2 = currPosRelative - startPosRelative
-		endPoint = startPosRelative + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
-		
-		Draw_GuidePath(endPoint)
+	#if(is_dragging()): #(pressing && is_dragging()) || released):
+		##Calculate end point with length capped at max power
+		#var endPoint:Vector2 = currPosRelative - startPosRelative
+		#endPoint = startPosRelative + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
+		#
+		#Draw_GuidePath(endPoint)
 	
 	#Calculate touch circle fadeout alpha
 	var touchCircleColorFaded:Color = touchCircleColor
@@ -71,9 +83,11 @@ func _draw() -> void:
 	#Draw touch cirlce
 	draw_arc(startPosLocal, dragThreshold, 0, 360, 360, touchCircleColorFaded, 1, true)
 
+
 func is_dragging() -> bool:
 	#return pressing && (startPos - currPos).length_squared() > dragThreshold*dragThreshold
 	return (startPos - currPos).length_squared() > dragThreshold*dragThreshold
+
 
 func ScreenPosToLocalPos(pScreenPos:Vector2) -> Vector2:
 	var viewportXform:Transform2D = viewport.canvas_transform
@@ -87,12 +101,15 @@ func ScreenPosToLocalPos(pScreenPos:Vector2) -> Vector2:
 	pScreenPos *= inverseScale
 	return pScreenPos
 
+
 func UpdateLocalPositions() -> void:
 	currPosLocal = ScreenPosToLocalPos(currPos)
 	startPosLocal = ScreenPosToLocalPos(startPos)
 
+
 func UpdateRelativePositions() -> void:
 	currPosRelative = currPosLocal - startPosLocal
+
 
 func Draw_GuidePath(pBackEndPoint:Vector2) -> void:
 	var frontEndPoint:Vector2 = pBackEndPoint * -0.4
@@ -104,6 +121,7 @@ func Draw_GuidePath(pBackEndPoint:Vector2) -> void:
 	#draw points out front
 	for i in range(1,4):
 		Draw_GuideArrow((frontEndPoint/3) * i, frontEndPoint.normalized(), 5, true)
+
 
 func Draw_GuideArrow(pPos:Vector2, pDir:Vector2, pWidth:float = -1, pAntialiased:bool = false) -> void:
 	#var arrowLength:Vector2 =  pPos+(pDir * 20)
@@ -117,8 +135,55 @@ func Draw_GuideArrow(pPos:Vector2, pDir:Vector2, pWidth:float = -1, pAntialiased
 
 	draw_polyline(vectArray, CalcGuideArrowColor(), pWidth, pAntialiased)
 
+
 func CalcGuideArrowColor() -> Color:
 	var ret:Color
 	ret = guidePathStartColor.lerp(guidePathEndColor, power)
 	ret.a *= timeToDecay
 	return ret
+
+
+func PopulateArrowSprites() -> void:
+	guideArrowParent = Node2D.new()
+	add_child(guideArrowParent)
+	
+	arrowSprites.append(Sprite2D.new())
+	arrowSprites[0].texture = PLAYER_INPUT_DIRECTION_ARROW
+	arrowSprites[0].scale = Vector2(0.137, 0.137)
+	guideArrowParent.add_child(arrowSprites[0])
+	guideArrowParent.visible = false
+	for i:int in range(1,8):
+		arrowSprites.append(arrowSprites[0].duplicate())
+		guideArrowParent.add_child(arrowSprites[i])
+
+
+func UpdateGuidePath() -> void:
+	if(!is_dragging()):
+		guideArrowParent.visible = false
+		return
+	guideArrowParent.visible = true
+	
+	#Calculate end point with length capped at max power
+	var backEndPoint:Vector2 = currPosRelative - startPosRelative
+	backEndPoint = startPosRelative + (backEndPoint.normalized() * clamp(backEndPoint.length(), 0, maxLength))
+	
+	var frontEndPoint:Vector2 = backEndPoint * -0.4
+	
+	var backEndPointMultiplyer:Vector2 = backEndPoint/4
+	var frontEndPointMultiplyer:Vector2 = frontEndPoint/3
+	var frontEndPointNormalized:Vector2 = frontEndPoint.normalized()
+	var color:Color = CalcGuideArrowColor()
+	
+	#update arrows out back
+	for i in range(0,5):
+		UpdateGuideArrow(arrowSprites[i], backEndPointMultiplyer * i, frontEndPointNormalized, color)
+		
+	#update arrows out front
+	for i in range(1,4):
+		UpdateGuideArrow(arrowSprites[i+4], frontEndPointMultiplyer * i, frontEndPointNormalized, color)
+
+
+func UpdateGuideArrow(pSprite:Sprite2D, pPos:Vector2, pDir:Vector2, pColor:Color) -> void:
+	pSprite.position = pPos
+	pSprite.rotation = pDir.angle()
+	pSprite.modulate = pColor

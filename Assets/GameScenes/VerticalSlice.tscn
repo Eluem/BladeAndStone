@@ -755,7 +755,6 @@ script = ExtResource("2_o75yw")
 mainCamera = NodePath("../../Camera2D")
 
 [node name="DefaultSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
-position = Vector2(-860, -4120)
 
 [node name="CheckPointSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
 position = Vector2(-67, -4484)
