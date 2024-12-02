@@ -26,15 +26,19 @@ var startPosLocal:Vector2
 var currPosRelative:Vector2
 var startPosRelative:Vector2 = Vector2.ZERO
 
-var guidePathStartColor:Color = Color(1, 1, 1, 0.2) #Color(0.8, 0.1, 0.1, 0.2)
-var guidePathEndColor:Color = Color(1, 1, 1, 0.7) #Color(0.8, 0.1, 0.1, 0.7)
+var guidePathStartColor:Color = Color(0.8, 0.1, 0.1, 0.2) #Color(1, 1, 1, 0.2)
+var guidePathEndColor:Color =  Color(0.8, 0.1, 0.1, 0.7) #Color(1, 1, 1, 0.7)
 var touchCircleColor:Color = Color(0.5765, 0.4392, 0.8588, 0.8)
+var useSpriteArrows:bool = false
 
 var viewport:Viewport
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PopulateArrowSprites()
+	#z_index = -1
+	get_parent().move_child(self, 0)
+	if(useSpriteArrows):
+		PopulateArrowSprites()
 	
 	viewport = get_viewport()
 	UpdateLocalPositions()
@@ -64,24 +68,25 @@ func _process(delta:float) -> void:
 		UpdateLocalPositions()
 		UpdateRelativePositions()
 	
-	UpdateGuidePath()
+	if(useSpriteArrows):
+		UpdateGuidePath()
 	queue_redraw()
 
 
 func _draw() -> void:
-	#if(is_dragging()): #(pressing && is_dragging()) || released):
-		##Calculate end point with length capped at max power
-		#var endPoint:Vector2 = currPosRelative - startPosRelative
-		#endPoint = startPosRelative + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
-		#
-		#Draw_GuidePath(endPoint)
+	if(is_dragging() && !useSpriteArrows): #(pressing && is_dragging()) || released):
+		#Calculate end point with length capped at max power
+		var endPoint:Vector2 = currPosRelative - startPosRelative
+		endPoint = startPosRelative + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
+		
+		Draw_GuidePath(endPoint)
 	
 	#Calculate touch circle fadeout alpha
 	var touchCircleColorFaded:Color = touchCircleColor
 	touchCircleColorFaded.a *= timeToDecay
 	
 	#Draw touch cirlce
-	draw_arc(startPosLocal, dragThreshold, 0, 360, 360, touchCircleColorFaded, 1, true)
+	draw_arc(startPosLocal, LocalRadiusToScreenRadius(dragThreshold), 0, 360, 360, touchCircleColorFaded, 3, true)
 
 
 func is_dragging() -> bool:
@@ -100,6 +105,19 @@ func ScreenPosToLocalPos(pScreenPos:Vector2) -> Vector2:
 	
 	pScreenPos *= inverseScale
 	return pScreenPos
+
+
+func LocalRadiusToScreenRadius(pRadius:float) -> float:
+	var ret:float
+	var viewportXform:Transform2D = viewport.canvas_transform
+	
+	var inverseScale:Vector2 = viewportXform.get_scale()
+	inverseScale.x = 1/inverseScale.x
+	inverseScale.y = 1/inverseScale.y
+	
+	ret = pRadius * inverseScale.x
+	
+	return ret
 
 
 func UpdateLocalPositions() -> void:
@@ -187,3 +205,12 @@ func UpdateGuideArrow(pSprite:Sprite2D, pPos:Vector2, pDir:Vector2, pColor:Color
 	pSprite.position = pPos
 	pSprite.rotation = pDir.angle()
 	pSprite.modulate = pColor
+
+
+func Detach() -> void:
+	#top_level = true
+	var currentScene:Node = get_tree().current_scene
+	var newIndex:int = get_parent().get_index() - 1
+	reparent(currentScene)
+	currentScene.move_child(self, newIndex)
+	

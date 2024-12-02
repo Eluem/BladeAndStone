@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://bduaw211b10ea"]
+[gd_scene load_steps=116 format=3 uid="uid://bduaw211b10ea"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="1_tsbc7"]
 [ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_2bl6p"]
@@ -2089,7 +2089,7 @@ advance_expression = "consume_tapped()"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2kh8l"]
 xfade_time = 0.1
 advance_mode = 2
-advance_expression = "consume_tapped() || held"
+advance_expression = "consume_tapped() || (held && !dragging)"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wufvn"]
 xfade_time = 0.1
@@ -2148,9 +2148,10 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tmqk6"]
 xfade_time = 0.2
 advance_mode = 2
-advance_expression = "consume_tapped()"
+advance_expression = "consume_tapped() || held"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1r6n5"]
+xfade_time = 0.1
 advance_mode = 2
 advance_expression = "held && dragging"
 
@@ -2201,11 +2202,6 @@ xfade_time = 0.4
 advance_mode = 2
 advance_expression = "consume_tapped()"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nmvn6"]
-xfade_time = 0.4
-advance_mode = 2
-advance_expression = "consume_tapped()"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ghtdf"]
 advance_mode = 2
 advance_expression = "consume_tapped() || !held
@@ -2251,6 +2247,33 @@ switch_mode = 1
 advance_mode = 2
 advance_expression = "dragging"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gwq8y"]
+xfade_time = 0.4
+advance_mode = 2
+advance_expression = "consume_tapped()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_athr0"]
+xfade_time = 0.4
+advance_mode = 2
+advance_expression = "held && !dragging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rapom"]
+xfade_time = 0.1
+priority = 2
+advance_mode = 2
+advance_expression = "held && dragging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymdqc"]
+xfade_time = 0.4
+advance_mode = 2
+advance_expression = "held && dragging"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3btg1"]
+xfade_time = 0.2
+priority = 2
+advance_mode = 2
+advance_expression = "held && dragging"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_recpo"]
 states/Attack_Heavy_Active/node = SubResource("AnimationNodeAnimation_bbq6v")
 states/Attack_Heavy_Active/position = Vector2(239, 431)
@@ -2292,8 +2315,8 @@ states/Attack_Thrust_WindDown/node = SubResource("AnimationNodeAnimation_81vfk")
 states/Attack_Thrust_WindDown/position = Vector2(497, 515)
 states/End/position = Vector2(1012, 55)
 states/Start/position = Vector2(-25, 55)
-transitions = ["Start", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_LightRight_WindUp", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_LightRight_WindUp", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Heavy_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_biy3r"), "Attack_LightLeft_WindUp", "Attack_LightLeft_Active", SubResource("AnimationNodeStateMachineTransition_cyvjb"), "Attack_LightLeft_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_msixp"), "Attack_LightRight_WindDown_1", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_4jah7"), "Attack_LightLeft_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2kh8l"), "Attack_Heavy_HoldCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_wufvn"), "Attack_Heavy_Active", "Attack_Heavy_WindDown", SubResource("AnimationNodeStateMachineTransition_x5f6l"), "Attack_Heavy_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_e4gpj"), "Attack_LightRight_Active", "Attack_LightRight_FollowThrough", SubResource("AnimationNodeStateMachineTransition_cf1b0"), "Attack_LightRight_FollowThrough", "Attack_LightRight_WindDown_1", SubResource("AnimationNodeStateMachineTransition_hg0q3"), "Attack_LightRight_FollowThrough", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_uuxf6"), "Attack_LightLeft_Active", "Attack_LightLeft_FollowThrough", SubResource("AnimationNodeStateMachineTransition_3y1e4"), "Attack_LightLeft_FollowThrough", "Attack_LightLeft_WindDown", SubResource("AnimationNodeStateMachineTransition_eakdr"), "Attack_LightLeft_FollowThrough", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2k6ni"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindDown_2", SubResource("AnimationNodeStateMachineTransition_2l3fj"), "Attack_LightRight_WindDown_2", "End", SubResource("AnimationNodeStateMachineTransition_16k8i"), "Attack_LightRight_WindDown_2", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_tmqk6"), "Attack_LightRight_WindUp", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_1r6n5"), "Attack_Heavy_Charging", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_yqlu0"), "Attack_Thrust_Charging", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_ifmkw"), "Attack_Thrust_HoldCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_lq10a"), "Attack_Heavy_HoldCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_l0umt"), "Attack_Thrust_HoldCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_s34y7"), "Attack_Thrust_Active", "Attack_Thrust_WindDown", SubResource("AnimationNodeStateMachineTransition_a0ad8"), "Attack_Thrust_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_7j68x"), "Attack_Thrust_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_pbiku"), "Attack_Thrust_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_twkkv"), "Attack_Heavy_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_nmvn6"), "Attack_Heavy_FullCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_ghtdf"), "Attack_Heavy_FullCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_8w7tu"), "Attack_Heavy_Charging", "Attack_Heavy_FullCharge", SubResource("AnimationNodeStateMachineTransition_5uixu"), "Attack_Thrust_Charging", "Attack_Thrust_FullCharge", SubResource("AnimationNodeStateMachineTransition_3d7kt"), "Attack_Thrust_FullCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_01576"), "Attack_Thrust_FullCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_80ut2"), "Attack_Thrust_FullCharge", "Attack_Heavy_FullCharge", SubResource("AnimationNodeStateMachineTransition_b2y75"), "Attack_Heavy_FullCharge", "Attack_Thrust_FullCharge", SubResource("AnimationNodeStateMachineTransition_yftfx")]
-graph_offset = Vector2(-200.341, -65.041)
+transitions = ["Start", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_LightRight_WindUp", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_LightRight_WindUp", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Heavy_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_biy3r"), "Attack_LightLeft_WindUp", "Attack_LightLeft_Active", SubResource("AnimationNodeStateMachineTransition_cyvjb"), "Attack_LightLeft_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_msixp"), "Attack_LightRight_WindDown_1", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_4jah7"), "Attack_LightLeft_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2kh8l"), "Attack_Heavy_HoldCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_wufvn"), "Attack_Heavy_Active", "Attack_Heavy_WindDown", SubResource("AnimationNodeStateMachineTransition_x5f6l"), "Attack_Heavy_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_e4gpj"), "Attack_LightRight_Active", "Attack_LightRight_FollowThrough", SubResource("AnimationNodeStateMachineTransition_cf1b0"), "Attack_LightRight_FollowThrough", "Attack_LightRight_WindDown_1", SubResource("AnimationNodeStateMachineTransition_hg0q3"), "Attack_LightRight_FollowThrough", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_uuxf6"), "Attack_LightLeft_Active", "Attack_LightLeft_FollowThrough", SubResource("AnimationNodeStateMachineTransition_3y1e4"), "Attack_LightLeft_FollowThrough", "Attack_LightLeft_WindDown", SubResource("AnimationNodeStateMachineTransition_eakdr"), "Attack_LightLeft_FollowThrough", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2k6ni"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindDown_2", SubResource("AnimationNodeStateMachineTransition_2l3fj"), "Attack_LightRight_WindDown_2", "End", SubResource("AnimationNodeStateMachineTransition_16k8i"), "Attack_LightRight_WindDown_2", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_tmqk6"), "Attack_LightRight_WindUp", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_1r6n5"), "Attack_Heavy_Charging", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_yqlu0"), "Attack_Thrust_Charging", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_ifmkw"), "Attack_Thrust_HoldCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_lq10a"), "Attack_Heavy_HoldCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_l0umt"), "Attack_Thrust_HoldCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_s34y7"), "Attack_Thrust_Active", "Attack_Thrust_WindDown", SubResource("AnimationNodeStateMachineTransition_a0ad8"), "Attack_Thrust_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_7j68x"), "Attack_Thrust_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_pbiku"), "Attack_Thrust_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_twkkv"), "Attack_Heavy_FullCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_ghtdf"), "Attack_Heavy_FullCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_8w7tu"), "Attack_Heavy_Charging", "Attack_Heavy_FullCharge", SubResource("AnimationNodeStateMachineTransition_5uixu"), "Attack_Thrust_Charging", "Attack_Thrust_FullCharge", SubResource("AnimationNodeStateMachineTransition_3d7kt"), "Attack_Thrust_FullCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_01576"), "Attack_Thrust_FullCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_80ut2"), "Attack_Thrust_FullCharge", "Attack_Heavy_FullCharge", SubResource("AnimationNodeStateMachineTransition_b2y75"), "Attack_Heavy_FullCharge", "Attack_Thrust_FullCharge", SubResource("AnimationNodeStateMachineTransition_yftfx"), "Attack_Heavy_WindDown", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_gwq8y"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_athr0"), "Attack_LightLeft_WindDown", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_rapom"), "Attack_LightRight_WindDown_1", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_ymdqc"), "Attack_LightRight_WindDown_2", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_3btg1")]
+graph_offset = Vector2(-99.341, -159.041)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3gsh"]
 animation = &"Idle"

@@ -3,6 +3,9 @@ extends Node2D
 
 @export var debugEnabled:bool = false
 @export var enabled:bool = true
+
+@onready var parentPlayer:Node2D = get_parent().get_parent()
+
 var pressed:bool = false
 var justPressed:bool = false
 var pressing:bool = false
@@ -18,7 +21,8 @@ var maxLength:float = 400 #The max length that you can drag, anything more is ig
 var dirUpdateThreshold:float = 10 #The max length you can drag before direction info starts updating
 var dragThreshold:float = 80 #The max length that you can drag that will count as a tap
 							 #before converting to a drag
-var heldTreshold:float = 0.2 #Time before "held" trigger fires, if not dragging
+var heldThreshold:float = 0.2 #Time before "held" trigger fires, if not dragging
+var dragHeldThresholdBonus:float = 0.15 #Additional time before "held" trigger fires, if dragging
 var heldFired:bool = false #Prevent echoing held
 var characterInputUI:CharacterInputUI
 var inputDebugUI:InputDebugUI
@@ -90,7 +94,7 @@ func _process(delta:float) -> void:
 		holdTime = 0
 		heldFired = false
 
-	if(holdTime >= heldTreshold && !heldFired):
+	if(holdTime >= heldThreshold + GetDragHeldThresholdBonus() && !heldFired):
 		held_triggered.emit()
 		heldFired = true
 	
@@ -107,19 +111,26 @@ func _process(delta:float) -> void:
 
 func is_dragging() -> bool:
 	return pressing && (startPos - currPos).length_squared() > dragThreshold * dragThreshold
+	#return pressing && (startPos - currPos).length() > dragThreshold
+	
+
+func GetDragHeldThresholdBonus() -> float:
+	if(is_dragging()):
+		return dragHeldThresholdBonus
+	return 0
 
 
 func UpdateCharacterInputUI() -> void:
 	if(justPressed):
 		characterInputUI = CharacterInputUI.new()
 		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold)
-		get_parent().get_parent().add_child(characterInputUI)
+		parentPlayer.add_child(characterInputUI)
 		characterInputUI.position = Vector2.ZERO
 	elif(characterInputUI != null):
 		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold)
 	if(released):
-		characterInputUI.top_level = true
-		characterInputUI.global_transform = (get_parent().get_parent() as Node2D).global_transform
+		characterInputUI.Detach()
+		characterInputUI.global_transform = parentPlayer.global_transform
 		characterInputUI = null
 
 

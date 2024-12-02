@@ -12,6 +12,7 @@ func _input(event:InputEvent) -> void:
 		return
 	if(event is InputEventMouseButton):
 		GameStateManager.SceneChange(GameStateManager.SceneType.MainMenu)
+		GameStateManager.StopFade()
 
 
 func boot_splash_finished(_pAnimName:String) -> void:

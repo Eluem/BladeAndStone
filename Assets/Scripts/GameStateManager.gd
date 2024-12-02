@@ -131,6 +131,7 @@ func ProcessFadeTransition(pDelta:float) -> void:
 
 
 func StopFade() -> void:
+	fading = 0
 	fadeAmount = 0
 	fadeBlackness.color.a = 0
 

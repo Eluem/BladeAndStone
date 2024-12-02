@@ -13,6 +13,8 @@ var inputHandler:CharacterInputHandler
 
 var tappedMaxBufferTime:float = 0.35
 var tappedBufferTime:float = 0
+var draggedMaxBufferTime:float = 0.35
+var draggedBufferTime:float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,6 +37,11 @@ func HandleBufferTimers(delta:float) -> void:
 		if(tappedBufferTime > tappedMaxBufferTime):
 			tapped = false
 			tappedBufferTime = 0
+	if(dragged):
+		draggedBufferTime += delta
+		if(draggedBufferTime > draggedMaxBufferTime):
+			dragged = false
+			draggedBufferTime = 0
 
 
 func JumpToIdle() -> void:
