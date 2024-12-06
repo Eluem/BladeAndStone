@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="SlingShotExperiments"
+config/name="BladeAndStone"
 run/main_scene="res://Assets/GameScenes/BootSplash.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -24,6 +24,7 @@ GameStateManager="*res://Assets/Scripts/GameStateManager.gd"
 CanvasManagerScene="*res://Assets/GameScenes/CanvasManagerScene.tscn"
 DebugInfo="*res://Assets/Scripts/DebugInfo.gd"
 StatTracker="*res://Assets/Scripts/StatTracker.gd"
+DebugManager="*res://Assets/Scripts/DebugTools/DebugManager.gd"
 
 [debug]
 

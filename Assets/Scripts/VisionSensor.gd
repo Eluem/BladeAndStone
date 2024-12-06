@@ -3,6 +3,8 @@ class_name VisionSensor
 
 signal object_detected(pBody:Node2D)
 
+var ignoreLineOfSight:bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,7 +21,7 @@ func scan_vision() -> void:
 	var spaceState:PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	for body in bodies:
 		if(body is Golem):
-			if(RaycastHelper.CheckLineOfSight(spaceState, global_position, body)):
+			if(ignoreLineOfSight || RaycastHelper.CheckLineOfSight(spaceState, global_position, body)):
 				object_detected.emit(body)
 			#var query:PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(global_position, body.global_position)
 			#var results:Array[Dictionary]

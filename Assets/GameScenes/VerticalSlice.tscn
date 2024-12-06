@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://dnrormugsubpb"]
+[gd_scene load_steps=93 format=4 uid="uid://dnrormugsubpb"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BossFightManager.gd" id="1_s177x"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_o75yw"]
@@ -43,6 +43,8 @@
 [ext_resource type="PackedScene" uid="uid://ouyrxptl688w" path="res://Assets/ObjectScenes/Enemies/BossEnemyRamBeam.tscn" id="30_esg27"]
 [ext_resource type="PackedScene" uid="uid://caterry5ptusm" path="res://Assets/ObjectScenes/Items/SmallGem.tscn" id="34_qayb0"]
 [ext_resource type="PackedScene" uid="uid://bm02n2el0n7si" path="res://Assets/ObjectScenes/Items/BossKey.tscn" id="35_bbatl"]
+[ext_resource type="PackedScene" uid="uid://dvml8ovnrwuh1" path="res://Assets/ObjectScenes/Items/LargeGem.tscn" id="44_1bnax"]
+[ext_resource type="Texture2D" uid="uid://hkkgfke8rb12" path="res://Assets/Art/Items/BossHeart.png" id="45_fuupy"]
 
 [sub_resource type="Animation" id="Animation_y0nuj"]
 resource_name = "BossIntro"
@@ -9042,19 +9044,27 @@ position = Vector2(3640, 1500)
 position = Vector2(-94, -4026)
 
 [node name="SmallGem" parent="Consumables" instance=ExtResource("34_qayb0")]
-position = Vector2(-895, -1145)
+position = Vector2(-1060, -1190)
 
 [node name="SmallGem2" parent="Consumables" instance=ExtResource("34_qayb0")]
-position = Vector2(-679, -961)
+position = Vector2(-841, -1043)
 
 [node name="SmallGem3" parent="Consumables" instance=ExtResource("34_qayb0")]
-position = Vector2(-463, -656)
+position = Vector2(-638, -840)
 
 [node name="SmallGem4" parent="Consumables" instance=ExtResource("34_qayb0")]
-position = Vector2(-317, -319)
+position = Vector2(-456, -655)
 
 [node name="SmallGem5" parent="Consumables" instance=ExtResource("34_qayb0")]
-position = Vector2(-317, -319)
+position = Vector2(-287, -488)
+
+[node name="LargeGem" parent="." instance=ExtResource("44_1bnax")]
+position = Vector2(135, -246)
+
+[node name="BossHeart" type="Sprite2D" parent="."]
+position = Vector2(124, -7233)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("45_fuupy")
 
 [editable path="Environment/WoodsArea/DestructibleWall"]
 [editable path="Environment/WoodsArea/DestructibleWall2"]

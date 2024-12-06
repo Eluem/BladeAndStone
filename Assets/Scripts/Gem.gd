@@ -15,6 +15,7 @@ enum GemType
 
 @onready var pickUpArea:Area2D = $PickUpArea
 @onready var autoAttractArea:VisionSensor = $AutoAttractArea
+@onready var autoAttractAreaShape:CollisionShape2D = $AutoAttractArea/CollisionShape2D
 @onready var physicsCollisionShape:CollisionShape2D = $PhysicsCollisionShape
 @onready var pidControllerJoint:PIDControllerJoint2D = $PIDControllerJoint2D
 
@@ -26,7 +27,7 @@ enum GemType
 	set(pValue):
 		canAttract = pValue
 		if(is_node_ready()):
-			SyncAutoAttractAreaMintorMode()
+			SyncAutoAttractAreaMonitorMode()
 @export var attractForce:float = 800
 @export var autoAttractDelay:float
 
@@ -42,7 +43,7 @@ func _ready() -> void:
 	gem_collected.connect(StatTracker.gem_collected)
 	pickUpArea.body_entered.connect(pick_up_area_entered)
 	autoAttractArea.object_detected.connect(auto_attract_area_enter)
-	SyncAutoAttractAreaMintorMode()
+	SyncAutoAttractAreaMonitorMode()
 
 
 func _process(delta:float) -> void:
@@ -54,7 +55,7 @@ func _physics_process(_delta:float) -> void:
 		apply_central_force(global_position.direction_to(pickUpPlayer.global_position) * attractForce)
 
 
-static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType) -> void:
+static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadiusOverride:float = -1, pAttractIgnoreLineOfSight:bool = false) -> void:
 	var currentScene:Node = pSpawner.get_tree().current_scene
 	var gems:Array[Gem] = []
 	match pType:
@@ -78,6 +79,9 @@ static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType) -> void:
 		gems[i].global_position = pSpawner.global_position
 		gems[i].autoAttractDelay = 2
 		currentScene.add_child(gems[i])
+		if(pAttractRadiusOverride >= 0):
+			(gems[i].autoAttractAreaShape.shape as CircleShape2D).radius = pAttractRadiusOverride
+		gems[i].autoAttractArea.ignoreLineOfSight = pAttractIgnoreLineOfSight
 
 
 static func GetRandomForce(pType:GemType) -> float:
@@ -93,10 +97,10 @@ func HandleAutoAttractDelay(pDelta:float) -> void:
 	if(canAttract && autoAttractDelay > 0):
 		autoAttractDelay -= pDelta
 		if(autoAttractDelay <= 0):
-			SyncAutoAttractAreaMintorMode()
+			SyncAutoAttractAreaMonitorMode()
 
 
-func SyncAutoAttractAreaMintorMode() -> void:
+func SyncAutoAttractAreaMonitorMode() -> void:
 	autoAttractArea.monitoring = canAttract && pickUpPlayer == null && autoAttractDelay <= 0
 
 
@@ -124,5 +128,4 @@ func auto_attract_area_enter(pBody:Node2D) -> void:
 func pick_up_player_destroyed() -> void:
 	pickUpPlayer = null
 	physicsCollisionShape.disabled = false
-	if(canAttract):
-		autoAttractArea.monitoring = true
+	SyncAutoAttractAreaMonitorMode()

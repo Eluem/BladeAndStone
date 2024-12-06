@@ -107,8 +107,14 @@ func Die(pHitOwner:Node2D, pDir:Vector2, pForce:float) -> void:
 		if(viewportNode == null):
 			viewportNode = get_node((mainSprite.texture as ViewportTexture).viewport_path)
 		viewportNode.reparent(chunks[0])
-	Gem.LaunchGems(self, smallGemValue, Gem.GemType.Small)
-	Gem.LaunchGems(self, largeGemValue, Gem.GemType.Large)
+	
+	var gemAttractRadiusOverride:float = -1
+	var attractIgnoreLineOfSlight:bool = false
+	if(pHitOwner is Golem):
+		gemAttractRadiusOverride = 1000
+		attractIgnoreLineOfSlight = true
+	Gem.LaunchGems(self, smallGemValue, Gem.GemType.Small, gemAttractRadiusOverride, attractIgnoreLineOfSlight)
+	Gem.LaunchGems(self, largeGemValue, Gem.GemType.Large, gemAttractRadiusOverride, attractIgnoreLineOfSlight)
 	exploded.emit(chunks, pHitOwner)
 	PlayDeathSFX()
 	queue_free()

@@ -1,18 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://caterry5ptusm"]
+[gd_scene load_steps=12 format=3 uid="uid://bquibl4sumre2"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Gem.gd" id="1_4lir2"]
-[ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="2_g48jy"]
-[ext_resource type="Script" path="res://Assets/Scripts/Helpers/PIDControllerJoint.gd" id="2_iv4v4"]
-[ext_resource type="Script" path="res://Assets/Scripts/SlowSpin.gd" id="3_taunh"]
-[ext_resource type="Texture2D" uid="uid://cipdxoidxg64a" path="res://Assets/Art/Items/SmallGem.png" id="4_bce00"]
-[ext_resource type="Script" path="res://Assets/Scripts/PulseColor.gd" id="4_hi5cn"]
+[ext_resource type="Script" path="res://Assets/Scripts/BossHeart.gd" id="1_pw77e"]
+[ext_resource type="Script" path="res://Assets/Scripts/Helpers/PIDControllerJoint.gd" id="2_vitgn"]
+[ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="3_ldwj1"]
+[ext_resource type="Script" path="res://Assets/Scripts/SlowSpin.gd" id="3_qaavf"]
+[ext_resource type="Script" path="res://Assets/Scripts/PulseColor.gd" id="4_d5caa"]
+[ext_resource type="Texture2D" uid="uid://hkkgfke8rb12" path="res://Assets/Art/Items/BossHeart.png" id="4_dkc6g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pagth"]
 radius = 15.0333
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ugpkg"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rymsh"]
 resource_local_to_scene = true
-radius = 20.0
+radius = 74.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twypt"]
 resource_local_to_scene = true
@@ -27,15 +27,13 @@ gradient = SubResource("Gradient_opurg")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="SmallGem" type="RigidBody2D"]
-position = Vector2(1136, -2856)
+[node name="BossHeart" type="RigidBody2D"]
 collision_layer = 16
 collision_mask = 16
-script = ExtResource("1_4lir2")
-canAttract = true
+script = ExtResource("1_pw77e")
 
 [node name="PIDControllerJoint2D" type="Node2D" parent="."]
-script = ExtResource("2_iv4v4")
+script = ExtResource("2_vitgn")
 onlyTrackNode = true
 disableInDist = false
 
@@ -45,19 +43,18 @@ shape = SubResource("CircleShape2D_pagth")
 [node name="PickUpArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
-shape = SubResource("CircleShape2D_ugpkg")
+shape = SubResource("CircleShape2D_rymsh")
 
 [node name="AutoAttractArea" type="Area2D" parent="."]
-script = ExtResource("2_g48jy")
+script = ExtResource("3_ldwj1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttractArea"]
 shape = SubResource("CircleShape2D_twypt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0.854902, 1, 1)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("4_bce00")
-script = ExtResource("3_taunh")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_dkc6g")
+script = ExtResource("3_qaavf")
 
 [node name="Shadow" type="Polygon2D" parent="Sprite2D"]
 z_index = -1
@@ -73,6 +70,6 @@ color = Color(0.855, 0.161, 0.161, 0.4)
 texture = SubResource("GradientTexture2D_hl7ol")
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 uv = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
-script = ExtResource("4_hi5cn")
+script = ExtResource("4_d5caa")
 pulseRate = 0.4
 pulseRange = Vector2(0, 0.4)
