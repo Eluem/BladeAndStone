@@ -16,6 +16,7 @@ enum AlignmentDirection
 @export var forceTipAlignment:bool = true
 @export var forceTipAlignmentLength:float = 10
 @export var forceTipAlignmentDirection:AlignmentDirection
+@export var trackingEnabled:bool = true
 @export var debugMode:bool = false
 var forcedPoint:bool
 var queue:Array[Vector2]
@@ -33,13 +34,14 @@ func _process(_delta:float) -> void:
 		queue_redraw()
 
 func UpdateQueue() -> void:
-	var newPoint:Vector2 = get_new_position()
-	if(forceTipAlignment):
-		if(forcedPoint):
-			queue.remove_at(1)
-		queue.push_front(get_new_forced_alignment_position())
-		forcedPoint = true
-	queue.push_front(newPoint)
+	if(trackingEnabled):
+		var newPoint:Vector2 = get_new_position()
+		if(forceTipAlignment):
+			if(forcedPoint):
+				queue.remove_at(1)
+			queue.push_front(get_new_forced_alignment_position())
+			forcedPoint = true
+		queue.push_front(newPoint)
  	
 	var i:int = 0
 	while(queue.size() > MAX_LENGTH && i < maxRemovePerFrame):
@@ -80,5 +82,20 @@ func _draw() -> void:
 		return
 	if(queue.size() < 2):
 		return
+	var perpLinePoint1:Vector2
+	var perpLinePoint2:Vector2
+	var vect:Vector2
+	var midPoint:Vector2
+	var perpVect:Vector2
 	for i in range(queue.size()-1, 0, -1):
+		vect = (queue[i] - queue[i-1])
+		midPoint = vect / 2 + queue[i-1]
+		perpVect.x = -vect.y
+		perpVect.y = vect.x
+		perpVect = perpVect.normalized() * 50
+		perpLinePoint1 = midPoint + perpVect
+		perpLinePoint2 = midPoint - perpVect
 		draw_line(queue[i], queue[i-1], Color.BLUE)
+		draw_line(midPoint, perpLinePoint1, Color.ORANGE)
+		draw_line(midPoint, perpLinePoint2, Color.RED)
+		#draw_circle(perpVect1, 2, Color.ORANGE, true)

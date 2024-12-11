@@ -14,9 +14,9 @@ radius = 15.0333
 resource_local_to_scene = true
 radius = 74.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_twypt"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pov6i"]
 resource_local_to_scene = true
-radius = 219.037
+radius = 10000.0
 
 [sub_resource type="Gradient" id="Gradient_opurg"]
 offsets = PackedFloat32Array(0, 0.58011)
@@ -28,9 +28,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="BossHeart" type="RigidBody2D"]
-collision_layer = 16
-collision_mask = 16
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_pw77e")
+autoAttractDelay = 10.0
 
 [node name="PIDControllerJoint2D" type="Node2D" parent="."]
 script = ExtResource("2_vitgn")
@@ -39,17 +40,23 @@ disableInDist = false
 
 [node name="PhysicsCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pagth")
+disabled = true
 
 [node name="PickUpArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
 shape = SubResource("CircleShape2D_rymsh")
 
 [node name="AutoAttractArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
 script = ExtResource("3_ldwj1")
+ignoreLineOfSight = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttractArea"]
-shape = SubResource("CircleShape2D_twypt")
+shape = SubResource("CircleShape2D_pov6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)

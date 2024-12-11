@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://hra3xbr4fmql"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/TrailShader.gdshader" id="1_hsdu3"]
+
+[resource]
+shader = ExtResource("1_hsdu3")

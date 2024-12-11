@@ -1,4 +1,6 @@
 Node2D
+Polygon2D
+Line2D
 Node
 AudioStreamPlayer2D
 AudioStreamPlayer
@@ -10,5 +12,3 @@ Label
 PIDControllerJoint2D
 Area2D
 CollisionShape2D
-RigidBody2D
-VBoxContainer

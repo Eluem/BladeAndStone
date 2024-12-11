@@ -3,7 +3,7 @@ class_name VisionSensor
 
 signal object_detected(pBody:Node2D)
 
-var ignoreLineOfSight:bool = false
+@export var ignoreLineOfSight:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

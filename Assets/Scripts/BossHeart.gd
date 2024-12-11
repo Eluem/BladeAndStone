@@ -4,7 +4,7 @@ class_name BossHeart
 const GEM_PICKUP_SFX = preload("res://Assets/Audio/GemPickup.wav")
 const BOSS_HEART = preload("res://Assets/ObjectScenes/Items/BossHeart.tscn")
 
-signal boss_heart_collected(pValue:int)
+signal boss_heart_collected(pPickUpPlayer:Golem)
 
 @onready var pickUpArea:Area2D = $PickUpArea
 @onready var autoAttractArea:VisionSensor = $AutoAttractArea
@@ -24,9 +24,9 @@ var pickUpPlayer:Golem:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	boss_heart_collected.connect(StatTracker.gem_collected.bind(0))
 	pickUpArea.body_entered.connect(pick_up_area_entered)
 	autoAttractArea.object_detected.connect(auto_attract_area_enter)
+	SpawnConnectedGems()
 	SyncAutoAttractAreaMonitorMode()
 
 
@@ -55,15 +55,20 @@ func SyncAutoAttractAreaMonitorMode() -> void:
 	autoAttractArea.monitoring = pickUpPlayer == null && autoAttractDelay <= 0
 
 
-func Collected() -> void:
+func Collected(pPickUpPlayer:Golem) -> void:
 	GameStateManager.PlaySFX(global_position, GEM_PICKUP_SFX)
-	boss_heart_collected.emit(value)
+	boss_heart_collected.emit(pPickUpPlayer)
+
+
+func SpawnConnectedGems() -> void:
+	Gem.LaunchGems(self, 20, Gem.GemType.Small, 0, true, false, 0, 4)
+	Gem.LaunchGems(self, 5, Gem.GemType.Large, 0, true, false, 0, 4)
 
 
 func pick_up_area_entered(pBody:Node2D) -> void:
 	if(pBody is not Golem):
 		return
-	Collected()
+	Collected(pBody as Golem)
 	queue_free()
 
 

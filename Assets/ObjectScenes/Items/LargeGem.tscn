@@ -12,7 +12,7 @@ radius = 15.0333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mnd3d"]
 resource_local_to_scene = true
-radius = 42.0
+radius = 29.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_twypt"]
 resource_local_to_scene = true
@@ -28,9 +28,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="LargeGem" type="RigidBody2D"]
-collision_layer = 16
+collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_bw28t")
+value = 5
 canAttract = true
 
 [node name="PIDControllerJoint2D" type="Node2D" parent="."]
@@ -42,11 +43,15 @@ disableInDist = false
 shape = SubResource("CircleShape2D_pagth")
 
 [node name="PickUpArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
 shape = SubResource("CircleShape2D_mnd3d")
 
 [node name="AutoAttractArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
 script = ExtResource("2_vxi8p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttractArea"]
@@ -54,7 +59,7 @@ shape = SubResource("CircleShape2D_twypt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.623529, 0, 0.756863, 1)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("4_id5oj")
 script = ExtResource("3_1j0yt")
 

@@ -55,7 +55,7 @@ func _physics_process(_delta:float) -> void:
 		apply_central_force(global_position.direction_to(pickUpPlayer.global_position) * attractForce)
 
 
-static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadiusOverride:float = -1, pAttractIgnoreLineOfSight:bool = false) -> void:
+static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadiusOverride:float = -1, pAttractIgnoreLineOfSight:bool = false, pCanAttract:bool = true, pAutoAttractDelay:float = 2, pForceMultiplier:float = 1) -> void:
 	var currentScene:Node = pSpawner.get_tree().current_scene
 	var gems:Array[Gem] = []
 	match pType:
@@ -73,23 +73,25 @@ static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadius
 	
 	for i in range(pGems):
 		currLaunchAngle = initialAngle + radialIncrement * i
-		launchVector = Vector2.from_angle(currLaunchAngle) * GetRandomForce(pType)
-		gems[i].canAttract = true
+		launchVector = Vector2.from_angle(currLaunchAngle) * GetRandomForce(pType, pForceMultiplier)
+		gems[i].canAttract = pCanAttract
 		gems[i].apply_central_impulse(launchVector)
 		gems[i].global_position = pSpawner.global_position
-		gems[i].autoAttractDelay = 2
+		gems[i].autoAttractDelay = pAutoAttractDelay
+		if(pSpawner is BossHeart):
+			(pSpawner as BossHeart).boss_heart_collected.connect(gems[i].auto_attract_area_enter)
 		currentScene.add_child(gems[i])
 		if(pAttractRadiusOverride >= 0):
 			(gems[i].autoAttractAreaShape.shape as CircleShape2D).radius = pAttractRadiusOverride
 		gems[i].autoAttractArea.ignoreLineOfSight = pAttractIgnoreLineOfSight
 
 
-static func GetRandomForce(pType:GemType) -> float:
+static func GetRandomForce(pType:GemType, pForceMultiplier:float = 1) -> float:
 	match pType:
 		GemType.Small:
-			return randf_range(200, 400)
+			return randf_range(200, 400) * pForceMultiplier
 		GemType.Large:
-			return randf_range(100, 200)
+			return randf_range(100, 200) * pForceMultiplier
 	return 0
 
 
@@ -121,7 +123,7 @@ func auto_attract_area_enter(pBody:Node2D) -> void:
 		return
 	pBody.tree_exited.connect(pick_up_player_destroyed)
 	pickUpPlayer = pBody
-	physicsCollisionShape.disabled = true
+	physicsCollisionShape.set_deferred("disabled", true)
 	autoAttractArea.monitoring = false
 
 

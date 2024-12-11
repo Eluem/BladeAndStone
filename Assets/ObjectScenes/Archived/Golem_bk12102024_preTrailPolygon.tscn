@@ -1,26 +1,25 @@
-[gd_scene load_steps=118 format=3 uid="uid://bduaw211b10ea"]
+[gd_scene load_steps=117 format=3 uid="uid://6t1yq5dl2yl"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="1_tsbc7"]
-[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_2bl6p"]
-[ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="2_6q84m"]
-[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/Creature_Hurt2.wav" id="3_26qmk"]
-[ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="3_drva7"]
-[ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="4_emk4k"]
-[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/Characters/BasicSwordTest.png" id="5_g7rrp"]
-[ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="6_5cw8i"]
-[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Characters/Golem_Mask_12302023.png" id="7_w3f5p"]
-[ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="8_3sa48"]
-[ext_resource type="Material" uid="uid://hra3xbr4fmql" path="res://Assets/Shaders/WeaponTrailMaterial.tres" id="9_iww08"]
-[ext_resource type="AudioStream" uid="uid://ormcae7omynq" path="res://Assets/Audio/Golem_SwordHitLight.wav" id="9_sgiq4"]
-[ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="9_yq2nt"]
-[ext_resource type="AudioStream" uid="uid://di2lf8rb26v1x" path="res://Assets/Audio/Golem_ChargeComplete.wav" id="10_wbpnk"]
-[ext_resource type="AudioStream" uid="uid://mpwix62b2sr6" path="res://Assets/Audio/Golem_ChargeHold.wav" id="11_fkgcm"]
-[ext_resource type="Script" path="res://Assets/Scripts/Trail_Polygon.gd" id="11_yd22c"]
-[ext_resource type="AudioStream" uid="uid://dvuqxotdpxldw" path="res://Assets/Audio/Golem_ChargeUp.wav" id="12_jelbc"]
-[ext_resource type="AudioStream" uid="uid://cu5oana156ni3" path="res://Assets/Audio/Golem_SwordActiveHeavy.wav" id="13_gjx1i"]
-[ext_resource type="AudioStream" uid="uid://dj5ce45h3bd4b" path="res://Assets/Audio/Golem_SwordActiveLight.wav" id="14_f4l45"]
-[ext_resource type="AudioStream" uid="uid://cguwyo1i1303n" path="res://Assets/Audio/Golem_SwordActiveThrust.wav" id="15_hs5mr"]
-[ext_resource type="AudioStream" uid="uid://dqup877qol7vj" path="res://Assets/Audio/Golem_WindUp.wav" id="16_iisgj"]
+[ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="1_5rian"]
+[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_wow7r"]
+[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/Creature_Hurt2.wav" id="3_mpqdj"]
+[ext_resource type="AudioStream" uid="uid://dvuqxotdpxldw" path="res://Assets/Audio/Golem_ChargeUp.wav" id="4_4465c"]
+[ext_resource type="AudioStream" uid="uid://mpwix62b2sr6" path="res://Assets/Audio/Golem_ChargeHold.wav" id="5_v3b4a"]
+[ext_resource type="AudioStream" uid="uid://dqup877qol7vj" path="res://Assets/Audio/Golem_WindUp.wav" id="6_vman7"]
+[ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="7_30gia"]
+[ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="8_bfc5t"]
+[ext_resource type="Material" uid="uid://hra3xbr4fmql" path="res://Assets/Shaders/WeaponTrailMaterial.tres" id="9_vvixh"]
+[ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="10_85j05"]
+[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/Characters/BasicSwordTest.png" id="11_g5ucr"]
+[ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="12_h7njf"]
+[ext_resource type="AudioStream" uid="uid://ormcae7omynq" path="res://Assets/Audio/Golem_SwordHitLight.wav" id="13_ekanb"]
+[ext_resource type="AudioStream" uid="uid://di2lf8rb26v1x" path="res://Assets/Audio/Golem_ChargeComplete.wav" id="14_hkff6"]
+[ext_resource type="AudioStream" uid="uid://cu5oana156ni3" path="res://Assets/Audio/Golem_SwordActiveHeavy.wav" id="15_81i5k"]
+[ext_resource type="AudioStream" uid="uid://dj5ce45h3bd4b" path="res://Assets/Audio/Golem_SwordActiveLight.wav" id="16_8nxf0"]
+[ext_resource type="AudioStream" uid="uid://cguwyo1i1303n" path="res://Assets/Audio/Golem_SwordActiveThrust.wav" id="17_u18ro"]
+[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Characters/Golem_Mask_12302023.png" id="18_fxafb"]
+[ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="19_x68qf"]
+[ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="20_b8coc"]
 
 [sub_resource type="Animation" id="Animation_17ds7"]
 resource_name = "Attack_Heavy_Active"
@@ -220,7 +219,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_jelbc")
+"stream": ExtResource("4_4465c")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -368,7 +367,7 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_fkgcm")
+"stream": ExtResource("5_v3b4a")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -717,7 +716,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("16_iisgj")
+"stream": ExtResource("6_vman7")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -1068,7 +1067,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("16_iisgj")
+"stream": ExtResource("6_vman7")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -1454,7 +1453,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_jelbc")
+"stream": ExtResource("4_4465c")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -1602,7 +1601,7 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_fkgcm")
+"stream": ExtResource("5_v3b4a")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -2471,8 +2470,8 @@ continuous_cd = 2
 linear_damp_mode = 1
 linear_damp = 3.0
 angular_damp = 10.0
-script = ExtResource("1_tsbc7")
-hurtSFX = Array[AudioStream]([ExtResource("2_2bl6p"), ExtResource("3_26qmk")])
+script = ExtResource("1_5rian")
+hurtSFX = Array[AudioStream]([ExtResource("2_wow7r"), ExtResource("3_mpqdj")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -2482,10 +2481,10 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_vv4ts")
 anim_player = NodePath("../AnimationPlayer")
-script = ExtResource("2_6q84m")
+script = ExtResource("7_30gia")
 
 [node name="InputHandler" type="Node2D" parent="AnimationTree"]
-script = ExtResource("3_drva7")
+script = ExtResource("8_bfc5t")
 
 [node name="Weapon" type="Node2D" parent="."]
 position = Vector2(52, 64)
@@ -2494,20 +2493,25 @@ rotation = 2.672
 [node name="SlashTrailTarget" type="Node2D" parent="Weapon"]
 position = Vector2(145, 0)
 
-[node name="LightTrail" type="Node2D" parent="Weapon/SlashTrailTarget"]
-material = ExtResource("9_iww08")
+[node name="LightTrail" type="Line2D" parent="Weapon/SlashTrailTarget"]
+material = ExtResource("9_vvixh")
 position = Vector2(1.52588e-05, 7.62939e-06)
-script = ExtResource("11_yd22c")
-color = Color(0.588235, 0.690196, 0.972549, 0.227451)
 width = 180.0
-widthCurve = SubResource("Curve_85ku3")
+width_curve = SubResource("Curve_85ku3")
+default_color = Color(0.588235, 0.690196, 0.972549, 0.227451)
+script = ExtResource("10_85j05")
+forceTipAlignmentLength = 1.0
+forceTipAlignmentDirection = 3
 
-[node name="HeavyTrail" type="Node2D" parent="Weapon/SlashTrailTarget"]
+[node name="HeavyTrail" type="Line2D" parent="Weapon/SlashTrailTarget"]
+material = ExtResource("9_vvixh")
 position = Vector2(1.52588e-05, 7.62939e-06)
-script = ExtResource("11_yd22c")
-color = Color(0.862745, 0.0784314, 0.0784314, 0.235294)
 width = 180.0
-widthCurve = SubResource("Curve_85ku3")
+width_curve = SubResource("Curve_85ku3")
+default_color = Color(0.862745, 0.0784314, 0.0784314, 0.235294)
+script = ExtResource("10_85j05")
+forceTipAlignmentLength = 1.0
+forceTipAlignmentDirection = 3
 
 [node name="ThrustTrailTarget" type="Node2D" parent="Weapon"]
 position = Vector2(275, 0)
@@ -2516,14 +2520,14 @@ position = Vector2(275, 0)
 width = 180.0
 width_curve = SubResource("Curve_qb5rn")
 default_color = Color(0.592157, 0.0784314, 1, 0.352941)
-script = ExtResource("4_emk4k")
+script = ExtResource("10_85j05")
 forceTipAlignment = false
 
 [node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
 position = Vector2(105.165, 0)
 rotation = 1.5708
 scale = Vector2(0.435, 0.551)
-texture = ExtResource("5_g7rrp")
+texture = ExtResource("11_g5ucr")
 
 [node name="HeavyAttackGlow" type="Line2D" parent="Weapon/WeaponSprite"]
 points = PackedVector2Array(0, 99, 0, -238.502, 0, -300)
@@ -2538,11 +2542,11 @@ width_curve = SubResource("Curve_tyhe4")
 default_color = Color(0.592157, 0.0784314, 1, 0)
 
 [node name="RaycastCollider" type="Node2D" parent="Weapon" node_paths=PackedStringArray("excludeCollision")]
-script = ExtResource("6_5cw8i")
+script = ExtResource("12_h7njf")
 excludeCollision = [NodePath("../..")]
 weaponDamage = 0
 weaponKnockback = 0.0
-hitSFX = Array[AudioStream]([ExtResource("9_sgiq4")])
+hitSFX = Array[AudioStream]([ExtResource("13_ekanb")])
 
 [node name="RaycastNode" type="Node2D" parent="Weapon/RaycastCollider"]
 position = Vector2(-60, 0)
@@ -2603,7 +2607,7 @@ bus = &"SFX"
 [node name="ChargeCompleteSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 position = Vector2(17.4452, 80.5934)
 rotation = -2.67315
-stream = ExtResource("10_wbpnk")
+stream = ExtResource("14_hkff6")
 bus = &"SFX"
 
 [node name="WeaponActionSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
@@ -2614,37 +2618,37 @@ bus = &"SFX"
 [node name="ChargeHoldSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 position = Vector2(17.4452, 80.5934)
 rotation = -2.67315
-stream = ExtResource("11_fkgcm")
+stream = ExtResource("5_v3b4a")
 bus = &"SFX"
 
 [node name="ChargeUpSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 position = Vector2(17.4452, 80.5934)
 rotation = -2.67315
-stream = ExtResource("12_jelbc")
+stream = ExtResource("4_4465c")
 bus = &"SFX"
 
 [node name="SwordActiveHeavySFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 position = Vector2(17.4452, 80.5934)
 rotation = -2.67315
-stream = ExtResource("13_gjx1i")
+stream = ExtResource("15_81i5k")
 bus = &"SFX"
 
 [node name="SwordActiveLightSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 position = Vector2(17.4452, 80.5934)
 rotation = -2.67315
-stream = ExtResource("14_f4l45")
+stream = ExtResource("16_8nxf0")
 bus = &"SFX"
 
 [node name="SwordActiveThrustSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 position = Vector2(17.4452, 80.5934)
 rotation = -2.67315
-stream = ExtResource("15_hs5mr")
+stream = ExtResource("17_u18ro")
 bus = &"SFX"
 
 [node name="WindUpSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 position = Vector2(17.4452, 80.5934)
 rotation = -2.67315
-stream = ExtResource("16_iisgj")
+stream = ExtResource("6_vman7")
 bus = &"SFX"
 
 [node name="MaskSpriteContainer" type="Node2D" parent="."]
@@ -2652,12 +2656,12 @@ bus = &"SFX"
 [node name="MaskSprite" type="Sprite2D" parent="MaskSpriteContainer" node_paths=PackedStringArray("spritePolygon")]
 rotation = -1.5708
 scale = Vector2(0.12, 0.1)
-texture = ExtResource("7_w3f5p")
-script = ExtResource("8_3sa48")
+texture = ExtResource("18_fxafb")
+script = ExtResource("19_x68qf")
 spritePolygon = NodePath("../../poly_sprite")
 
 [node name="Cracks" type="Node2D" parent="MaskSpriteContainer"]
-script = ExtResource("9_yq2nt")
+script = ExtResource("20_b8coc")
 widthRange = Vector2(0, 6)
 
 [node name="Crack" type="Line2D" parent="MaskSpriteContainer/Cracks"]
@@ -2738,7 +2742,7 @@ polygon = PackedVector2Array(0, 75, 20, 65, 34, 48, 39, 10, 51, -49, 44, -65, 16
 
 [node name="poly_sprite" type="Polygon2D" parent="."]
 visible = false
-texture = ExtResource("7_w3f5p")
+texture = ExtResource("18_fxafb")
 texture_offset = Vector2(64.8, 108.4)
 texture_scale = Vector2(8.33333, 10)
 polygon = PackedVector2Array(-13.92, -74.9, -14.88, -74.9, -15.72, -74.6, -16.08, -74.6, -17.28, -74, -17.52, -74, -17.88, -73.7, -18.12, -73.7, -19.68, -72.6, -19.92, -72.6, -20.16, -72.3, -20.4, -72.3, -22.68, -70.5, -22.92, -70.5, -26.4, -67.7, -26.4, -67.6, -26.64, -67.5, -26.88, -67.5, -27, -67.4, -27, -67.3, -28.2, -66.8, -28.2, -66.7, -30.6, -65.8, -30.6, -65.7, -31.56, -65.5, -33.6, -65.5, -34.44, -65.7, -34.44, -65.8, -35.76, -65.9, -35.76, -66, -37.08, -65.9, -37.92, -65.9, -38.52, -65.7, -38.88, -65.7, -40.32, -65.1, -40.56, -65.1, -41.64, -64.4, -41.88, -64.4, -42.12, -64.1, -42.36, -64.1, -43.8, -62.9, -43.92, -62.9, -43.92, -62.7, -44.64, -62.1, -44.76, -62.1, -44.76, -61.9, -45.24, -61.5, -45.36, -61.5, -45.36, -61.3, -45.84, -60.8, -45.96, -60.8, -45.96, -60.6, -46.08, -60.5, -46.2, -60.5, -47.16, -59.1, -47.28, -59.1, -48, -57.8, -48.12, -57.8, -48.12, -57.5, -48.6, -56.7, -48.72, -56.7, -49.32, -55.2, -49.44, -55.2, -50.04, -53.4, -50.16, -53.4, -51.12, -49.3, -51.12, -46.2, -50.88, -45.6, -50.88, -45.2, -50.52, -44.7, -50.52, -44.4, -49.44, -43.3, -49.44, -43.2, -49.2, -43.2, -48.84, -42.9, -48.84, -42.8, -47.88, -42.4, -47.88, -42.3, -45.6, -41.7, -45, -41.7, -44.76, -41.5, -44.64, -41.5, -44.64, -41.3, -43.44, -40, -43.32, -40, -42.84, -39.2, -42.72, -39.2, -42.48, -38.6, -42.36, -38.6, -41.88, -37.3, -41.76, -37.3, -41.64, -36.6, -41.52, -36.6, -41.28, -35.3, -41.16, -35.3, -40.92, -33.4, -40.92, -31.9, -41.28, -30.4, -41.28, -29.8, -41.64, -29.1, -41.64, -28.8, -42.12, -28.1, -42.12, -27.9, -42.6, -27.5, -42.6, -27.3, -43.2, -26.9, -43.2, -26.8, -43.44, -26.7, -43.68, -26.7, -45.12, -25.8, -45.12, -25.5, -44.52, -25.1, -43.8, -25.1, -43.68, -25, -43.68, -24.9, -43.44, -24.8, -43.2, -24.8, -42.6, -24.4, -42.36, -24.4, -41.88, -24, -41.76, -24, -42.48, -21.9, -42.6, -21.9, -42.72, -20.8, -42.84, -20.8, -42.84, -16, -42.84, -14.3, -42.72, -13.9, -42.6, -13.9, -42.48, -13.1, -42.48, -12.4, -41.76, -9.3, -41.76, -8.7, -40.8, -5.6, -40.8, -5.1, -40.68, -4.8, -40.56, -4.8, -40.2, -3.6, -40.2, -3.2, -39.24, -0.8, -39.24, -0.4, -38.04, 2.5, -38.04, 2.9, -36.36, 6.6, -36.24, 6.6, -36.48, 7.1, -36.48, 7.4, -36.72, 7.6, -36.72, 7.9, -37.2, 8.7, -37.32, 8.7, -37.32, 9, -37.8, 9.8, -37.8, 10.1, -38.16, 10.5, -38.16, 10.7, -38.4, 10.8, -38.4, 11.2, -34.68, 16.4, -34.56, 16.4, -34.56, 16.7, -34.44, 16.7, -34.44, 17.3, -34.68, 17.7, -34.8, 17.7, -34.92, 18.2, -35.04, 18.2, -35.16, 18.9, -35.28, 18.9, -35.52, 20.4, -35.64, 20.4, -36, 23.6, -36.12, 23.6, -36.12, 29.3, -35.76, 31.5, -35.76, 32.3, -35.52, 32.9, -35.52, 33.5, -34.8, 35.8, -34.8, 36.2, -34.32, 37.2, -34.32, 37.6, -33.12, 40.2, -33.12, 40.5, -31.44, 43.3, -31.44, 43.5, -31.32, 43.6, -31.2, 43.6, -31.2, 43.8, -30.48, 44.6, -30.36, 44.6, -30.24, 44.8, -30.24, 45, -30, 45.2, -29.88, 45.2, -29.76, 45.5, -29.64, 45.5, -29.76, 45.6, -29.76, 45.7, -30.36, 45.9, -30.36, 46, -31.56, 46.4, -31.56, 46.5, -32.88, 46.7, -33.12, 46.7, -33.24, 46.9, -33.24, 48.2, -32.76, 49.6, -32.76, 50, -32.04, 51.5, -32.04, 51.8, -31.68, 52.2, -31.68, 52.5, -31.08, 53.3, -31.08, 53.6, -30.84, 53.7, -30.84, 54, -30.6, 54.1, -30.6, 54.4, -30.48, 54.5, -30.36, 54.5, -29.88, 55.3, -29.88, 55.5, -29.76, 55.6, -29.64, 55.6, -29.52, 55.8, -29.52, 56, -29.16, 56.3, -29.16, 56.5, -28.32, 57.4, -28.32, 57.6, -27.72, 58.1, -27.72, 58.3, -27.48, 58.5, -27.36, 58.5, -27.36, 58.7, -26.28, 59.7, -26.28, 59.9, -25.44, 60.6, -25.44, 60.8, -20.88, 64.5, -20.88, 64.6, -20.64, 64.6, -19.56, 65.5, -19.56, 65.6, -19.32, 65.6, -18.72, 66.1, -18.72, 66.2, -18.48, 66.2, -18, 66.6, -18, 66.7, -17.76, 66.7, -17.28, 67.1, -17.28, 67.2, -17.04, 67.2, -16.56, 67.6, -16.56, 67.7, -16.32, 67.7, -15.96, 68, -15.96, 68.1, -15.72, 68.1, -14.88, 68.7, -14.88, 68.8, -14.64, 68.8, -12.72, 70, -12.72, 70.1, -12.48, 70.1, -12.36, 70.2, -12.36, 70.3, -11.28, 70.8, -11.28, 70.9, -11.04, 71, -10.8, 71, -10.68, 71.1, -10.68, 71.2, -9.6, 71.7, -9.6, 71.8, -8.4, 72.3, -8.4, 72.4, -5.4, 73.5, -5.4, 73.6, -3.48, 74.1, -3.48, 74.2, -2.04, 74.4, -1.2, 74.4, -0.6, 74.6, 0.6, 74.6, 2.88, 74.2, 3.48, 74.2, 4.44, 73.8, 4.8, 73.8, 8.16, 72.4, 8.4, 72.4, 9.36, 71.8, 9.6, 71.8, 9.72, 71.7, 9.72, 71.6, 9.96, 71.6, 10.68, 71.1, 10.92, 71.1, 12.48, 70.1, 12.72, 70.1, 13.68, 69.4, 13.92, 69.4, 14.16, 69.2, 14.16, 69.1, 14.4, 69.1, 15.12, 68.5, 15.36, 68.5, 16.2, 67.8, 16.44, 67.8, 16.92, 67.3, 17.16, 67.3, 17.64, 66.8, 17.88, 66.8, 19.2, 65.7, 19.44, 65.7, 20.52, 64.7, 20.76, 64.7, 25.44, 60.7, 25.56, 60.7, 25.68, 60.5, 25.68, 60.3, 26.16, 59.9, 26.28, 59.9, 26.28, 59.7, 27, 59, 27.12, 59, 27.12, 58.8, 28.2, 57.6, 28.32, 57.6, 28.44, 57.4, 28.44, 57.2, 28.68, 57, 28.8, 57, 28.92, 56.8, 28.92, 56.6, 29.04, 56.5, 29.16, 56.5, 29.64, 55.7, 29.76, 55.7, 30.96, 53.6, 31.08, 53.6, 31.08, 53.3, 31.56, 52.5, 31.68, 52.5, 31.92, 51.8, 32.04, 51.8, 33.24, 48.3, 33.24, 46.9, 33.12, 46.9, 33.12, 46.7, 32.28, 46.5, 31.56, 46.5, 29.64, 45.6, 29.64, 45.5, 30.12, 45, 30.24, 45, 30.36, 44.8, 30.36, 44.6, 30.6, 44.4, 30.72, 44.4, 31.32, 43.5, 31.44, 43.5, 33, 40.5, 33.12, 40.5, 33.36, 39.7, 33.48, 39.7, 34.56, 36.6, 34.68, 36.6, 34.92, 35.4, 35.04, 35.4, 35.64, 32.3, 35.76, 32.3, 35.76, 31.6, 35.88, 31.6, 36.12, 29.3, 36.12, 23.6, 35.76, 21.7, 35.76, 20.9, 35.28, 19.4, 35.28, 18.9, 34.92, 18.2, 34.92, 17.9, 34.44, 17.3, 34.44, 16.7, 37.8, 12, 37.92, 12, 38.28, 11.2, 38.4, 11.2, 38.4, 10.8, 38.16, 10.5, 38.04, 10.5, 37.92, 10.1, 37.8, 10.1, 37.56, 9.5, 37.56, 9.2, 36.24, 6.8, 36.24, 6.7, 36.6, 6.1, 36.72, 6.1, 37.8, 3.3, 37.92, 3.3, 37.92, 2.9, 38.04, 2.6, 38.16, 2.6, 38.52, 1.3, 38.64, 1.3, 39.24, -0.7, 39.36, -0.7, 40.44, -4.3, 40.56, -4.3, 41.52, -8.2, 41.64, -8.2, 41.76, -9.2, 41.88, -9.2, 42.84, -14.6, 42.96, -14.6, 43.08, -17.5, 43.08, -18, 42.84, -19.8, 42.84, -20.8, 42.6, -21.5, 42.6, -22, 41.76, -23.9, 41.76, -24, 43.8, -25, 43.8, -25.1, 44.52, -25.2, 44.88, -25.2, 45, -25.5, 45.12, -25.5, 45.12, -25.8, 44.88, -25.9, 44.88, -26, 44.64, -26, 44.4, -26.2, 44.4, -26.3, 44.16, -26.3, 43.32, -26.9, 43.08, -26.9, 42.72, -27.3, 42.6, -27.3, 42, -28.3, 41.88, -28.3, 41.4, -29.9, 41.28, -29.9, 41.16, -30.9, 41.04, -30.9, 41.04, -31.9, 40.92, -31.9, 40.92, -33.3, 41.16, -34.5, 41.16, -35.2, 41.52, -36.2, 41.52, -36.6, 42, -37.5, 42, -37.8, 42.24, -38, 42.24, -38.3, 42.48, -38.5, 42.48, -38.8, 43.2, -39.6, 43.2, -39.8, 43.44, -39.9, 43.44, -40.1, 43.68, -40.2, 43.68, -40.4, 44.64, -41.3, 44.64, -41.5, 45, -41.6, 45, -41.7, 46.2, -41.9, 46.68, -41.9, 47.52, -42.3, 47.88, -42.3, 48.6, -42.8, 48.84, -42.8, 49.08, -43.1, 49.32, -43.1, 50.04, -43.9, 50.16, -43.9, 50.52, -44.6, 50.64, -44.6, 50.88, -45.6, 51, -45.6, 51, -46.2, 51.12, -46.2, 51.12, -49.3, 50.64, -51.3, 50.64, -51.8, 50.16, -53, 50.16, -53.4, 49.32, -55.2, 49.32, -55.5, 48.24, -57.3, 48.24, -57.6, 46.92, -59.4, 46.92, -59.6, 46.32, -60.2, 46.32, -60.4, 45.36, -61.3, 45.36, -61.5, 44.88, -61.8, 44.88, -62, 43.08, -63.5, 43.08, -63.6, 42.84, -63.6, 42.24, -64.1, 42.24, -64.2, 40.56, -65, 40.56, -65.1, 38.52, -65.7, 38.52, -65.8, 37.08, -65.9, 37.08, -66, 35.88, -66, 35.76, -66, 33.6, -65.6, 33.6, -65.5, 31.56, -65.5, 31.08, -65.7, 30.6, -65.7, 28.68, -66.6, 28.44, -66.6, 27.84, -67, 27.6, -67, 26.64, -67.6, 26.4, -67.6, 24, -69.6, 24, -69.7, 23.76, -69.7, 22.92, -70.4, 22.92, -70.5, 22.68, -70.5, 22.08, -71, 22.08, -71.1, 21.84, -71.1, 21.24, -71.6, 21.24, -71.7, 21, -71.7, 20.4, -72.2, 20.4, -72.3, 20.16, -72.3, 19.92, -72.5, 19.92, -72.6, 19.68, -72.6, 19.44, -72.8, 19.44, -72.9, 19.2, -72.9, 18.96, -73.1, 18.96, -73.2, 18.72, -73.2, 18.48, -73.4, 18.48, -73.5, 17.76, -73.8, 17.76, -73.9, 16.08, -74.5, 16.08, -74.6, 15.36, -74.7, 15.36, -74.8, 13.92, -74.9, 13.92, -75, 12.84, -74.9, 11.64, -74.9, 6, -74.2, 5.04, -74.2, 4.68, -74, 4.32, -74, 4.08, -73.7, 3.96, -73.7, 3.96, -73.4, 3.72, -73.2, 3.72, -72.5, 4.44, -71.2, 4.44, -70.9, 4.68, -70.7, 4.68, -70.4, 5.16, -69.8, 5.16, -69.5, 6, -68.3, 6, -68.1, 4.56, -68.7, 4.56, -68.8, 3.96, -68.9, 3.96, -69, 1.8, -69.5, 1.8, -69.6, 0.12, -69.8, 0.12, -69.9, -1.32, -69.6, -1.8, -69.6, -3.6, -69, -3.96, -69, -5.52, -68.3, -5.76, -68.3, -5.88, -68.1, -6, -68.1, -4.44, -71.1, -4.32, -71.1, -3.84, -72.5, -3.72, -72.5, -3.72, -73.2, -3.96, -73.4, -3.96, -73.7, -4.32, -73.9, -4.32, -74, -5.04, -74.1, -5.04, -74.2, -11.64, -74.8, -11.64, -74.9, -13.92, -75)

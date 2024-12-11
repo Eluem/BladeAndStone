@@ -1,5 +1,10 @@
 extends Node
+
+const BOSS_HEART = preload("res://Assets/ObjectScenes/Items/BossHeart.tscn")
+
 var kPressed:bool = false
+var jPressed:bool = false
+
 var player:Golem
 
 
@@ -9,9 +14,15 @@ func _ready() -> void:
 
 
 func _process(_delta:float) -> void:
-	if(Input.is_key_pressed(KEY_K) && !kPressed):
-		KillAllCreatures()
-		kPressed = true
+	_KillAllCreatures()
+	_SpawnTestBossHeart()
+
+
+func _KillAllCreatures() -> void:
+	if(Input.is_key_pressed(KEY_K)):
+		if(!kPressed):
+			KillAllCreatures()
+			kPressed = true
 	else:
 		kPressed = false
 
@@ -23,6 +34,22 @@ func KillAllCreatures() -> void:
 		if(node is RigidBodyHittable and node is not BossEnemyRamBeam):
 			creature = node
 			creature.ApplyDamage(null, 10000)
+
+
+func _SpawnTestBossHeart() -> void:
+	if(Input.is_key_pressed(KEY_J)):
+		if(!jPressed):
+			SpawnTestBossHeart()
+			jPressed = true
+	else:
+		jPressed = false
+
+
+func SpawnTestBossHeart() -> void:
+	var bossHeart:BossHeart = BOSS_HEART.instantiate()
+	bossHeart.global_position = player.global_position
+	bossHeart.global_position.x += 500
+	get_tree().current_scene.add_child(bossHeart)
 
 
 func on_scene_change(_pNewScene:Node, pSceneType:GameStateManager.SceneType) -> void:

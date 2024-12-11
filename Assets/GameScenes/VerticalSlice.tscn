@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://dnrormugsubpb"]
+[gd_scene load_steps=92 format=4 uid="uid://dnrormugsubpb"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BossFightManager.gd" id="1_s177x"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_o75yw"]
@@ -44,7 +44,6 @@
 [ext_resource type="PackedScene" uid="uid://caterry5ptusm" path="res://Assets/ObjectScenes/Items/SmallGem.tscn" id="34_qayb0"]
 [ext_resource type="PackedScene" uid="uid://bm02n2el0n7si" path="res://Assets/ObjectScenes/Items/BossKey.tscn" id="35_bbatl"]
 [ext_resource type="PackedScene" uid="uid://dvml8ovnrwuh1" path="res://Assets/ObjectScenes/Items/LargeGem.tscn" id="44_1bnax"]
-[ext_resource type="Texture2D" uid="uid://hkkgfke8rb12" path="res://Assets/Art/Items/BossHeart.png" id="45_fuupy"]
 
 [sub_resource type="Animation" id="Animation_y0nuj"]
 resource_name = "BossIntro"
@@ -8522,7 +8521,7 @@ script = ExtResource("19_ld3bc")
 
 [node name="Visuals" type="Node2D" parent="Environment/WoodsArea/CaveRoof2"]
 
-[node name="Polygon2D" type="Polygon2D" parent="Environment/WoodsArea/CaveRoof2/Visuals"]
+[node name="CaveRoof" type="Polygon2D" parent="Environment/WoodsArea/CaveRoof2/Visuals"]
 modulate = Color(0.635294, 0.635294, 0.635294, 1)
 position = Vector2(-289.495, -304.469)
 scale = Vector2(0.578961, 0.578961)
@@ -9058,13 +9057,73 @@ position = Vector2(-456, -655)
 [node name="SmallGem5" parent="Consumables" instance=ExtResource("34_qayb0")]
 position = Vector2(-287, -488)
 
-[node name="LargeGem" parent="." instance=ExtResource("44_1bnax")]
-position = Vector2(135, -246)
+[node name="LargeGem" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(-2677, -4839)
 
-[node name="BossHeart" type="Sprite2D" parent="."]
-position = Vector2(124, -7233)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("45_fuupy")
+[node name="LargeGem2" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(-2598, -4868)
+
+[node name="LargeGem3" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(-2642, -4910)
+
+[node name="SmallGem6" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-2732, -4890)
+
+[node name="SmallGem7" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-2692, -4956)
+
+[node name="SmallGem8" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-2581, -4953)
+
+[node name="SmallGem9" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-2706, -4798)
+
+[node name="SmallGem10" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-2592, -4791)
+
+[node name="SmallGem11" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-2524, -4860)
+
+[node name="LargeGem4" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(-1229, -1757)
+
+[node name="SmallGem12" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-1313, -1805)
+
+[node name="SmallGem13" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(-1155, -1816)
+
+[node name="SmallGem14" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(1926, -663)
+
+[node name="SmallGem15" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(1859, -106)
+
+[node name="SmallGem16" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(2049, 631)
+
+[node name="SmallGem17" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(2325, 1188)
+
+[node name="SmallGem18" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(3590, -615)
+
+[node name="SmallGem19" parent="Consumables" instance=ExtResource("34_qayb0")]
+position = Vector2(3866, 127)
+
+[node name="LargeGem5" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(3443, 1423)
+
+[node name="LargeGem6" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(3685, 1287)
+
+[node name="LargeGem7" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(1769, -3597)
+canAttract = false
+
+[node name="LargeGem8" parent="Consumables" instance=ExtResource("44_1bnax")]
+position = Vector2(1935, -4990)
+canAttract = false
 
 [editable path="Environment/WoodsArea/DestructibleWall"]
 [editable path="Environment/WoodsArea/DestructibleWall2"]
