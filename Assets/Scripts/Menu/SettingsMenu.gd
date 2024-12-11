@@ -13,6 +13,9 @@ const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/Confi
 @onready var effectsVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/EffectsVolumeSlider
 @onready var invertInputCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck
 @onready var checkButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck/CheckButtonSliderGraphic
+@onready var windowModeLabel:Label = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/WindowModeLabel
+@onready var windowModeMenu:DropdownButton = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/WindowModeMenu
+
 
 @onready var standardDefaultValues:Dictionary = GetValues()
 
@@ -52,6 +55,10 @@ func _ready() -> void:
 	effectsVolumeSlider.drag_ended.connect(slider_drag_ended_SFX)
 	effectsVolumeSlider.value_changed.connect(effects_volume_slider_value_changed)
 	effectsVolumeSlider.value_changed.connect(slider_value_changed_SFX)
+	windowModeMenu.selection_changing.connect(on_window_mode_value_changed)
+	
+	windowModeLabel.visible = !OS.has_feature("android")
+	windowModeMenu.visible = !OS.has_feature("android")
 	
 	if(defaultValues.is_empty()):
 		defaultValues = standardDefaultValues
@@ -71,6 +78,7 @@ func GetValues() -> Dictionary:
 							,"musicVolume":musicVolumeSlider.value
 							,"sfxVolume":effectsVolumeSlider.value
 							,"invertInputDirection":invertInputCheck.button_pressed
+							,"windowMode":windowModeMenu.selectedOption
 						 }
 	return ret
 
@@ -91,6 +99,8 @@ func SetValues(pValues:Dictionary) -> void:
 		GameStateManager.SetSFXVolume(floatCast)
 	if(pValues.has("invertInputDirection")):
 		invertInputCheck.button_pressed = pValues.invertInputDirection
+	if(pValues.has("windowMode")):
+		windowModeMenu.selectedOption = pValues.windowMode
 
 
 func IsDataChanged() -> bool:
@@ -156,6 +166,10 @@ func effects_volume_slider_value_changed(pValue:float) -> void:
 	GameStateManager.SetSFXVolume(pValue)
 
 
+func on_window_mode_value_changed(pNewValue:int, _pOldValue:int) -> void:
+	GameStateManager.SetWindowMode(pNewValue)
+
+
 func default_dialogue_response(pResponse:bool) -> void:
 	if(!pResponse):
 		return
@@ -165,4 +179,5 @@ func default_dialogue_response(pResponse:bool) -> void:
 func close_dialogue_response(pResponse:bool) -> void:
 	if(!pResponse):
 		return
+	GameStateManager.SetWindowMode(GameStateManager.gameData.windowMode)
 	queue_free()

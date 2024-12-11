@@ -6,6 +6,7 @@ var sfxVolume:float = 0.5
 var invertInputDirection:bool = false
 var isFirstRun:bool = true
 var highScore:int = 0
+var windowMode:int = 0
 
 
 func SaveData() -> void:
@@ -31,6 +32,7 @@ func GetValues() -> Dictionary:
 							,"invertInputDirection":invertInputDirection
 							,"isFirstRun":isFirstRun
 							,"highScore":highScore
+							,"windowMode":windowMode
 						 }
 	return ret
 
@@ -53,3 +55,6 @@ func SetValues(pDictionary:Dictionary) -> void:
 		isFirstRun = pDictionary.isFirstRun
 	if(pDictionary.has("highScore")):
 		highScore = pDictionary.highScore
+	if(pDictionary.has("windowMode")):
+		windowMode = pDictionary.windowMode
+		GameStateManager.SetWindowMode(windowMode)

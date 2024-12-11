@@ -4,6 +4,13 @@ signal scene_changing(pSceneType:SceneType)
 signal scene_changed(pNewScene:Node, pSceneType:SceneType)
 signal scene_ready(pNewScene:Node, pSceneType:SceneType)
 
+enum WindowMode
+{
+	Fullscreen
+	,BorderlessFullscreen
+	,Windowed
+}
+
 enum SceneType
 {
 	BootSplash
@@ -190,3 +197,28 @@ func PlaySFX(pPosition:Vector2, pAudioStream:AudioStream = null, pAudioStreamPla
 	sfxPlayer.global_position = pPosition
 	sfxPlayer.finished.connect(sfxPlayer.queue_free)
 	sfxPlayer.play()
+
+
+func SetWindowMode(pWindowMode:WindowMode) -> void:
+	if(OS.has_feature("android")):
+		return
+	match pWindowMode:
+		WindowMode.Fullscreen:
+			if(DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN):
+				return
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		WindowMode.BorderlessFullscreen:
+			if(DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED && DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)):
+				return
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+			DisplayServer.window_set_size(DisplayServer.screen_get_size())
+			DisplayServer.window_set_position(Vector2i.ZERO)
+		WindowMode.Windowed:
+			if(DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED && !DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS)):
+				return
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_size(Vector2i(1152, 648))
+			DisplayServer.window_set_position((DisplayServer.screen_get_size() / 2) - (DisplayServer.window_get_size() / 2))
+			
