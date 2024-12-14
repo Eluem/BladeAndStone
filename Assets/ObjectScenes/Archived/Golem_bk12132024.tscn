@@ -1,30 +1,30 @@
-[gd_scene load_steps=122 format=3 uid="uid://bduaw211b10ea"]
+[gd_scene load_steps=122 format=3 uid="uid://duyoeegqdxkgm"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="1_tsbc7"]
-[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_2bl6p"]
-[ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="2_6q84m"]
-[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/Creature_Hurt2.wav" id="3_26qmk"]
-[ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="3_drva7"]
-[ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="4_emk4k"]
-[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/Characters/BasicSwordTest.png" id="5_g7rrp"]
-[ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="6_5cw8i"]
-[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Characters/Golem_Mask_12302023.png" id="7_w3f5p"]
-[ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="8_3sa48"]
-[ext_resource type="Material" uid="uid://hra3xbr4fmql" path="res://Assets/Shaders/WeaponTrailMaterial.tres" id="9_iww08"]
-[ext_resource type="AudioStream" uid="uid://ormcae7omynq" path="res://Assets/Audio/Golem_SwordHitLight.wav" id="9_sgiq4"]
-[ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="9_yq2nt"]
-[ext_resource type="AudioStream" uid="uid://di2lf8rb26v1x" path="res://Assets/Audio/Golem_ChargeComplete.wav" id="10_wbpnk"]
-[ext_resource type="AudioStream" uid="uid://mpwix62b2sr6" path="res://Assets/Audio/Golem_ChargeHold.wav" id="11_fkgcm"]
-[ext_resource type="Script" path="res://Assets/Scripts/Trail_Polygon.gd" id="11_yd22c"]
-[ext_resource type="AudioStream" uid="uid://dvuqxotdpxldw" path="res://Assets/Audio/Golem_ChargeUp.wav" id="12_jelbc"]
-[ext_resource type="AudioStream" uid="uid://cu5oana156ni3" path="res://Assets/Audio/Golem_SwordActiveHeavy.wav" id="13_gjx1i"]
-[ext_resource type="Texture2D" uid="uid://lgiv0ymkgwmx" path="res://Assets/Art/Characters/Golem_Hand_PalmEnergy.png" id="13_x2lj1"]
-[ext_resource type="Texture2D" uid="uid://c0g141g8agh76" path="res://Assets/Art/Characters/Golem_Hand_Palm.png" id="14_34u5f"]
-[ext_resource type="AudioStream" uid="uid://dj5ce45h3bd4b" path="res://Assets/Audio/Golem_SwordActiveLight.wav" id="14_f4l45"]
-[ext_resource type="AudioStream" uid="uid://cguwyo1i1303n" path="res://Assets/Audio/Golem_SwordActiveThrust.wav" id="15_hs5mr"]
-[ext_resource type="Texture2D" uid="uid://dstnf7eqv4j65" path="res://Assets/Art/Characters/Golem_Hand_BackEnergy.png" id="15_n84ad"]
-[ext_resource type="AudioStream" uid="uid://dqup877qol7vj" path="res://Assets/Audio/Golem_WindUp.wav" id="16_iisgj"]
-[ext_resource type="Texture2D" uid="uid://cum00x5t7icr5" path="res://Assets/Art/Characters/Golem_Hand_Back.png" id="16_iujl3"]
+[ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="1_lbf64"]
+[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_tk7vg"]
+[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/Creature_Hurt2.wav" id="3_1wslp"]
+[ext_resource type="AudioStream" uid="uid://dvuqxotdpxldw" path="res://Assets/Audio/Golem_ChargeUp.wav" id="4_vi2m0"]
+[ext_resource type="AudioStream" uid="uid://mpwix62b2sr6" path="res://Assets/Audio/Golem_ChargeHold.wav" id="5_jhs8j"]
+[ext_resource type="AudioStream" uid="uid://dqup877qol7vj" path="res://Assets/Audio/Golem_WindUp.wav" id="6_vj024"]
+[ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="7_pqwy6"]
+[ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="8_lw47m"]
+[ext_resource type="Material" uid="uid://hra3xbr4fmql" path="res://Assets/Shaders/WeaponTrailMaterial.tres" id="9_qmx6x"]
+[ext_resource type="Script" path="res://Assets/Scripts/Trail_Polygon.gd" id="10_yl1fk"]
+[ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="11_5uon7"]
+[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/Characters/BasicSwordTest.png" id="12_pybn1"]
+[ext_resource type="Texture2D" uid="uid://lgiv0ymkgwmx" path="res://Assets/Art/Characters/Golem_Hand_PalmEnergy.png" id="13_yk4is"]
+[ext_resource type="Texture2D" uid="uid://c0g141g8agh76" path="res://Assets/Art/Characters/Golem_Hand_Palm.png" id="14_plwsj"]
+[ext_resource type="Texture2D" uid="uid://dstnf7eqv4j65" path="res://Assets/Art/Characters/Golem_Hand_BackEnergy.png" id="15_88nau"]
+[ext_resource type="Texture2D" uid="uid://cum00x5t7icr5" path="res://Assets/Art/Characters/Golem_Hand_Back.png" id="16_tafmk"]
+[ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="17_arwy5"]
+[ext_resource type="AudioStream" uid="uid://ormcae7omynq" path="res://Assets/Audio/Golem_SwordHitLight.wav" id="18_pkh0k"]
+[ext_resource type="AudioStream" uid="uid://di2lf8rb26v1x" path="res://Assets/Audio/Golem_ChargeComplete.wav" id="19_plw20"]
+[ext_resource type="AudioStream" uid="uid://cu5oana156ni3" path="res://Assets/Audio/Golem_SwordActiveHeavy.wav" id="20_k4oh1"]
+[ext_resource type="AudioStream" uid="uid://dj5ce45h3bd4b" path="res://Assets/Audio/Golem_SwordActiveLight.wav" id="21_5yuoe"]
+[ext_resource type="AudioStream" uid="uid://cguwyo1i1303n" path="res://Assets/Audio/Golem_SwordActiveThrust.wav" id="22_na8q2"]
+[ext_resource type="Texture2D" uid="uid://bpkty60cnxnri" path="res://Assets/Art/Characters/Golem_Mask_12302023.png" id="23_8vigr"]
+[ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="24_58w7u"]
+[ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="25_m0lsx"]
 
 [sub_resource type="Animation" id="Animation_17ds7"]
 resource_name = "Attack_Heavy_Active"
@@ -169,7 +169,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/11/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -181,7 +181,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/12/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -193,7 +193,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/13/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -205,7 +205,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/14/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -213,6 +213,18 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1e-05),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_m6ito"]
@@ -272,7 +284,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_jelbc")
+"stream": ExtResource("4_vi2m0")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -280,7 +292,7 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -292,7 +304,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -304,7 +316,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -316,7 +328,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -324,6 +336,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_uvkg0"]
@@ -401,7 +425,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -413,7 +437,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -425,7 +449,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -437,7 +461,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/9/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -445,6 +469,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_7lpt2"]
@@ -516,7 +552,7 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_fkgcm")
+"stream": ExtResource("5_jhs8j")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -524,7 +560,7 @@ tracks/5/use_blend = true
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -536,7 +572,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -548,19 +584,19 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [true]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/9/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -568,6 +604,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_3fi7m"]
@@ -619,7 +667,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -631,7 +679,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -643,19 +691,19 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -663,6 +711,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_kwt8u"]
@@ -796,7 +856,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/10/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -808,7 +868,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/11/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -820,19 +880,19 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/12/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [false]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/13/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -840,6 +900,18 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_2ao27"]
@@ -881,7 +953,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -893,7 +965,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -905,19 +977,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
 "values": [false, true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -925,6 +997,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551), Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_tybwd"]
@@ -966,7 +1050,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -978,7 +1062,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -990,19 +1074,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1010,6 +1094,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_ryek6"]
@@ -1069,7 +1165,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("16_iisgj")
+"stream": ExtResource("6_vj024")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -1077,7 +1173,7 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1089,7 +1185,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1101,19 +1197,19 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1121,6 +1217,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_8noys"]
@@ -1254,7 +1362,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/10/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1266,7 +1374,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/11/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1278,19 +1386,19 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/12/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [true]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/13/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1298,6 +1406,18 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_64nr0"]
@@ -1339,7 +1459,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1351,7 +1471,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1363,7 +1483,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1375,7 +1495,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1383,6 +1503,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0.435, 0.551), Vector2(-0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_5kg6s"]
@@ -1424,7 +1556,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1436,7 +1568,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1448,19 +1580,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
+"update": 1,
 "values": [false, true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1468,6 +1600,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551), Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_uxngk"]
@@ -1509,7 +1653,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/3/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1521,7 +1665,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1533,7 +1677,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1545,7 +1689,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1553,6 +1697,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_b6xh4"]
@@ -1612,7 +1768,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("16_iisgj")
+"stream": ExtResource("6_vj024")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -1620,7 +1776,7 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1632,7 +1788,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1644,7 +1800,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1656,7 +1812,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1664,6 +1820,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_2mjtq"]
@@ -1991,7 +2159,7 @@ tracks/27/keys = {
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/28/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
@@ -2003,7 +2171,7 @@ tracks/28/keys = {
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/29/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
@@ -2015,7 +2183,7 @@ tracks/29/keys = {
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/30/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
@@ -2027,7 +2195,7 @@ tracks/30/keys = {
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/31/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
@@ -2035,6 +2203,18 @@ tracks/31/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_w5xkc"]
@@ -2094,7 +2274,7 @@ tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("12_jelbc")
+"stream": ExtResource("4_vi2m0")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -2102,7 +2282,7 @@ tracks/4/use_blend = true
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2114,7 +2294,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2126,7 +2306,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -2138,7 +2318,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -2146,6 +2326,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0.435, 0.551), Vector2(-0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_25qar"]
@@ -2223,7 +2415,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2235,7 +2427,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -2247,7 +2439,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -2259,7 +2451,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/9/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -2267,6 +2459,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_s55ki"]
@@ -2338,7 +2542,7 @@ tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("11_fkgcm")
+"stream": ExtResource("5_jhs8j")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -2346,7 +2550,7 @@ tracks/5/use_blend = true
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2358,7 +2562,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -2370,7 +2574,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/8/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -2382,7 +2586,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/9/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -2390,6 +2594,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_jmuj4"]
@@ -2441,7 +2657,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -2453,7 +2669,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2465,7 +2681,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2477,7 +2693,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -2485,6 +2701,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-0.435, 0.551), Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_ce1ol"]
@@ -2538,7 +2766,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/4/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -2550,7 +2778,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/5/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -2562,7 +2790,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/6/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -2574,7 +2802,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/7/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -2582,6 +2810,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="Animation" id="Animation_whlev"]
@@ -2940,7 +3180,7 @@ tracks/26/keys = {
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("Weapon/WeaponSprite/LeftHandPalm:visible")
+tracks/27/path = NodePath("Weapon/WeaponSprite/LeftHand/Palm:visible")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
@@ -2952,7 +3192,7 @@ tracks/27/keys = {
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("Weapon/WeaponSprite/LeftHandBack:visible")
+tracks/28/path = NodePath("Weapon/WeaponSprite/LeftHand/Back:visible")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
@@ -2964,7 +3204,7 @@ tracks/28/keys = {
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("Weapon/WeaponSprite/RightHandPalm:visible")
+tracks/29/path = NodePath("Weapon/WeaponSprite/RightHand/Palm:visible")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
@@ -2976,7 +3216,7 @@ tracks/29/keys = {
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("Weapon/WeaponSprite/RightHandBack:visible")
+tracks/30/path = NodePath("Weapon/WeaponSprite/RightHand/Back:visible")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
@@ -2984,6 +3224,18 @@ tracks/30/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Weapon/WeaponSprite:scale")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.435, 0.551)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixbfl"]
@@ -3387,8 +3639,8 @@ continuous_cd = 2
 linear_damp_mode = 1
 linear_damp = 3.0
 angular_damp = 10.0
-script = ExtResource("1_tsbc7")
-hurtSFX = Array[AudioStream]([ExtResource("2_2bl6p"), ExtResource("3_26qmk")])
+script = ExtResource("1_lbf64")
+hurtSFX = Array[AudioStream]([ExtResource("2_tk7vg"), ExtResource("3_1wslp")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -3398,10 +3650,10 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_vv4ts")
 anim_player = NodePath("../AnimationPlayer")
-script = ExtResource("2_6q84m")
+script = ExtResource("7_pqwy6")
 
 [node name="InputHandler" type="Node2D" parent="AnimationTree"]
-script = ExtResource("3_drva7")
+script = ExtResource("8_lw47m")
 
 [node name="Weapon" type="Node2D" parent="."]
 position = Vector2(52, 64)
@@ -3411,16 +3663,16 @@ rotation = 2.672
 position = Vector2(145, 0)
 
 [node name="LightTrail" type="Node2D" parent="Weapon/SlashTrailTarget"]
-material = ExtResource("9_iww08")
+material = ExtResource("9_qmx6x")
 position = Vector2(1.52588e-05, 7.62939e-06)
-script = ExtResource("11_yd22c")
+script = ExtResource("10_yl1fk")
 color = Color(0.588235, 0.690196, 0.972549, 0.227451)
 width = 180.0
 widthCurve = SubResource("Curve_85ku3")
 
 [node name="HeavyTrail" type="Node2D" parent="Weapon/SlashTrailTarget"]
 position = Vector2(1.52588e-05, 7.62939e-06)
-script = ExtResource("11_yd22c")
+script = ExtResource("10_yl1fk")
 color = Color(0.862745, 0.0784314, 0.0784314, 0.235294)
 width = 180.0
 widthCurve = SubResource("Curve_85ku3")
@@ -3432,14 +3684,76 @@ position = Vector2(275, 0)
 width = 180.0
 width_curve = SubResource("Curve_qb5rn")
 default_color = Color(0.592157, 0.0784314, 1, 0.352941)
-script = ExtResource("4_emk4k")
+script = ExtResource("11_5uon7")
 forceTipAlignment = false
 
 [node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
 position = Vector2(105.165, 0)
 rotation = 1.5708
 scale = Vector2(0.435, 0.551)
-texture = ExtResource("5_g7rrp")
+texture = ExtResource("12_pybn1")
+
+[node name="LeftHand" type="Node2D" parent="Weapon/WeaponSprite"]
+position = Vector2(3, 240)
+
+[node name="Palm" type="Node2D" parent="Weapon/WeaponSprite/LeftHand"]
+visible = false
+z_index = -1
+
+[node name="GolemHandPalmEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHand/Palm"]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("13_yk4is")
+
+[node name="GolemHandPalm" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHand/Palm"]
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("14_plwsj")
+
+[node name="Back" type="Node2D" parent="Weapon/WeaponSprite/LeftHand"]
+
+[node name="GolemHandBackEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHand/Back"]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("15_88nau")
+
+[node name="GolemHandBack" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHand/Back"]
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("16_tafmk")
+
+[node name="RightHand" type="Node2D" parent="Weapon/WeaponSprite"]
+position = Vector2(3, 145)
+
+[node name="Palm" type="Node2D" parent="Weapon/WeaponSprite/RightHand"]
+z_index = -1
+
+[node name="GolemHandPalmEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/RightHand/Palm"]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("13_yk4is")
+
+[node name="GolemHandPalm" type="Sprite2D" parent="Weapon/WeaponSprite/RightHand/Palm"]
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("14_plwsj")
+
+[node name="Back" type="Node2D" parent="Weapon/WeaponSprite/RightHand"]
+visible = false
+
+[node name="GolemHandBackEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/RightHand/Back"]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("15_88nau")
+
+[node name="GolemHandBack" type="Sprite2D" parent="Weapon/WeaponSprite/RightHand/Back"]
+rotation = -1.5708
+scale = Vector2(0.217786, 0.229885)
+texture = ExtResource("16_tafmk")
 
 [node name="HeavyAttackGlow" type="Line2D" parent="Weapon/WeaponSprite"]
 points = PackedVector2Array(0, 99, 0, -238.502, 0, -300)
@@ -3453,80 +3767,12 @@ width = 60.0
 width_curve = SubResource("Curve_tyhe4")
 default_color = Color(0.592157, 0.0784314, 1, 0)
 
-[node name="LeftHandPalm" type="Node2D" parent="Weapon/WeaponSprite"]
-visible = false
-show_behind_parent = true
-position = Vector2(-1.54646, 241.05)
-rotation = -3.08781
-scale = Vector2(0.999128, -1.0014)
-skew = 0.0323759
-
-[node name="GolemHandPalmEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHandPalm"]
-modulate = Color(0.577008, 0.577008, 0.577008, 1)
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("13_x2lj1")
-
-[node name="GolemHandPalm" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHandPalm"]
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("14_34u5f")
-
-[node name="LeftHandBack" type="Node2D" parent="Weapon/WeaponSprite"]
-position = Vector2(4.43863, 241.373)
-rotation = 0.0537792
-scale = Vector2(0.999128, 1.0014)
-skew = 0.0323759
-
-[node name="GolemHandBackEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHandBack"]
-modulate = Color(0.577008, 0.577008, 0.577008, 1)
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("15_n84ad")
-
-[node name="GolemHandBack" type="Sprite2D" parent="Weapon/WeaponSprite/LeftHandBack"]
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("16_iujl3")
-
-[node name="RightHandPalm" type="Node2D" parent="Weapon/WeaponSprite"]
-show_behind_parent = true
-position = Vector2(2.99998, 145)
-
-[node name="GolemHandPalmEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/RightHandPalm"]
-modulate = Color(0.577008, 0.577008, 0.577008, 1)
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("13_x2lj1")
-
-[node name="GolemHandPalm" type="Sprite2D" parent="Weapon/WeaponSprite/RightHandPalm"]
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("14_34u5f")
-
-[node name="RightHandBack" type="Node2D" parent="Weapon/WeaponSprite"]
-visible = false
-position = Vector2(-2.99902, 145)
-rotation = 3.14159
-scale = Vector2(1, -1)
-
-[node name="GolemHandBackEnergy" type="Sprite2D" parent="Weapon/WeaponSprite/RightHandBack"]
-modulate = Color(0.577008, 0.577008, 0.577008, 1)
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("15_n84ad")
-
-[node name="GolemHandBack" type="Sprite2D" parent="Weapon/WeaponSprite/RightHandBack"]
-rotation = -1.5708
-scale = Vector2(0.217786, 0.229885)
-texture = ExtResource("16_iujl3")
-
 [node name="RaycastCollider" type="Node2D" parent="Weapon" node_paths=PackedStringArray("excludeCollision")]
-script = ExtResource("6_5cw8i")
+script = ExtResource("17_arwy5")
 excludeCollision = [NodePath("../..")]
 weaponDamage = 0
 weaponKnockback = 0.0
-hitSFX = Array[AudioStream]([ExtResource("9_sgiq4")])
+hitSFX = Array[AudioStream]([ExtResource("18_pkh0k")])
 
 [node name="RaycastNode" type="Node2D" parent="Weapon/RaycastCollider"]
 position = Vector2(-60, 0)
@@ -3585,34 +3831,34 @@ volume_db = -15.0
 bus = &"SFX"
 
 [node name="ChargeCompleteSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
-stream = ExtResource("10_wbpnk")
+stream = ExtResource("19_plw20")
 bus = &"SFX"
 
 [node name="WeaponActionSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
 bus = &"SFX"
 
 [node name="ChargeHoldSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
-stream = ExtResource("11_fkgcm")
+stream = ExtResource("5_jhs8j")
 bus = &"SFX"
 
 [node name="ChargeUpSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
-stream = ExtResource("12_jelbc")
+stream = ExtResource("4_vi2m0")
 bus = &"SFX"
 
 [node name="SwordActiveHeavySFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
-stream = ExtResource("13_gjx1i")
+stream = ExtResource("20_k4oh1")
 bus = &"SFX"
 
 [node name="SwordActiveLightSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
-stream = ExtResource("14_f4l45")
+stream = ExtResource("21_5yuoe")
 bus = &"SFX"
 
 [node name="SwordActiveThrustSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
-stream = ExtResource("15_hs5mr")
+stream = ExtResource("22_na8q2")
 bus = &"SFX"
 
 [node name="WindUpSFXPlayer" type="AudioStreamPlayer2D" parent="Weapon"]
-stream = ExtResource("16_iisgj")
+stream = ExtResource("6_vj024")
 bus = &"SFX"
 
 [node name="MaskSpriteContainer" type="Node2D" parent="."]
@@ -3620,12 +3866,12 @@ bus = &"SFX"
 [node name="MaskSprite" type="Sprite2D" parent="MaskSpriteContainer" node_paths=PackedStringArray("spritePolygon")]
 rotation = -1.5708
 scale = Vector2(0.12, 0.1)
-texture = ExtResource("7_w3f5p")
-script = ExtResource("8_3sa48")
+texture = ExtResource("23_8vigr")
+script = ExtResource("24_58w7u")
 spritePolygon = NodePath("../../poly_sprite")
 
 [node name="Cracks" type="Node2D" parent="MaskSpriteContainer"]
-script = ExtResource("9_yq2nt")
+script = ExtResource("25_m0lsx")
 widthRange = Vector2(0, 6)
 
 [node name="Crack" type="Line2D" parent="MaskSpriteContainer/Cracks"]
@@ -3706,7 +3952,7 @@ polygon = PackedVector2Array(0, 75, 20, 65, 34, 48, 39, 10, 51, -49, 44, -65, 16
 
 [node name="poly_sprite" type="Polygon2D" parent="."]
 visible = false
-texture = ExtResource("7_w3f5p")
+texture = ExtResource("23_8vigr")
 texture_offset = Vector2(64.8, 108.4)
 texture_scale = Vector2(8.33333, 10)
 polygon = PackedVector2Array(-13.92, -74.9, -14.88, -74.9, -15.72, -74.6, -16.08, -74.6, -17.28, -74, -17.52, -74, -17.88, -73.7, -18.12, -73.7, -19.68, -72.6, -19.92, -72.6, -20.16, -72.3, -20.4, -72.3, -22.68, -70.5, -22.92, -70.5, -26.4, -67.7, -26.4, -67.6, -26.64, -67.5, -26.88, -67.5, -27, -67.4, -27, -67.3, -28.2, -66.8, -28.2, -66.7, -30.6, -65.8, -30.6, -65.7, -31.56, -65.5, -33.6, -65.5, -34.44, -65.7, -34.44, -65.8, -35.76, -65.9, -35.76, -66, -37.08, -65.9, -37.92, -65.9, -38.52, -65.7, -38.88, -65.7, -40.32, -65.1, -40.56, -65.1, -41.64, -64.4, -41.88, -64.4, -42.12, -64.1, -42.36, -64.1, -43.8, -62.9, -43.92, -62.9, -43.92, -62.7, -44.64, -62.1, -44.76, -62.1, -44.76, -61.9, -45.24, -61.5, -45.36, -61.5, -45.36, -61.3, -45.84, -60.8, -45.96, -60.8, -45.96, -60.6, -46.08, -60.5, -46.2, -60.5, -47.16, -59.1, -47.28, -59.1, -48, -57.8, -48.12, -57.8, -48.12, -57.5, -48.6, -56.7, -48.72, -56.7, -49.32, -55.2, -49.44, -55.2, -50.04, -53.4, -50.16, -53.4, -51.12, -49.3, -51.12, -46.2, -50.88, -45.6, -50.88, -45.2, -50.52, -44.7, -50.52, -44.4, -49.44, -43.3, -49.44, -43.2, -49.2, -43.2, -48.84, -42.9, -48.84, -42.8, -47.88, -42.4, -47.88, -42.3, -45.6, -41.7, -45, -41.7, -44.76, -41.5, -44.64, -41.5, -44.64, -41.3, -43.44, -40, -43.32, -40, -42.84, -39.2, -42.72, -39.2, -42.48, -38.6, -42.36, -38.6, -41.88, -37.3, -41.76, -37.3, -41.64, -36.6, -41.52, -36.6, -41.28, -35.3, -41.16, -35.3, -40.92, -33.4, -40.92, -31.9, -41.28, -30.4, -41.28, -29.8, -41.64, -29.1, -41.64, -28.8, -42.12, -28.1, -42.12, -27.9, -42.6, -27.5, -42.6, -27.3, -43.2, -26.9, -43.2, -26.8, -43.44, -26.7, -43.68, -26.7, -45.12, -25.8, -45.12, -25.5, -44.52, -25.1, -43.8, -25.1, -43.68, -25, -43.68, -24.9, -43.44, -24.8, -43.2, -24.8, -42.6, -24.4, -42.36, -24.4, -41.88, -24, -41.76, -24, -42.48, -21.9, -42.6, -21.9, -42.72, -20.8, -42.84, -20.8, -42.84, -16, -42.84, -14.3, -42.72, -13.9, -42.6, -13.9, -42.48, -13.1, -42.48, -12.4, -41.76, -9.3, -41.76, -8.7, -40.8, -5.6, -40.8, -5.1, -40.68, -4.8, -40.56, -4.8, -40.2, -3.6, -40.2, -3.2, -39.24, -0.8, -39.24, -0.4, -38.04, 2.5, -38.04, 2.9, -36.36, 6.6, -36.24, 6.6, -36.48, 7.1, -36.48, 7.4, -36.72, 7.6, -36.72, 7.9, -37.2, 8.7, -37.32, 8.7, -37.32, 9, -37.8, 9.8, -37.8, 10.1, -38.16, 10.5, -38.16, 10.7, -38.4, 10.8, -38.4, 11.2, -34.68, 16.4, -34.56, 16.4, -34.56, 16.7, -34.44, 16.7, -34.44, 17.3, -34.68, 17.7, -34.8, 17.7, -34.92, 18.2, -35.04, 18.2, -35.16, 18.9, -35.28, 18.9, -35.52, 20.4, -35.64, 20.4, -36, 23.6, -36.12, 23.6, -36.12, 29.3, -35.76, 31.5, -35.76, 32.3, -35.52, 32.9, -35.52, 33.5, -34.8, 35.8, -34.8, 36.2, -34.32, 37.2, -34.32, 37.6, -33.12, 40.2, -33.12, 40.5, -31.44, 43.3, -31.44, 43.5, -31.32, 43.6, -31.2, 43.6, -31.2, 43.8, -30.48, 44.6, -30.36, 44.6, -30.24, 44.8, -30.24, 45, -30, 45.2, -29.88, 45.2, -29.76, 45.5, -29.64, 45.5, -29.76, 45.6, -29.76, 45.7, -30.36, 45.9, -30.36, 46, -31.56, 46.4, -31.56, 46.5, -32.88, 46.7, -33.12, 46.7, -33.24, 46.9, -33.24, 48.2, -32.76, 49.6, -32.76, 50, -32.04, 51.5, -32.04, 51.8, -31.68, 52.2, -31.68, 52.5, -31.08, 53.3, -31.08, 53.6, -30.84, 53.7, -30.84, 54, -30.6, 54.1, -30.6, 54.4, -30.48, 54.5, -30.36, 54.5, -29.88, 55.3, -29.88, 55.5, -29.76, 55.6, -29.64, 55.6, -29.52, 55.8, -29.52, 56, -29.16, 56.3, -29.16, 56.5, -28.32, 57.4, -28.32, 57.6, -27.72, 58.1, -27.72, 58.3, -27.48, 58.5, -27.36, 58.5, -27.36, 58.7, -26.28, 59.7, -26.28, 59.9, -25.44, 60.6, -25.44, 60.8, -20.88, 64.5, -20.88, 64.6, -20.64, 64.6, -19.56, 65.5, -19.56, 65.6, -19.32, 65.6, -18.72, 66.1, -18.72, 66.2, -18.48, 66.2, -18, 66.6, -18, 66.7, -17.76, 66.7, -17.28, 67.1, -17.28, 67.2, -17.04, 67.2, -16.56, 67.6, -16.56, 67.7, -16.32, 67.7, -15.96, 68, -15.96, 68.1, -15.72, 68.1, -14.88, 68.7, -14.88, 68.8, -14.64, 68.8, -12.72, 70, -12.72, 70.1, -12.48, 70.1, -12.36, 70.2, -12.36, 70.3, -11.28, 70.8, -11.28, 70.9, -11.04, 71, -10.8, 71, -10.68, 71.1, -10.68, 71.2, -9.6, 71.7, -9.6, 71.8, -8.4, 72.3, -8.4, 72.4, -5.4, 73.5, -5.4, 73.6, -3.48, 74.1, -3.48, 74.2, -2.04, 74.4, -1.2, 74.4, -0.6, 74.6, 0.6, 74.6, 2.88, 74.2, 3.48, 74.2, 4.44, 73.8, 4.8, 73.8, 8.16, 72.4, 8.4, 72.4, 9.36, 71.8, 9.6, 71.8, 9.72, 71.7, 9.72, 71.6, 9.96, 71.6, 10.68, 71.1, 10.92, 71.1, 12.48, 70.1, 12.72, 70.1, 13.68, 69.4, 13.92, 69.4, 14.16, 69.2, 14.16, 69.1, 14.4, 69.1, 15.12, 68.5, 15.36, 68.5, 16.2, 67.8, 16.44, 67.8, 16.92, 67.3, 17.16, 67.3, 17.64, 66.8, 17.88, 66.8, 19.2, 65.7, 19.44, 65.7, 20.52, 64.7, 20.76, 64.7, 25.44, 60.7, 25.56, 60.7, 25.68, 60.5, 25.68, 60.3, 26.16, 59.9, 26.28, 59.9, 26.28, 59.7, 27, 59, 27.12, 59, 27.12, 58.8, 28.2, 57.6, 28.32, 57.6, 28.44, 57.4, 28.44, 57.2, 28.68, 57, 28.8, 57, 28.92, 56.8, 28.92, 56.6, 29.04, 56.5, 29.16, 56.5, 29.64, 55.7, 29.76, 55.7, 30.96, 53.6, 31.08, 53.6, 31.08, 53.3, 31.56, 52.5, 31.68, 52.5, 31.92, 51.8, 32.04, 51.8, 33.24, 48.3, 33.24, 46.9, 33.12, 46.9, 33.12, 46.7, 32.28, 46.5, 31.56, 46.5, 29.64, 45.6, 29.64, 45.5, 30.12, 45, 30.24, 45, 30.36, 44.8, 30.36, 44.6, 30.6, 44.4, 30.72, 44.4, 31.32, 43.5, 31.44, 43.5, 33, 40.5, 33.12, 40.5, 33.36, 39.7, 33.48, 39.7, 34.56, 36.6, 34.68, 36.6, 34.92, 35.4, 35.04, 35.4, 35.64, 32.3, 35.76, 32.3, 35.76, 31.6, 35.88, 31.6, 36.12, 29.3, 36.12, 23.6, 35.76, 21.7, 35.76, 20.9, 35.28, 19.4, 35.28, 18.9, 34.92, 18.2, 34.92, 17.9, 34.44, 17.3, 34.44, 16.7, 37.8, 12, 37.92, 12, 38.28, 11.2, 38.4, 11.2, 38.4, 10.8, 38.16, 10.5, 38.04, 10.5, 37.92, 10.1, 37.8, 10.1, 37.56, 9.5, 37.56, 9.2, 36.24, 6.8, 36.24, 6.7, 36.6, 6.1, 36.72, 6.1, 37.8, 3.3, 37.92, 3.3, 37.92, 2.9, 38.04, 2.6, 38.16, 2.6, 38.52, 1.3, 38.64, 1.3, 39.24, -0.7, 39.36, -0.7, 40.44, -4.3, 40.56, -4.3, 41.52, -8.2, 41.64, -8.2, 41.76, -9.2, 41.88, -9.2, 42.84, -14.6, 42.96, -14.6, 43.08, -17.5, 43.08, -18, 42.84, -19.8, 42.84, -20.8, 42.6, -21.5, 42.6, -22, 41.76, -23.9, 41.76, -24, 43.8, -25, 43.8, -25.1, 44.52, -25.2, 44.88, -25.2, 45, -25.5, 45.12, -25.5, 45.12, -25.8, 44.88, -25.9, 44.88, -26, 44.64, -26, 44.4, -26.2, 44.4, -26.3, 44.16, -26.3, 43.32, -26.9, 43.08, -26.9, 42.72, -27.3, 42.6, -27.3, 42, -28.3, 41.88, -28.3, 41.4, -29.9, 41.28, -29.9, 41.16, -30.9, 41.04, -30.9, 41.04, -31.9, 40.92, -31.9, 40.92, -33.3, 41.16, -34.5, 41.16, -35.2, 41.52, -36.2, 41.52, -36.6, 42, -37.5, 42, -37.8, 42.24, -38, 42.24, -38.3, 42.48, -38.5, 42.48, -38.8, 43.2, -39.6, 43.2, -39.8, 43.44, -39.9, 43.44, -40.1, 43.68, -40.2, 43.68, -40.4, 44.64, -41.3, 44.64, -41.5, 45, -41.6, 45, -41.7, 46.2, -41.9, 46.68, -41.9, 47.52, -42.3, 47.88, -42.3, 48.6, -42.8, 48.84, -42.8, 49.08, -43.1, 49.32, -43.1, 50.04, -43.9, 50.16, -43.9, 50.52, -44.6, 50.64, -44.6, 50.88, -45.6, 51, -45.6, 51, -46.2, 51.12, -46.2, 51.12, -49.3, 50.64, -51.3, 50.64, -51.8, 50.16, -53, 50.16, -53.4, 49.32, -55.2, 49.32, -55.5, 48.24, -57.3, 48.24, -57.6, 46.92, -59.4, 46.92, -59.6, 46.32, -60.2, 46.32, -60.4, 45.36, -61.3, 45.36, -61.5, 44.88, -61.8, 44.88, -62, 43.08, -63.5, 43.08, -63.6, 42.84, -63.6, 42.24, -64.1, 42.24, -64.2, 40.56, -65, 40.56, -65.1, 38.52, -65.7, 38.52, -65.8, 37.08, -65.9, 37.08, -66, 35.88, -66, 35.76, -66, 33.6, -65.6, 33.6, -65.5, 31.56, -65.5, 31.08, -65.7, 30.6, -65.7, 28.68, -66.6, 28.44, -66.6, 27.84, -67, 27.6, -67, 26.64, -67.6, 26.4, -67.6, 24, -69.6, 24, -69.7, 23.76, -69.7, 22.92, -70.4, 22.92, -70.5, 22.68, -70.5, 22.08, -71, 22.08, -71.1, 21.84, -71.1, 21.24, -71.6, 21.24, -71.7, 21, -71.7, 20.4, -72.2, 20.4, -72.3, 20.16, -72.3, 19.92, -72.5, 19.92, -72.6, 19.68, -72.6, 19.44, -72.8, 19.44, -72.9, 19.2, -72.9, 18.96, -73.1, 18.96, -73.2, 18.72, -73.2, 18.48, -73.4, 18.48, -73.5, 17.76, -73.8, 17.76, -73.9, 16.08, -74.5, 16.08, -74.6, 15.36, -74.7, 15.36, -74.8, 13.92, -74.9, 13.92, -75, 12.84, -74.9, 11.64, -74.9, 6, -74.2, 5.04, -74.2, 4.68, -74, 4.32, -74, 4.08, -73.7, 3.96, -73.7, 3.96, -73.4, 3.72, -73.2, 3.72, -72.5, 4.44, -71.2, 4.44, -70.9, 4.68, -70.7, 4.68, -70.4, 5.16, -69.8, 5.16, -69.5, 6, -68.3, 6, -68.1, 4.56, -68.7, 4.56, -68.8, 3.96, -68.9, 3.96, -69, 1.8, -69.5, 1.8, -69.6, 0.12, -69.8, 0.12, -69.9, -1.32, -69.6, -1.8, -69.6, -3.6, -69, -3.96, -69, -5.52, -68.3, -5.76, -68.3, -5.88, -68.1, -6, -68.1, -4.44, -71.1, -4.32, -71.1, -3.84, -72.5, -3.72, -72.5, -3.72, -73.2, -3.96, -73.4, -3.96, -73.7, -4.32, -73.9, -4.32, -74, -5.04, -74.1, -5.04, -74.2, -11.64, -74.8, -11.64, -74.9, -13.92, -75)
