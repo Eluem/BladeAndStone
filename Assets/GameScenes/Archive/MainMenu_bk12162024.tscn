@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://dod12hkeum5pe"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/MainMenu.gd" id="1_b10tp"]
+[ext_resource type="Texture2D" uid="uid://dqm83s61xiy2p" path="res://Assets/Art/UI/GameTitleArt.png" id="2_haulf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cmq"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.54902, 0.54902, 0.54902, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kayjj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flr3y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3imvw"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_b10tp")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6cmq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_haulf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.393086, 0.393086, 0.393085, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+disabled = true
+text = "Continue
+"
+flat = true
+
+[node name="NewGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "New Game"
+flat = true
+
+[node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "Settings"
+flat = true
+
+[node name="CreditsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "Credits
+"
+flat = true
+
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+text = "Quit"
+flat = true

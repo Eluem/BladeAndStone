@@ -1,3 +1,7 @@
+Control
+MarginContainer
+HBoxContainer
+PanelContainer
 Node2D
 MenuButton
 Polygon2D
@@ -5,10 +9,6 @@ Line2D
 Node
 AudioStreamPlayer2D
 AudioStreamPlayer
-MarginContainer
-HBoxContainer
-PanelContainer
 Panel
 Label
 PIDControllerJoint2D
-Area2D

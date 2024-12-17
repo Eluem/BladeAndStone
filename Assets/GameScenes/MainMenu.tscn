@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dod12hkeum5pe"]
+[gd_scene load_steps=8 format=3 uid="uid://bqb1ctpgxod55"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/MainMenu.gd" id="1_b10tp"]
 [ext_resource type="Texture2D" uid="uid://dqm83s61xiy2p" path="res://Assets/Art/UI/GameTitleArt.png" id="2_haulf"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/MaxSizeLimiter.gd" id="3_0w2jm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6cmq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_by3wx"]
 content_margin_left = 10.0
-content_margin_top = 10.0
+content_margin_top = 40.0
 content_margin_right = 10.0
-content_margin_bottom = 10.0
+content_margin_bottom = 40.0
 bg_color = Color(0.54902, 0.54902, 0.54902, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kayjj"]
@@ -25,24 +26,113 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e6cmq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_by3wx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="Virtual" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+[node name="Logo" type="TextureRect" parent="PanelContainer/Virtual"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
-texture = ExtResource("2_haulf")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="Buffer" type="Control" parent="PanelContainer/Virtual"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/Virtual"]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_disabled_color = Color(0.393086, 0.393086, 0.393085, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+disabled = true
+text = " "
+flat = true
+
+[node name="NewGameButton" type="Button" parent="PanelContainer/Virtual"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+disabled = true
+text = " "
+flat = true
+
+[node name="SettingsButton" type="Button" parent="PanelContainer/Virtual"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+disabled = true
+text = " "
+flat = true
+
+[node name="CreditsButton" type="Button" parent="PanelContainer/Virtual"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+disabled = true
+text = " "
+flat = true
+
+[node name="QuitButton" type="Button" parent="PanelContainer/Virtual"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
+disabled = true
+text = " "
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="CenteringBuffer" type="Control" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("2_haulf")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("3_0w2jm")
+maxSize = Vector2(-1, 450)
+
+[node name="Buffer" type="Control" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.393086, 0.393086, 0.393085, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
@@ -52,10 +142,12 @@ text = "Continue
 flat = true
 
 [node name="NewGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
@@ -63,10 +155,12 @@ text = "New Game"
 flat = true
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
@@ -74,10 +168,12 @@ text = "Settings"
 flat = true
 
 [node name="CreditsButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
@@ -86,10 +182,12 @@ text = "Credits
 flat = true
 
 [node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxEmpty_kayjj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")

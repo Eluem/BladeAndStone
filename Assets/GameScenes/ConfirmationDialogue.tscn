@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://5rs7avunyxbv"]
+[gd_scene load_steps=6 format=3 uid="uid://5rs7avunyxbv"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/ConfirmationDialogue.gd" id="1_nonxo"]
-[ext_resource type="Texture2D" uid="uid://dmi3ug5mxd6uu" path="res://Assets/Art/UI/CloseButton.png" id="2_27xtw"]
+[ext_resource type="Texture2D" uid="uid://btfr8oxdeg1mx" path="res://Assets/Art/UI/CloseButton_Normal.png" id="2_p4olh"]
+[ext_resource type="Texture2D" uid="uid://bgdlb1126254u" path="res://Assets/Art/UI/CloseButton_Pressed.png" id="3_osbgo"]
+[ext_resource type="Texture2D" uid="uid://b28gcdo1jcxxs" path="res://Assets/Art/UI/CloseButton_Hover.png" id="4_mcj0e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drwv0"]
 bg_color = Color(0.54902, 0.54902, 0.54902, 1)
@@ -104,12 +106,16 @@ scale = Vector2(0.646, 0.646)
 pivot_offset = Vector2(40, 47)
 size_flags_horizontal = 8
 size_flags_vertical = 0
-texture_normal = ExtResource("2_27xtw")
+texture_normal = ExtResource("2_p4olh")
+texture_pressed = ExtResource("3_osbgo")
+texture_hover = ExtResource("4_mcj0e")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
 
 [node name="PromptLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2

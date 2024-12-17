@@ -4,11 +4,11 @@ class_name PauseMenu
 const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/ConfirmationDialogue.tscn")
 const SETTINGS_MENU:PackedScene = preload("res://Assets/GameScenes/SettingsMenu.tscn")
 
-@onready var closeButton:TextureButton = $CloseButton
-@onready var resumeButton:Button = $VBoxContainer/ResumeButton
-@onready var settingsButton:Button = $VBoxContainer/SettingsButton
-@onready var mainMenuButton:Button = $VBoxContainer/MainMenuButton
-@onready var quitButton:Button = $VBoxContainer/QuitButton
+@onready var closeButton:TextureButton = $PanelContainer/CloseButtonScaleEnabler/CloseButton
+@onready var resumeButton:Button = $PanelContainer/VBoxContainer/ResumeButton
+@onready var settingsButton:Button = $PanelContainer/VBoxContainer/SettingsButton
+@onready var mainMenuButton:Button = $PanelContainer/VBoxContainer/MainMenuButton
+@onready var quitButton:Button = $PanelContainer/VBoxContainer/QuitButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
