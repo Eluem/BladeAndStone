@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dddlxx1wrjq7y"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Credits.gd" id="1_qmho2"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/Credits.gd" id="1_qmho2"]
 [ext_resource type="StyleBox" uid="uid://45kwtphfh610" path="res://Assets/Art/UI/HoverButton_StyleBox.tres" id="2_41fxv"]
 [ext_resource type="Texture2D" uid="uid://cixn40iqilc6u" path="res://Assets/Art/Icons/GodotIcon.svg" id="2_62koe"]
 [ext_resource type="StyleBox" uid="uid://o46762e4hpks" path="res://Assets/Art/UI/NormalButton_StyleBox.tres" id="2_yskyt"]

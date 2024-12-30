@@ -61,7 +61,7 @@ func on_scene_change(_pNewScene:Node, pSceneType:GameStateManager.SceneType) -> 
 
 func on_player_spawned(pPlayer:Golem) -> void:
 	player = pPlayer
-	player.exploded.connect(on_player_death)
+	#player.exploded.connect(on_player_death)
 
 
 func on_player_death(_pChunks:Array[RigidBody2D], _pHitOwner:Node2D) -> void:

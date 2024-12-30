@@ -5,7 +5,7 @@ class_name EyeTurret
 @onready var projectileSpawnPoint:Node2D = $EyeTurretEye/ProjectileSpawnPoint
 @onready var shieldSprite:Sprite2D = $Shield
 
-@onready var visionSensor:Area2D = $VisionSensor
+@onready var visionSensor:VisionSensor = $VisionSensor
 @onready var chargeEffect:GPUParticles2D = $EyeTurretEye/ChargeEffect
 @onready var chargeUpSFXPlayer:AudioStreamPlayer2D = $ChargeUpSFXPlayer
 @onready var fireSFXPlayer:AudioStreamPlayer2D = $FireSFXPlayer
@@ -42,8 +42,7 @@ func _ready() -> void:
 		visionSensor.monitoring = false
 	standardChargeParticleProcessMaterial = chargeEffect.process_material
 	standardChargeEffectLifeTime = chargeEffect.lifetime
-	
-	visionSensor.connect("object_detected", object_detected)
+	visionSensor.object_detected.connect(object_detected)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:

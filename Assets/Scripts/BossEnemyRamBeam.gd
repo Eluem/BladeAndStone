@@ -1,12 +1,15 @@
 extends RigidBodyHittable
 class_name BossEnemyRamBeam
 
+@onready var visionSensor:VisionSensor = $VisionSensor
+
 @onready var cameraTrackTarget:Node2D = $MainSprite/CameraTrackTarget
 @onready var cameraTrackTarget2:Node2D = $MainSprite/CameraTrackTarget2
 @onready var cameraTrackTarget3:Node2D = $MainSprite/CameraTrackTarget3
 @onready var cameraTrackTarget4:Node2D = $MainSprite/CameraTrackTarget4
 @onready var cameraTrackTarget5:Node2D = $MainSprite/CameraTrackTarget5
 
+@export var isDummyMode:bool
 
 var target:Node2D
 var force:float = 500
@@ -22,8 +25,6 @@ var attackActiveWaitTime:float = 1.5
 var attackActiveTimer:float = attackActiveWaitTime
 var searchTimer:float = 0
 var searchWaitTime:float = 0.5
-var visionSensor:Area2D
-@export var isDummyMode:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,8 +32,7 @@ func _ready() -> void:
 	damage_taken.connect(StatTracker.character_took_damage.bind(self))
 	exploded.connect(StatTracker.character_exploded.bind(self))
 	add_to_group("Enemies")
-	visionSensor = $VisionSensor
-	visionSensor.connect("object_detected", object_detected)
+	visionSensor.object_detected.connect(object_detected)
 	#($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

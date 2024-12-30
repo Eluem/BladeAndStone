@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/CheckButtonSliderGraphic.gd" id="1_56xp6"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/SettingsMenu.gd" id="1_h84po"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/SliderValueLabel.gd" id="1_nqtk5"]
-[ext_resource type="Script" path="res://Assets/GameScenes/DropdownButton.gd" id="4_vdnj1"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/DropdownButton.gd" id="4_vdnj1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8wra"]
 content_margin_left = 30.0
