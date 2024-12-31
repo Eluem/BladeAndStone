@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1735591803
+::res://::1735658468
 default_bus_layout.tres::AudioBusLayout::5253987945576872829::1730307678::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1728089656::0::1::::<><>::
 icon.png::CompressedTexture2D::775028251715326431::1710959467::1730817385::1::::<><>::
@@ -183,7 +183,7 @@ SliderDrag.wav::AudioStreamWAV::283593717778320709::1730267143::1730817387::1:::
 TogglePress.wav::AudioStreamWAV::4856454226223900798::1436896934::1730817387::1::::<><>::
 Wood_Hit.wav::AudioStreamWAV::279469170922829696::1731615180::1731905458::1::::<><>::
 Wood_HitDrag.wav::AudioStreamWAV::1569590490621799824::1731697078::1731905458::1::::<><>::
-::res://Assets/GameScenes/::1735591803
+::res://Assets/GameScenes/::1735591967
 BootSplash.tscn::PackedScene::3286786439166363712::1735591659::0::1::::<><>::uid://mnp371gqmghf::::res://Assets/Art/UI/TurmoniousGamesLogo_LQ.png<>res://Assets/Scripts/Menu/BootSplashAnimation.gd
 CanvasManagerScene.tscn::PackedScene::8643294105397788069::1735591659::0::1::::<><>::res://Assets/Scripts/Menu/CanvasManager.gd<>res://Assets/Scripts/UI/HealthUI.gd<>res://Assets/Scripts/UI/ScoreUI.gd<>uid://tyai8h2i0iay::::res://Assets/Art/UI/PauseButton_Normal.png<>uid://b4o8piw208qd4::::res://Assets/Art/UI/PauseButton_Pressed.png<>uid://bo7icgyfridvn::::res://Assets/Art/UI/PauseButton_Hover.png<>uid://mmm85hl5bm7c::::res://Assets/Audio/ButtonPress.wav<>uid://cbgrdd4bbkrdu::::res://Assets/Audio/TogglePress.wav<>uid://ebm0nv7jxb62::::res://Assets/Audio/SliderDrag.wav
 ConfirmationDialogue.tscn::PackedScene::2141909815602684259::1735591803::0::1::::<><>::res://Assets/Scripts/Menu/ConfirmationDialogue.gd<>uid://btfr8oxdeg1mx::::res://Assets/Art/UI/CloseButton_Normal.png<>uid://bgdlb1126254u::::res://Assets/Art/UI/CloseButton_Pressed.png<>uid://b28gcdo1jcxxs::::res://Assets/Art/UI/CloseButton_Hover.png
@@ -191,7 +191,7 @@ Credits.tscn::PackedScene::7376731924660461872::1735591659::0::1::::<><>::res://
 MainMenu.tscn::PackedScene::3513089794475038854::1735591773::0::1::::<><>::res://Assets/Scripts/Menu/MainMenu.gd<>uid://dqm83s61xiy2p::::res://Assets/Art/UI/GameTitleArt.png<>res://Assets/Scripts/Menu/MaxSizeLimiter.gd
 PauseMenu.tscn::PackedScene::5750293932422091911::1735591659::0::1::::<><>::res://Assets/Scripts/Menu/PauseMenu.gd<>uid://btfr8oxdeg1mx::::res://Assets/Art/UI/CloseButton_Normal.png<>uid://bgdlb1126254u::::res://Assets/Art/UI/CloseButton_Pressed.png<>uid://b28gcdo1jcxxs::::res://Assets/Art/UI/CloseButton_Hover.png
 RunSummary.tscn::PackedScene::8348801740356953031::1735591686::0::1::::<><>::res://Assets/Scripts/Menu/RunSummary.gd<>uid://45kwtphfh610::::res://Assets/Art/UI/HoverButton_StyleBox.tres<>uid://ce6u0s0ijn4sk::::res://Assets/Art/UI/PressedButton_StyleBox.tres<>uid://o46762e4hpks::::res://Assets/Art/UI/NormalButton_StyleBox.tres
-SettingsMenu.tscn::PackedScene::5205259654878241433::1735591697::0::1::::<><>::res://Assets/Scripts/CheckButtonSliderGraphic.gd<>res://Assets/Scripts/Menu/SettingsMenu.gd<>res://Assets/Scripts/Menu/SliderValueLabel.gd<>res://Assets/Scripts/Menu/DropdownButton.gd
+SettingsMenu.tscn::PackedScene::5205259654878241433::1735591967::0::1::::<><>::res://Assets/Scripts/Menu/CheckButtonSliderGraphic.gd<>res://Assets/Scripts/Menu/SettingsMenu.gd<>res://Assets/Scripts/Menu/SliderValueLabel.gd<>res://Assets/Scripts/Menu/DropdownButton.gd
 VerticalSlice.tscn::PackedScene::8107692498061598467::1735589080::0::1::::<><>::res://Assets/Scripts/BossFightManager.gd<>res://Assets/Scripts/PlayerSpawner.gd<>res://Assets/Scripts/CameraMultitracking.gd<>uid://dkno4s7cq2stk::::res://Assets/Art/Environment/FillerTree001.png<>uid://bfhajwon8t2jk::::res://Assets/Art/Environment/MapSketch.jpg<>uid://cgpfmdybxiqy0::::res://Assets/Art/Environment/BaseGrassTile.png<>uid://dmdm5cmhu7y8e::::res://Assets/Art/Environment/GrassTileTexturing.png<>uid://cu5w6yxkjfud::::res://Assets/Art/Environment/GrassTileDetailing.png<>uid://d8m201luyb2g::::res://Assets/Audio/Wood_Hit.wav<>uid://wmk6qr48qsgm::::res://Assets/Audio/Wood_HitDrag.wav<>uid://8iy8vssh3tbp::::res://Assets/ObjectScenes/Environment/DestructibleWall.tscn<>uid://d33hvftjovh37::::res://Assets/Art/Environment/BossRoomTileSets.tres<>res://Assets/Scripts/TriggerWallDestruction.gd<>uid://b5a6vebs2g507::::res://Assets/Audio/Rock_Hit.wav<>res://Assets/Scripts/StaticBodyHittable.gd<>uid://ndkc0girq6y5::::res://Assets/Audio/Rock_HitDrag.wav<>uid://c4pelnv5oo5he::::res://Assets/Art/Environment/RockTextures.png<>uid://d0i8ww3jk52jc::::res://Assets/Art/Environment/ShadowGradient.png<>uid://dnholosdpshyl::::res://Assets/Art/Environment/VinedBranch2.png<>res://CustomEditorTools/PathWallGenerator.gd<>uid://cpxtx41awrwe0::::res://Assets/Art/Environment/RockTexture3.png<>uid://c4v1r7j3o44ux::::res://Assets/ObjectScenes/Environment/CaveRoof.tscn<>res://Assets/Scripts/RoofTransparency.gd<>uid://nac5joltxc8l::::res://Assets/Art/Environment/CaveRoof.png<>uid://bkfau5cnacjck::::res://Assets/ObjectScenes/Enemies/BasicEyeEnemy.tscn<>uid://dtfhd601lsqa7::::res://Assets/ObjectScenes/Enemies/DashSmashEnemy.tscn<>uid://bwu2t8v3j6a0i::::res://Assets/Art/Environment/BossWall.png<>uid://brudcg26fol1o::::res://Assets/ObjectScenes/Environment/BossDoor.tscn<>uid://bk5o0ipghhwdy::::res://Assets/ObjectScenes/Items/HealthPickup.tscn<>res://Assets/Scripts/KeyHoleAttraction.gd<>res://Assets/Scripts/BossFoyer.gd<>uid://b88ycqw0o3m5h::::res://Assets/ObjectScenes/Enemies/EyeTurret.tscn<>uid://bivehr34unnys::::res://Assets/Art/Environment/BossEntrance.png<>uid://bqbm8cb454f33::::res://Assets/Audio/Metal_HitDrag.wav<>uid://b34e3fg5fsi21::::res://Assets/Audio/Metal_Hit.wav<>uid://chsfi441ne0ip::::res://Assets/Art/Environment/KeyHole_Filled.png<>uid://oo7nen8f85w5::::res://Assets/Art/Environment/KeyHole_Empty.png<>uid://d2erh03gjso0a::::res://Assets/Audio/KeyLockingIn.wav<>res://Assets/Scripts/KeyHoleAnimationPlayer.gd<>uid://rpc5ujmhhahp::::res://Assets/Audio/KeyLockedIn.wav<>uid://ouyrxptl688w::::res://Assets/ObjectScenes/Enemies/BossEnemyRamBeam.tscn<>uid://caterry5ptusm::::res://Assets/ObjectScenes/Items/SmallGem.tscn<>uid://bm02n2el0n7si::::res://Assets/ObjectScenes/Items/BossKey.tscn<>uid://dvml8ovnrwuh1::::res://Assets/ObjectScenes/Items/LargeGem.tscn
 ::res://Assets/GameScenes/Archive/::1735591803
 ConfirmationDialogue_bk.tscn::PackedScene::2109343962943045585::1735591803::0::1::::<><>::res://Assets/Scripts/Menu/ConfirmationDialogue.gd<>uid://dmi3ug5mxd6uu::::res://Assets/Art/UI/CloseButton.png
@@ -252,7 +252,7 @@ LivingRockHit.gd::GDScript::-1::1727875003::0::1::::LivingRockHit<>GPUParticles2
 LivingRockHit.tscn::PackedScene::7533025384535918784::1719241803::0::1::::<><>::uid://bcwuhv74pwb4p::::res://Assets/Art/Particles/Particle_Wave.png<>res://Assets/Scripts/DeleteFinishedParticles.gd<>res://Assets/ObjectScenes/Particles/LivingRockHit.gd
 Sparks.gd::GDScript::-1::1727875003::0::1::::Sparks<>CPUParticles2D<>::
 Sparks.tscn::PackedScene::7834461251537756789::1719241983::0::1::::<><>::res://Assets/ObjectScenes/Particles/Sparks.gd<>res://Assets/Scripts/DeleteFinishedParticles.gd
-::res://Assets/Scripts/::1735591803
+::res://Assets/Scripts/::1735591967
 BasicEyeEnemy.gd::GDScript::-1::1735583952::0::1::::BasicEyeEnemy<>RigidBodyHittable<>::
 BasicTracking.gd::GDScript::-1::1728996252::0::1::::TrackingCamera<>Camera2D<>::
 BossDoor.gd::GDScript::-1::1727874972::0::1::::<>Node2D<>::
@@ -265,7 +265,6 @@ CameraMultitracking.gd::GDScript::-1::1732173781::0::1::::CameraMultitracking<>C
 CameraMultitracking_DictionaryList_bk09242024.gd::GDScript::-1::1729084607::0::1::::CameraMultitracking_DictionaryList_bk09242024<>Camera2D<>::
 CharacterInputHandler.gd::GDScript::-1::1733157247::0::1::::CharacterInputHandler<>Node2D<>::
 CharacterInputUI.gd::GDScript::-1::1733155742::0::1::::CharacterInputUI<>Node2D<>::
-CheckButtonSliderGraphic.gd::GDScript::-1::1730479701::0::1::::CheckButtonSliderGraphic<>HSlider<>::
 CrackDamageVisualUpdater.gd::GDScript::-1::1728997108::0::1::::CrackDamageVisualUpdater<>Node2D<>::
 DashSmashEnemy.gd::GDScript::-1::1735591060::0::1::::DashSmashEnemy<>RigidBodyHittable<>::
 DebugButton.gd::GDScript::-1::1727874873::0::1::::<>Button<>::
@@ -311,9 +310,10 @@ PIDController2D.gd::GDScript::-1::1726400000::0::1::::PIDController2D<>RefCounte
 PIDController3D.gd::GDScript::-1::1726399982::0::1::::PIDController3D<>RefCounted<>::
 PIDControllerJoint.gd::GDScript::-1::1729048887::0::1::::PIDControllerJoint2D<>Node2D<>::
 RaycastHelper.gd::GDScript::-1::1725470214::0::1::::RaycastHelper<>RefCounted<>::
-::res://Assets/Scripts/Menu/::1735591803
+::res://Assets/Scripts/Menu/::1735591967
 BootSplashAnimation.gd::GDScript::-1::1732721937::0::1::::<>AnimationPlayer<>::
 CanvasManager.gd::GDScript::-1::1730317622::0::1::::CanvasManager<>CanvasLayer<>::
+CheckButtonSliderGraphic.gd::GDScript::-1::1730479701::0::1::::CheckButtonSliderGraphic<>HSlider<>::
 ConfirmationDialogue.gd::GDScript::-1::1730479696::0::1::::ConfirmationDialogue<>Control<>::
 Credits.gd::GDScript::-1::1730479660::0::1::::<>CanvasLayer<>::
 DropdownButton.gd::GDScript::-1::1733951669::0::1::::DropdownButton<>MenuButton<>::
@@ -331,8 +331,8 @@ Geometry2DHelper.gd::GDScript::-1::1726940621::0::1::::Geometry2DHelper<>RefCoun
 ::res://Assets/Scripts/UI/::1734381205
 HealthUI.gd::GDScript::-1::1728997232::0::1::::HealthBar<>ProgressBar<>::
 ScoreUI.gd::GDScript::-1::1734381205::0::1::::ScoreUI<>Label<>::
-::res://Assets/Shaders/::1735591230
-TrailShader.gdshader::Shader::-1::1735591230::0::1::::<><>::
+::res://Assets/Shaders/::1735592396
+TrailShader.gdshader::Shader::-1::1735592396::0::1::::<><>::
 WeaponTrailMaterial.tres::ShaderMaterial::526467539907804595::1735569701::0::1::::<><>::res://Assets/Shaders/TrailShader.gdshader
 ::res://CustomEditorTools/::1730479660
 GeneratePolygonCircle.gd::GDScript::-1::1726569688::0::1::::<>Polygon2D<>::

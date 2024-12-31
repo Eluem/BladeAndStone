@@ -14,7 +14,7 @@ var force:float = 3000 #500
 var maxSpeed:float = 500**2
 var maxFollowDist:float = 500**2
 var minFollowDistRange:Vector2 = Vector2(400**2, maxFollowDist * 1.5)
-var attackStartMaxDist:float = 800**2
+var attackStartMaxDist:float = 450**2
 var rotationSpeed:float = 3
 var attackChargeWaitTime:float = 4
 var attackChargeWarningWaitTime:float = 3.6
@@ -56,18 +56,33 @@ func _physics_process(_delta:float) -> void:
 	var dist:float = (target.global_position - global_position).length_squared()
 	
 	if(HasLineOfSight()):
-		if(dist > maxFollowDist && (!IsAttackCharging() || dist > maxFollowDist * 2.5)):
-			if(linear_velocity.length_squared() <= maxSpeed):
-				apply_central_force(force * (target.global_position - global_position).normalized())
-		elif(dist < lerp(minFollowDistRange.x, minFollowDistRange.y, GetAttackChargePercentage())):
-			apply_central_force(force * 2 * (global_position - target.global_position).normalized())
+		var dir:Vector2 = (target.global_position - global_position).normalized()
+		if(dist > maxFollowDist):# && (!IsAttackCharging() || dist > maxFollowDist * 2.5)):
+			var currSpeed:float = linear_velocity.dot(transform.x)**2
+			if(currSpeed <= maxSpeed):
+				if(IsAttackCharging() && dist <= maxFollowDist * 2.5):
+					apply_central_force(-mass * 2 * linear_velocity)
+				else:
+					apply_central_force(force * dir)
+		else:
+			var attackChargePercentage:float = GetAttackChargePercentage()
+			if(dist < lerp(minFollowDistRange.x, minFollowDistRange.y, attackChargePercentage)):
+				apply_central_force(force * -dir)
 		
 		#Additional stopping force if too close to target
 		if(dist < minFollowDistRange.x):
 			apply_central_force(-mass * linear_velocity)
 		#Reduce sideways velocity if attack is charging
 		if(IsAttackCharging()):
-			apply_central_force(-mass * linear_velocity - (transform.x * linear_velocity.length()))
+			#var counterForce:Vector2 = -mass * (linear_velocity - (transform.x * linear_velocity.length()))
+			#var counterForce:Vector2 = -mass * (linear_velocity - (transform.x * transform.x.dot(linear_velocity)))
+			var counterForce:Vector2 = -mass * (linear_velocity - (transform.x * linear_velocity.dot(transform.x)))
+			#var counterForce:Vector2 = -mass * linear_velocity
+			apply_central_force(counterForce)
+		#Apply some counter side force even if not charging
+		else:
+			var counterForce:Vector2 = -1 * (linear_velocity - (transform.x * linear_velocity.dot(transform.x)))
+			apply_central_force(counterForce)
 	else:
 		UpdateNavInfo(dist)
 		if(linear_velocity.length_squared() <= maxSpeed):
@@ -107,6 +122,7 @@ func ChargeAttack(delta:float) -> void:
 func BeginAttack() -> void:
 	attackReleaseSFXPlayer.play()
 	UpdateSmasherVisualEffect(0.99)
+	linear_velocity = Vector2.ZERO
 	apply_central_impulse(transform.x.normalized() * 5000)
 	($Smasher/RaycastCollider as RaycastCollider).Enable()
 	ToggleTrails(true)
