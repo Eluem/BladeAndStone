@@ -19,6 +19,7 @@ var selectedOption:int:
 func _ready() -> void:
 	popup = get_popup()
 	popup.id_pressed.connect(on_id_pressed)
+	pressed.connect(on_pressed)
 
 
 func Initialize(pSelectedOption:int) -> void:
@@ -26,4 +27,9 @@ func Initialize(pSelectedOption:int) -> void:
 
 
 func on_id_pressed(pID:int) -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	selectedOption = pID
+
+
+func on_pressed() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()

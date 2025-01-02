@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1735834327
+::res://::1735837461
 default_bus_layout.tres::AudioBusLayout::5253987945576872829::1730307678::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1728089656::0::1::::<><>::
 icon.png::CompressedTexture2D::775028251715326431::1710959467::1730817385::1::::<><>::
@@ -333,8 +333,8 @@ Geometry2DHelper.gd::GDScript::-1::1726940621::0::1::::Geometry2DHelper<>RefCoun
 ::res://Assets/Scripts/UI/::1734381205
 HealthUI.gd::GDScript::-1::1728997232::0::1::::HealthBar<>ProgressBar<>::
 ScoreUI.gd::GDScript::-1::1734381205::0::1::::ScoreUI<>Label<>::
-::res://Assets/Shaders/::1735833902
-TrailShader.gdshader::Shader::-1::1735833902::0::1::::<><>::
+::res://Assets/Shaders/::1735834400
+TrailShader.gdshader::Shader::-1::1735834400::0::1::::<><>::
 WeaponTrailMaterial.tres::ShaderMaterial::526467539907804595::1735824816::0::1::::<><>::res://Assets/Shaders/TrailShader.gdshader
 ::res://CustomEditorTools/::1730479660
 GeneratePolygonCircle.gd::GDScript::-1::1726569688::0::1::::<>Polygon2D<>::
