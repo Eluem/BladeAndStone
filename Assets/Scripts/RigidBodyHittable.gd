@@ -43,10 +43,12 @@ func _process(_delta:float) -> void:
 
 
 func HandleHit(pHitData:HitData) -> void:
-	HitEffect(pHitData.position as Vector2, (pHitData.hitDirection as Vector2).normalized() * (pHitData.knockback as float))
+	#HitEffect(pHitData.position as Vector2, (pHitData.hitDirection as Vector2).normalized() * (pHitData.knockback as float))
+	HitEffect(pHitData.position as Vector2, pHitData.lookDirection.normalized() * (pHitData.knockback as float))
 	ApplyKnockback(pHitData.lookDirection as Vector2, pHitData.knockback as float)
 	PlayHurtSFX()
-	ApplyDamage(pHitData.hitOwner, pHitData.damage, (pHitData.hitDirection as Vector2).normalized(), pHitData.knockback)
+	#ApplyDamage(pHitData.hitOwner, pHitData.damage, (pHitData.hitDirection as Vector2).normalized(), pHitData.knockback)
+	ApplyDamage(pHitData.hitOwner, pHitData.damage, pHitData.lookDirection.normalized(), pHitData.knockback)
 
 
 func ApplyDamage(pHitOwner:Node2D, pDamage:int, pDir:Vector2 = Vector2.ZERO, pForce:float = 0) -> void:

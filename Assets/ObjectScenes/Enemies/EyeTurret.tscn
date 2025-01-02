@@ -531,6 +531,7 @@ _data = {
 collision_layer = 17
 collision_mask = 17
 script = ExtResource("1_gi1cx")
+hitSparkColor = Color(0.439216, 0.815686, 0.835294, 0.745098)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jurdh")

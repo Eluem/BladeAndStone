@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c31yjgwi1t0v3"]
+
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Particles/Sparks.gd" id="1_l2ahh"]
+[ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="2_jubfr"]
+
+[sub_resource type="Curve" id="Curve_chqnh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Sparks" type="CPUParticles2D"]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_chqnh")
+script = ExtResource("1_l2ahh")
+
+[node name="DeleteOnFinish" type="Node" parent="."]
+script = ExtResource("2_jubfr")
