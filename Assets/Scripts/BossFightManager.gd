@@ -4,8 +4,8 @@ class_name BossFightManager
 @export var mainCamera:CameraMultitracking
 @export var boss:BossEnemyRamBeam
 @export var playerSpawner:PlayerSpawner
-@onready var bossIntroAnim:AnimationPlayer = $BossIntroAnim
 
+@onready var bossIntroAnim:AnimationPlayer = $BossIntroAnim
 @onready var transitionalCamera:Camera2D = $TransitionalCamera
 @onready var bossIntroCamera:Camera2D = $BossIntroCamera
 

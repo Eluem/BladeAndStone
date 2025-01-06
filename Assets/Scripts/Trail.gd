@@ -17,6 +17,7 @@ enum AlignmentDirection
 @export var forceTipAlignmentLength:float = 10
 @export var forceTipAlignmentDirection:AlignmentDirection
 @export var trackingEnabled:bool = true
+@export var dropDupePoints:bool = false
 @export var debugMode:bool = false
 var forcedPoint:bool
 var queue:Array[Vector2]
@@ -36,6 +37,8 @@ func _process(_delta:float) -> void:
 func UpdateQueue() -> void:
 	if(trackingEnabled):
 		var newPoint:Vector2 = get_new_position()
+		if(dropDupePoints && queue.size() > 0 && queue[0] == newPoint):
+			return
 		if(forceTipAlignment):
 			if(forcedPoint):
 				queue.remove_at(1)

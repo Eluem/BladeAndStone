@@ -55,7 +55,7 @@ func _physics_process(_delta:float) -> void:
 		apply_central_force(global_position.direction_to(pickUpPlayer.global_position) * attractForce)
 
 
-static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadiusOverride:float = -1, pAttractIgnoreLineOfSight:bool = false, pCanAttract:bool = true, pAutoAttractDelay:float = 2, pForceMultiplier:float = 1) -> void:
+static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadiusOverride:float = -1, pAttractIgnoreLineOfSight:bool = false, pCanAttract:bool = true, pAutoAttractDelay:float = 1.0, pForceMultiplier:float = 1) -> void:
 	var currentScene:Node = pSpawner.get_tree().current_scene
 	var gems:Array[Gem] = []
 	match pType:

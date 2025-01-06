@@ -34,27 +34,15 @@ theme_override_constants/separation = 30
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 115
-theme_override_constants/margin_right = 500
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/h_separation = 20
 columns = 2
-
-[node name="ScoreLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Score:"
-horizontal_alignment = 2
-
-[node name="ScoreValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "0"
 
 [node name="TimeLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -68,39 +56,78 @@ theme_override_font_sizes/font_size = 40
 text = "0
 "
 
-[node name="DamageDealtLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="PointsLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Damage Dealt:"
+text = "Points:"
 horizontal_alignment = 2
 
-[node name="DamageDealtValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="PointsValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "0
-"
+text = "0"
 
-[node name="DamageTakenLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="TimePenaltyLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
+text = "Time Penalty:"
+horizontal_alignment = 2
+
+[node name="TimePenaltyValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Final Score:"
+horizontal_alignment = 2
+
+[node name="ScoreValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="GridContainer2" type="GridContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+columns = 2
+
+[node name="DamageTakenLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Damage Taken:"
 horizontal_alignment = 2
 
-[node name="DamageTakenValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="DamageTakenValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 
-[node name="EnemiesShatteredLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="DamageDealtLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 25
+text = "Damage Dealt:"
+horizontal_alignment = 2
+
+[node name="DamageDealtValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "0
+"
+
+[node name="EnemiesShatteredLabel" type="Label" parent="VBoxContainer/MarginContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Enemies Shattered:"
 horizontal_alignment = 2
 
-[node name="EnemiesShatteredValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer"]
+[node name="EnemiesShatteredValue" type="Label" parent="VBoxContainer/MarginContainer/GridContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 25
 text = "0
 "
 

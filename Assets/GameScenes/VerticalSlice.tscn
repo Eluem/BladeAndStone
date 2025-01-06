@@ -9109,9 +9109,6 @@ position = Vector2(3470, 1260)
 [node name="BossKey" parent="Consumables" instance=ExtResource("35_bbatl")]
 position = Vector2(3640, 1500)
 
-[node name="BossKey2" parent="Consumables" instance=ExtResource("35_bbatl")]
-position = Vector2(-94, -4026)
-
 [node name="SmallGem" parent="Consumables" instance=ExtResource("34_qayb0")]
 position = Vector2(-1060, -1190)
 

@@ -1,13 +1,14 @@
 extends PanelContainer
 class_name RunSummary
+@onready var timeValue:Label = $VBoxContainer/MarginContainer/GridContainer/TimeValue
+@onready var pointsValue: Label = $VBoxContainer/MarginContainer/GridContainer/PointsValue
+@onready var timePenaltyValue: Label = $VBoxContainer/MarginContainer/GridContainer/TimePenaltyValue
 @onready var scoreLabel:Label = $VBoxContainer/MarginContainer/GridContainer/ScoreLabel
 @onready var scoreValue:Label = $VBoxContainer/MarginContainer/GridContainer/ScoreValue
-@onready var timeValue:Label = $VBoxContainer/MarginContainer/GridContainer/TimeValue
-@onready var damageDealtValue:Label = $VBoxContainer/MarginContainer/GridContainer/DamageDealtValue
-@onready var damageTakenValue:Label = $VBoxContainer/MarginContainer/GridContainer/DamageTakenValue
-@onready var enemiesShatteredValue:Label = $VBoxContainer/MarginContainer/GridContainer/EnemiesShatteredValue
+@onready var damageDealtValue:Label = $VBoxContainer/MarginContainer/GridContainer2/DamageDealtValue
+@onready var damageTakenValue:Label = $VBoxContainer/MarginContainer/GridContainer2/DamageTakenValue
+@onready var enemiesShatteredValue:Label = $VBoxContainer/MarginContainer/GridContainer2/EnemiesShatteredValue
 @onready var newHighScore:Label = $VBoxContainer/NewHighScore
-
 @onready var continueButton:Button = $ContinueButton
 
 var isHighScore:bool = false
@@ -30,8 +31,12 @@ func _process(delta:float) -> void:
 func UpdateStatLabels() -> void:
 	isHighScore = StatTracker.CheckForHighScore()
 	newHighScore.visible = isHighScore
-	scoreValue.text = str(StatTracker.GetTotalScore())
+	
 	timeValue.text = StatTracker.GetTimeString()
+	pointsValue.text = str(StatTracker.currentScore)
+	timePenaltyValue.text = str(StatTracker.GetTimePenalty())
+	scoreValue.text = str(StatTracker.GetTotalScore())
+	
 	damageDealtValue.text = str(StatTracker.damageDealt)
 	damageTakenValue.text = str(StatTracker.damageTaken)
 	enemiesShatteredValue.text = str(StatTracker.enemiesShattered)

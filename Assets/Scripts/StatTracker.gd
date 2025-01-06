@@ -6,8 +6,10 @@ var timeMultiplier:float = 0.25
 var initialTimeBuffer:float = 30
 
 var currentScore:int = 0
-var runStartTime:float = 0
-var runCurrTime:float = 0
+var prevScore:int = 0
+var runDuration:float = 0
+#var runStartTime:float = 0
+#var runCurrTime:float = 0
 var damageTaken:int = 0
 var damageDealt:int = 0
 var enemiesShattered:int = 0
@@ -19,17 +21,23 @@ func _ready() -> void:
 	GameStateManager.scene_changed.connect(scene_changed)
 
 
-func _process(_delta:float) -> void:
+func _process(delta:float) -> void:
 	if(!runEnded):
-		runCurrTime = Time.get_unix_time_from_system()
+		#runCurrTime = Time.get_unix_time_from_system()
+		runDuration += delta
 	CheckScoreChange()
 
-
 func CheckScoreChange() -> void:
+	if(prevScore != currentScore):
+		score_changed.emit(currentScore)
+	prevScore = currentScore
+
+
+func CheckScoreChange_Old() -> void:
 	var currTotalScore:int = GetTotalScore()
 	if(prevFrameTotalScore != currTotalScore):
 		score_changed.emit(currTotalScore)
-	prevFrameTotalScore = currentScore
+	prevFrameTotalScore = currTotalScore
 
 
 #Checks if there's a new high score, updates and saves if there is
@@ -42,10 +50,15 @@ func CheckForHighScore() -> bool:
 	return false
 
 
+func GetTimePenalty() -> int:
+	var ret:int = roundi((GetRunTime_Unrounded() - initialTimeBuffer) * timeMultiplier)
+	if(ret < 0):
+		ret = 0
+	return ret
+
+
 func GetTotalScore() -> int:
-	var timePenalty:int = roundi((GetRunTime_Unrounded() - initialTimeBuffer) * timeMultiplier)
-	if(timePenalty < 0):
-		timePenalty = 0
+	var timePenalty:int = GetTimePenalty()
 	var ret:int = currentScore - timePenalty
 	if(ret < 0):
 		ret = 0
@@ -54,12 +67,14 @@ func GetTotalScore() -> int:
 
 func ResetStats() -> void:
 	currentScore = 0
-	runStartTime = Time.get_unix_time_from_system()
-	runCurrTime = 0
+	runDuration = 0
+	#runStartTime = Time.get_unix_time_from_system()
+	#runCurrTime = 0
 	damageTaken = 0
 	damageDealt = 0
 	enemiesShattered = 0
 	prevFrameTotalScore = 0
+	runEnded = false
 
 
 func EndRunTimer() -> void:
@@ -67,7 +82,8 @@ func EndRunTimer() -> void:
 
 
 func GetRunTime_Unrounded() -> float:
-	return runCurrTime - runStartTime
+	#return runCurrTime - runStartTime
+	return runDuration
 
 
 func GetRunTime() -> int:

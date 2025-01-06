@@ -6,7 +6,7 @@ var sfxVolume:float = 0.5
 var invertInputDirection:bool = false
 var isFirstRun:bool = true
 var highScore:int = 0
-var windowMode:int = 0
+var windowMode:int = GameStateManager.WindowMode.Fullscreen
 
 
 func SaveData() -> void:
@@ -17,7 +17,7 @@ func SaveData() -> void:
 
 func LoadData() -> void:
 	if(!FileAccess.file_exists("data.dat")):
-		return
+		SaveData()
 	var file:FileAccess = FileAccess.open("data.dat", FileAccess.READ)
 	var data:Dictionary = file.get_var(true)
 	SetValues(data)
