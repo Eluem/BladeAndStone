@@ -1,5 +1,8 @@
 extends Node2D
 class_name SmasherVisualEffect
+
+@onready var attackChargeVFX:Sprite2D = $AttackChargeVfx
+
 var attackChargePercentage:float = 0
 var unchargeColor:Color =  Color8(170, 0, 0, 0)
 var fullChargeColor:Color = Color8(170, 0, 0, 161)
@@ -12,24 +15,30 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta:float) -> void:
-	pass
-
-func _draw() -> void:
 	var currColor:Color = unchargeColor.lerp(fullChargeColor, attackChargePercentage)
 	if(attackChargePercentage >= 1):
 		currColor = Color.WHITE
 		currColor.a = 0.4
-	#var currRadius:float = 5 * attackChargePercentage
 	
-	for tipPolygon:Polygon2D in tipPolygons:
-		draw_colored_polygon(tipPolygon.polygon, currColor)
-	#draw_circle(($RaycastCollider/RaycastNode as Node2D).position, currRadius, currColor)
-	#draw_circle(($RaycastCollider/RaycastNode2 as Node2D).position, currRadius, currColor)
-	#draw_circle(($RaycastCollider/RaycastNode3 as Node2D).position, currRadius, currColor)
-	#draw_circle(($RaycastCollider/RaycastNode4 as Node2D).position, currRadius, currColor)
-	#draw_circle(($RaycastCollider/RaycastNode5 as Node2D).position, currRadius, currColor)
-	#draw_circle(($RaycastCollider/RaycastNode6 as Node2D).position, currRadius, currColor)
-	#draw_circle(($RaycastCollider/RaycastNode7 as Node2D).position, currRadius, currColor)
+	attackChargeVFX.modulate = currColor
+	
+
+#func _draw() -> void:
+	#var currColor:Color = unchargeColor.lerp(fullChargeColor, attackChargePercentage)
+	#if(attackChargePercentage >= 1):
+		#currColor = Color.WHITE
+		#currColor.a = 0.4
+	##var currRadius:float = 5 * attackChargePercentage
+	#
+	#for tipPolygon:Polygon2D in tipPolygons:
+		#draw_colored_polygon(tipPolygon.polygon, currColor)
+	##draw_circle(($RaycastCollider/RaycastNode as Node2D).position, currRadius, currColor)
+	##draw_circle(($RaycastCollider/RaycastNode2 as Node2D).position, currRadius, currColor)
+	##draw_circle(($RaycastCollider/RaycastNode3 as Node2D).position, currRadius, currColor)
+	##draw_circle(($RaycastCollider/RaycastNode4 as Node2D).position, currRadius, currColor)
+	##draw_circle(($RaycastCollider/RaycastNode5 as Node2D).position, currRadius, currColor)
+	##draw_circle(($RaycastCollider/RaycastNode6 as Node2D).position, currRadius, currColor)
+	##draw_circle(($RaycastCollider/RaycastNode7 as Node2D).position, currRadius, currColor)
 
 func UpdateAttackChargePercentage(pAttackChargePercentage:float) -> void:
 	if(pAttackChargePercentage != attackChargePercentage):

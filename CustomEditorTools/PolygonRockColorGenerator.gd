@@ -3,6 +3,7 @@ extends Polygon2D
 @export var generateInternalPolygons:bool
 @export var generateVertexColors:bool
 @export var resetToDefaultPolgyon:bool
+##Offset values for generating internal vertex rings. Values should be less than zero (so it scales inward).
 @export var ringScaling:Array[float] #number of rings determined by size of array
 @export var colorPerRing:Array[Color] #this includes the outer ring, length should be ringScaling.Size() + 1
 @export var mainPolygon:PackedVector2Array = [] #backs up the main polygon
@@ -45,7 +46,7 @@ func GenerateInternalPolygons() -> void:
 	ClearInternalData()
 	newPolygonData = polygon
 	if(mainPolygon.size() == 0):
-		mainPolygon = polygon
+		mainPolygon = polygon.duplicate()
 	
 	rings.append(range(0, mainPolygon.size()) as PackedInt32Array)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtfhd601lsqa7"]
+[gd_scene load_steps=20 format=3 uid="uid://dtfhd601lsqa7"]
 
 [ext_resource type="Texture2D" uid="uid://nx3tjh03dga8" path="res://Assets/Art/Characters/DashSmashEnemy.png" id="1_8e2t7"]
 [ext_resource type="Script" path="res://Assets/Scripts/DashSmashEnemy.gd" id="1_xb7ov"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/SmasherVisualEffect.gd" id="3_agb2v"]
 [ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="3_xp0kw"]
 [ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="4_5tddp"]
+[ext_resource type="Texture2D" uid="uid://dyl1ti7xlnubm" path="res://Assets/Art/Characters/DashSmashEnemy_AttackChargeVFX.png" id="8_s5jy1"]
 [ext_resource type="AudioStream" uid="uid://cxk3tpx1l01y4" path="res://Assets/Audio/DashSmashEnemy_AttackSFX_Hit.wav" id="9_lgwgf"]
 [ext_resource type="AudioStream" uid="uid://bt33sksndu1pb" path="res://Assets/Audio/DashSmashEnemy_AttackSFX_WindUp.wav" id="12_bqa2n"]
 [ext_resource type="AudioStream" uid="uid://cxeqfl5cfsw25" path="res://Assets/Audio/DashSmashEnemy_AttackSFX_Release.wav" id="13_qklc5"]
@@ -192,6 +193,13 @@ antialiased = true
 
 [node name="Smasher" type="Node2D" parent="."]
 script = ExtResource("3_agb2v")
+
+[node name="AttackChargeVfx" type="Sprite2D" parent="Smasher"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(84.7, 0)
+rotation = 1.5708
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("8_s5jy1")
 
 [node name="RaycastCollider" type="Node2D" parent="Smasher" node_paths=PackedStringArray("excludeCollision")]
 script = ExtResource("2_03b1j")

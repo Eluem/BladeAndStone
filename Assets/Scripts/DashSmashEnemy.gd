@@ -35,7 +35,7 @@ func _ready() -> void:
 	exploded.connect(StatTracker.character_exploded.bind(self))
 	add_to_group("Enemies")
 	visionSensor.object_detected.connect(object_detected)
-	($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
+	#($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
 	navigationAgent2d.velocity_computed.connect(_navigation_computed)
 
 
