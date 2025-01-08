@@ -1,18 +1,18 @@
 [gd_scene load_steps=19 format=3 uid="uid://cm6qx4n75cmfk"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/DashSmashEnemy.gd" id="1_t0rnk"]
-[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_ogf72"]
-[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/Creature_Hurt2.wav" id="3_ic53u"]
+[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/SFX/Creature_Hurt1.wav" id="2_ogf72"]
+[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/SFX/Creature_Hurt2.wav" id="3_ic53u"]
 [ext_resource type="Texture2D" uid="uid://nx3tjh03dga8" path="res://Assets/Art/Characters/DashSmashEnemy.png" id="4_03o16"]
 [ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="5_4l04t"]
 [ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="6_n5qsw"]
 [ext_resource type="Script" path="res://Assets/Scripts/SmasherVisualEffect.gd" id="7_c0qhj"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="8_n71l4"]
-[ext_resource type="AudioStream" uid="uid://cxk3tpx1l01y4" path="res://Assets/Audio/DashSmashEnemy_AttackSFX_Hit.wav" id="9_ta6k6"]
+[ext_resource type="AudioStream" uid="uid://cxk3tpx1l01y4" path="res://Assets/Audio/SFX/DashSmashEnemy_AttackSFX_Hit.wav" id="9_ta6k6"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="10_g01qo"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="11_13gwx"]
-[ext_resource type="AudioStream" uid="uid://bt33sksndu1pb" path="res://Assets/Audio/DashSmashEnemy_AttackSFX_WindUp.wav" id="12_3qhj3"]
-[ext_resource type="AudioStream" uid="uid://cxeqfl5cfsw25" path="res://Assets/Audio/DashSmashEnemy_AttackSFX_Release.wav" id="13_5sqht"]
+[ext_resource type="AudioStream" uid="uid://bt33sksndu1pb" path="res://Assets/Audio/SFX/DashSmashEnemy_AttackSFX_WindUp.wav" id="12_3qhj3"]
+[ext_resource type="AudioStream" uid="uid://cxeqfl5cfsw25" path="res://Assets/Audio/SFX/DashSmashEnemy_AttackSFX_Release.wav" id="13_5sqht"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dfrsi"]
 radius = 71.0

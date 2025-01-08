@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://ouyrxptl688w"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BossEnemyRamBeam.gd" id="1_8vjai"]
-[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_1elft"]
+[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/SFX/Creature_Hurt1.wav" id="2_1elft"]
 [ext_resource type="Texture2D" uid="uid://bb5btnhhwelqm" path="res://Assets/Art/Characters/Boss_RamSlamBlast.png" id="2_reg8h"]
 [ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="3_2r7hy"]
-[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/Creature_Hurt2.wav" id="3_k15bf"]
+[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/SFX/Creature_Hurt2.wav" id="3_k15bf"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="5_vc6uq"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="6_vdihl"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="7_n44di"]

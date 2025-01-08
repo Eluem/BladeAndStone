@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BulletWithCCD.gd" id="2_wyeih"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="3_l5a6k"]
 [ext_resource type="Texture2D" uid="uid://ca60rjiiqjscm" path="res://Assets/Art/Characters/EyeProjectile.png" id="4_1xofr"]
-[ext_resource type="AudioStream" uid="uid://w13g8qbnwiql" path="res://Assets/Audio/EyeTurret_BoltHit.wav" id="5_vdecp"]
+[ext_resource type="AudioStream" uid="uid://w13g8qbnwiql" path="res://Assets/Audio/SFX/EyeTurret_BoltHit.wav" id="5_vdecp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3d3te"]
 radius = 20.0

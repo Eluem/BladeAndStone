@@ -1,8 +1,8 @@
 class_name GameSaveHelper
 var checkPointReached:bool = false
-var masterVolume:float = 0.5
-var musicVolume:float = 0.5
-var sfxVolume:float = 0.5
+var masterVolume:float = 0.8 #0.5
+var musicVolume:float = 0.3 #0.5
+var sfxVolume:float = 1.0 #0.5
 var invertInputDirection:bool = false
 var isFirstRun:bool = true
 var highScore:int = 0
@@ -21,6 +21,20 @@ func LoadData() -> void:
 	var file:FileAccess = FileAccess.open("data.dat", FileAccess.READ)
 	var data:Dictionary = file.get_var(true)
 	SetValues(data)
+
+
+static func GetDefaultValues() -> Dictionary:
+	var ret:Dictionary = {
+							 "checkPointReached":false
+							,"masterVolume":0.8
+							,"musicVolume":0.3
+							,"sfxVolume":1.0
+							,"invertInputDirection":false
+							,"isFirstRun":true
+							,"highScore":0
+							,"windowMode":GameStateManager.WindowMode.Fullscreen
+						 }
+	return ret
 
 
 func GetValues() -> Dictionary:

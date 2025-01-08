@@ -33,7 +33,7 @@ func SpawnPlayer() -> Golem:
 	ret.global_position = spawnPoints[currSpawnPoint].position
 	ret.rotation = spawnPoints[currSpawnPoint].rotation
 	#GameStateManager.canvasManager.ConnectToNewPlayer(ret)
-	CanvasManagerScene.ConnectToNewPlayer(ret)
+	(CanvasManagerScene as CanvasManager).ConnectToNewPlayer(ret)
 	
 	#get_tree().root.get_child(0).add_child(ret)
 	get_tree().current_scene.add_child(ret)

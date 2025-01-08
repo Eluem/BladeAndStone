@@ -24,6 +24,9 @@ func _ready() -> void:
 	
 	if(GameStateManager.gameData.checkPointReached):
 		continueButton.disabled = false
+	
+	(MusicManagerScene as MusicManager).gameMusic.PauseTrack()
+	(MusicManagerScene as MusicManager).menuMusic.ResumeOrPlayTrack()
 
 
 func continue_button_pressed() -> void:
@@ -43,7 +46,7 @@ func new_game_button_pressed() -> void:
 func settings_button_pressed() -> void:
 	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	var settingsMenu:SettingsMenu = SETTINGS_MENU.instantiate()
-	settingsMenu.Initialize(self, settings_menu_response, GameStateManager.gameData.GetValues())
+	settingsMenu.Initialize(self, settings_menu_response, GameStateManager.gameData.GetValues(), GameSaveHelper.GetDefaultValues())
 
 
 func credits_button_pressed() -> void:

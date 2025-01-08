@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name BossHeart
 
-const GEM_PICKUP_SFX = preload("res://Assets/Audio/GemPickup.wav")
+const GEM_PICKUP_SFX = preload("res://Assets/Audio/SFX/GemPickup.wav")
 const BOSS_HEART = preload("res://Assets/ObjectScenes/Items/BossHeart.tscn")
 
 signal boss_heart_collected(pPickUpPlayer:Golem)

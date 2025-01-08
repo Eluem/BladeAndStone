@@ -9,8 +9,11 @@ const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/Confi
 @onready var saveCloseButton:Button = $PanelContainer/BottomContainer/SaveCloseButton
 @onready var closeButton:Button = $PanelContainer/BottomContainer/CloseButton
 @onready var masterVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MasterVolumeSlider
+@onready var masterVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MasterVolumeSlider/ValueLabel
 @onready var musicVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MusicVolumeSlider
+@onready var musicVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MusicVolumeSlider/ValueLabel
 @onready var effectsVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/EffectsVolumeSlider
+@onready var effectsVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/EffectsVolumeSlider/ValueLabel
 @onready var invertInputCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck
 @onready var checkButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck/CheckButtonSliderGraphic
 @onready var windowModeLabel:Label = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/WindowModeLabel
@@ -88,14 +91,17 @@ func SetValues(pValues:Dictionary) -> void:
 	if(pValues.has("masterVolume")):
 		floatCast = pValues.masterVolume
 		masterVolumeSlider.set_value_no_signal(floatCast)
+		masterVolumeSliderValueLabel.RefreshValue()
 		GameStateManager.SetMasterVolume(floatCast)
 	if(pValues.has("musicVolume")):
 		floatCast = pValues.musicVolume
 		musicVolumeSlider.set_value_no_signal(floatCast)
+		musicVolumeSliderValueLabel.RefreshValue()
 		GameStateManager.SetMusicVolume(floatCast)
 	if(pValues.has("sfxVolume")):
 		floatCast = pValues.sfxVolume
 		effectsVolumeSlider.set_value_no_signal(floatCast)
+		effectsVolumeSliderValueLabel.RefreshValue()
 		GameStateManager.SetSFXVolume(floatCast)
 	if(pValues.has("invertInputDirection")):
 		invertInputCheck.button_pressed = pValues.invertInputDirection
@@ -179,5 +185,6 @@ func default_dialogue_response(pResponse:bool) -> void:
 func close_dialogue_response(pResponse:bool) -> void:
 	if(!pResponse):
 		return
-	GameStateManager.SetWindowMode(GameStateManager.gameData.windowMode)
+	#GameStateManager.SetWindowMode(GameStateManager.gameData.windowMode)
+	SetValues(currValues)
 	queue_free()

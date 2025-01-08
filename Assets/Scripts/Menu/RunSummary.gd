@@ -19,6 +19,8 @@ var highScoreColorCycleSpeed:float = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	(MusicManagerScene as MusicManager).gameMusic.PauseTrack()
+	(MusicManagerScene as MusicManager).menuMusic.PlayTrack()
 	UpdateStatLabels()
 	continueButton.pressed.connect(on_click_continue)
 

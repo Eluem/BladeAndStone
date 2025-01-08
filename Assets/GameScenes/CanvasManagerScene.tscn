@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://tyai8h2i0iay" path="res://Assets/Art/UI/PauseButton_Normal.png" id="3_sr8s3"]
 [ext_resource type="Texture2D" uid="uid://b4o8piw208qd4" path="res://Assets/Art/UI/PauseButton_Pressed.png" id="4_y3sdf"]
 [ext_resource type="Texture2D" uid="uid://bo7icgyfridvn" path="res://Assets/Art/UI/PauseButton_Hover.png" id="5_mjqhe"]
-[ext_resource type="AudioStream" uid="uid://mmm85hl5bm7c" path="res://Assets/Audio/ButtonPress.wav" id="7_onacr"]
-[ext_resource type="AudioStream" uid="uid://cbgrdd4bbkrdu" path="res://Assets/Audio/TogglePress.wav" id="8_e0sfa"]
-[ext_resource type="AudioStream" uid="uid://ebm0nv7jxb62" path="res://Assets/Audio/SliderDrag.wav" id="9_7ugu7"]
+[ext_resource type="AudioStream" uid="uid://mmm85hl5bm7c" path="res://Assets/Audio/SFX/ButtonPress.wav" id="7_onacr"]
+[ext_resource type="AudioStream" uid="uid://cbgrdd4bbkrdu" path="res://Assets/Audio/SFX/TogglePress.wav" id="8_e0sfa"]
+[ext_resource type="AudioStream" uid="uid://ebm0nv7jxb62" path="res://Assets/Audio/SFX/SliderDrag.wav" id="9_7ugu7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arvj1"]
 content_margin_left = 5.0

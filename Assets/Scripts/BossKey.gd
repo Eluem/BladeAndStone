@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name BossKey
 
-const KEY_PICKUP_SFX = preload("res://Assets/Audio/KeyPickup.wav")
+const KEY_PICKUP_SFX = preload("res://Assets/Audio/SFX/KeyPickup.wav")
 
 @onready var PIDControllerJoint:PIDControllerJoint2D = $PIDControllerJoint
 @onready var pickupCollider:Area2D = $Area2D

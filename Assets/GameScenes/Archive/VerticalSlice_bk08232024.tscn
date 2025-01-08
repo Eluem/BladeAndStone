@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_egu6r"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_q117k"]
-[ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="3_yosti"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/DebugButton.gd" id="3_yosti"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="4_x0tny"]
 [ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="5_scvir"]
 [ext_resource type="Texture2D" uid="uid://bfhajwon8t2jk" path="res://Assets/Art/Environment/MapSketch.jpg" id="6_r60ea"]

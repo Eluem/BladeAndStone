@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name Gem
 
-const GEM_PICKUP_SFX = preload("res://Assets/Audio/GemPickup.wav")
+const GEM_PICKUP_SFX = preload("res://Assets/Audio/SFX/GemPickup.wav")
 const SMALL_GEM = preload("res://Assets/ObjectScenes/Items/SmallGem.tscn")
 const LARGE_GEM = preload("res://Assets/ObjectScenes/Items/LargeGem.tscn")
 

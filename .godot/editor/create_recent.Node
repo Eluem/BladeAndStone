@@ -1,4 +1,7 @@
 Node2D
+Node
+AudioStreamPlayer
+AudioStreamPlayer2D
 GridContainer
 Trail_Polygon
 Line2D
@@ -9,6 +12,3 @@ NavigationRegion2D
 Control
 MarginContainer
 HBoxContainer
-PanelContainer
-MenuButton
-Polygon2D

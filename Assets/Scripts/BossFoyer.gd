@@ -53,6 +53,8 @@ func _on_enter(pBody:PhysicsBody2D) -> void:
 		return
 	alreadyEntered = true
 	
+	(MusicManagerScene as MusicManager).gameMusic.FadeTrackOut(1.0)
+	
 	player = pBody
 	
 	bossDoor1.play("Closing_BounceBack_LargeFirst")

@@ -12,6 +12,8 @@ const SETTINGS_MENU:PackedScene = preload("res://Assets/GameScenes/SettingsMenu.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	(MusicManagerScene as MusicManager).gameMusic.PauseTrack()
+	(MusicManagerScene as MusicManager).menuMusic.PlayTrack()
 	closeButton.pressed.connect(resume_pressed)
 	resumeButton.pressed.connect(resume_pressed)
 	settingsButton.pressed.connect(settings_pressed)
@@ -26,6 +28,8 @@ func _input(event:InputEvent) -> void:
 
 
 func Close() -> void:
+	(MusicManagerScene as MusicManager).menuMusic.PauseTrack()
+	(MusicManagerScene as MusicManager).gameMusic.ResumeTrack()
 	queue_free()
 
 
@@ -37,7 +41,7 @@ func resume_pressed() -> void:
 func settings_pressed() -> void:
 	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	var settingsMenu:SettingsMenu = SETTINGS_MENU.instantiate()
-	settingsMenu.Initialize(self, settings_menu_response, GameStateManager.gameData.GetValues())
+	settingsMenu.Initialize(self, settings_menu_response, GameStateManager.gameData.GetValues(), GameSaveHelper.GetDefaultValues())
 
 
 func main_menu_pressed() -> void:
@@ -55,6 +59,7 @@ func quit_pressed() -> void:
 func main_menu_dialogue_response(pResponse:bool) -> void:
 	if(!pResponse):
 		return
+	#(MusicManagerScene as MusicManager).menuMusic.PlayTrack()
 	GameStateManager.BeginFadeToScene(GameStateManager.SceneType.MainMenu)
 
 

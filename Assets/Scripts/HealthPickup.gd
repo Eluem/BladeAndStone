@@ -1,5 +1,5 @@
 extends Area2D
-const HEALTH_PICKUP_SFX = preload("res://Assets/Audio/HealthPickup.wav")
+const HEALTH_PICKUP_SFX = preload("res://Assets/Audio/SFX/HealthPickup.wav")
 @export var healValue:int = 50
 
 # Called when the node enters the scene tree for the first time.

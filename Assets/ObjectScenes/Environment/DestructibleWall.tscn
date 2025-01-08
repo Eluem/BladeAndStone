@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://Assets/Scripts/RigidBodyHittable.gd" id="1_s0ws4"]
 [ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="2_5h8fq"]
-[ext_resource type="AudioStream" uid="uid://dh54qkqdlojei" path="res://Assets/Audio/DestructibleWall_Hit.wav" id="2_fc75d"]
+[ext_resource type="AudioStream" uid="uid://dh54qkqdlojei" path="res://Assets/Audio/SFX/DestructibleWall_Hit.wav" id="2_fc75d"]
 [ext_resource type="Texture2D" uid="uid://cci4u4dw01bm7" path="res://Assets/Art/Environment/RockTextureLong.png" id="2_wsxbd"]
 [ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="3_s36pm"]
-[ext_resource type="AudioStream" uid="uid://dh47g3duf45vi" path="res://Assets/Audio/DestructibleWall_Hit2.wav" id="3_vsyjr"]
-[ext_resource type="AudioStream" uid="uid://d23lcuv3bgi6a" path="res://Assets/Audio/DestructibleWall_Shattered.wav" id="4_4ltjn"]
+[ext_resource type="AudioStream" uid="uid://dh47g3duf45vi" path="res://Assets/Audio/SFX/DestructibleWall_Hit2.wav" id="3_vsyjr"]
+[ext_resource type="AudioStream" uid="uid://d23lcuv3bgi6a" path="res://Assets/Audio/SFX/DestructibleWall_Shattered.wav" id="4_4ltjn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1l7o"]
 size = Vector2(200, 60)

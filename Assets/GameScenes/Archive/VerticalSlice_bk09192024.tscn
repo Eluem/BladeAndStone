@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/DebugInfo.gd" id="1_4cq84"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerSpawner.gd" id="2_p2lts"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/CanvasManager.gd" id="3_dfim3"]
-[ext_resource type="Script" path="res://Assets/Scripts/DebugButton.gd" id="4_3fwth"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/DebugButton.gd" id="4_3fwth"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/HealthUI.gd" id="5_rsd3d"]
 [ext_resource type="Script" path="res://Assets/Scripts/BasicTracking.gd" id="6_1q12a"]
 [ext_resource type="Texture2D" uid="uid://bfhajwon8t2jk" path="res://Assets/Art/Environment/MapSketch.jpg" id="7_qvgip"]

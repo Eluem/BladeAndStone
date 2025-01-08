@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcilcl0q7g1qp"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/MusicManager.gd" id="1_11axc"]
+[ext_resource type="Script" path="res://Assets/Scripts/MusicTrack.gd" id="2_3hx64"]
+[ext_resource type="AudioStream" uid="uid://pg4k4hhmo2rw" path="res://Assets/Audio/Music/Lightless Dawn.mp3" id="3_fap43"]
+[ext_resource type="AudioStream" uid="uid://cjykt2s3bumje" path="res://Assets/Audio/Music/Kick Shock.mp3" id="4_bhxlg"]
+
+[node name="MusicManagerScene" type="Node"]
+process_mode = 3
+script = ExtResource("1_11axc")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+script = ExtResource("2_3hx64")
+defaultTrack = ExtResource("3_fap43")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+script = ExtResource("2_3hx64")
+defaultTrack = ExtResource("4_bhxlg")

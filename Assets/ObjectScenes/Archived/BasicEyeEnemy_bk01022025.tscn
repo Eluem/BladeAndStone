@@ -1,16 +1,16 @@
 [gd_scene load_steps=27 format=3 uid="uid://w1gxmu7kxv04"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BasicEyeEnemy.gd" id="1_jy6xf"]
-[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/Creature_Hurt1.wav" id="2_mng5y"]
-[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/Creature_Hurt2.wav" id="3_s1ywc"]
+[ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/SFX/Creature_Hurt1.wav" id="2_mng5y"]
+[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/SFX/Creature_Hurt2.wav" id="3_s1ywc"]
 [ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/Characters/BasicEyeEnemy_03202024.png" id="4_r28t4"]
 [ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="5_6nttk"]
 [ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="6_18ipq"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="7_ncsxm"]
 [ext_resource type="Texture2D" uid="uid://dumms4qtc2q7p" path="res://Assets/Art/Particles/Particle_Bolt.png" id="8_r3lk8"]
 [ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="9_67nx6"]
-[ext_resource type="AudioStream" uid="uid://caalqxwqe5eg6" path="res://Assets/Audio/BasicEyeEnemy_ChargeUp.wav" id="10_ai4gq"]
-[ext_resource type="AudioStream" uid="uid://x180p4uaj1y8" path="res://Assets/Audio/BasicEyeEnemy_Fire.wav" id="11_jubj2"]
+[ext_resource type="AudioStream" uid="uid://caalqxwqe5eg6" path="res://Assets/Audio/SFX/BasicEyeEnemy_ChargeUp.wav" id="10_ai4gq"]
+[ext_resource type="AudioStream" uid="uid://x180p4uaj1y8" path="res://Assets/Audio/SFX/BasicEyeEnemy_Fire.wav" id="11_jubj2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jurdh"]
 radius = 48.0
