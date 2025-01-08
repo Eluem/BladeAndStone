@@ -3372,10 +3372,12 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.804878, 1), 0.0, 0.0, 0, 0, Ve
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_ybjv6"]
+resource_local_to_scene = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_h5x2g"]
+resource_local_to_scene = true
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [node name="Golem" type="RigidBody2D"]

@@ -12,10 +12,12 @@
 size = Vector2(200, 60)
 
 [sub_resource type="Curve" id="Curve_xtueu"]
+resource_local_to_scene = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_rnu0t"]
+resource_local_to_scene = true
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [node name="DestructibleWall" type="RigidBody2D"]
