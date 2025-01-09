@@ -3,6 +3,7 @@ extends AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	LicenseHelper.InitLicenseInfo()
 	animation_finished.connect(boot_splash_finished)
 	play("FadeIn")
 	pass # Replace with function body.

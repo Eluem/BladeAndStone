@@ -10,15 +10,32 @@ var windowMode:int = GameStateManager.WindowMode.Fullscreen
 
 
 func SaveData() -> void:
-	var file:FileAccess = FileAccess.open("data.dat", FileAccess.WRITE)
+	var filePath:String
+	var file:FileAccess
+	if(OS.has_feature("android")):
+		filePath = "user://BladeAndStone/data.dat"
+		if(!DirAccess.dir_exists_absolute("user://BladeAndStone")):
+			DirAccess.make_dir_absolute("user://BladeAndStone")
+	else:
+		filePath = "./data.dat"
+		#filePath = "res://data.dat"
+	file = FileAccess.open(filePath, FileAccess.WRITE)
 	var data:Dictionary = GetValues()
 	file.store_var(data, true)
 
 
 func LoadData() -> void:
-	if(!FileAccess.file_exists("data.dat")):
+	var filePath:String
+	if(OS.has_feature("android")):
+		filePath = "user://BladeAndStone/data.dat"
+		if(!DirAccess.dir_exists_absolute("user://BladeAndStone")):
+			DirAccess.make_dir_absolute("user://BladeAndStone")
+	else:
+		filePath = "./data.dat"
+		#filePath = "res://data.dat"
+	if(!FileAccess.file_exists(filePath)):
 		SaveData()
-	var file:FileAccess = FileAccess.open("data.dat", FileAccess.READ)
+	var file:FileAccess = FileAccess.open(filePath, FileAccess.READ)
 	var data:Dictionary = file.get_var(true)
 	SetValues(data)
 
