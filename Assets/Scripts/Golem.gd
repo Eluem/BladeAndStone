@@ -73,3 +73,8 @@ func isTurningAllowed() -> bool:
 
 func hasKey() -> bool:
 	return bossKey != null
+
+
+func Die(pHitOwner:Node2D, pDir:Vector2, pForce:float) -> void:
+	(MusicManagerScene as MusicManager).gameMusic.FadeTrackOut(2.0)
+	super.Die(pHitOwner, pDir, pForce)

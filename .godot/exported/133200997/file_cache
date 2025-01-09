@@ -50,7 +50,7 @@ res://Assets/GameScenes/Archive/VerticalSlice_bk09192024.tscn::991e5a3b566c58e18
 res://Assets/GameScenes/DevScenes/MenuTextCreating.tscn::2e98f65a05b86987874142d53a002580::1727107775::res://.godot/exported/133200997/export-006c892e68bf89277693edd8d59738d6-MenuTextCreating.scn
 res://Assets/GameScenes/DevScenes/MultiTrackCameraExperiments.tscn::6cea0faeef20d6c2cfb99c678875e1f7::1727266092::res://.godot/exported/133200997/export-627de49b4cd602f96b71d1f281014f5c-MultiTrackCameraExperiments.scn
 res://Assets/GameScenes/DevScenes/TestScene.tscn::6f073644c46a4ae9a4343dd242597070::1736356695::res://.godot/exported/133200997/export-b0aaf36e714ca6b57f2833509f50a3b4-TestScene.scn
-res://Assets/GameScenes/BootSplash.tscn::7b1f97a531615dccc5c27a2b49416b6b::1736448959::res://.godot/exported/133200997/export-b438ca9df413650bbba5d60e9ffacbc1-BootSplash.scn
+res://Assets/GameScenes/BootSplash.tscn::7b1f97a531615dccc5c27a2b49416b6b::1736458490::res://.godot/exported/133200997/export-b438ca9df413650bbba5d60e9ffacbc1-BootSplash.scn
 res://Assets/GameScenes/CanvasManagerScene.tscn::25b25a6bebb254858915cb1986768539::1736356552::res://.godot/exported/133200997/export-5068558cea8c37fcfc36dd92bdd17d8e-CanvasManagerScene.scn
 res://Assets/GameScenes/Credits.tscn::c3a39134fd731e231e51f9b2fb9272ee::1736378959::res://.godot/exported/133200997/export-ad9781e39e5e6a4c436990ccc3a23363-Credits.scn
 res://Assets/ObjectScenes/Enemies/BossEnemyRamBeam.tscn::21826957c7da1db9b860c0ca01491518::1736356552::res://.godot/exported/133200997/export-3be12fdb4c161349a998acf55e5d14e4-BossEnemyRamBeam.scn
@@ -78,7 +78,7 @@ res://Assets/ObjectScenes/Items/BossHeart.tscn::0350f3b2173900f1df101602b0e2aed3
 res://Assets/ObjectScenes/Items/LargeGem.tscn::9c490ad22f84d4c64d66b92cc8cb008f::1734134837::res://.godot/exported/133200997/export-afb79bcdbe06381fdc09ad0b42467708-LargeGem.scn
 res://Assets/ObjectScenes/Items/SmallGem.tscn::5617466f50d76d9acac3cb191a428570::1734135087::res://.godot/exported/133200997/export-c348dbcb3a225d6910b759f290f0d5ea-SmallGem.scn
 res://Assets/ObjectScenes/Particles/Archive/Sparks_bk01022025.tscn::1fe8cffdad71b5cf9519b37a6c3679a0::1735830855::res://.godot/exported/133200997/export-9f0051024a7fe13026927580e9759bb7-Sparks_bk01022025.scn
-res://Assets/Shaders/WeaponTrailMaterial.tres::7e7cd84507d365f7de13090294acff82::1736446679::res://.godot/exported/133200997/export-ef84f4f018f0b43610774de659e820b5-WeaponTrailMaterial.res
+res://Assets/Shaders/WeaponTrailMaterial.tres::7e7cd84507d365f7de13090294acff82::1736458488::res://.godot/exported/133200997/export-ef84f4f018f0b43610774de659e820b5-WeaponTrailMaterial.res
 res://default_bus_layout.tres::8ea77cd70cf6861be59407e9de0c46ad::1730307678::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
 res://Assets/GameScenes/MusicManagerScene.tscn::e4416dc6493e1413b871f5ef03b64daa::1736368989::res://.godot/exported/133200997/export-0a1b20f0164df1b648fe7cae79c2a20e-MusicManagerScene.scn
 res://Assets/ObjectScenes/Archived/DashSmashEnemy_TipVFXGenerating.tscn::1dfd16ef179f2242afcfbcd1d131e136::1736272445::res://.godot/exported/133200997/export-cc293160106f2efbf82d602390823da5-DashSmashEnemy_TipVFXGenerating.scn
