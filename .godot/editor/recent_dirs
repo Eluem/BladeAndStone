@@ -1,3 +1,4 @@
+res://Assets/Scripts/DebugTools
 C:/Users/eulmm/source/repos/BladeAndStone/BladeAndStone(Windows Build)
 C:/Users/eulmm/source/repos/BladeAndStone
 C:/PseudoInstalled/rcedit
@@ -8,7 +9,6 @@ res://Assets/Scripts
 res://Assets/GameScenes
 res://Assets/Scripts/Menu
 res://Assets/Shaders
-res://Assets/Scripts/DebugTools
 res://Assets/Scripts/UI
 res://Assets/Art/UI
 res://CustomEditorTools
@@ -20,5 +20,3 @@ res://Assets/Art/Particles
 res://Assets/Art/UI/PrototypeFont
 res://Assets/Art
 res://Assets/ObjectScenes
-res://ArchivedStuff
-res://Assets/ObjectScenes/Particles

@@ -19,23 +19,23 @@ enum SmoothMode {
 				}
 
 ##Determins when the camera position and zoom will be updated
-@export var trackTiming:TrackTiming
+@export var trackTiming:TrackTiming = TrackTiming.physics_process
 ##Controls the method that the camera's target position is determined relative to the tracked targets
 @export var centerMode:CenterMode
 ##Smoothing mode for camera position
 @export var trackSmoothMode:SmoothMode = SmoothMode.lerp
 ##Range of speeds for camera position (Note: max only matters when using move_toward_slowing)
-@export var trackSpeedRange:Vector2 = Vector2.ONE
+@export var trackSpeedRange:Vector2 = Vector2(3, 3)
 ##Smoothing mode for camera zoom
 @export var zoomSmoothMode:SmoothMode = SmoothMode.lerp
 ##Range of speeds for camera zoom (Note: max only matters when using move_toward_slowing)
 @export var zoomSpeedRange:Vector2 = Vector2.ONE
 ##Vertical and horizontal margins around targets for determining how much to zoom
-@export var margin:Vector2 = Vector2(150, 150)
+@export var margin:Vector2 = Vector2(50, 50)
 ##min and max zoom range values
-@export var zoomRange:Vector2 = Vector2(0.1, 0.7)
+@export var zoomRange:Vector2 = Vector2(0.4, 0.7)
 ##Distance to the main target before a track target is ignored
-@export var ignoreDistance:float:
+@export var ignoreDistance:float = 1500:
 	get:
 		return ignoreDistance
 	set(pValue):
@@ -44,7 +44,7 @@ enum SmoothMode {
 
 var _ignoreDistanceSquared:float = ignoreDistance**2
 ##Ratio of the total weight of all other targets to be added to the main target's weight
-@export var weightSumBoostFactor:float
+@export var weightSumBoostFactor:float = 1
 
 var targets:Dictionary = {}
 var mainTarget:Node2D

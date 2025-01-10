@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1736458355
+::res://::1736524166
 default_bus_layout.tres::AudioBusLayout::5253987945576872829::1730307678::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1736449041::0::1::::<><>::
 icon.png::CompressedTexture2D::775028251715326431::1710959467::1736380454::1::::<><>::
@@ -190,8 +190,8 @@ SliderDrag.wav::AudioStreamWAV::283593717778320709::1730267143::1736380456::1:::
 TogglePress.wav::AudioStreamWAV::4856454226223900798::1436896934::1736380456::1::::<><>::
 Wood_Hit.wav::AudioStreamWAV::279469170922829696::1731615180::1736356553::1::::<><>::
 Wood_HitDrag.wav::AudioStreamWAV::1569590490621799824::1731697078::1736356553::1::::<><>::
-::res://Assets/GameScenes/::1736448959
-BootSplash.tscn::PackedScene::3286786439166363712::1736448959::0::1::::<><>::uid://mnp371gqmghf::::res://Assets/Art/UI/TurmoniousGamesLogo_LQ.png<>res://Assets/Scripts/Menu/BootSplashAnimation.gd
+::res://Assets/GameScenes/::1736481806
+BootSplash.tscn::PackedScene::3286786439166363712::1736481806::0::1::::<><>::uid://mnp371gqmghf::::res://Assets/Art/UI/TurmoniousGamesLogo_LQ.png<>res://Assets/Scripts/Menu/BootSplashAnimation.gd
 CanvasManagerScene.tscn::PackedScene::8643294105397788069::1736356552::0::1::::<><>::res://Assets/Scripts/Menu/CanvasManager.gd<>res://Assets/Scripts/UI/HealthUI.gd<>res://Assets/Scripts/UI/ScoreUI.gd<>uid://tyai8h2i0iay::::res://Assets/Art/UI/PauseButton_Normal.png<>uid://b4o8piw208qd4::::res://Assets/Art/UI/PauseButton_Pressed.png<>uid://bo7icgyfridvn::::res://Assets/Art/UI/PauseButton_Hover.png<>uid://mmm85hl5bm7c::::res://Assets/Audio/SFX/ButtonPress.wav<>uid://cbgrdd4bbkrdu::::res://Assets/Audio/SFX/TogglePress.wav<>uid://ebm0nv7jxb62::::res://Assets/Audio/SFX/SliderDrag.wav
 ConfirmationDialogue.tscn::PackedScene::2141909815602684259::1735591803::0::1::::<><>::res://Assets/Scripts/Menu/ConfirmationDialogue.gd<>uid://btfr8oxdeg1mx::::res://Assets/Art/UI/CloseButton_Normal.png<>uid://bgdlb1126254u::::res://Assets/Art/UI/CloseButton_Pressed.png<>uid://b28gcdo1jcxxs::::res://Assets/Art/UI/CloseButton_Hover.png
 Credits.tscn::PackedScene::7376731924660461872::1736378959::0::1::::<><>::res://Assets/Scripts/Menu/Credits.gd<>uid://45kwtphfh610::::res://Assets/Art/UI/HoverButton_StyleBox.tres<>uid://cixn40iqilc6u::::res://Assets/Art/Icons/GodotIcon.svg<>uid://o46762e4hpks::::res://Assets/Art/UI/NormalButton_StyleBox.tres<>uid://di68vueerpcyd::::res://Assets/Art/Icons/RedotIcon.svg<>uid://ce6u0s0ijn4sk::::res://Assets/Art/UI/PressedButton_StyleBox.tres
@@ -265,7 +265,7 @@ Sparks.gd::GDScript::-1::1735830679::0::1::::Sparks<>CPUParticles2D<>::
 Sparks.tscn::PackedScene::7834461251537756789::1735832967::0::1::::<><>::res://Assets/ObjectScenes/Particles/Sparks.gd<>res://Assets/Scripts/DeleteFinishedParticles.gd
 ::res://Assets/ObjectScenes/Particles/Archive/::1735830857
 Sparks_bk01022025.tscn::PackedScene::6793276440353004802::1735830855::0::1::::<><>::res://Assets/ObjectScenes/Particles/Sparks.gd<>res://Assets/Scripts/DeleteFinishedParticles.gd
-::res://Assets/Scripts/::1736385822
+::res://Assets/Scripts/::1736458488
 BasicEyeEnemy.gd::GDScript::-1::1736385822::0::1::::BasicEyeEnemy<>RigidBodyHittable<>::
 BasicTracking.gd::GDScript::-1::1728996252::0::1::::TrackingCamera<>Camera2D<>::
 BossDoor.gd::GDScript::-1::1727874972::0::1::::<>Node2D<>::
@@ -291,7 +291,7 @@ EyeTurretScanAnimationPlayer.gd::GDScript::-1::1727874805::0::1::::EyeTurretScan
 GameManager.gd::GDScript::-1::1736368902::0::1::::<>Node2D<>::
 GameStateManager.gd::GDScript::-1::1736363441::0::1::::<>Node<>::
 Gem.gd::GDScript::-1::1736360311::0::1::::Gem<>RigidBody2D<>::
-Golem.gd::GDScript::-1::1728997391::0::1::::Golem<>RigidBodyHittable<>::
+Golem.gd::GDScript::-1::1736458488::0::1::::Golem<>RigidBodyHittable<>::
 HealthPickup.gd::GDScript::-1::1736360329::0::1::::<>Area2D<>::
 InputDebugUI.gd::GDScript::-1::1727875248::0::1::::InputDebugUI<>Node2D<>::
 KeyHoleAnimationPlayer.gd::GDScript::-1::1727874805::0::1::::KeyHoleAnimationPlayer<>AnimationPlayer<>::
@@ -349,11 +349,11 @@ Geometry2DHelper.gd::GDScript::-1::1726940621::0::1::::Geometry2DHelper<>RefCoun
 ::res://Assets/Scripts/UI/::1734381205
 HealthUI.gd::GDScript::-1::1728997232::0::1::::HealthBar<>ProgressBar<>::
 ScoreUI.gd::GDScript::-1::1734381205::0::1::::ScoreUI<>Label<>::
-::res://Assets/Shaders/::1736450199
-TrailShader.gdshader::Shader::-1::1736450199::0::1::::<><>::
-WeaponTrailMaterial.tres::ShaderMaterial::526467539907804595::1736446679::0::1::::<><>::res://Assets/Shaders/TrailShader.gdshader
-::res://BladeAndStone(Android Build)/::1736450191
-::res://BladeAndStone(Windows Build)/::1736450194
+::res://Assets/Shaders/::1736483071
+TrailShader.gdshader::Shader::-1::1736483071::0::1::::<><>::
+WeaponTrailMaterial.tres::ShaderMaterial::526467539907804595::1736458488::0::1::::<><>::res://Assets/Shaders/TrailShader.gdshader
+::res://BladeAndStone(Android Build)/::1736458663
+::res://BladeAndStone(Windows Build)/::1736458666
 ::res://CustomEditorTools/::1736272395
 GeneratePolygonCircle.gd::GDScript::-1::1726569688::0::1::::<>Polygon2D<>::
 MirrorLineData.gd::GDScript::-1::1727875100::0::1::::<>Line2D<>::

@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=4 uid="uid://dnrormugsubpb"]
+[gd_scene load_steps=111 format=4 uid="uid://dnrormugsubpb"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="1_cpxk4"]
 [ext_resource type="Script" path="res://Assets/Scripts/BossFightManager.gd" id="1_s177x"]
@@ -291,6 +291,78 @@ texture_region_size = Vector2i(128, 128)
 [sub_resource type="TileSet" id="TileSet_8t6qw"]
 tile_size = Vector2i(128, 128)
 sources/1 = SubResource("TileSetAtlasSource_7likf")
+
+[sub_resource type="Curve" id="Curve_vd3ei"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ql8sc"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_73h7h"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_nmefs"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_ou7cv"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_to8s4"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_mcphm"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_6tmvh"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_3yp5y"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_0qlxf"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_oou68"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_b3it8"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_sg4xh"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_g5lrr"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_x8j2o"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.720524, 0.703297), -1.04853, -1.04853, 0, 0, Vector2(1, 0), -4.8652, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_46gcn"]
+resource_local_to_scene = true
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="Curve2D" id="Curve2D_ddk0l"]
 bake_interval = 50.0
@@ -770,12 +842,6 @@ position = Vector2(-67, -4484)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_bwje4")
-trackTiming = 1
-trackSpeedRange = Vector2(3, 3)
-margin = Vector2(50, 50)
-zoomRange = Vector2(0.4, 0.7)
-ignoreDistance = 1500.0
-weightSumBoostFactor = 1.0
 
 [node name="ReferenceArt" type="Node2D" parent="."]
 visible = false
@@ -7893,6 +7959,34 @@ scale = Vector2(2.49907, 2.24655)
 [node name="MainSprite" parent="Environment/WoodsArea/DestructibleWall" index="1"]
 scale = Vector2(0.29, 0.24)
 
+[node name="Crack" parent="Environment/WoodsArea/DestructibleWall/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_vd3ei")
+gradient = SubResource("Gradient_ql8sc")
+
+[node name="Crack2" parent="Environment/WoodsArea/DestructibleWall/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_vd3ei")
+gradient = SubResource("Gradient_ql8sc")
+
+[node name="Crack3" parent="Environment/WoodsArea/DestructibleWall/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_vd3ei")
+gradient = SubResource("Gradient_ql8sc")
+
+[node name="Crack4" parent="Environment/WoodsArea/DestructibleWall/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_vd3ei")
+gradient = SubResource("Gradient_ql8sc")
+
+[node name="Crack5" parent="Environment/WoodsArea/DestructibleWall/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_vd3ei")
+gradient = SubResource("Gradient_ql8sc")
+
+[node name="Crack6" parent="Environment/WoodsArea/DestructibleWall/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_vd3ei")
+gradient = SubResource("Gradient_ql8sc")
+
+[node name="Crack7" parent="Environment/WoodsArea/DestructibleWall/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_vd3ei")
+gradient = SubResource("Gradient_ql8sc")
+
 [node name="poly_sprite" parent="Environment/WoodsArea/DestructibleWall" index="2"]
 texture_offset = Vector2(278.4, 129.6)
 texture_scale = Vector2(3.44828, 4.16667)
@@ -7912,6 +8006,34 @@ scale = Vector2(2.47, 1.837)
 [node name="MainSprite" parent="Environment/WoodsArea/DestructibleWall2" index="1"]
 scale = Vector2(0.287, 0.197)
 
+[node name="Crack" parent="Environment/WoodsArea/DestructibleWall2/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_73h7h")
+gradient = SubResource("Gradient_nmefs")
+
+[node name="Crack2" parent="Environment/WoodsArea/DestructibleWall2/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_73h7h")
+gradient = SubResource("Gradient_nmefs")
+
+[node name="Crack3" parent="Environment/WoodsArea/DestructibleWall2/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_73h7h")
+gradient = SubResource("Gradient_nmefs")
+
+[node name="Crack4" parent="Environment/WoodsArea/DestructibleWall2/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_73h7h")
+gradient = SubResource("Gradient_nmefs")
+
+[node name="Crack5" parent="Environment/WoodsArea/DestructibleWall2/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_73h7h")
+gradient = SubResource("Gradient_nmefs")
+
+[node name="Crack6" parent="Environment/WoodsArea/DestructibleWall2/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_73h7h")
+gradient = SubResource("Gradient_nmefs")
+
+[node name="Crack7" parent="Environment/WoodsArea/DestructibleWall2/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_73h7h")
+gradient = SubResource("Gradient_nmefs")
+
 [node name="poly_sprite" parent="Environment/WoodsArea/DestructibleWall2" index="2"]
 texture_offset = Vector2(275.52, 106.38)
 texture_scale = Vector2(3.48432, 5.07614)
@@ -7926,6 +8048,34 @@ scale = Vector2(1.954, 1.892)
 
 [node name="MainSprite" parent="Environment/WoodsArea/DestructibleWall3" index="1"]
 scale = Vector2(0.227, 0.202)
+
+[node name="Crack" parent="Environment/WoodsArea/DestructibleWall3/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_ou7cv")
+gradient = SubResource("Gradient_to8s4")
+
+[node name="Crack2" parent="Environment/WoodsArea/DestructibleWall3/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_ou7cv")
+gradient = SubResource("Gradient_to8s4")
+
+[node name="Crack3" parent="Environment/WoodsArea/DestructibleWall3/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_ou7cv")
+gradient = SubResource("Gradient_to8s4")
+
+[node name="Crack4" parent="Environment/WoodsArea/DestructibleWall3/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_ou7cv")
+gradient = SubResource("Gradient_to8s4")
+
+[node name="Crack5" parent="Environment/WoodsArea/DestructibleWall3/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_ou7cv")
+gradient = SubResource("Gradient_to8s4")
+
+[node name="Crack6" parent="Environment/WoodsArea/DestructibleWall3/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_ou7cv")
+gradient = SubResource("Gradient_to8s4")
+
+[node name="Crack7" parent="Environment/WoodsArea/DestructibleWall3/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_ou7cv")
+gradient = SubResource("Gradient_to8s4")
 
 [node name="poly_sprite" parent="Environment/WoodsArea/DestructibleWall3" index="2"]
 texture_offset = Vector2(217.92, 109.08)
@@ -7943,6 +8093,34 @@ scale = Vector2(5.202, 3.116)
 [node name="MainSprite" parent="Environment/WoodsArea/DestructibleWall4" index="1"]
 scale = Vector2(0.603, 0.333)
 
+[node name="Crack" parent="Environment/WoodsArea/DestructibleWall4/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_mcphm")
+gradient = SubResource("Gradient_6tmvh")
+
+[node name="Crack2" parent="Environment/WoodsArea/DestructibleWall4/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_mcphm")
+gradient = SubResource("Gradient_6tmvh")
+
+[node name="Crack3" parent="Environment/WoodsArea/DestructibleWall4/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_mcphm")
+gradient = SubResource("Gradient_6tmvh")
+
+[node name="Crack4" parent="Environment/WoodsArea/DestructibleWall4/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_mcphm")
+gradient = SubResource("Gradient_6tmvh")
+
+[node name="Crack5" parent="Environment/WoodsArea/DestructibleWall4/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_mcphm")
+gradient = SubResource("Gradient_6tmvh")
+
+[node name="Crack6" parent="Environment/WoodsArea/DestructibleWall4/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_mcphm")
+gradient = SubResource("Gradient_6tmvh")
+
+[node name="Crack7" parent="Environment/WoodsArea/DestructibleWall4/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_mcphm")
+gradient = SubResource("Gradient_6tmvh")
+
 [node name="poly_sprite" parent="Environment/WoodsArea/DestructibleWall4" index="2"]
 texture_offset = Vector2(578.88, 179.82)
 texture_scale = Vector2(1.65837, 3.003)
@@ -7958,6 +8136,34 @@ scale = Vector2(2.47, 1.837)
 
 [node name="MainSprite" parent="Environment/WoodsArea/DestructibleWall5" index="1"]
 scale = Vector2(0.287, 0.197)
+
+[node name="Crack" parent="Environment/WoodsArea/DestructibleWall5/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_3yp5y")
+gradient = SubResource("Gradient_0qlxf")
+
+[node name="Crack2" parent="Environment/WoodsArea/DestructibleWall5/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_3yp5y")
+gradient = SubResource("Gradient_0qlxf")
+
+[node name="Crack3" parent="Environment/WoodsArea/DestructibleWall5/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_3yp5y")
+gradient = SubResource("Gradient_0qlxf")
+
+[node name="Crack4" parent="Environment/WoodsArea/DestructibleWall5/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_3yp5y")
+gradient = SubResource("Gradient_0qlxf")
+
+[node name="Crack5" parent="Environment/WoodsArea/DestructibleWall5/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_3yp5y")
+gradient = SubResource("Gradient_0qlxf")
+
+[node name="Crack6" parent="Environment/WoodsArea/DestructibleWall5/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_3yp5y")
+gradient = SubResource("Gradient_0qlxf")
+
+[node name="Crack7" parent="Environment/WoodsArea/DestructibleWall5/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_3yp5y")
+gradient = SubResource("Gradient_0qlxf")
 
 [node name="poly_sprite" parent="Environment/WoodsArea/DestructibleWall5" index="2"]
 texture_offset = Vector2(275.52, 106.38)
@@ -7975,6 +8181,34 @@ scale = Vector2(2.47, 1.837)
 [node name="MainSprite" parent="Environment/WoodsArea/TriggerWall" index="1"]
 scale = Vector2(0.287, 0.197)
 
+[node name="Crack" parent="Environment/WoodsArea/TriggerWall/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_oou68")
+gradient = SubResource("Gradient_b3it8")
+
+[node name="Crack2" parent="Environment/WoodsArea/TriggerWall/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_oou68")
+gradient = SubResource("Gradient_b3it8")
+
+[node name="Crack3" parent="Environment/WoodsArea/TriggerWall/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_oou68")
+gradient = SubResource("Gradient_b3it8")
+
+[node name="Crack4" parent="Environment/WoodsArea/TriggerWall/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_oou68")
+gradient = SubResource("Gradient_b3it8")
+
+[node name="Crack5" parent="Environment/WoodsArea/TriggerWall/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_oou68")
+gradient = SubResource("Gradient_b3it8")
+
+[node name="Crack6" parent="Environment/WoodsArea/TriggerWall/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_oou68")
+gradient = SubResource("Gradient_b3it8")
+
+[node name="Crack7" parent="Environment/WoodsArea/TriggerWall/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_oou68")
+gradient = SubResource("Gradient_b3it8")
+
 [node name="poly_sprite" parent="Environment/WoodsArea/TriggerWall" index="2"]
 texture_offset = Vector2(275.52, 106.38)
 texture_scale = Vector2(3.48432, 5.07614)
@@ -7991,6 +8225,34 @@ scale = Vector2(2.47, 1.837)
 [node name="MainSprite" parent="Environment/WoodsArea/TriggeredWall" index="1"]
 position = Vector2(-11.9543, -1.04642)
 scale = Vector2(0.146, 0.197)
+
+[node name="Crack" parent="Environment/WoodsArea/TriggeredWall/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_sg4xh")
+gradient = SubResource("Gradient_g5lrr")
+
+[node name="Crack2" parent="Environment/WoodsArea/TriggeredWall/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_sg4xh")
+gradient = SubResource("Gradient_g5lrr")
+
+[node name="Crack3" parent="Environment/WoodsArea/TriggeredWall/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_sg4xh")
+gradient = SubResource("Gradient_g5lrr")
+
+[node name="Crack4" parent="Environment/WoodsArea/TriggeredWall/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_sg4xh")
+gradient = SubResource("Gradient_g5lrr")
+
+[node name="Crack5" parent="Environment/WoodsArea/TriggeredWall/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_sg4xh")
+gradient = SubResource("Gradient_g5lrr")
+
+[node name="Crack6" parent="Environment/WoodsArea/TriggeredWall/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_sg4xh")
+gradient = SubResource("Gradient_g5lrr")
+
+[node name="Crack7" parent="Environment/WoodsArea/TriggeredWall/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_sg4xh")
+gradient = SubResource("Gradient_g5lrr")
 
 [node name="poly_sprite" parent="Environment/WoodsArea/TriggeredWall" index="2"]
 texture_offset = Vector2(140.16, 106.38)
@@ -8013,6 +8275,34 @@ scale = Vector2(2.47, 1.837)
 
 [node name="MainSprite" parent="Environment/WoodsArea/TriggeredWall2" index="1"]
 scale = Vector2(0.287, 0.197)
+
+[node name="Crack" parent="Environment/WoodsArea/TriggeredWall2/MainSprite/Cracks" index="0"]
+width_curve = SubResource("Curve_x8j2o")
+gradient = SubResource("Gradient_46gcn")
+
+[node name="Crack2" parent="Environment/WoodsArea/TriggeredWall2/MainSprite/Cracks" index="1"]
+width_curve = SubResource("Curve_x8j2o")
+gradient = SubResource("Gradient_46gcn")
+
+[node name="Crack3" parent="Environment/WoodsArea/TriggeredWall2/MainSprite/Cracks" index="2"]
+width_curve = SubResource("Curve_x8j2o")
+gradient = SubResource("Gradient_46gcn")
+
+[node name="Crack4" parent="Environment/WoodsArea/TriggeredWall2/MainSprite/Cracks" index="3"]
+width_curve = SubResource("Curve_x8j2o")
+gradient = SubResource("Gradient_46gcn")
+
+[node name="Crack5" parent="Environment/WoodsArea/TriggeredWall2/MainSprite/Cracks" index="4"]
+width_curve = SubResource("Curve_x8j2o")
+gradient = SubResource("Gradient_46gcn")
+
+[node name="Crack6" parent="Environment/WoodsArea/TriggeredWall2/MainSprite/Cracks" index="5"]
+width_curve = SubResource("Curve_x8j2o")
+gradient = SubResource("Gradient_46gcn")
+
+[node name="Crack7" parent="Environment/WoodsArea/TriggeredWall2/MainSprite/Cracks" index="6"]
+width_curve = SubResource("Curve_x8j2o")
+gradient = SubResource("Gradient_46gcn")
 
 [node name="poly_sprite" parent="Environment/WoodsArea/TriggeredWall2" index="2"]
 texture_offset = Vector2(275.52, 106.38)

@@ -4,18 +4,21 @@ const BOSS_HEART = preload("res://Assets/ObjectScenes/Items/BossHeart.tscn")
 
 var kPressed:bool = false
 var jPressed:bool = false
+var pPressed:bool = false
 
 var player:Golem
 
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	GameStateManager.scene_ready.connect(on_scene_change)
 
 
 func _process(_delta:float) -> void:
 	_KillAllCreatures()
 	_SpawnTestBossHeart()
+	_FreezeGame()
 
 
 func _KillAllCreatures() -> void:
@@ -50,6 +53,19 @@ func SpawnTestBossHeart() -> void:
 	bossHeart.global_position = player.global_position
 	bossHeart.global_position.x += 500
 	get_tree().current_scene.add_child(bossHeart)
+
+
+func _FreezeGame() -> void:
+	if(Input.is_key_pressed(KEY_P)):
+		if(!pPressed):
+			FreezeGame()
+			pPressed = true
+	else:
+		pPressed = false
+
+
+func FreezeGame() -> void:
+	get_tree().paused = !get_tree().paused
 
 
 func on_scene_change(_pNewScene:Node, pSceneType:GameStateManager.SceneType) -> void:
