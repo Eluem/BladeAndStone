@@ -126,13 +126,14 @@ func object_detected(pBody:Node2D) -> void:
 
 
 func HandleHit(pHitData:HitData) -> void:
-	super.HandleHit(pHitData)
 	StopCharging()
 	eyeBoltRechargeDelayTimer = 0
 	chargeEffect.process_material = interruptedChargeParticleProcessMaterial
 	chargeEffect.lifetime = 4
+	SplitOutChargeParticleEffect()
 	if(pHitData.hitOwner is Golem && !target):
 		TargetFound(pHitData.hitOwner)
+	super.HandleHit(pHitData)
 
 
 func TargetFound(pTarget:Node2D) -> void:
@@ -167,11 +168,25 @@ func StopCharging() -> void:
 
 
 func Die(pHitOwner:Node2D, pDir:Vector2, pForce:float) -> void:
-	chargeEffect.one_shot = true
+	#chargeEffect.one_shot = true
+	#chargeEffect.amount_ratio = 0
+	#chargeEffect.emitting = true
 	#chargeEffect.reparent(get_tree().root.get_child(0))
-	chargeEffect.reparent(get_tree().current_scene)
-	chargeEffect.set_script(load("res://Assets/Scripts/DeleteFinishedParticles.gd"))
+	#chargeEffect.reparent(get_tree().current_scene)
+	#chargeEffect.set_script(load("res://Assets/Scripts/DeleteFinishedParticles.gd"))
+	if(chargeEffect.emitting):
+		SplitOutChargeParticleEffect()
 	super.Die(pHitOwner, pDir, pForce)
+
+
+func SplitOutChargeParticleEffect() -> void:
+	var chargeEffectPointer:GPUParticles2D = chargeEffect
+	chargeEffect = chargeEffect.duplicate(true)
+	add_child(chargeEffect)
+	chargeEffectPointer.one_shot = true
+	chargeEffectPointer.emitting = true
+	chargeEffectPointer.amount_ratio = 0
+	chargeEffectPointer.reparent(get_tree().current_scene)
 
 
 func UpdateNavInfo(pDist:float) -> void:

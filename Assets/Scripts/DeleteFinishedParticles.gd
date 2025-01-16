@@ -8,5 +8,6 @@ func _ready() -> void:
 	elif(parent is GPUParticles2D):
 		(get_parent() as GPUParticles2D).finished.connect(_finished)
 
+
 func _finished() -> void:
 	get_parent().queue_free()

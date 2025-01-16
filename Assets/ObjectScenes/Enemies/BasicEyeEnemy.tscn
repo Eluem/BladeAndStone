@@ -194,6 +194,7 @@ amount = 80
 process_material = SubResource("ParticleProcessMaterial_v2t7d")
 texture = ExtResource("4_yqy1g")
 lifetime = 1.8
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
 local_coords = true
 
 [node name="DeleteOnFinish" type="Node" parent="ChargeEffect"]

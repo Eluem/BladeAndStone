@@ -26,6 +26,7 @@ CanvasManagerScene="*res://Assets/GameScenes/CanvasManagerScene.tscn"
 DebugInfo="*res://Assets/Scripts/DebugInfo.gd"
 StatTracker="*res://Assets/Scripts/StatTracker.gd"
 MusicManagerScene="*res://Assets/GameScenes/MusicManagerScene.tscn"
+DebugManager="*res://Assets/Scripts/DebugTools/DebugManager.gd"
 
 [debug]
 
