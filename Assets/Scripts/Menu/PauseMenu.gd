@@ -27,15 +27,16 @@ func _input(event:InputEvent) -> void:
 		resume_pressed()
 
 
-func Close() -> void:
-	(MusicManagerScene as MusicManager).menuMusic.PauseTrack()
-	(MusicManagerScene as MusicManager).gameMusic.ResumeTrack()
+func Close(pSceneChangeInitiated:bool) -> void:
+	if(!pSceneChangeInitiated):
+		(MusicManagerScene as MusicManager).menuMusic.PauseTrack()
+		(MusicManagerScene as MusicManager).gameMusic.ResumeTrack()
 	queue_free()
 
 
 func resume_pressed() -> void:
 	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
-	GameStateManager.Unpause()
+	GameStateManager.Unpause(false)
 
 
 func settings_pressed() -> void:

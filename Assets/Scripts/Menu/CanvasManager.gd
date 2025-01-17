@@ -83,8 +83,8 @@ func OpenPauseMenu() -> void:
 	currPauseMenu.owner = self
 
 
-func ClosePauseMenu() -> void:
-	currPauseMenu.Close()
+func ClosePauseMenu(pSceneChangeInitiated:bool) -> void:
+	currPauseMenu.Close(pSceneChangeInitiated)
 
 
 func pause_pressed() -> void:

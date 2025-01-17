@@ -68,9 +68,9 @@ func Pause() -> void:
 	(CanvasManagerScene as CanvasManager).OpenPauseMenu()
 
 
-func Unpause() -> void:
+func Unpause(pSceneChangeInitiated:bool) -> void:
 	get_tree().paused = false
-	(CanvasManagerScene as CanvasManager).ClosePauseMenu()
+	(CanvasManagerScene as CanvasManager).ClosePauseMenu(pSceneChangeInitiated)
 
 
 func QuitGame() -> void:
@@ -84,7 +84,7 @@ func SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
 
 func _SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
 	if(get_tree().paused):
-		Unpause()
+		Unpause(true)
 	sceneChanging = true
 	usingCheckPoint = pUsingCheckPoint
 	
