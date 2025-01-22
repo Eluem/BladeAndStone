@@ -31,7 +31,8 @@ func flick(powerMod:float, dir:Vector2) -> void:
 	if(!isTurningAllowed()):
 		return
 	#apply_central_force(50000 * powerMod * dir)
-	apply_central_impulse(1500 * powerMod * dir)
+	#apply_central_impulse(1500 * powerMod * dir)
+	apply_central_impulse(1700 * powerMod * dir)
 	targetRotation = dir.angle()
 
 func drag_update(_powerMod:float, dir:Vector2) -> void:

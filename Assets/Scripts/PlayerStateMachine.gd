@@ -11,9 +11,9 @@ extends AnimationTree
 var playbackRoot:AnimationNodeStateMachinePlayback = get("parameters/playback")
 var inputHandler:CharacterInputHandler
 
-var tappedMaxBufferTime:float = 0.35
+var tappedMaxBufferTime:float = 0.45
 var tappedBufferTime:float = 0
-var draggedMaxBufferTime:float = 0.35
+var draggedMaxBufferTime:float = 0.45
 var draggedBufferTime:float = 0
 
 # Called when the node enters the scene tree for the first time.

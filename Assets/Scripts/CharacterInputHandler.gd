@@ -74,7 +74,7 @@ func _process(delta:float) -> void:
 		released = true
 		pressing = false
 
-	#Update drag direction and power	
+	#Update drag direction and power
 	if(pressed):
 		if(GameStateManager.gameData.invertInputDirection):
 			currPos = startPos - (currPos - startPos)
