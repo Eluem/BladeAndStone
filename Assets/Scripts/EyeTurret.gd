@@ -99,6 +99,11 @@ func object_detected(pBody:Node2D) -> void:
 
 
 func TargetFound(pTarget:Node2D) -> void:
+	if(target != null):
+		if(pTarget == target):
+			return
+		else:
+			TargetLost()
 	target = pTarget
 	target.tree_exited.connect(TargetLost)
 	visionSensor.monitoring = false

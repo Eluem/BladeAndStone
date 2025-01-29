@@ -8,6 +8,7 @@ class_name BossFoyer
 @onready var leftEyeTurret:EyeTurretScanAnimationPlayer = $"../../../Enemies/EyeTurret3/AnimationPlayer"
 @onready var rightEyeTurret:EyeTurretScanAnimationPlayer = $"../../../Enemies/EyeTurret4/AnimationPlayer"
 @onready var keyHole:Node2D = $KeyHole
+@onready var keyScannedSFXPlayer:AudioStreamPlayer2D = $KeyHole/KeyScannedSFXPlayer
 @onready var keyHoleAnim:KeyHoleAnimationPlayer = $KeyHole/AnimationPlayer
 @onready var keyHoleFilledSprite:Sprite2D = $KeyHole/FilledSprite
 @onready var keyLockingInSFXPlayer:AudioStreamPlayer2D = $KeyLockingInSFXPlayer
@@ -96,6 +97,7 @@ func _on_exit(pBody:PhysicsBody2D) -> void:
 func boss_door1_done(pAnimName:String) -> void:
 	if(pAnimName != "Closing_BounceBack_LargeFirst"):
 		return
+	ForcePlayerIntoBossFoyer()
 	ForceAllEnemiesToLoseTarget()
 
 
@@ -116,6 +118,7 @@ func successful_scan(pAnimName:String) -> void:
 func scanned() -> void:
 	if(!is_instance_valid(player) || !player.hasKey()):
 		return
+	keyScannedSFXPlayer.play()
 	keyHoleAnim.play("KeyScanned")
 
 
@@ -140,6 +143,11 @@ func ForceAllEnemiesToLoseTarget() -> void:
 			(child as BasicEyeEnemy).TargetLost()
 		elif(child is EyeTurret):
 			(child as EyeTurret).TargetLost()
+
+
+func ForcePlayerIntoBossFoyer() -> void:
+	if(player.global_position.y > (bossDoor1.get_parent() as Node2D).global_position.y):
+		player.global_position = keyHole.global_position
 
 
 #Forces all boss room entrance details into a post key scan state

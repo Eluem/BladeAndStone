@@ -153,6 +153,7 @@ func TargetLost() -> void:
 	eyeBoltRechargeDelayTimer = eyeBoltRechargeDelay
 	visionSensor.monitoring = true
 	can_sleep = true
+	target.tree_exited.disconnect(TargetLost)
 	target = null
 	
 	var viewPort:Viewport = get_viewport()

@@ -302,10 +302,12 @@ polygon = PackedVector2Array(-0.54, -146.88, -0.72, -146.52, -0.9, -146.52, -1.4
 
 [node name="AttackWindUpSFXPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_bqa2n")
+volume_db = 9.0
 bus = &"SFX"
 
 [node name="AttackReleaseSFXPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_qklc5")
+volume_db = 9.0
 bus = &"SFX"
 
 [node name="HurtSFXPlayer" type="AudioStreamPlayer2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=4 uid="uid://dnrormugsubpb"]
+[gd_scene load_steps=112 format=4 uid="uid://dnrormugsubpb"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="1_cpxk4"]
 [ext_resource type="Script" path="res://Assets/Scripts/BossFightManager.gd" id="1_s177x"]
@@ -45,6 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://ouyrxptl688w" path="res://Assets/ObjectScenes/Enemies/BossEnemyRamBeam.tscn" id="30_esg27"]
 [ext_resource type="PackedScene" uid="uid://caterry5ptusm" path="res://Assets/ObjectScenes/Items/SmallGem.tscn" id="34_qayb0"]
 [ext_resource type="PackedScene" uid="uid://bm02n2el0n7si" path="res://Assets/ObjectScenes/Items/BossKey.tscn" id="35_bbatl"]
+[ext_resource type="AudioStream" uid="uid://cauvfirauqdxy" path="res://Assets/Audio/SFX/KeyScanned.wav" id="39_u6e7n"]
 [ext_resource type="PackedScene" uid="uid://dvml8ovnrwuh1" path="res://Assets/ObjectScenes/Items/LargeGem.tscn" id="44_1bnax"]
 
 [sub_resource type="Animation" id="Animation_y0nuj"]
@@ -9134,6 +9135,10 @@ libraries = {
 "": SubResource("AnimationLibrary_gcy0h")
 }
 script = ExtResource("29_3d4ur")
+
+[node name="KeyScannedSFXPlayer" type="AudioStreamPlayer2D" parent="Environment/BossArea/BossFoyer/KeyHole"]
+stream = ExtResource("39_u6e7n")
+bus = &"SFX"
 
 [node name="KeyLockingInSFXPlayer" type="AudioStreamPlayer2D" parent="Environment/BossArea/BossFoyer"]
 stream = ExtResource("28_we37f")
