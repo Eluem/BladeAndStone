@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpmmla3lnrqag"]
+
+[ext_resource type="Texture2D" uid="uid://dnholosdpshyl" path="res://Assets/Art/Environment/VinedBranch2.png" id="1_emo14"]
+[ext_resource type="Material" uid="uid://c5xxoi2kajepc" path="res://Assets/Shaders/ShadowMaterial.tres" id="1_g3hg2"]
+
+[node name="ShadowTesting" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(3759, 1404)
+zoom = Vector2(0.705, 0.705)
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+material = ExtResource("1_g3hg2")
+points = PackedVector2Array(3230, 1195, 3235, 1176, 3246, 1163, 3255, 1152, 3271, 1145, 3290, 1158, 3295, 1195, 3280, 1223, 3262, 1256, 3245, 1299, 3272.5, 1346.99, 3283.41, 1370.63, 3292.13, 1395.44, 3296.41, 1421.03, 3294, 1447, 3285.78, 1474.88, 3275.42, 1505.4, 3264.84, 1536.98, 3255.97, 1568.02, 3250.72, 1596.93, 3251.03, 1622.12, 3276, 1655, 3301.24, 1664.32, 3331.42, 1673.98, 3365.75, 1683.52, 3403.48, 1692.51, 3443.83, 1700.49, 3486.05, 1707.03, 3529.36, 1711.68, 3573, 1714, 3616.74, 1713.76, 3660.48, 1710.61, 3703.6, 1703.92, 3745.52, 1693.04, 3785.61, 1677.35, 3823.29, 1656.2, 3857.96, 1628.97, 3889, 1595, 3914.17, 1554.79, 3931.58, 1510.31, 3941.23, 1463.18, 3943.07, 1414.99, 3937.09, 1367.38, 3923.27, 1321.93, 3901.58, 1280.27, 3872, 1244, 3841.69, 1213.42, 3816.54, 1187.64, 3794.62, 1166.54, 3774.01, 1149.96, 3709, 1130, 3654, 1125, 3638, 1117, 3629, 1097, 3630, 1076, 3655, 1056)
+width = 80.0
+texture = ExtResource("1_emo14")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

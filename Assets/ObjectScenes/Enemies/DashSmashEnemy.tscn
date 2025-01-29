@@ -49,9 +49,9 @@ largeGemValue = 1
 hurtSFX = Array[AudioStream]([ExtResource("2_prcwf"), ExtResource("3_6sfhm")])
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 1.0
 avoidance_enabled = true
-radius = 100.0
-neighbor_distance = 1.0
+radius = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-17, 0)

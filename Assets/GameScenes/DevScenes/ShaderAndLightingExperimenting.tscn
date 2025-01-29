@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfalmt0iuu5ak"]
+
+[ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/Characters/BasicSwordTest.png" id="1_teeu0"]
+[ext_resource type="Texture2D" uid="uid://dv0adyju5746f" path="res://Assets/Art/Characters/BasicEyeEnemy_03202024.png" id="2_yr385"]
+
+[sub_resource type="Gradient" id="Gradient_u3eht"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mm0rm"]
+gradient = SubResource("Gradient_u3eht")
+fill = 1
+fill_from = Vector2(0.557604, 0.465438)
+fill_to = Vector2(0.861751, 0.248848)
+
+[sub_resource type="Gradient" id="Gradient_a45is"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_csu8y"]
+gradient = SubResource("Gradient_a45is")
+
+[sub_resource type="Gradient" id="Gradient_s078v"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5yrla"]
+gradient = SubResource("Gradient_s078v")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_djdcb"]
+diffuse_texture = SubResource("GradientTexture1D_csu8y")
+normal_texture = SubResource("GradientTexture1D_5yrla")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(338, -90)
+scale = Vector2(-0.14581, -0.14581)
+texture = ExtResource("2_yr385")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(443, 15)
+texture = ExtResource("1_teeu0")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-160, 63)
+scale = Vector2(4.37922, 2.52149)
+color = Color(0.694118, 0.686275, 0, 0.615686)
+energy = 19.35
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_mm0rm")
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2(-195, -122)
+points = PackedVector2Array(29, 39, 614, 12, 350, 160, 395, 169, 457, 159, 482, 169, 521, 180, 516, 211, 369, 222, 334, 218, 333, 176, 319, 203, 307, 211, 269, 217, 297, 179, 290, -45, 426, 126)
+width = 31.15
+texture = SubResource("CanvasTexture_djdcb")
+texture_mode = 2

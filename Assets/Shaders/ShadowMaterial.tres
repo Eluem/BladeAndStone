@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c5xxoi2kajepc"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/ShadowShader.gdshader" id="1_qlp3f"]
+
+[resource]
+shader = ExtResource("1_qlp3f")
+shader_parameter/maxBounds = 21.885
+shader_parameter/radius = 50.0
+shader_parameter/radStep = 0.105
+shader_parameter/rotStep = 0.327
+shader_parameter/mixMultiplier = 1.454
+shader_parameter/distMultiplier = 1.0
+shader_parameter/distBooster = 0.0
