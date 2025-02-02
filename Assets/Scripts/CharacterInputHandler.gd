@@ -12,28 +12,32 @@ var pressing:bool = false
 var holdTime:float
 var released:bool = false
 var startPos:Vector2
-var currPos:Vector2
+var currPos:Vector2 #May be inverted
 var prevPos:Vector2
-var prevDragging:bool #used to determine if dragging cancelled or started
+var prevDragging:bool #Used to determine if dragging cancelled or started
 var dir:Vector2
 var power:float
 var maxLength:float = 400 #The max length that you can drag, anything more is ignored
 var dirUpdateThreshold:float = 10 #The max length you can drag before direction info starts updating
-var dragThreshold:float = 80 #The max length that you can drag that will count as a tap
-							 #before converting to a drag
+var dragThreshold:float = 120 #The max length that you can drag that will count as a tap
+							  #before converting to a drag, updating the look direction and
+							  #stops counting as a quick look
 var heldThreshold:float = 0.2 #Time before "held" trigger fires, if not dragging
+var quickLookTime:float = heldThreshold #Time before you automatically quickLook before releasing
 var dragHeldThresholdBonus:float = 0.15 #Additional time before "held" trigger fires, if dragging
 var heldFired:bool = false #Prevent echoing held
 var characterInputUI:CharacterInputUI
 var inputDebugUI:InputDebugUI
 var startedPressOnPause:bool
 
-signal drag_release(dragPower:float, dragDir:Vector2)
-signal press_release(holdTime:float)
+signal drag_release(pDragPower:float, pDragDir:Vector2)
+signal press_release(pHoldTime:float)
+signal quick_look(pDir:Vector2) #Used for quick look kludge to look in the direction you tap for quick attacks
+signal drag_look(pDir:Vector2) #Used for drag look buffering kludge
 signal held_triggered()
 signal drag_triggered()
 signal drag_cancelled()
-signal drag_update(dragPower:float, dragDir:Vector2)
+signal drag_update(pDragPower:float, pDragDir:Vector2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,12 +49,14 @@ func _ready() -> void:
 func _process(delta:float) -> void:
 	if(!enabled):
 		return
-
+	
+	#Update important values every frame
 	released = false
 	justPressed = false
 	currPos = get_viewport().get_mouse_position()
 	pressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	
+	#Handle blocking the player input if they're clicking on the pause button
 	if(!pressing && pressed && HoveringPause()):
 		startedPressOnPause = true
 		return
@@ -60,17 +66,30 @@ func _process(delta:float) -> void:
 		else:
 			return
 	
-	#Manage drag state/launch flick on drag release
+	#Press initialization
 	if(pressed && !pressing):
 		justPressed = true
 		pressing = true
 		startPos = currPos
 		holdTime = 0
-	elif(!pressed && pressing):
+	
+	#Handle inversion
+	if(GameStateManager.gameData.invertInputDirection):
+		currPos = startPos - (currPos - startPos)
+	dir = startPos - currPos #Update direction/length of drag
+	#Check if the drag length is in the deadzone
+	var isBelowDirUpdateThreshold:bool = (dir.length_squared() <= dirUpdateThreshold**2)
+	
+	#Manage drag state/launch flick on drag release
+	if(!pressed && pressing):
 		if(is_dragging()):
 			drag_release.emit(power, dir.normalized())
 		else:
 			press_release.emit()
+			if(isBelowDirUpdateThreshold):
+				quick_look.emit(get_global_mouse_position() - parentPlayer.global_position)
+			else:
+				drag_look.emit(dir.normalized())
 		released = true
 		pressing = false
 
@@ -78,10 +97,11 @@ func _process(delta:float) -> void:
 	if(pressed):
 		if(GameStateManager.gameData.invertInputDirection):
 			currPos = startPos - (currPos - startPos)
-		dir = startPos - currPos
+		#dir = startPos - currPos
+		isBelowDirUpdateThreshold = (dir.length_squared() <= dirUpdateThreshold**2)
 		power = (clamp(dir.length(), 0, maxLength)/maxLength)
 		holdTime += delta
-		if(dir.length_squared() > dirUpdateThreshold * dirUpdateThreshold):
+		if(!(isBelowDirUpdateThreshold)):
 			drag_update.emit(power, dir.normalized())
 		if(is_dragging()):
 			if(!prevDragging):
@@ -98,6 +118,9 @@ func _process(delta:float) -> void:
 		held_triggered.emit()
 		heldFired = true
 	
+	if(holdTime >= quickLookTime && isBelowDirUpdateThreshold):
+		quick_look.emit(get_global_mouse_position() - parentPlayer.global_position)
+	
 	UpdateCharacterInputUI()
 	
 	if(debugEnabled):
@@ -110,7 +133,7 @@ func _process(delta:float) -> void:
 
 
 func is_dragging() -> bool:
-	return pressing && (startPos - currPos).length_squared() > dragThreshold * dragThreshold
+	return pressing && (startPos - currPos).length_squared() > dragThreshold**2
 	#return pressing && (startPos - currPos).length() > dragThreshold
 	
 
@@ -123,11 +146,11 @@ func GetDragHeldThresholdBonus() -> float:
 func UpdateCharacterInputUI() -> void:
 	if(justPressed):
 		characterInputUI = CharacterInputUI.new()
-		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold)
+		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold, dirUpdateThreshold)
 		parentPlayer.add_child(characterInputUI)
 		characterInputUI.position = Vector2.ZERO
 	elif(characterInputUI != null):
-		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold)
+		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold, dirUpdateThreshold)
 	if(released):
 		characterInputUI.Detach()
 		characterInputUI.global_transform = parentPlayer.global_transform

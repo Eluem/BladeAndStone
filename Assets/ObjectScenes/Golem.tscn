@@ -214,6 +214,18 @@ tracks/14/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AnimationTree:blockTurning")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_m6ito"]
 resource_name = "Attack_Swing_Charging"
@@ -841,6 +853,18 @@ tracks/13/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AnimationTree:blockTurning")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_2ao27"]
 resource_name = "Attack_LightLeft_FollowThrough"
@@ -1122,6 +1146,20 @@ tracks/8/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AnimationTree")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"consume_buffered_look"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_8noys"]
 resource_name = "Attack_LightRight_Active"
@@ -1298,6 +1336,18 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AnimationTree:blockTurning")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_64nr0"]
@@ -1664,6 +1714,20 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AnimationTree")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"consume_buffered_look"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_2mjtq"]
@@ -2049,6 +2113,18 @@ tracks/32/keys = {
 "args": [500.0],
 "method": &"lunge"
 }]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("AnimationTree:blockTurning")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_w5xkc"]
@@ -2999,6 +3075,18 @@ tracks/30/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("AnimationTree:blockTurning")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixbfl"]
 _data = {
@@ -3349,7 +3437,7 @@ states/Attack_Thrust_WindDown/position = Vector2(497, 515)
 states/End/position = Vector2(1012, 55)
 states/Start/position = Vector2(-25, 55)
 transitions = ["Start", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_iingt"), "Attack_LightRight_WindUp", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_8nskt"), "Attack_LightRight_WindUp", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_ejk6i"), "Attack_Heavy_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_biy3r"), "Attack_LightLeft_WindUp", "Attack_LightLeft_Active", SubResource("AnimationNodeStateMachineTransition_cyvjb"), "Attack_LightLeft_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_msixp"), "Attack_LightRight_WindDown_1", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_4jah7"), "Attack_LightLeft_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2kh8l"), "Attack_Heavy_HoldCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_wufvn"), "Attack_Heavy_Active", "Attack_Heavy_WindDown", SubResource("AnimationNodeStateMachineTransition_x5f6l"), "Attack_Heavy_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_e4gpj"), "Attack_LightRight_Active", "Attack_LightRight_FollowThrough", SubResource("AnimationNodeStateMachineTransition_cf1b0"), "Attack_LightRight_FollowThrough", "Attack_LightRight_WindDown_1", SubResource("AnimationNodeStateMachineTransition_hg0q3"), "Attack_LightRight_FollowThrough", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_uuxf6"), "Attack_LightLeft_Active", "Attack_LightLeft_FollowThrough", SubResource("AnimationNodeStateMachineTransition_3y1e4"), "Attack_LightLeft_FollowThrough", "Attack_LightLeft_WindDown", SubResource("AnimationNodeStateMachineTransition_eakdr"), "Attack_LightLeft_FollowThrough", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_2k6ni"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindDown_2", SubResource("AnimationNodeStateMachineTransition_2l3fj"), "Attack_LightRight_WindDown_2", "End", SubResource("AnimationNodeStateMachineTransition_16k8i"), "Attack_LightRight_WindDown_2", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_tmqk6"), "Attack_LightRight_WindUp", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_1r6n5"), "Attack_Heavy_Charging", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_yqlu0"), "Attack_Thrust_Charging", "Attack_Heavy_Charging", SubResource("AnimationNodeStateMachineTransition_ifmkw"), "Attack_Thrust_HoldCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_lq10a"), "Attack_Heavy_HoldCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_l0umt"), "Attack_Thrust_HoldCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_s34y7"), "Attack_Thrust_Active", "Attack_Thrust_WindDown", SubResource("AnimationNodeStateMachineTransition_a0ad8"), "Attack_Thrust_WindDown", "End", SubResource("AnimationNodeStateMachineTransition_7j68x"), "Attack_Thrust_Charging", "Attack_LightRight_Active", SubResource("AnimationNodeStateMachineTransition_pbiku"), "Attack_Thrust_WindDown", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_twkkv"), "Attack_Heavy_FullCharge", "Attack_Heavy_Active", SubResource("AnimationNodeStateMachineTransition_ghtdf"), "Attack_Heavy_FullCharge", "Attack_Heavy_HoldCharge", SubResource("AnimationNodeStateMachineTransition_8w7tu"), "Attack_Heavy_Charging", "Attack_Heavy_FullCharge", SubResource("AnimationNodeStateMachineTransition_5uixu"), "Attack_Thrust_Charging", "Attack_Thrust_FullCharge", SubResource("AnimationNodeStateMachineTransition_3d7kt"), "Attack_Thrust_FullCharge", "Attack_Thrust_Active", SubResource("AnimationNodeStateMachineTransition_01576"), "Attack_Thrust_FullCharge", "Attack_Thrust_HoldCharge", SubResource("AnimationNodeStateMachineTransition_80ut2"), "Attack_Thrust_FullCharge", "Attack_Heavy_FullCharge", SubResource("AnimationNodeStateMachineTransition_b2y75"), "Attack_Heavy_FullCharge", "Attack_Thrust_FullCharge", SubResource("AnimationNodeStateMachineTransition_yftfx"), "Attack_Heavy_WindDown", "Attack_LightLeft_WindUp", SubResource("AnimationNodeStateMachineTransition_gwq8y"), "Attack_LightRight_WindDown_1", "Attack_LightRight_WindUp", SubResource("AnimationNodeStateMachineTransition_athr0"), "Attack_LightLeft_WindDown", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_rapom"), "Attack_LightRight_WindDown_1", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_ymdqc"), "Attack_LightRight_WindDown_2", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_3btg1"), "Attack_Heavy_WindDown", "Attack_Thrust_Charging", SubResource("AnimationNodeStateMachineTransition_tmq4i")]
-graph_offset = Vector2(-159.341, 5.85565)
+graph_offset = Vector2(-151.341, -109.144)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3gsh"]
 animation = &"Idle"

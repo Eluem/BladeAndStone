@@ -16,6 +16,8 @@ func _ready() -> void:
 	add_to_group("Player")
 	inputHandler.drag_release.connect(flick)
 	inputHandler.drag_update.connect(drag_update)
+	inputHandler.quick_look.connect(quick_look)
+	animationTree.buffered_look.connect(quick_look)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,18 +29,26 @@ func _physics_process(_delta:float) -> void:
 	pass
 
 
-func flick(powerMod:float, dir:Vector2) -> void:
+func flick(pDowerMod:float, pDir:Vector2) -> void:
 	if(!isTurningAllowed()):
 		return
 	#apply_central_force(50000 * powerMod * dir)
 	#apply_central_impulse(1500 * powerMod * dir)
-	apply_central_impulse(1700 * powerMod * dir)
-	targetRotation = dir.angle()
+	apply_central_impulse(1700 * pDowerMod * pDir)
+	targetRotation = pDir.angle()
 
-func drag_update(_powerMod:float, dir:Vector2) -> void:
+
+func quick_look(pDir:Vector2) -> void:
 	if(!isTurningAllowed()):
 		return
-	targetRotation = dir.angle()
+	#var dir:Vector2 = pGlobalPos - global_position #Doesn't need normalization, more efficent than direction_to
+	targetRotation = pDir.angle()
+
+
+func drag_update(_pPowerMod:float, pDir:Vector2) -> void:
+	if(!isTurningAllowed()):
+		return
+	targetRotation = pDir.angle()
 
 	
 func slash() -> void:
@@ -69,7 +79,8 @@ func GetMainSprite() -> Sprite2D:
 
 
 func isTurningAllowed() -> bool:
-	return !($Weapon/RaycastCollider as RaycastCollider).enabled
+	#return !($Weapon/RaycastCollider as RaycastCollider).enabled
+	return !animationTree.blockTurning
 
 
 func hasKey() -> bool:

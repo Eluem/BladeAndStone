@@ -1,15 +1,22 @@
 class_name PlayerStateMachine
 extends AnimationTree
 
+signal buffered_look(pDir:Vector2)
+
 @export var tapped:bool
 @export var held:bool
 @export var dragging:bool
 @export var dragged:bool
+@export var quickLooked:bool
+@export var quickLookDir:Vector2
+@export var dragLooked:bool
+@export var dragLookDir:Vector2
+@export var blockTurning:bool = false
 
 @onready var animationPlayer:AnimationPlayer = $"../AnimationPlayer"
+@onready var inputHandler:CharacterInputHandler = $InputHandler
 
 var playbackRoot:AnimationNodeStateMachinePlayback = get("parameters/playback")
-var inputHandler:CharacterInputHandler
 
 var tappedMaxBufferTime:float = 0.45
 var tappedBufferTime:float = 0
@@ -18,11 +25,13 @@ var draggedBufferTime:float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$InputHandler.connect("press_release", press_release)
-	$InputHandler.connect("drag_release", drag_release)
-	$InputHandler.connect("held_triggered", held_triggered)
-	$InputHandler.connect("drag_triggered", drag_triggered)
-	$InputHandler.connect("drag_cancelled", drag_cancelled)
+	inputHandler.press_release.connect(press_release)
+	inputHandler.drag_release.connect(drag_release)
+	inputHandler.held_triggered.connect(held_triggered)
+	inputHandler.drag_triggered.connect(drag_triggered)
+	inputHandler.drag_cancelled.connect(drag_cancelled)
+	inputHandler.quick_look.connect(quick_look_triggered)
+	inputHandler.drag_look.connect(drag_look_triggered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,8 +44,10 @@ func HandleBufferTimers(delta:float) -> void:
 	if(tapped):
 		tappedBufferTime += delta
 		if(tappedBufferTime > tappedMaxBufferTime):
+			print("buffer missed")
 			tapped = false
 			tappedBufferTime = 0
+			quickLooked = false
 	if(dragged):
 		draggedBufferTime += delta
 		if(draggedBufferTime > draggedMaxBufferTime):
@@ -54,7 +65,7 @@ func press_release() -> void:
 	held = false
 
 
-func drag_release(_powerMod:float, _dir:Vector2) -> void:
+func drag_release(_pPowerMod:float, _pDir:Vector2) -> void:
 	dragged = true
 	dragging = false
 	held = false
@@ -72,9 +83,20 @@ func held_triggered() -> void:
 	held = true
 
 
+func quick_look_triggered(pDir:Vector2) -> void:
+	quickLooked = true
+	quickLookDir = pDir
+
+
+func drag_look_triggered(pDir:Vector2) -> void:
+	dragLooked = true
+	dragLookDir = pDir
+
+
 func consume_tapped() -> bool:
 	if(tapped):
 		tapped = false
+		tappedBufferTime = 0
 		return true
 	return false
 
@@ -82,8 +104,18 @@ func consume_tapped() -> bool:
 func consume_dragged() -> bool:
 	if(dragged):
 		dragged = false
+		draggedBufferTime = 0
 		return true
 	return false
+
+
+func consume_buffered_look() -> void:
+	if(quickLooked):
+		buffered_look.emit(quickLookDir)
+	elif(dragLooked):
+		buffered_look.emit(dragLookDir)
+	quickLooked = false
+	dragLooked = false
 
 
 func consume_tapped_atEnd() -> bool:
@@ -128,6 +160,10 @@ func clear_held() -> void:
 
 func clear_buffers() -> bool:
 	tapped = false
+	tappedBufferTime = 0
+	dragged = false
+	draggedBufferTime = 0
 	held = false
 	dragging = false
+	quickLooked = false
 	return true

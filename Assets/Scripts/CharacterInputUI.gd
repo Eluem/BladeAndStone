@@ -18,7 +18,11 @@ var power:float
 var maxLength:float = 200 #The max length that you can drag, anything more is ignored
 var dragThreshold:float = 5 #The max length that you can drag that will count as a tap
 							#before converting to a drag
-
+var dirUpdateThreshold:float = 10 #The max length that you can drag that will count as a tap
+								  #before converting to a drag, updating the look direction and
+								  #stops counting as a quick look
+#The max length that you can move from the center before direction
+								  #starts updating and quick looking becomes invalid
 var timeToDecay:float = 1
 var currPosLocal:Vector2 
 var startPosLocal:Vector2
@@ -29,6 +33,7 @@ var startPosRelative:Vector2 = Vector2.ZERO
 var guidePathStartColor:Color = Color(0.8, 0.1, 0.1, 0.2) #Color(1, 1, 1, 0.2)
 var guidePathEndColor:Color =  Color(0.8, 0.1, 0.1, 0.7) #Color(1, 1, 1, 0.7)
 var touchCircleColor:Color = Color(0.5765, 0.4392, 0.8588, 0.8)
+var dirUpdateCircleColor:Color = Color.DODGER_BLUE
 var useSpriteArrows:bool = false
 
 var viewport:Viewport
@@ -44,7 +49,7 @@ func _ready() -> void:
 	UpdateLocalPositions()
 
 
-func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pStartPos:Vector2, pCurrPos:Vector2, pPrevPos:Vector2, pDir:Vector2, pPower:float, pMaxLength:float, pDragThreshold:float) -> void:
+func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pStartPos:Vector2, pCurrPos:Vector2, pPrevPos:Vector2, pDir:Vector2, pPower:float, pMaxLength:float, pDragThreshold:float, pDirUpdateThreshold:float) -> void:
 	pressed = pPressed
 	pressing = pPressing
 	holdTime = pHoldTime
@@ -56,7 +61,7 @@ func update(pPressed:bool, pPressing:bool, pHoldTime:float, pReleased:bool, pSta
 	power = pPower
 	maxLength = pMaxLength
 	dragThreshold = pDragThreshold
-
+	dirUpdateThreshold = pDirUpdateThreshold
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
@@ -84,14 +89,19 @@ func _draw() -> void:
 	#Calculate touch circle fadeout alpha
 	var touchCircleColorFaded:Color = touchCircleColor
 	touchCircleColorFaded.a *= timeToDecay
+	var dirUpdateCircleColorFaded:Color = dirUpdateCircleColor
+	dirUpdateCircleColorFaded.a *= timeToDecay
 	
 	#Draw touch cirlce
 	draw_arc(startPosLocal, LocalRadiusToScreenRadius(dragThreshold), 0, 360, 360, touchCircleColorFaded, 3, true)
+	
+	#Draw touch inner circle (quick look)
+	draw_arc(startPosLocal, LocalRadiusToScreenRadius(dirUpdateThreshold), 0, 360, 360, dirUpdateCircleColorFaded, 3, true)
 
 
 func is_dragging() -> bool:
 	#return pressing && (startPos - currPos).length_squared() > dragThreshold*dragThreshold
-	return (startPos - currPos).length_squared() > dragThreshold*dragThreshold
+	return (startPos - currPos).length_squared() > dragThreshold**2
 
 
 func ScreenPosToLocalPos(pScreenPos:Vector2) -> Vector2:
