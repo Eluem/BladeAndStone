@@ -817,6 +817,7 @@ boss = NodePath("../Enemies/BossEnemyRamBeam")
 playerSpawner = NodePath("../PlayerManager/Spawner")
 
 [node name="TransitionalCamera" type="Camera2D" parent="BossFightManager"]
+position = Vector2(-67, -5468)
 enabled = false
 
 [node name="BossIntroCamera" type="Camera2D" parent="BossFightManager"]

@@ -44,7 +44,6 @@ func HandleBufferTimers(delta:float) -> void:
 	if(tapped):
 		tappedBufferTime += delta
 		if(tappedBufferTime > tappedMaxBufferTime):
-			print("buffer missed")
 			tapped = false
 			tappedBufferTime = 0
 			quickLooked = false
@@ -110,6 +109,10 @@ func consume_dragged() -> bool:
 
 
 func consume_buffered_look() -> void:
+	if(held):
+		quickLooked = false
+		dragLooked = false
+		return
 	if(quickLooked):
 		buffered_look.emit(quickLookDir)
 	elif(dragLooked):

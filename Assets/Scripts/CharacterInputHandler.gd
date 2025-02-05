@@ -74,7 +74,7 @@ func _process(delta:float) -> void:
 		holdTime = 0
 	
 	#Handle inversion
-	if(GameStateManager.gameData.invertInputDirection):
+	if(!GameStateManager.gameData.invertInputDirection):
 		currPos = startPos - (currPos - startPos)
 	dir = startPos - currPos #Update direction/length of drag
 	#Check if the drag length is in the deadzone
@@ -95,8 +95,8 @@ func _process(delta:float) -> void:
 
 	#Update drag direction and power
 	if(pressed):
-		if(GameStateManager.gameData.invertInputDirection):
-			currPos = startPos - (currPos - startPos)
+		#if(GameStateManager.gameData.invertInputDirection):
+		#	currPos = startPos - (currPos - startPos)
 		#dir = startPos - currPos
 		isBelowDirUpdateThreshold = (dir.length_squared() <= dirUpdateThreshold**2)
 		power = (clamp(dir.length(), 0, maxLength)/maxLength)
@@ -146,11 +146,11 @@ func GetDragHeldThresholdBonus() -> float:
 func UpdateCharacterInputUI() -> void:
 	if(justPressed):
 		characterInputUI = CharacterInputUI.new()
-		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold, dirUpdateThreshold)
+		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, -dir, power, maxLength, dragThreshold, dirUpdateThreshold)
 		parentPlayer.add_child(characterInputUI)
 		characterInputUI.position = Vector2.ZERO
 	elif(characterInputUI != null):
-		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold, dirUpdateThreshold)
+		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, -dir, power, maxLength, dragThreshold, dirUpdateThreshold)
 	if(released):
 		characterInputUI.Detach()
 		characterInputUI.global_transform = parentPlayer.global_transform
