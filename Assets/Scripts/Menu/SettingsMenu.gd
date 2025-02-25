@@ -8,16 +8,24 @@ const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/Confi
 @onready var defaultButton:Button = $PanelContainer/BottomContainer/DefaultButton
 @onready var saveCloseButton:Button = $PanelContainer/BottomContainer/SaveCloseButton
 @onready var closeButton:Button = $PanelContainer/BottomContainer/CloseButton
-@onready var masterVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MasterVolumeSlider
-@onready var masterVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MasterVolumeSlider/ValueLabel
-@onready var musicVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MusicVolumeSlider
-@onready var musicVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MusicVolumeSlider/ValueLabel
-@onready var effectsVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/EffectsVolumeSlider
-@onready var effectsVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/EffectsVolumeSlider/ValueLabel
-@onready var invertInputCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck
-@onready var checkButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck/CheckButtonSliderGraphic
-@onready var windowModeLabel:Label = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/WindowModeLabel
-@onready var windowModeMenu:DropdownButton = $PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/WindowModeMenu
+@onready var masterVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MasterVolumeSlider
+@onready var masterVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MasterVolumeSlider/ValueLabel
+@onready var musicVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MusicVolumeSlider
+@onready var musicVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MusicVolumeSlider/ValueLabel
+@onready var effectsVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/EffectsVolumeSlider
+@onready var effectsVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/EffectsVolumeSlider/ValueLabel
+@onready var quickTapCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/QuickTapGridContainer/QuickTapCheck
+@onready var quickTapCheckButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/QuickTapGridContainer/QuickTapCheck/CheckButtonSliderGraphic
+@onready var windowModeLabel:Label = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/WindowModeLabel
+@onready var windowModeMenu:DropdownButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/WindowModeMenu
+@onready var dragSensitivitySlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragSensitivitySlider
+@onready var dragSensitivitySliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragSensitivitySlider/ValueLabel
+@onready var dragDeadzoneSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragDeadzoneSlider
+@onready var dragDeadzoneSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragDeadzoneSlider/ValueLabel
+@onready var lookDeadzoneSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/LookDeadzoneSlider
+@onready var lookDeadzoneSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/LookDeadzoneSlider/ValueLabel
+@onready var invertInputCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/InvertInputGridContainer/InvertInputCheck
+@onready var invertInputCheckButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/InvertInputGridContainer/InvertInputCheck/CheckButtonSliderGraphic
 
 
 @onready var standardDefaultValues:Dictionary = GetValues()
@@ -37,7 +45,8 @@ func Initialize(pParent:Node, pCallback:Callable, pCurrValues:Dictionary = {}, p
 		defaultValues = pDefaultValues.duplicate()
 	SetValues(pCurrValues)
 	settings_menu_response.connect(pCallback)
-	checkButtonSliderGraphic.ForceImmediateUpdate()
+	invertInputCheckButtonSliderGraphic.ForceImmediateUpdate()
+	quickTapCheckButtonSliderGraphic.ForceImmediateUpdate()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -46,6 +55,7 @@ func _ready() -> void:
 	saveCloseButton.pressed.connect(save_close_pressed)
 	closeButton.pressed.connect(close_pressed)
 	invertInputCheck.pressed.connect(toggle_pressed_SFX)
+	quickTapCheck.pressed.connect(toggle_pressed_SFX)
 	masterVolumeSlider.drag_started.connect(slider_drag_started_SFX.bind(masterVolumeSlider))
 	masterVolumeSlider.drag_ended.connect(slider_drag_ended_SFX)
 	masterVolumeSlider.value_changed.connect(master_volume_slider_value_changed)
@@ -59,6 +69,9 @@ func _ready() -> void:
 	effectsVolumeSlider.value_changed.connect(effects_volume_slider_value_changed)
 	effectsVolumeSlider.value_changed.connect(slider_value_changed_SFX)
 	windowModeMenu.selection_changing.connect(on_window_mode_value_changed)
+	dragSensitivitySlider.drag_started.connect(slider_drag_started_SFX.bind(dragSensitivitySlider))
+	dragSensitivitySlider.drag_ended.connect(slider_drag_ended_SFX)
+	dragSensitivitySlider.value_changed.connect(slider_value_changed_SFX)
 	
 	windowModeLabel.visible = !OS.has_feature("android")
 	windowModeMenu.visible = !OS.has_feature("android")
@@ -82,6 +95,10 @@ func GetValues() -> Dictionary:
 							,"sfxVolume":effectsVolumeSlider.value
 							,"invertInputDirection":invertInputCheck.button_pressed
 							,"windowMode":windowModeMenu.selectedOption
+							,"dragSensitivity":dragSensitivitySlider.value
+							,"dragDeadzone":dragDeadzoneSlider.value
+							,"lookDeadzone":lookDeadzoneSlider.value
+							,"quickTapEnabled":quickTapCheck.button_pressed
 						 }
 	return ret
 
@@ -107,6 +124,22 @@ func SetValues(pValues:Dictionary) -> void:
 		invertInputCheck.button_pressed = pValues.invertInputDirection
 	if(pValues.has("windowMode")):
 		windowModeMenu.selectedOption = pValues.windowMode
+	if(pValues.has("dragSensitivity")):
+		print("test")
+		floatCast = pValues.dragSensitivity
+		dragSensitivitySlider.set_value_no_signal(floatCast)
+		dragSensitivitySliderValueLabel.RefreshValue()
+	if(pValues.has("dragDeadzone")):
+		print("test2")
+		floatCast = pValues.dragDeadzone
+		dragDeadzoneSlider.set_value_no_signal(floatCast)
+		dragDeadzoneSliderValueLabel.RefreshValue()
+	if(pValues.has("lookDeadzone")):
+		floatCast = pValues.lookDeadzone
+		lookDeadzoneSlider.set_value_no_signal(floatCast)
+		lookDeadzoneSliderValueLabel.RefreshValue()
+	if(pValues.has("quickTapEnabled")):
+		quickTapCheck.button_pressed = pValues.quickTapEnabled
 
 
 func IsDataChanged() -> bool:

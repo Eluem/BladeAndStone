@@ -1,6 +1,5 @@
 extends Camera2D
 class_name CameraMultitracking
-
 enum TrackTiming {
 					 process ##Updates during _process
 					,physics_process ##updates during _physics_process
@@ -18,7 +17,7 @@ enum SmoothMode {
 					,none ##Sets the current value to the target value, without any smoothing
 				}
 
-##Determins when the camera position and zoom will be updated
+##Determines when the camera position and zoom will be updated
 @export var trackTiming:TrackTiming = TrackTiming.physics_process
 ##Controls the method that the camera's target position is determined relative to the tracked targets
 @export var centerMode:CenterMode
@@ -45,6 +44,8 @@ enum SmoothMode {
 var _ignoreDistanceSquared:float = ignoreDistance**2
 ##Ratio of the total weight of all other targets to be added to the main target's weight
 @export var weightSumBoostFactor:float = 1
+
+var limitBoundsMinZoom:Vector2
 
 var targets:Dictionary = {}
 var mainTarget:Node2D
@@ -129,9 +130,12 @@ func UpdateZoom(pDelta:float) -> void:
 	
 	var z:float
 	if(rect.size.x > rect.size.y * screenSize.aspect()):
-		z = clamp(screenSize.x / rect.size.x, zoomRange.x, zoomRange.y)
+		z = clampf(screenSize.x / rect.size.x, zoomRange.x, zoomRange.y) #Clamp zoom to configured range
 	else:
-		z = clamp(screenSize.y / rect.size.y, zoomRange.x, zoomRange.y)
+		z = clampf(screenSize.y / rect.size.y, zoomRange.x, zoomRange.y)  #Clamp zoom to configured range
+	#Clamp zoom to be within bounding limits
+	z = maxf(z, limitBoundsMinZoom.x)
+	z = maxf(z, limitBoundsMinZoom.y)
 	
 	var newZoom:Vector2 = Vector2.ONE*z
 	match zoomSmoothMode:
@@ -244,3 +248,21 @@ func TooFarFromMainTarget(pTrackTarget:Node2D) -> bool:
 		return false
 	
 	return mainTarget.global_position.distance_squared_to(pTrackTarget.global_position) > _ignoreDistanceSquared
+
+
+func SetLimitBounds(pLimitBottom:int, pLimitTop:int, pLimitLeft:int, pLimitRight:int) -> void:
+	limit_bottom = pLimitBottom
+	limit_top = pLimitTop
+	limit_left = pLimitLeft
+	limit_right = pLimitRight
+	RefreshLimitBoundsMinZoom()
+
+
+func ResetLimitBounds() -> void:
+	SetLimitBounds(10000000, -10000000, -10000000, 10000000)
+
+
+func RefreshLimitBoundsMinZoom() -> void:
+	var screenSize:Vector2 = get_viewport_rect().size
+	limitBoundsMinZoom.x = screenSize.x/float(limit_right - limit_left)
+	limitBoundsMinZoom.y = screenSize.y/float(limit_bottom - limit_top)

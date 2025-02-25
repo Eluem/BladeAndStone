@@ -6,6 +6,14 @@ extends Node2D
 
 @onready var parentPlayer:Node2D = get_parent().get_parent()
 
+const maxDragLengthRange:Vector2 = Vector2(200,600) #Defines the range of lengths which, combined 
+													#with the drag sensitivity setting will be used
+													#to determine the actual max drag length
+const dragThresholdRange:Vector2 = Vector2(50, 200) #Defines the range for dragThreshold which
+													#takes into account the drag deadzone setting
+const dirUpdateThresholdRange:Vector2 = Vector2(5,20) #Defines the range for dirUpdateThreshold which
+													  #takes into account the look deadzone setting
+
 var pressed:bool = false
 var justPressed:bool = false
 var pressing:bool = false
@@ -17,11 +25,7 @@ var prevPos:Vector2
 var prevDragging:bool #Used to determine if dragging cancelled or started
 var dir:Vector2
 var power:float
-var maxLength:float = 400 #The max length that you can drag, anything more is ignored
-var dirUpdateThreshold:float = 10 #The max length you can drag before direction info starts updating
-var dragThreshold:float = 120 #The max length that you can drag that will count as a tap
-							  #before converting to a drag, updating the look direction and
-							  #stops counting as a quick look
+var minPower:float = 0.3 #The minimum power once you get outside the dragThreshold
 var heldThreshold:float = 0.2 #Time before "held" trigger fires, if not dragging
 var quickLookTime:float = heldThreshold #Time before you automatically quickLook before releasing
 var dragHeldThresholdBonus:float = 0.15 #Additional time before "held" trigger fires, if dragging
@@ -78,7 +82,7 @@ func _process(delta:float) -> void:
 		currPos = startPos - (currPos - startPos)
 	dir = startPos - currPos #Update direction/length of drag
 	#Check if the drag length is in the deadzone
-	var isBelowDirUpdateThreshold:bool = (dir.length_squared() <= dirUpdateThreshold**2)
+	var isBelowDirUpdateThreshold:bool = (dir.length_squared() <= GetDirUpdateThreshold()**2)
 	
 	#Manage drag state/launch flick on drag release
 	if(!pressed && pressing):
@@ -87,7 +91,8 @@ func _process(delta:float) -> void:
 		else:
 			press_release.emit()
 			if(isBelowDirUpdateThreshold):
-				quick_look.emit(get_global_mouse_position() - parentPlayer.global_position)
+				if(GameStateManager.gameData.quickTapEnabled):
+					quick_look.emit(get_global_mouse_position() - parentPlayer.global_position)
 			else:
 				drag_look.emit(dir.normalized())
 		released = true
@@ -98,8 +103,8 @@ func _process(delta:float) -> void:
 		#if(GameStateManager.gameData.invertInputDirection):
 		#	currPos = startPos - (currPos - startPos)
 		#dir = startPos - currPos
-		isBelowDirUpdateThreshold = (dir.length_squared() <= dirUpdateThreshold**2)
-		power = (clamp(dir.length(), 0, maxLength)/maxLength)
+		isBelowDirUpdateThreshold = (dir.length_squared() <= GetDirUpdateThreshold()**2)
+		CalculatePower()
 		holdTime += delta
 		if(!(isBelowDirUpdateThreshold)):
 			drag_update.emit(power, dir.normalized())
@@ -118,7 +123,7 @@ func _process(delta:float) -> void:
 		held_triggered.emit()
 		heldFired = true
 	
-	if(holdTime >= quickLookTime && isBelowDirUpdateThreshold):
+	if(GameStateManager.gameData.quickTapEnabled && holdTime >= quickLookTime && isBelowDirUpdateThreshold):
 		quick_look.emit(get_global_mouse_position() - parentPlayer.global_position)
 	
 	UpdateCharacterInputUI()
@@ -131,9 +136,36 @@ func _process(delta:float) -> void:
 		queue_redraw()
 	"""
 
+#Returns the effective max drag length, which impacts effective sensitivity
+func GetMaxDragLength() -> float:
+	return lerpf(maxDragLengthRange.y, maxDragLengthRange.x, GameStateManager.gameData.dragSensitivity)
+
+
+#The max length that you can drag that will count as a tap
+#before converting to a drag, updating the look direction and
+#stops counting as a quick look
+func GetDragThreshold() -> float:
+	return lerpf(dragThresholdRange.x, dragThresholdRange.y, GameStateManager.gameData.dragDeadzone)
+
+#The max length you can drag before direction info starts updating
+func GetDirUpdateThreshold() -> float:
+	return lerpf(dirUpdateThresholdRange.x, dirUpdateThresholdRange.y, GameStateManager.gameData.lookDeadzone)
+
+
+func CalculatePower() -> void:
+	var maxLength:float = GetMaxDragLength()
+	var dragThreshold:float = GetDragThreshold()
+	#Calculate the baseline of the power from the drag length, minus the threshold divided by the maxLength
+	power = (clamp(dir.length() - dragThreshold, 0, maxLength)/maxLength)
+	#Force the power to start at "minPower" to prevent dashes that are too small
+	power = maxf(minPower, power)
+	#Boost the power, giving a bit less precision but making it easier to hit max power
+	#var a:float = 5
+	#power = ((a ** power) - 1) / (a - 1)
+
 
 func is_dragging() -> bool:
-	return pressing && (startPos - currPos).length_squared() > dragThreshold**2
+	return pressing && (startPos - currPos).length_squared() > GetDragThreshold()**2
 	#return pressing && (startPos - currPos).length() > dragThreshold
 	
 
@@ -146,11 +178,11 @@ func GetDragHeldThresholdBonus() -> float:
 func UpdateCharacterInputUI() -> void:
 	if(justPressed):
 		characterInputUI = CharacterInputUI.new()
-		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, -dir, power, maxLength, dragThreshold, dirUpdateThreshold)
+		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, -dir, power, GetMaxDragLength(), GetDragThreshold(), GetDirUpdateThreshold())
 		parentPlayer.add_child(characterInputUI)
 		characterInputUI.position = Vector2.ZERO
 	elif(characterInputUI != null):
-		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, -dir, power, maxLength, dragThreshold, dirUpdateThreshold)
+		characterInputUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, -dir, power, GetMaxDragLength(), GetDragThreshold(), GetDirUpdateThreshold())
 	if(released):
 		characterInputUI.Detach()
 		characterInputUI.global_transform = parentPlayer.global_transform
@@ -160,11 +192,11 @@ func UpdateCharacterInputUI() -> void:
 func UpdateDebugUI() -> void:
 	if(justPressed):
 		inputDebugUI = InputDebugUI.new()
-		inputDebugUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold)
+		inputDebugUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, GetMaxDragLength(), GetDragThreshold())
 		get_parent().get_parent().add_child(inputDebugUI)
 		inputDebugUI.position = Vector2.ZERO
 	elif(inputDebugUI != null):
-		inputDebugUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, maxLength, dragThreshold)
+		inputDebugUI.update(pressed, pressing, holdTime, released, startPos, currPos, prevPos, dir, power, GetMaxDragLength(), GetDragThreshold())
 	if(released):
 		inputDebugUI.top_level = true
 		inputDebugUI.global_transform = (get_parent().get_parent() as Node2D).global_transform

@@ -60,10 +60,7 @@ func HandleTransitionCamera(pDelta:float) -> void:
 
 
 func PlayBossIntro() -> void:
-	mainCamera.limit_bottom = -4974
-	mainCamera.limit_top = -10475
-	mainCamera.limit_left = -3072
-	mainCamera.limit_right = 4125
+	mainCamera.SetLimitBounds(-4974, -10475, -3072, 4125)
 	transitionalCamera.enabled = false
 	bossIntroCamera.enabled = true
 	bossIntroCamera.make_current()

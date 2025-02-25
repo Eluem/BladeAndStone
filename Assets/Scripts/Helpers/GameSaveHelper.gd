@@ -7,6 +7,10 @@ var invertInputDirection:bool = false
 var isFirstRun:bool = true
 var highScore:int = 0
 var windowMode:int = GameStateManager.WindowMode.Fullscreen
+var dragSensitivity:float = GetDefaultDragSensitivity()
+var dragDeadzone:float = GetDefaultDragDeadzone()
+var lookDeadzone:float = GetDefaultLookDeadzone()
+var quickTapEnabled:bool = true
 
 
 func SaveData() -> void:
@@ -50,6 +54,10 @@ static func GetDefaultValues() -> Dictionary:
 							,"isFirstRun":true
 							,"highScore":0
 							,"windowMode":GameStateManager.WindowMode.Fullscreen
+							,"dragSensitivity":GetDefaultDragSensitivity()
+							,"dragDeadzone":GetDefaultDragDeadzone()
+							,"lookDeadzone":GetDefaultLookDeadzone()
+							,"quickTapEnabled":true
 						 }
 	return ret
 
@@ -64,6 +72,10 @@ func GetValues() -> Dictionary:
 							,"isFirstRun":isFirstRun
 							,"highScore":highScore
 							,"windowMode":windowMode
+							,"dragSensitivity":dragSensitivity
+							,"dragDeadzone":dragDeadzone
+							,"lookDeadzone":lookDeadzone
+							,"quickTapEnabled":quickTapEnabled
 						 }
 	return ret
 
@@ -89,3 +101,29 @@ func SetValues(pDictionary:Dictionary) -> void:
 	if(pDictionary.has("windowMode")):
 		windowMode = pDictionary.windowMode
 		GameStateManager.SetWindowMode(windowMode)
+	if(pDictionary.has("dragSensitivity")):
+		dragSensitivity = pDictionary.dragSensitivity
+	if(pDictionary.has("dragDeadzone")):
+		dragDeadzone = pDictionary.dragDeadzone
+	if(pDictionary.has("lookDeadzone")):
+		lookDeadzone = pDictionary.lookDeadzone
+	if(pDictionary.has("quickTapEnabled")):
+		quickTapEnabled = pDictionary.quickTapEnabled
+
+
+static func GetDefaultDragSensitivity() -> float:
+	if(OS.has_feature("android")):
+		return 1.0
+	return 0.5
+
+
+static func GetDefaultDragDeadzone() -> float:
+	if(OS.has_feature("android")):
+		return 1.0
+	return 0.5
+
+
+static func GetDefaultLookDeadzone() -> float:
+	if(OS.has_feature("android")):
+		return 1.0
+	return 0.5

@@ -1,24 +1,41 @@
-extends Node
+extends Node2D
 
 const BOSS_HEART = preload("res://Assets/ObjectScenes/Items/BossHeart.tscn")
+
+var canvasParent:CanvasLayer
 
 var kPressed:bool = false
 var jPressed:bool = false
 var pPressed:bool = false
+var tPressed:bool = false
 
 var player:Golem
 
-
+var debugString:String = "" #str(DisplayServer.get_display_safe_area())
 
 func _ready() -> void:
+	call_deferred("InitializeCanvasParent")
+	
 	process_mode = PROCESS_MODE_ALWAYS
 	GameStateManager.scene_ready.connect(on_scene_change)
 
 
 func _process(_delta:float) -> void:
+	_Test()
 	_KillAllCreatures()
 	_SpawnTestBossHeart()
 	_FreezeGame()
+
+
+func _input(event:InputEvent) -> void:
+	if(event is InputEventScreenTouch):
+		if((event as InputEventScreenTouch).index == 1):
+			Test()
+
+
+func _draw() -> void:
+	#DrawString(debugString, get_window().size/2, Color.MAGENTA, 32, HORIZONTAL_ALIGNMENT_CENTER)
+	pass
 
 
 func _KillAllCreatures() -> void:
@@ -97,3 +114,68 @@ func SpawnExplosion() -> void:
 	collider.shapeCast.shape = collider.shape
 	(collider.shape as CapsuleShape2D).radius = 1000
 	damageBox.destroySelfOnHit = false
+
+
+func _Test() -> void:
+	if(Input.is_key_pressed(KEY_T)):
+		if(!tPressed):
+			Test()
+			tPressed = true
+	else:
+		tPressed = false
+
+
+#Use this function to put any random test code in
+func Test() -> void:
+	#print(str(DisplayServer.window_get_size()) + " ||| " + str(DisplayServer.get_display_safe_area().size))
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+	#DisplayServer.window_set_size(DisplayServer.get_display_safe_area().size)
+	#DisplayServer.window_set_size(DisplayServer.get_display_safe_area().size)
+	#DisplayServer.window_set_position(DisplayServer.get_display_safe_area().position)
+	#DisplayServer.window_set_size(Vector2i(100, 100))
+	#var viewport:Viewport = get_viewport()
+	#$'/root'.set_content_scale_size(Vector2i(100,100))
+	#get_viewport().set_content_scale_size(Vector2i(100,100))
+	#var viewport:Window = get_viewport()
+	#var displaySafeArea:Rect2i = DisplayServer.get_display_safe_area()
+	#viewport.size = displaySafeArea.size
+	#viewport.position = displaySafeArea.position
+	#viewport.position.y += displaySafeArea.size.y
+	#DisplayServer.window_set_position(Vector2i(100, 0))
+	#var testViewportContainer:SubViewportContainer = SubViewportContainer.new()
+	#var testViewport:SubViewport = SubViewport.new()
+	#testViewportContainer.size = DisplayServer.get_display_safe_area().size
+	#testViewportContainer.position = DisplayServer.get_display_safe_area().position
+	#get_tree().root.add_child(testViewportContainer)
+	#testViewportContainer.add_child(testViewport)
+	#for child in get_tree().root.get_children():
+	#	if(child != testViewportContainer):
+	#		child.reparent(testViewport)
+	#debugString = str(($"../../CanvasManagerScene/HUD" as Control).position) + " ||| " + str(($"../../CanvasManagerScene/HUD" as MobileScreenSafeHUD).displaySafeArea)
+	#queue_redraw()
+	pass
+	
+	
+
+
+func InitializeCanvasParent() -> void:
+	canvasParent = CanvasLayer.new()
+	canvasParent.layer = 9999999999999
+	get_parent().add_child(canvasParent)
+	reparent(canvasParent)
+
+func DrawString(pString:String, pPos:Vector2, pColor:Color = Color.MAGENTA, pFontSize:int = 32, pAlignment:HorizontalAlignment = HORIZONTAL_ALIGNMENT_CENTER) -> void:
+	var font:Font = ThemeDB.fallback_font
+	var pos:Vector2 = pPos
+	var stringSize:Vector2 = font.get_string_size(pString, pAlignment, -1, pFontSize)
+	match pAlignment:
+		HORIZONTAL_ALIGNMENT_CENTER:
+			pos.x -= stringSize.x / 2
+		HORIZONTAL_ALIGNMENT_LEFT:
+			pass #Don't need to do anything here because it's left aligned by defualt
+		HORIZONTAL_ALIGNMENT_RIGHT:
+			pos.x -= stringSize.x
+	pos.y -= stringSize.y / 2
+	pos.y += font.get_ascent(pFontSize)
+	draw_string(ThemeDB.fallback_font, pos, pString, pAlignment, -1, pFontSize, pColor)

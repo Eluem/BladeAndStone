@@ -26,14 +26,14 @@ void fragment()
 
 	vec4 shadow = vec4(0,0,0,0);
 	vec4 real = vec4(0,0,0,0);
-	
+
 	vec2 offset;
 	for(float r = radStep; r <= radius; r += radStep) // Iterate over the radius by radStep
 	{
 		for(float a = 0.0; a < fullRot; a += rotStep) // Iterate the angle from 0 to 360 by rotStep (in radians)
 		{
 			offset = vec2(sin(a), cos(a)) * r * TEXTURE_PIXEL_SIZE;
-			
+
 			if((offset.x > 0.0 || offset.x < 0.0 || offset.y > 0.0 || offset.y < 0.0) && uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0)
 			{
 				vec4 c = texture(TEXTURE, uv);
@@ -42,7 +42,7 @@ void fragment()
 			}
 		}
 	}
-	
+
 	if(uv_normal.x >= 0.0 && uv_normal.x <= 1.0 && uv_normal.y >= 0.0 && uv_normal.y <= 1.0)
 	{
 		real = texture(TEXTURE,uv_normal);

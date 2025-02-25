@@ -82,7 +82,8 @@ func _draw() -> void:
 	if(is_dragging() && !useSpriteArrows): #(pressing && is_dragging()) || released):
 		#Calculate end point with length capped at max power
 		var endPoint:Vector2 = currPosRelative - startPosRelative
-		endPoint = startPosRelative + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
+		#endPoint = startPosRelative + (endPoint.normalized() * clamp(endPoint.length(), 0, maxLength))
+		endPoint = startPosRelative.lerp(startPosRelative + (endPoint.normalized() * maxLength), power)
 		
 		Draw_GuidePath(endPoint)
 	

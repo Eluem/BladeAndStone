@@ -1,11 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgfp4pd75dagv"]
+[gd_scene load_steps=18 format=3 uid="uid://bojuauklqlr2m"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/CheckButtonSliderGraphic.gd" id="1_56xp6"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/SettingsMenu.gd" id="1_h84po"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/SliderValueLabel.gd" id="1_nqtk5"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/VScrollBarCustomization.gd" id="2_2s563"]
-[ext_resource type="Script" path="res://Assets/Scripts/Menu/DropdownButton.gd" id="4_vdnj1"]
-[ext_resource type="Theme" uid="uid://cb27fafl4lnuc" path="res://Assets/Art/UI/SettingsMenuVScrollTheme.tres" id="5_6uegw"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/SettingsMenu.gd" id="1_ail1y"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/SliderValueLabel.gd" id="2_4xqm7"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/CheckButtonSliderGraphic.gd" id="3_yffur"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/DropdownButton.gd" id="4_57r6q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8wra"]
 content_margin_left = 30.0
@@ -158,7 +156,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_h84po")
+script = ExtResource("1_ail1y")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -177,31 +175,34 @@ theme_override_font_sizes/font_size = 60
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="SettingsContainerOffsetter" type="MarginContainer" parent="PanelContainer"]
+[node name="SettingsContainerOffsetter" type="Control" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_bottom = 80
+size_flags_horizontal = 4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/SettingsContainerOffsetter"]
-layout_mode = 2
-script = ExtResource("2_2s563")
-
-[node name="SettingsOptionsContainer" type="GridContainer" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer"]
+[node name="SettingsOptionsContainer" type="GridContainer" parent="PanelContainer/SettingsContainerOffsetter"]
 custom_minimum_size = Vector2(900, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 3
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 95.2
+offset_right = 400.0
+offset_bottom = 295.2
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 15
 columns = 2
 
-[node name="MasterVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="MasterVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Master Volume"
 
-[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="MasterVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_vertical = 1
@@ -217,7 +218,7 @@ step = 0.0
 value = 0.5
 scrollable = false
 
-[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MasterVolumeSlider"]
+[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MasterVolumeSlider"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -237,15 +238,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_jpy0t")
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_nqtk5")
+script = ExtResource("2_4xqm7")
 
-[node name="MusicVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Music Volume"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_vertical = 1
@@ -261,7 +262,7 @@ step = 0.0
 value = 0.5
 scrollable = false
 
-[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MusicVolumeSlider"]
+[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/MusicVolumeSlider"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -281,15 +282,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_jpy0t")
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_nqtk5")
+script = ExtResource("2_4xqm7")
 
-[node name="EffectsVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="EffectsVolumeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Effects Volume"
 
-[node name="EffectsVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="EffectsVolumeSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -305,7 +306,7 @@ step = 0.0
 value = 0.5
 scrollable = false
 
-[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/EffectsVolumeSlider"]
+[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/EffectsVolumeSlider"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -325,19 +326,15 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_jpy0t")
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_nqtk5")
+script = ExtResource("2_4xqm7")
 
-[node name="InvertInputGridContainer" type="GridContainer" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="InvertInputLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/InvertInputGridContainer"]
+[node name="InvertInputLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Invert Input"
 
-[node name="InvertInputCheck" type="CheckButton" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/InvertInputGridContainer"]
+[node name="InvertInputCheck" type="CheckButton" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
@@ -346,7 +343,7 @@ size_flags_vertical = 4
 focus_mode = 0
 icon_alignment = 1
 
-[node name="CheckButtonSliderGraphic" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/InvertInputGridContainer/InvertInputCheck"]
+[node name="CheckButtonSliderGraphic" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer/InvertInputCheck"]
 custom_minimum_size = Vector2(90, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -372,65 +369,16 @@ theme_override_styles/grabber_area = SubResource("StyleBoxFlat_utgft")
 max_value = 1.0
 step = 0.0
 scrollable = false
-script = ExtResource("1_56xp6")
+script = ExtResource("3_yffur")
 toggleAnimSpeed = 20.0
 
-[node name="QuickTapGridContainer" type="GridContainer" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-layout_mode = 2
-theme = ExtResource("5_6uegw")
-columns = 2
-
-[node name="QuickTapLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/QuickTapGridContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Enable Quick Tap"
-
-[node name="QuickTapCheck" type="CheckButton" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/QuickTapGridContainer"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-focus_mode = 0
-icon_alignment = 1
-
-[node name="CheckButtonSliderGraphic" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/QuickTapGridContainer/QuickTapCheck"]
-custom_minimum_size = Vector2(90, 50)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -25.0
-offset_right = 45.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(45, 25)
-size_flags_horizontal = 3
-size_flags_vertical = 1
-focus_mode = 0
-mouse_filter = 2
-theme_override_constants/center_grabber = 0
-theme_override_icons/grabber = SubResource("GradientTexture2D_dr4ug")
-theme_override_styles/slider = SubResource("StyleBoxFlat_e443s")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_utgft")
-max_value = 1.0
-step = 0.0
-scrollable = false
-script = ExtResource("1_56xp6")
-toggleAnimSpeed = 20.0
-
-[node name="WindowModeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="WindowModeLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "Window Mode"
 
-[node name="WindowModeMenu" type="MenuButton" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
+[node name="WindowModeMenu" type="MenuButton" parent="PanelContainer/SettingsContainerOffsetter/SettingsOptionsContainer"]
 custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -445,147 +393,7 @@ popup/item_1/text = "Borderless Fullscreen"
 popup/item_1/id = 1
 popup/item_2/text = "Windowed"
 popup/item_2/id = 2
-script = ExtResource("4_vdnj1")
-
-[node name="DragSensitivityLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Drag Sensitivity"
-
-[node name="DragSensitivitySlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-custom_minimum_size = Vector2(300, 60)
-layout_mode = 2
-size_flags_vertical = 1
-focus_mode = 0
-theme_override_constants/center_grabber = 0
-theme_override_icons/grabber = SubResource("GradientTexture2D_wvwyk")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_bdfxh")
-theme_override_styles/slider = SubResource("StyleBoxFlat_yh5hl")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_reckg")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_18pju")
-max_value = 1.0
-step = 0.0
-value = 0.5
-scrollable = false
-
-[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragSensitivitySlider"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = -21.5
-offset_right = 72.0
-offset_bottom = 21.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_jpy0t")
-text = "0.5
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_nqtk5")
-maxValue = 1.0
-step = 0.01
-
-[node name="DragDeadzoneLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Drag Deadzone"
-
-[node name="DragDeadzoneSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-custom_minimum_size = Vector2(300, 60)
-layout_mode = 2
-size_flags_vertical = 1
-focus_mode = 0
-theme_override_constants/center_grabber = 0
-theme_override_icons/grabber = SubResource("GradientTexture2D_wvwyk")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_bdfxh")
-theme_override_styles/slider = SubResource("StyleBoxFlat_yh5hl")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_reckg")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_18pju")
-max_value = 1.0
-step = 0.0
-value = 0.5
-scrollable = false
-
-[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragDeadzoneSlider"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = -21.5
-offset_right = 72.0
-offset_bottom = 21.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_jpy0t")
-text = "0.5"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_nqtk5")
-maxValue = 1.0
-step = 0.01
-
-[node name="LookDeadzoneLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Look Deadzone
-"
-
-[node name="LookDeadzoneSlider" type="HSlider" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-focus_mode = 0
-theme_override_constants/center_grabber = 0
-theme_override_icons/grabber = SubResource("GradientTexture2D_gqg06")
-theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_bdfxh")
-theme_override_styles/slider = SubResource("StyleBoxFlat_yh5hl")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_reckg")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_18pju")
-max_value = 1.0
-step = 0.0
-value = 0.5
-scrollable = false
-
-[node name="ValueLabel" type="Label" parent="PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/LookDeadzoneSlider"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 12.0
-offset_top = -21.5
-offset_right = 72.0
-offset_bottom = 21.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_jpy0t")
-text = "0.5"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_nqtk5")
-maxValue = 1.0
-step = 0.01
+script = ExtResource("4_57r6q")
 
 [node name="BottomContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
