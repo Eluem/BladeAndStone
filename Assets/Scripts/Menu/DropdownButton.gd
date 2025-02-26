@@ -18,6 +18,7 @@ var selectedOption:int:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	popup = get_popup()
+	popup.add_theme_color_override("font_color", get_theme_color("font_color"))
 	popup.id_pressed.connect(on_id_pressed)
 	pressed.connect(on_pressed)
 

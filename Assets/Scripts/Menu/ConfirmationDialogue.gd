@@ -3,7 +3,7 @@ class_name ConfirmationDialogue
 
 signal dialogue_response(pResponse:bool)
 
-@onready var closeButton:TextureButton = $PanelContainer/MarginContainer/VBoxContainer/Top/CloseButtonScaleEnabler/CloseButton
+@onready var closeButton:TextureButton = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CloseButtonScaleEnabler/CloseButton
 @onready var yesButton:Button = $PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/YesButton
 @onready var noButton:Button = $PanelContainer/MarginContainer/VBoxContainer/ButtonContainer/NoButton
 @onready var promptLabel:RichTextLabel = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer/PromptLabel

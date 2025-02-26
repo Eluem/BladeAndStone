@@ -8,24 +8,24 @@ const CONFIRMATION_DIALOGUE:PackedScene = preload("res://Assets/GameScenes/Confi
 @onready var defaultButton:Button = $PanelContainer/BottomContainer/DefaultButton
 @onready var saveCloseButton:Button = $PanelContainer/BottomContainer/SaveCloseButton
 @onready var closeButton:Button = $PanelContainer/BottomContainer/CloseButton
-@onready var masterVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MasterVolumeSlider
-@onready var masterVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MasterVolumeSlider/ValueLabel
-@onready var musicVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MusicVolumeSlider
-@onready var musicVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/MusicVolumeSlider/ValueLabel
-@onready var effectsVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/EffectsVolumeSlider
-@onready var effectsVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/EffectsVolumeSlider/ValueLabel
-@onready var quickTapCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/QuickTapGridContainer/QuickTapCheck
-@onready var quickTapCheckButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/QuickTapGridContainer/QuickTapCheck/CheckButtonSliderGraphic
-@onready var windowModeLabel:Label = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/WindowModeLabel
-@onready var windowModeMenu:DropdownButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/WindowModeMenu
-@onready var dragSensitivitySlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragSensitivitySlider
-@onready var dragSensitivitySliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragSensitivitySlider/ValueLabel
-@onready var dragDeadzoneSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragDeadzoneSlider
-@onready var dragDeadzoneSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/DragDeadzoneSlider/ValueLabel
-@onready var lookDeadzoneSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/LookDeadzoneSlider
-@onready var lookDeadzoneSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/LookDeadzoneSlider/ValueLabel
-@onready var invertInputCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/InvertInputGridContainer/InvertInputCheck
-@onready var invertInputCheckButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/SettingsOptionsContainer/InvertInputGridContainer/InvertInputCheck/CheckButtonSliderGraphic
+@onready var masterVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer1/MasterVolumeHBox/MasterVolumeSlider
+@onready var masterVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer1/MasterVolumeHBox/ValueLabel
+@onready var musicVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/MusicVolumeHBox/MusicVolumeSlider
+@onready var musicVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/MusicVolumeHBox/ValueLabel
+@onready var effectsVolumeSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/EffectsVolumeHBox/EffectsVolumeSlider
+@onready var effectsVolumeSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/EffectsVolumeHBox/ValueLabel
+@onready var invertInputCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/InvertInputHBox/InvertInputCheck
+@onready var invertInputCheckButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/InvertInputHBox/InvertInputCheck/CheckButtonSliderGraphic
+@onready var quickTapCheck:CheckButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/QuickTapHBox/QuickTapCheck
+@onready var quickTapCheckButtonSliderGraphic:CheckButtonSliderGraphic = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/QuickTapHBox/QuickTapCheck/CheckButtonSliderGraphic
+@onready var windowModeLabel:Label = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/WindowModeLabel
+@onready var windowModeMenu:DropdownButton = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer5/WindowModeMenu
+@onready var dragSensitivitySlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/DragSensitivityHBox/DragSensitivitySlider
+@onready var dragSensitivitySliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/DragSensitivityHBox/ValueLabel
+@onready var dragDeadzoneSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/DragDeadzoneHBox/DragDeadzoneSlider
+@onready var dragDeadzoneSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer7/DragDeadzoneHBox/ValueLabel
+@onready var lookDeadzoneSlider:HSlider = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/LookDeadzoneHBox/LookDeadzoneSlider
+@onready var lookDeadzoneSliderValueLabel:SliderValueLabel = $PanelContainer/SettingsContainerOffsetter/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/LookDeadzoneHBox/ValueLabel
 
 
 @onready var standardDefaultValues:Dictionary = GetValues()
@@ -125,12 +125,10 @@ func SetValues(pValues:Dictionary) -> void:
 	if(pValues.has("windowMode")):
 		windowModeMenu.selectedOption = pValues.windowMode
 	if(pValues.has("dragSensitivity")):
-		print("test")
 		floatCast = pValues.dragSensitivity
 		dragSensitivitySlider.set_value_no_signal(floatCast)
 		dragSensitivitySliderValueLabel.RefreshValue()
 	if(pValues.has("dragDeadzone")):
-		print("test2")
 		floatCast = pValues.dragDeadzone
 		dragDeadzoneSlider.set_value_no_signal(floatCast)
 		dragDeadzoneSliderValueLabel.RefreshValue()

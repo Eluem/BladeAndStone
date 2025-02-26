@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var continueButton:Button = $ContinueButton
-@onready var richTextLabel:RichTextLabel = $RichTextLabel
+@onready var continueButton:Button = $PanelContainer/ContinueButton
+@onready var richTextLabel:RichTextLabel = $PanelContainer/RichTextLabel
 
 var timerEnableContinueButton:float
 var timeToEnableContinueButton:float = 2
@@ -16,7 +16,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
 	timerEnableContinueButton += delta
-	if(timerEnableContinueButton >= 2):
+	if(timerEnableContinueButton >= 1):
 		continueButton.visible = true
 		continueButton.modulate.a = move_toward(0, 1, (timerEnableContinueButton - timeToEnableContinueButton)/timeToFullVisibilityContinueButton)
 

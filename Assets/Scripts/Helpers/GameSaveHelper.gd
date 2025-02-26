@@ -113,17 +113,17 @@ func SetValues(pDictionary:Dictionary) -> void:
 
 static func GetDefaultDragSensitivity() -> float:
 	if(OS.has_feature("android")):
-		return 1.0
-	return 0.5
+		return 0.7
+	return 0.7
 
 
 static func GetDefaultDragDeadzone() -> float:
 	if(OS.has_feature("android")):
-		return 1.0
-	return 0.5
+		return 0.8
+	return 0.3
 
 
 static func GetDefaultLookDeadzone() -> float:
 	if(OS.has_feature("android")):
-		return 1.0
-	return 0.5
+		return 0.8
+	return 0.3

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqb1ctpgxod55"]
+[gd_scene load_steps=9 format=3 uid="uid://bqb1ctpgxod55"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/MainMenu.gd" id="1_b10tp"]
 [ext_resource type="Texture2D" uid="uid://dqm83s61xiy2p" path="res://Assets/Art/UI/GameTitleArt.png" id="2_haulf"]
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/MaxSizeLimiter.gd" id="3_0w2jm"]
+[ext_resource type="Script" path="res://Assets/Scripts/Menu/MobileSafeButtonFontSize.gd" id="4_rlplu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_by3wx"]
 content_margin_left = 10.0
@@ -138,6 +139,7 @@ disabled = true
 text = "Continue
 "
 flat = true
+script = ExtResource("4_rlplu")
 
 [node name="NewGameButton" type="Button" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
@@ -151,6 +153,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
 text = "New Game"
 flat = true
+script = ExtResource("4_rlplu")
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
@@ -164,6 +167,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
 text = "Settings"
 flat = true
+script = ExtResource("4_rlplu")
 
 [node name="CreditsButton" type="Button" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
@@ -178,6 +182,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
 text = "Credits
 "
 flat = true
+script = ExtResource("4_rlplu")
 
 [node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
@@ -191,3 +196,4 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_flr3y")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3imvw")
 text = "Quit"
 flat = true
+script = ExtResource("4_rlplu")
