@@ -1,3 +1,7 @@
+AnimationPlayer
+Node
+Node2D
+Sprite2D
 HBoxContainer
 MarginContainer
 PanelContainer
@@ -8,7 +12,4 @@ VScrollBar
 ScrollContainer
 CanvasLayer
 ColorRect
-Sprite2D
 SubViewport
-SubViewportContainer
-Camera2D
