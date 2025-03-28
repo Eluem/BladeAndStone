@@ -1,0 +1,2 @@
+extends Node2D
+class_name BossEnemy_EyeLaserProjector

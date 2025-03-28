@@ -18,7 +18,8 @@ var originator:Node2D:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Collider.connect("on_hit", on_hit)
+	#$Collider.connect("on_hit", on_hit)
+	($Collider as BulletWithCCD).on_hit.connect(on_hit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:

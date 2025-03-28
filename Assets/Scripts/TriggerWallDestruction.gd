@@ -6,10 +6,10 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	trackedWall.health_changed.connect(on_tracked_hit)
+	trackedWall.damage_taken.connect(on_tracked_hit)
 
 
-func on_tracked_hit(_pMaxHealth:int, pHealth:int, pHitOwner:Node2D) -> void:
-	if(pHealth <= 0):
+func on_tracked_hit(_pDamage:int, pHitOwner:Node2D) -> void:
+	if(trackedWall.health <= 0):
 		var castParent:RigidBodyHittable = get_parent()
 		castParent.Die(pHitOwner, deathDir, deathForce)

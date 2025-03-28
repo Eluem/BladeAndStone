@@ -7,3 +7,10 @@ const BOSS_MUSIC:AudioStream = preload("res://Assets/Audio/Music/In a Heartbeat.
 
 @onready var menuMusic:MusicTrack = $MenuMusic
 @onready var gameMusic:MusicTrack = $GameMusic
+
+func _ready() -> void:
+	GameStateManager.scene_changed.connect(on_scene_changed)
+
+
+func on_scene_changed(_pNewScene:Node, _pSceneType:GameStateManager.SceneType) -> void:
+	gameMusic.ResetTrackToDefault()

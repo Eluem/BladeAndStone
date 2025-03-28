@@ -11,7 +11,7 @@ signal boss_heart_collected(pPickUpPlayer:Golem)
 @onready var physicsCollisionShape:CollisionShape2D = $PhysicsCollisionShape
 @onready var pidControllerJoint:PIDControllerJoint2D = $PIDControllerJoint2D
 
-@export var value:int = 1
+@export var value:int = 20
 @export var attractForce:float = 800
 @export var autoAttractDelay:float
 
@@ -26,6 +26,7 @@ var pickUpPlayer:Golem:
 func _ready() -> void:
 	pickUpArea.body_entered.connect(pick_up_area_entered)
 	autoAttractArea.object_detected.connect(auto_attract_area_enter)
+	boss_heart_collected.connect(StatTracker.boss_heart_collected.bind(value).unbind(1))
 	SpawnConnectedGems()
 	SyncAutoAttractAreaMonitorMode()
 
@@ -39,9 +40,12 @@ func _physics_process(_delta:float) -> void:
 		apply_central_force(global_position.direction_to(pickUpPlayer.global_position) * attractForce)
 
 
-static func Spawn(pSpawner:Node2D) -> void:
+static func Spawn(pSpawner:Node2D) -> BossHeart:
 	var currentScene:Node = pSpawner.get_tree().current_scene
-	currentScene.add_child(BOSS_HEART.instantiate())
+	var newBossHeart:BossHeart = BOSS_HEART.instantiate()
+	newBossHeart.global_position = pSpawner.global_position
+	currentScene.add_child(newBossHeart)
+	return newBossHeart
 
 
 func HandleAutoAttractDelay(pDelta:float) -> void:
@@ -61,8 +65,10 @@ func Collected(pPickUpPlayer:Golem) -> void:
 
 
 func SpawnConnectedGems() -> void:
-	Gem.LaunchGems(self, 20, Gem.GemType.Small, 0, true, false, 0, 4)
-	Gem.LaunchGems(self, 5, Gem.GemType.Large, 0, true, false, 0, 4)
+	var gems:Array[Gem] = Gem.LaunchGems(self, 30, Gem.GemType.Small, 0, true, false, 0, 4)
+	gems.append_array(Gem.LaunchGems(self, 10, Gem.GemType.Large, 0, true, false, 0, 4))
+	for gem:Gem in gems:
+		boss_heart_collected.connect(gem.auto_attract_area_enter)
 
 
 func pick_up_area_entered(pBody:Node2D) -> void:

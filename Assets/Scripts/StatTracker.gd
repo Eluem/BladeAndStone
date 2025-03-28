@@ -133,3 +133,7 @@ func character_exploded(_pChunks:Array[RigidBody2D], pHitOwner:Node2D, pHitRecei
 
 func gem_collected(pValue:int, _pType:Gem.GemType) -> void:
 	currentScore += pValue
+
+
+func boss_heart_collected(pValue:int) -> void:
+	currentScore += pValue

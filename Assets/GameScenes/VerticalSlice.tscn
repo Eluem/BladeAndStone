@@ -838,9 +838,11 @@ script = ExtResource("2_o75yw")
 mainCamera = NodePath("../../Camera2D")
 
 [node name="DefaultSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
+rotation = -1.5708
 
 [node name="CheckPointSpawnPoint" type="Node2D" parent="PlayerManager/Spawner"]
 position = Vector2(-67, -4484)
+rotation = -1.5708
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_bwje4")
@@ -9377,6 +9379,7 @@ reset_on_save = false
 position = Vector2(-67, -7797)
 rotation = 1.5708
 isDummyMode = true
+generateOutline = false
 
 [node name="Consumables" type="Node2D" parent="."]
 

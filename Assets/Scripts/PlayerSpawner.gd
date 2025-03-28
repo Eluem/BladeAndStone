@@ -30,8 +30,9 @@ func SpawnPlayer() -> Golem:
 	var ret:Golem
 	var scene:PackedScene = preload("res://Assets/ObjectScenes/Golem.tscn")
 	ret = scene.instantiate()
-	ret.global_position = spawnPoints[currSpawnPoint].position
-	ret.rotation = spawnPoints[currSpawnPoint].rotation
+	ret.global_position = spawnPoints[currSpawnPoint].global_position
+	ret.global_rotation = spawnPoints[currSpawnPoint].global_rotation
+	ret.targetRotation = ret.global_rotation
 	#GameStateManager.canvasManager.ConnectToNewPlayer(ret)
 	(CanvasManagerScene as CanvasManager).ConnectToNewPlayer(ret)
 	

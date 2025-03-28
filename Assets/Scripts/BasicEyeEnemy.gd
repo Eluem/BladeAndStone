@@ -4,8 +4,8 @@ class_name BasicEyeEnemy
 @onready var visionSensor:VisionSensor = $VisionSensor
 @onready var navigationAgent2d:NavigationAgent2D = $NavigationAgent2D
 
-@onready var chargeUpSFX:AudioStreamPlayer2D = $ChargeUpSFX
-@onready var fireSFX:AudioStreamPlayer2D = $FireSFX
+@onready var chargeUpSFXPlayer:AudioStreamPlayer2D = $ChargeUpSFXPlayer
+@onready var fireSFXPlayer:AudioStreamPlayer2D = $FireSFXPlayer
 
 var target:Node2D
 
@@ -102,7 +102,7 @@ func ChargeEyeBolt(delta:float) -> void:
 	eyeBoltChargeTimer += delta
 	if(!chargeEffect.emitting):
 		chargeEffect.emitting = true
-		chargeUpSFX.play()
+		chargeUpSFXPlayer.play()
 	if(eyeBoltChargeTimer > eyeBoltAlmostCharged):
 		chargeEffect.amount_ratio = 0
 	else:
@@ -118,7 +118,7 @@ func FireEyeBolt() -> void:
 	eyeBolt.AddCollisionException(get_rid())
 	#Recoil
 	apply_central_impulse(transform.x.normalized() * -500)
-	fireSFX.play()
+	fireSFXPlayer.play()
 
 
 func object_detected(pBody:Node2D) -> void:
@@ -163,7 +163,7 @@ func TargetLost() -> void:
 
 
 func StopCharging() -> void:
-	chargeUpSFX.stop()
+	chargeUpSFXPlayer.stop()
 	eyeBoltChargeTimer = 0
 	chargeEffect.emitting = false
 

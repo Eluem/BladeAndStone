@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcfhxr3r14rrv"]
+
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/Boss_EyeBolt_Small.gd" id="1_m05il"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BulletWithCCD.gd" id="2_gp868"]
+[ext_resource type="Script" path="res://Assets/Scripts/Helpers/PIDControllerJoint.gd" id="2_w1rsp"]
+[ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="3_xnjb2"]
+[ext_resource type="Texture2D" uid="uid://ca60rjiiqjscm" path="res://Assets/Art/Characters/EyeProjectile.png" id="4_g3a11"]
+[ext_resource type="AudioStream" uid="uid://w13g8qbnwiql" path="res://Assets/Audio/SFX/EyeTurret_BoltHit.wav" id="5_aehdi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a8gma"]
+radius = 15.0
+height = 72.0
+
+[sub_resource type="Curve" id="Curve_tknq5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.620087, 0.263736), -0.962185, -0.962185, 0, 0, Vector2(1, 0), -0.359497, 0.0, 0, 0]
+point_count = 4
+
+[node name="BossEyeBoltSmall" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+continuous_cd = 2
+linear_damp_mode = 1
+script = ExtResource("1_m05il")
+initialDumbFireDuration = 0.0
+trackingDuration = 5.0
+selfDamageDelay = 1.0
+selfDamageDelayStateStart = 2
+targetForceBreakawayAngle = 5.0
+dodgeLockBreakAngle = 90.0
+dodgeLockBreakDist = 250.0
+damage = 10
+knockback = 2000.0
+lifetime = 10.0
+
+[node name="PIDControllerJoint2D" type="Node2D" parent="."]
+script = ExtResource("2_w1rsp")
+enabled = false
+damping = 0.75
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(12, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_a8gma")
+disabled = true
+script = ExtResource("2_gp868")
+
+[node name="Trail" type="Line2D" parent="."]
+position = Vector2(1.52588e-05, 0)
+width = 40.0
+width_curve = SubResource("Curve_tknq5")
+default_color = Color(0.564706, 0, 1, 0.729412)
+script = ExtResource("3_xnjb2")
+MAX_LENGTH = 30
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.51883, 0.794784, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_g3a11")
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_aehdi")
+bus = &"SFX"

@@ -51,11 +51,11 @@ func _process(delta:float) -> void:
 
 
 func _physics_process(_delta:float) -> void:
-	if(pickUpPlayer):
+	if(pickUpPlayer): #Apply an additional force to speed up the player getting the gem
 		apply_central_force(global_position.direction_to(pickUpPlayer.global_position) * attractForce)
 
 
-static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadiusOverride:float = -1, pAttractIgnoreLineOfSight:bool = false, pCanAttract:bool = true, pAutoAttractDelay:float = 1.0, pForceMultiplier:float = 1) -> void:
+static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadiusOverride:float = -1, pAttractIgnoreLineOfSight:bool = false, pCanAttract:bool = true, pAutoAttractDelay:float = 1.0, pForceMultiplier:float = 1) -> Array[Gem]:
 	var currentScene:Node = pSpawner.get_tree().current_scene
 	var gems:Array[Gem] = []
 	match pType:
@@ -78,12 +78,12 @@ static func LaunchGems(pSpawner:Node2D, pGems:int, pType:GemType, pAttractRadius
 		gems[i].apply_central_impulse(launchVector)
 		gems[i].global_position = pSpawner.global_position
 		gems[i].autoAttractDelay = pAutoAttractDelay
-		if(pSpawner is BossHeart):
-			(pSpawner as BossHeart).boss_heart_collected.connect(gems[i].auto_attract_area_enter)
 		currentScene.add_child(gems[i])
 		if(pAttractRadiusOverride >= 0):
 			(gems[i].autoAttractAreaShape.shape as CircleShape2D).radius = pAttractRadiusOverride
 		gems[i].autoAttractArea.ignoreLineOfSight = pAttractIgnoreLineOfSight
+	
+	return gems
 
 
 static func GetRandomForce(pType:GemType, pForceMultiplier:float = 1) -> float:

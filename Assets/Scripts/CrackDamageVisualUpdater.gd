@@ -8,7 +8,7 @@ func _ready() -> void:
 	var castOwner:RigidBodyHittable = owner
 	castOwner.health_changed.connect(update_cracks)
 	GetLines()
-	update_cracks(castOwner.maxHealth, castOwner.health, null)
+	update_cracks(castOwner.maxHealth, castOwner.health)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +22,7 @@ func GetLines() -> void:
 		if(child is Line2D):
 			lines.append(child)
 
-func update_cracks(pMaxHealth:int, pCurrHealth:int, _pHitOwner:Node2D) -> void:
+func update_cracks(pMaxHealth:int, pCurrHealth:int) -> void:
 	var weight:float = float(pCurrHealth)/float(pMaxHealth)
 	lines[0].gradient.set_offset(1, lerpf(1, 0, weight))
 	for crack:Line2D in lines:

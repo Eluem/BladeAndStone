@@ -4,7 +4,13 @@ class_name RigidBodyHittable
 @onready var hurtSFXPlayer:AudioStreamPlayer2D = $HurtSFXPlayer
 
 @export var maxHealth:int = 100
-@export var health:int = maxHealth
+@export var health:int:
+	get:
+		return health
+	set(value):
+		if(health != value):
+			health = value
+			health_changed.emit(maxHealth, health)
 @export var invulnerable:bool = false
 @export var generateOutline:bool = true
 @export var blockLineOfSight:bool = false
@@ -20,11 +26,12 @@ var boundingPolygon:Polygon2D
 var mainSprite:Sprite2D
 
 signal damage_taken(pDamage:int, pHitOwner:Node2D)
-signal health_changed(pMaxHealth:int, pHealth:int, pHitOwner:Node2D)
+signal health_changed(pMaxHealth:int, pHealth:int)
 signal exploded(pChunks:Array[RigidBody2D], pHitOwner:Node2D)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health = maxHealth
 	#debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
 	mainSprite = GetMainSprite()
 	if(mainSprite is not SpritePolygonGenerator):
@@ -54,18 +61,16 @@ func HandleHit(pHitData:HitData) -> void:
 func ApplyDamage(pHitOwner:Node2D, pDamage:int, pDir:Vector2 = Vector2.ZERO, pForce:float = 0) -> void:
 	if(invulnerable):
 		return
-	damage_taken.emit(clamp(pDamage, 0, health), pHitOwner)
-	health -= pDamage
-	health_changed.emit(maxHealth, health, pHitOwner)
+	var effectiveDamage:int = clamp(pDamage, 0, health)
+	health -= effectiveDamage
+	damage_taken.emit(effectiveDamage, pHitOwner)
+	#health_changed.emit(maxHealth, health, pHitOwner)
 	if(health <= 0):
 		Die(pHitOwner, pDir, pForce)
 
 
 func ApplyHeal(pHeal:int) -> void:
-	health += pHeal
-	if(health > maxHealth):
-		health = maxHealth
-	health_changed.emit(maxHealth, health, null)
+	health = min(maxHealth, health + pHeal)
 
 
 func ApplyKnockback(pDirection:Vector2, pKnockback:float) -> void:
@@ -79,6 +84,7 @@ func HitEffect(pPosition:Vector2, pForce:Vector2) -> void:
 		var livingRockHit:LivingRockHit
 		livingRockHit = LivingRockHit.Spawn(get_tree().current_scene, pPosition, pForce)
 		livingRockHit.z_index = z_index
+
 
 func PlayHurtSFX() -> void:
 	if(hurtSFX.is_empty()):

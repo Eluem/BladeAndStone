@@ -36,7 +36,7 @@ func _input(event:InputEvent) -> void:
 func ConnectToNewPlayer(pPlayer:Golem) -> void:
 	var healthBar:HealthBar = $HUD/HBoxContainer/HealthBar
 	pPlayer.health_changed.connect(healthBar.UpdateHealth)
-	healthBar.UpdateHealth(pPlayer.maxHealth, pPlayer.health, null)
+	healthBar.UpdateHealth(pPlayer.maxHealth, pPlayer.health)
 	
 	pPlayer.exploded.connect(player_died)
 

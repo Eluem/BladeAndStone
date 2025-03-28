@@ -14,22 +14,20 @@ var isTransitonCameraDone:bool
 var isBossDead:bool
 var outroFinished:bool
 var transitionCameraTimer:float = 0
-var outroDelay:float = 4
+var outroDelay:float = 8
 var bossChunk:RigidBody2D
-
-var WIP_AutoEndDelay:float #DELETE ME
+var bossHeatCollected:bool = false
 
 func _ready() -> void:
 	boss.exploded.connect(boss_exploded)
-
+	boss.bossFightManager = self
 
 func _process(delta:float) -> void:
 	HandleTransitionCamera(delta)
 	HandleOutroDelay(delta)
-	if(isTransitonCameraDone):
-		WIP_AutoEndDelay += delta
-		if(WIP_AutoEndDelay >= 3):
-			boss_exploded([], null)
+	#if(isTransitonCameraDone):
+		#boss.isDummyMode = false
+		#pass
 
 
 func BossRoomEntered() -> void:
@@ -75,6 +73,8 @@ func HandleOutroDelay(pDelta:float) -> void:
 	if(outroFinished):
 		return
 	outroDelay -= pDelta
+	if(!bossHeatCollected && outroDelay < 1):
+		outroDelay = 1
 	if(outroDelay <= 0):
 		outroFinished = true
 		GameStateManager.BeginFadeToScene(GameStateManager.SceneType.RunSummary)
@@ -99,9 +99,16 @@ func intro_camera_animation_finished(_pAnimName:String) -> void:
 	boss.TargetFound(GetPlayer())
 	mainCamera.zoomRange.x = 0.2
 	mainCamera.ignoreDistance = 100000
+	boss.isDummyMode = false
+	var musicManager:MusicManager = MusicManagerScene
+	musicManager.gameMusic.PlayTrack(musicManager.BOSS_MUSIC)
 	#mainCamera.make_current() #redundant, automatically becomes active when all others are false
 
 
 func boss_exploded(_pChunks:Array[RigidBody2D], _pHitOwner:Node2D) -> void:
 	isBossDead = true
 	StatTracker.EndRunTimer()
+
+
+func boss_heart_collected() -> void:
+	bossHeatCollected = true

@@ -2,6 +2,7 @@ extends Node2D
 class_name PIDControllerJoint2D
 
 ##Prevents tracking from occuring if track node is null
+@export var enabled:bool = true
 @export var onlyTrackNode:bool = false
 @export var trackNode:Node2D
 @export var trackDist:float = 0
@@ -21,6 +22,8 @@ var inDisabledDist:bool = false
 var ignoreTrackNode:bool = false
 
 func _physics_process(delta:float) -> void:
+	if(!enabled):
+		return
 	if(onlyTrackNode && !is_instance_valid(trackNode)):
 		return
 	

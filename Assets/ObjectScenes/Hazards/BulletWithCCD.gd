@@ -24,6 +24,10 @@ func AddExceptionRID(pRID:RID) -> void:
 	excludeCollisionRIDs.append(pRID)
 	shapeCast.add_exception_rid(pRID)
 
+func ClearExceptions() -> void:
+	excludeCollisionRIDs.clear()
+	shapeCast.clear_exceptions()
+
 func _physics_process(_delta:float) -> void:
 	#shapeCast.force_shapecast_update()
 	shapeCast.target_position = global_position - prevPos

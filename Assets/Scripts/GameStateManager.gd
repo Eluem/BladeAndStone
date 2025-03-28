@@ -83,7 +83,8 @@ func SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
 
 
 func _SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
-	if(get_tree().paused):
+	var sceneTree:SceneTree = get_tree()
+	if(sceneTree.paused):
 		Unpause(true)
 	sceneChanging = true
 	usingCheckPoint = pUsingCheckPoint
@@ -100,10 +101,13 @@ func _SceneChange(pSceneType:SceneType, pUsingCheckPoint:bool = false) -> void:
 	#tree.current_scene = currentScene
 	#scene_changed.emit(pSceneType, currentScene)
 	
-	get_tree().change_scene_to_file(sceneList[pSceneType])
+	
+	sceneTree.change_scene_to_file(sceneList[pSceneType])
 	scene_changing.emit(pSceneType)
 	currentSceneType = pSceneType
-	get_tree().node_added.connect(EmitSceneChangedDelayed.bind(pSceneType))
+	if(sceneTree.node_added.is_connected(EmitSceneChangedDelayed)):
+		sceneTree.node_added.disconnect(EmitSceneChangedDelayed)
+	sceneTree.node_added.connect(EmitSceneChangedDelayed.bind(pSceneType))
 	#_emit_scene_change.bind(pSceneType).call_deferred()
 
 

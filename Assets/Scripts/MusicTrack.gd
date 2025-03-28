@@ -78,3 +78,10 @@ func ResumeOrPlayTrack() -> void:
 	if(!playing):
 		play()
 		volume_db = 1.0
+
+
+func SetCurrentTrack(pTrack:AudioStream) -> void:
+	stream = pTrack
+
+func ResetTrackToDefault() -> void:
+	SetCurrentTrack(defaultTrack)
