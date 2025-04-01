@@ -1,18 +1,24 @@
-[gd_scene load_steps=51 format=3 uid="uid://ouyrxptl688w"]
+[gd_scene load_steps=71 format=3 uid="uid://ouyrxptl688w"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BossEnemyRamBeam.gd" id="1_8vjai"]
 [ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/SFX/Creature_Hurt1.wav" id="2_1elft"]
 [ext_resource type="Script" path="res://Assets/Scripts/SpritePolygonGenerator.gd" id="3_2r7hy"]
 [ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/SFX/Creature_Hurt2.wav" id="3_k15bf"]
+[ext_resource type="AudioStream" uid="uid://bymj4kxbhttuh" path="res://Assets/Audio/SFX/BossSFX_ChompAttackClose.wav" id="4_3aonc"]
 [ext_resource type="Texture2D" uid="uid://douo01v47d6uq" path="res://Assets/Art/Characters/Boss_RamSlamBlast/EyesShading.png" id="5_al1k1"]
+[ext_resource type="AudioStream" uid="uid://djoascb3fjtu2" path="res://Assets/Audio/SFX/BossSFX_ChompAttackOpen.wav" id="5_ioxra"]
 [ext_resource type="Texture2D" uid="uid://bfgcmr00ugwsc" path="res://Assets/Art/Characters/Boss_RamSlamBlast/EyesBase.png" id="5_tic7u"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="5_vc6uq"]
+[ext_resource type="AudioStream" uid="uid://bp4uc2e5vgois" path="res://Assets/Audio/SFX/EyeTurret_Opening.wav" id="6_501im"]
+[ext_resource type="AudioStream" uid="uid://corqhg722pfe6" path="res://Assets/Audio/SFX/BossSFX_Scream.wav" id="6_cl6k5"]
 [ext_resource type="Texture2D" uid="uid://bk5y47cqjjgnc" path="res://Assets/Art/Characters/Boss_RamSlamBlast/EyesLines.png" id="6_uaefh"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="6_vdihl"]
 [ext_resource type="Texture2D" uid="uid://dykatpt7epr3x" path="res://Assets/Art/Characters/Boss_RamSlamBlast/EyeLid_Bot.png" id="7_6gbt8"]
 [ext_resource type="Script" path="res://Assets/Scripts/VisionSensor.gd" id="7_n44di"]
 [ext_resource type="Texture2D" uid="uid://crs18djwt3sg4" path="res://Assets/Art/Characters/Boss_RamSlamBlast/EyeLid_Left.png" id="8_80cov"]
+[ext_resource type="AudioStream" uid="uid://bronv673kl3dj" path="res://Assets/Audio/SFX/BossSFX_BeamChargeFire.wav" id="8_hp8nl"]
 [ext_resource type="Script" path="res://CustomEditorTools/MirrorPolygonColliderData.gd" id="8_rub04"]
+[ext_resource type="AudioStream" uid="uid://c4a4nt6ueqwhg" path="res://Assets/Audio/SFX/BossSFX_Firing.wav" id="9_awdrp"]
 [ext_resource type="Texture2D" uid="uid://bwsqqji2p3qkk" path="res://Assets/Art/Characters/Boss_RamSlamBlast/EyeLid_Right.png" id="9_xb7nm"]
 [ext_resource type="Texture2D" uid="uid://csp06t61tkblx" path="res://Assets/Art/Characters/Boss_RamSlamBlast/Body.png" id="10_x88v5"]
 [ext_resource type="Texture2D" uid="uid://do2381gkjwtos" path="res://Assets/Art/Characters/Boss_RamSlamBlast/BladeAndStoneBossBlades.png" id="11_j7xc3"]
@@ -20,12 +26,17 @@
 [ext_resource type="Texture2D" uid="uid://dijhnem6vfm32" path="res://Assets/Art/Characters/Boss_RamSlamBlast/BodyBase.png" id="12_35o53"]
 [ext_resource type="Script" path="res://Assets/Scripts/CrackDamageVisualUpdater.gd" id="13_qe76e"]
 [ext_resource type="Script" path="res://Assets/Scripts/BossEnemy_Eye.gd" id="14_t7kw4"]
+[ext_resource type="Shader" path="res://Assets/Shaders/BossBladeHeatUpShader.gdshader" id="14_upg3w"]
 [ext_resource type="Texture2D" uid="uid://dumms4qtc2q7p" path="res://Assets/Art/Particles/Particle_Bolt.png" id="15_ohord"]
 [ext_resource type="Script" path="res://Assets/Scripts/DeleteFinishedParticles.gd" id="16_bc5ip"]
 [ext_resource type="AudioStream" uid="uid://byypc0t0rgtnx" path="res://Assets/Audio/SFX/EyeTurret_ChargeUp.wav" id="17_7dive"]
 [ext_resource type="AudioStream" uid="uid://caalqxwqe5eg6" path="res://Assets/Audio/SFX/BasicEyeEnemy_ChargeUp.wav" id="17_pwxm3"]
 [ext_resource type="AudioStream" uid="uid://dniuoudta4vni" path="res://Assets/Audio/SFX/EyeTurret_Fire.wav" id="18_1r41g"]
 [ext_resource type="AudioStream" uid="uid://x180p4uaj1y8" path="res://Assets/Audio/SFX/BasicEyeEnemy_Fire.wav" id="18_xfsm0"]
+[ext_resource type="Script" path="res://Assets/Scripts/BossBlades.gd" id="22_up5g7"]
+[ext_resource type="Shader" path="res://Assets/Shaders/BossBeamShader.gdshader" id="23_fa2a6"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BossEnemy_EyeLaserProjector.gd" id="25_25ern"]
+[ext_resource type="Shader" path="res://Assets/Shaders/BossBeamChargeVFXShader.gdshader" id="31_u7iqs"]
 
 [sub_resource type="Animation" id="Animation_c0tvf"]
 resource_name = "Attack_Chomp_Active"
@@ -84,9 +95,25 @@ tracks/4/keys = {
 "points": PackedFloat32Array(600, 0, 0, 0, 0, 1007, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.0666667, 1)
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MouthSFXPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_3aonc")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_2aapp"]
 resource_name = "Attack_Chomp_Open"
+loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -142,6 +169,21 @@ tracks/4/keys = {
 "points": PackedFloat32Array(1007, -0.25, 0, 0.25, 0, 800, -0.25, 0, 0.25, 0, 600, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 1)
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MouthSFXPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ioxra")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_htuxu"]
 resource_name = "Mouth_Idle"
@@ -260,6 +302,21 @@ tracks/4/keys = {
 "points": PackedFloat32Array(645, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EyeSFXPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_501im")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bwjco"]
 length = 0.001
@@ -373,6 +430,127 @@ tracks/9/keys = {
 "points": PackedFloat32Array(1007, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.709804, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.545098, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringCount")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:r")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/16/type = "bezier"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:g")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/17/type = "bezier"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:b")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/18/type = "bezier"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:a")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/19/type = "bezier"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/20/type = "bezier"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/BeamLine:default_color:a")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_5o3ni"]
 resource_name = "Scream"
@@ -432,6 +610,21 @@ tracks/4/keys = {
 "points": PackedFloat32Array(1007, -0.25, 0, 0.25, 0, 600, -0.25, 0, 0, 0, 630, 0, 0, 0, 0, 600, 0, 0, 0, 0, 630, 0, 0, 0, 0, 600, 0, 0, 0, 0, 630, 0, 0, 0, 0, 1007, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1, 1.2, 1.4, 1.6, 1.8, 2, 3)
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MouthSFXPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_cl6k5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bqn7l"]
 resource_name = "Scream_bk03252025"
@@ -492,16 +685,305 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.533333, 1, 1.2, 1.4, 1.6, 1.8, 2, 3)
 }
 
+[sub_resource type="Animation" id="Animation_gl13i"]
+resource_name = "BeamFullChargeAndFiringTest"
+length = 12.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(0.709804, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.958163, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.958163, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.56, 0.73, 0.9, 1.76, 1.93, 2.1, 3.2, 3.37, 3.54, 4.76333, 4.93333, 5.10333, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(0.545098, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.941747, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.941747, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.56, 0.73, 0.9, 1.76, 1.93, 2.1, 3.2, 3.37, 3.54, 4.76333, 4.93333, 5.10333, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.56, 0.73, 0.9, 1.76, 1.93, 2.1, 3.2, 3.37, 3.54, 4.76333, 4.93333, 5.10333, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 1),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EyeSFXPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_hp8nl")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_awdrp")
+}],
+"times": PackedFloat32Array(0, 5.73333)
+}
+tracks/4/use_blend = true
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringCount")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(10, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5.23333, 5.46667)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:r")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.564706, -0.25, 0, 0.25, 0, 0.564706, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:g")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:b")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:a")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 5.23333, 5.73333)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.5, 0, 20, -0.5, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5.23333, 5.46667)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/BeamLine:default_color:a")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 5.36667, 5.46667)
+}
+
+[sub_resource type="Animation" id="Animation_anvws"]
+resource_name = "BeamCharge"
+length = 7.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.709804, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.958163, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.958163, 0, 0, 0, 0, 0.709804, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0, 0.71, 0, 0, 0, 0, 0.958, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.56, 0.73, 0.9, 1.76, 1.93, 2.1, 3.2, 3.37, 3.54, 4.76333, 4.93333, 5.10333, 5.46667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.545098, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.941747, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.941747, 0, 0, 0, 0, 0.545098, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0, 0.545, 0, 0, 0, 0, 0.942, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.56, 0.73, 0.9, 1.76, 1.93, 2.1, 3.2, 3.37, 3.54, 4.76333, 4.93333, 5.10333, 5.46667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0.999999, 0, 0, 0, 0, 1, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.56, 0.73, 0.9, 1.76, 1.93, 2.1, 3.2, 3.37, 3.54, 4.76333, 4.93333, 5.10333, 5.46667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 1, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 6.06667)
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EyeSFXPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_hp8nl")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringCount")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(10, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0, 10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5.23333, 5.46667)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:r")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.564706, -0.25, 0, 0.25, 0, 0.564706, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:g")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:b")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:a")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 5.23333, 5.73333)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.5, 0, 20, -0.5, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 5.23333, 5.46667)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nyb2w"]
 _data = {
 "Attack_Chomp_Active": SubResource("Animation_c0tvf"),
 "Attack_Chomp_Open": SubResource("Animation_2aapp"),
+"BeamChargeFire": SubResource("Animation_anvws"),
+"BeamFullChargeAndFiringTest": SubResource("Animation_gl13i"),
 "Mouth_Idle": SubResource("Animation_htuxu"),
 "OpenEyes": SubResource("Animation_lofmm"),
 "RESET": SubResource("Animation_bwjco"),
 "Scream": SubResource("Animation_5o3ni"),
 "Scream_bk03252025": SubResource("Animation_bqn7l")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3he2r"]
+resource_local_to_scene = true
+shader = ExtResource("14_upg3w")
+shader_parameter/heat = 0.0
+shader_parameter/startX = 0.3
+
+[sub_resource type="Curve" id="Curve_q1b4y"]
+_data = [Vector2(0, 0), 0.0, 0.733974, 0, 0, Vector2(1, 0), -0.331116, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_b8dbk"]
+offsets = PackedFloat32Array(0, 0.349206)
+colors = PackedColorArray(0.862745, 0.658824, 0.658824, 0.631373, 0.666667, 0, 0, 0.631373)
 
 [sub_resource type="Curve" id="Curve_tiu3t"]
 resource_local_to_scene = true
@@ -577,13 +1059,46 @@ scale_curve = SubResource("CurveTexture_mst8j")
 color = Color(0.709804, 0.329412, 0.996078, 1)
 alpha_curve = SubResource("CurveTexture_ce2dp")
 
-[sub_resource type="Curve" id="Curve_egg8h"]
-_data = [Vector2(0, 0), 0.0, 0.733974, 0, 0, Vector2(1, 0), -0.331116, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1qn3"]
+resource_local_to_scene = true
+shader = ExtResource("23_fa2a6")
 
-[sub_resource type="Gradient" id="Gradient_b8dbk"]
-offsets = PackedFloat32Array(0, 0.349206)
-colors = PackedColorArray(0.862745, 0.658824, 0.658824, 0.631373, 0.666667, 0, 0, 0.631373)
+[sub_resource type="Gradient" id="Gradient_gnprf"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.668033, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.958848, 0.958848, 0.958848, 0.958848, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_opjdw"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_gnprf")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.495726, 0.440171)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oom5c"]
+shader = ExtResource("31_u7iqs")
+shader_parameter/resolution = Vector2(1024, 1024)
+shader_parameter/ringCount = 10.0
+shader_parameter/ringSpeed = 0.0
+shader_parameter/ringTimeOffset = 0.0
+shader_parameter/ringSmoothing1 = 0.1
+shader_parameter/ringSmoothing2 = 1.0
+
+[sub_resource type="Gradient" id="Gradient_ejaxl"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.590164, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.958848, 0.958848, 0.958848, 0.958848, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4mial"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_ejaxl")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.495726, 0.440171)
+fill_to = Vector2(0.5, 0)
 
 [node name="BossEnemyRamBeam" type="RigidBody2D"]
 mass = 10.0
@@ -617,6 +1132,7 @@ position = Vector2(-1018, 0)
 texture = ExtResource("7_6gbt8")
 
 [node name="EyeLid_Left" type="Sprite2D" parent="Visuals"]
+visible = false
 position = Vector2(-327.5, -645)
 texture = ExtResource("8_80cov")
 
@@ -625,11 +1141,34 @@ position = Vector2(-327.5, 645)
 texture = ExtResource("9_xb7nm")
 
 [node name="Blade_Spike" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_3he2r")
 position = Vector2(1007, 0)
 texture = ExtResource("11_j7xc3")
 offset = Vector2(267, 0)
 region_enabled = true
 region_rect = Rect2(626, 712, 552, 260)
+
+[node name="TrailTarget" type="Node2D" parent="Visuals/Blade_Spike"]
+position = Vector2(504.327, 0)
+
+[node name="ThrustTrail" type="Line2D" parent="Visuals/Blade_Spike/TrailTarget"]
+position = Vector2(488.146, 3.23625)
+scale = Vector2(3.23625, 3.23625)
+width = 60.0
+width_curve = SubResource("Curve_q1b4y")
+default_color = Color(0.666667, 0, 0, 0.631373)
+gradient = SubResource("Gradient_b8dbk")
+script = ExtResource("6_vdihl")
+forceTipAlignment = false
+
+[node name="RaycastNode_Spike" type="Node2D" parent="Visuals/Blade_Spike"]
+position = Vector2(510, 0)
+
+[node name="RaycastNode_Spike2" type="Node2D" parent="Visuals/Blade_Spike"]
+position = Vector2(358, -67)
+
+[node name="RaycastNode_Spike3" type="Node2D" parent="Visuals/Blade_Spike"]
+position = Vector2(358, 67)
 
 [node name="Body_Base" type="Sprite2D" parent="Visuals"]
 position = Vector2(-225, 0)
@@ -640,6 +1179,7 @@ visible = false
 texture = ExtResource("10_x88v5")
 
 [node name="Blade_InnerLeft" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_3he2r")
 position = Vector2(587, -99.5)
 rotation = -0.174533
 texture = ExtResource("11_j7xc3")
@@ -647,7 +1187,24 @@ offset = Vector2(419.5, -72.5)
 region_enabled = true
 region_rect = Rect2(187, 362, 855, 313)
 
+[node name="RaycastNode_InnerLeft" type="Node2D" parent="Visuals/Blade_InnerLeft"]
+position = Vector2(830, 67)
+rotation = 1.09956
+
+[node name="RaycastNode_InnerLeft2" type="Node2D" parent="Visuals/Blade_InnerLeft"]
+position = Vector2(786, -50)
+rotation = 1.09956
+
+[node name="RaycastNode_InnerLeft3" type="Node2D" parent="Visuals/Blade_InnerLeft"]
+position = Vector2(685, -147)
+rotation = 1.09956
+
+[node name="RaycastNode_InnerLeft4" type="Node2D" parent="Visuals/Blade_InnerLeft"]
+position = Vector2(687, 9)
+rotation = 1.09956
+
 [node name="Blade_InnerRight" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_3he2r")
 position = Vector2(587, 99.5)
 rotation = 0.174533
 texture = ExtResource("11_j7xc3")
@@ -655,7 +1212,24 @@ offset = Vector2(419.5, 72.5)
 region_enabled = true
 region_rect = Rect2(187, 1009, 855, 313)
 
+[node name="RaycastNode_InnerRight" type="Node2D" parent="Visuals/Blade_InnerRight"]
+position = Vector2(830, -67)
+rotation = -1.09956
+
+[node name="RaycastNode_InnerRight2" type="Node2D" parent="Visuals/Blade_InnerRight"]
+position = Vector2(786, 50)
+rotation = -1.09956
+
+[node name="RaycastNode_InnerRight3" type="Node2D" parent="Visuals/Blade_InnerRight"]
+position = Vector2(685, 147)
+rotation = -1.09956
+
+[node name="RaycastNode_InnerRight4" type="Node2D" parent="Visuals/Blade_InnerRight"]
+position = Vector2(687, -9)
+rotation = -1.09956
+
 [node name="Blade_OuterLeft" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_3he2r")
 position = Vector2(514, -231)
 rotation = -0.436466
 texture = ExtResource("11_j7xc3")
@@ -663,13 +1237,46 @@ offset = Vector2(348, -11)
 region_enabled = true
 region_rect = Rect2(60, 11, 983, 333)
 
+[node name="RaycastNode_OuterLeft" type="Node2D" parent="Visuals/Blade_OuterLeft"]
+position = Vector2(807, 127)
+rotation = 0.872665
+
+[node name="RaycastNode_OuterLeft2" type="Node2D" parent="Visuals/Blade_OuterLeft"]
+position = Vector2(716, 8)
+rotation = 0.872665
+
+[node name="RaycastNode_OuterLeft3" type="Node2D" parent="Visuals/Blade_OuterLeft"]
+position = Vector2(595, -98)
+rotation = 0.872665
+
+[node name="RaycastNode_OuterLeft4" type="Node2D" parent="Visuals/Blade_OuterLeft"]
+position = Vector2(694, 89)
+rotation = 0.872665
+
 [node name="Blade_OuterRight" type="Sprite2D" parent="Visuals"]
+material = SubResource("ShaderMaterial_3he2r")
 position = Vector2(514, 231)
 rotation = 0.436332
 texture = ExtResource("11_j7xc3")
 offset = Vector2(348, 11)
 region_enabled = true
 region_rect = Rect2(60, 1340, 983, 333)
+
+[node name="RaycastNode_OuterRight" type="Node2D" parent="Visuals/Blade_OuterRight"]
+position = Vector2(807, -127)
+rotation = -0.872665
+
+[node name="RaycastNode_OuterRight2" type="Node2D" parent="Visuals/Blade_OuterRight"]
+position = Vector2(716, -8)
+rotation = -0.872665
+
+[node name="RaycastNode_OuterRight3" type="Node2D" parent="Visuals/Blade_OuterRight"]
+position = Vector2(595, 98)
+rotation = -0.872665
+
+[node name="RaycastNode_OuterRight4" type="Node2D" parent="Visuals/Blade_OuterRight"]
+position = Vector2(694, -89)
+rotation = -0.872665
 
 [node name="Cracks" type="Node2D" parent="Visuals"]
 position = Vector2(336.57, 38.8349)
@@ -801,32 +1408,6 @@ antialiased = true
 
 [node name="AttackSystems" type="Node2D" parent="."]
 
-[node name="BossEnemy_Eye_FrontLeft" type="Node2D" parent="AttackSystems"]
-position = Vector2(217, -214)
-rotation = -0.523599
-script = ExtResource("14_t7kw4")
-enabled = false
-projectileType = 1
-
-[node name="ChargeEffect" type="GPUParticles2D" parent="AttackSystems/BossEnemy_Eye_FrontLeft"]
-emitting = false
-amount = 80
-process_material = SubResource("ParticleProcessMaterial_qu3xv")
-texture = ExtResource("15_ohord")
-lifetime = 1.8
-local_coords = true
-
-[node name="DeleteOnFinish" type="Node" parent="AttackSystems/BossEnemy_Eye_FrontLeft/ChargeEffect"]
-script = ExtResource("16_bc5ip")
-
-[node name="ChargeUpSFXPlayer" type="AudioStreamPlayer2D" parent="AttackSystems/BossEnemy_Eye_FrontLeft"]
-stream = ExtResource("17_7dive")
-bus = &"SFX"
-
-[node name="FireSFXPlayer" type="AudioStreamPlayer2D" parent="AttackSystems/BossEnemy_Eye_FrontLeft"]
-stream = ExtResource("18_1r41g")
-bus = &"SFX"
-
 [node name="BossEnemy_Eye_FrontRight" type="Node2D" parent="AttackSystems"]
 position = Vector2(217, 214)
 rotation = 0.523599
@@ -853,10 +1434,37 @@ bus = &"SFX"
 stream = ExtResource("18_1r41g")
 bus = &"SFX"
 
+[node name="BossEnemy_Eye_FrontLeft" type="Node2D" parent="AttackSystems"]
+position = Vector2(217, -214)
+rotation = -0.523599
+script = ExtResource("14_t7kw4")
+enabled = false
+projectileType = 1
+
+[node name="ChargeEffect" type="GPUParticles2D" parent="AttackSystems/BossEnemy_Eye_FrontLeft"]
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_qu3xv")
+texture = ExtResource("15_ohord")
+lifetime = 1.8
+local_coords = true
+
+[node name="DeleteOnFinish" type="Node" parent="AttackSystems/BossEnemy_Eye_FrontLeft/ChargeEffect"]
+script = ExtResource("16_bc5ip")
+
+[node name="ChargeUpSFXPlayer" type="AudioStreamPlayer2D" parent="AttackSystems/BossEnemy_Eye_FrontLeft"]
+stream = ExtResource("17_7dive")
+bus = &"SFX"
+
+[node name="FireSFXPlayer" type="AudioStreamPlayer2D" parent="AttackSystems/BossEnemy_Eye_FrontLeft"]
+stream = ExtResource("18_1r41g")
+bus = &"SFX"
+
 [node name="BossEnemy_Eye_BackLeft" type="Node2D" parent="AttackSystems"]
 position = Vector2(-439, -160)
 rotation = 2.85277
 script = ExtResource("14_t7kw4")
+enabled = false
 
 [node name="InitialProjectilePath" type="Node2D" parent="AttackSystems/BossEnemy_Eye_BackLeft"]
 
@@ -1079,91 +1687,81 @@ bus = &"SFX"
 stream = ExtResource("18_xfsm0")
 bus = &"SFX"
 
-[node name="Smasher" type="Node2D" parent="AttackSystems"]
+[node name="Blades" type="Node2D" parent="AttackSystems"]
+script = ExtResource("22_up5g7")
 
-[node name="RaycastCollider" type="Node2D" parent="AttackSystems/Smasher" node_paths=PackedStringArray("excludeCollision")]
+[node name="RaycastCollider" type="Node2D" parent="AttackSystems/Blades" node_paths=PackedStringArray("excludeCollision", "wielder", "weapon", "manualRaycastNodes")]
 script = ExtResource("5_vc6uq")
 excludeCollision = [NodePath("../../..")]
 weaponDamage = 30
 weaponKnockback = 2000.0
+wielder = NodePath("../../..")
+weapon = NodePath("..")
+manualRaycastNodes = [NodePath("../../../Visuals/Blade_Spike/RaycastNode_Spike"), NodePath("../../../Visuals/Blade_Spike/RaycastNode_Spike2"), NodePath("../../../Visuals/Blade_Spike/RaycastNode_Spike3"), NodePath("../../../Visuals/Blade_InnerLeft/RaycastNode_InnerLeft"), NodePath("../../../Visuals/Blade_InnerRight/RaycastNode_InnerRight"), NodePath("../../../Visuals/Blade_InnerLeft/RaycastNode_InnerLeft2"), NodePath("../../../Visuals/Blade_InnerRight/RaycastNode_InnerRight2"), NodePath("../../../Visuals/Blade_InnerLeft/RaycastNode_InnerLeft3"), NodePath("../../../Visuals/Blade_InnerRight/RaycastNode_InnerRight3"), NodePath("../../../Visuals/Blade_InnerLeft/RaycastNode_InnerLeft4"), NodePath("../../../Visuals/Blade_InnerRight/RaycastNode_InnerRight4"), NodePath("../../../Visuals/Blade_OuterLeft/RaycastNode_OuterLeft"), NodePath("../../../Visuals/Blade_OuterRight/RaycastNode_OuterRight"), NodePath("../../../Visuals/Blade_OuterLeft/RaycastNode_OuterLeft2"), NodePath("../../../Visuals/Blade_OuterRight/RaycastNode_OuterRight2"), NodePath("../../../Visuals/Blade_OuterLeft/RaycastNode_OuterLeft3"), NodePath("../../../Visuals/Blade_OuterRight/RaycastNode_OuterRight3"), NodePath("../../../Visuals/Blade_OuterLeft/RaycastNode_OuterLeft4"), NodePath("../../../Visuals/Blade_OuterRight/RaycastNode_OuterRight4")]
 
-[node name="RaycastNode" type="Node2D" parent="AttackSystems/Smasher/RaycastCollider"]
-position = Vector2(462, 1)
-
-[node name="ThrustTrail" type="Line2D" parent="AttackSystems/Smasher/RaycastCollider/RaycastNode"]
-width = 60.0
-width_curve = SubResource("Curve_egg8h")
-default_color = Color(0.666667, 0, 0, 0.631373)
-gradient = SubResource("Gradient_b8dbk")
-script = ExtResource("6_vdihl")
-forceTipAlignment = false
-
-[node name="RaycastNode2" type="Node2D" parent="AttackSystems/Smasher/RaycastCollider"]
-position = Vector2(437, -55)
-
-[node name="ThrustTrail" type="Line2D" parent="AttackSystems/Smasher/RaycastCollider/RaycastNode2"]
-width = 60.0
-width_curve = SubResource("Curve_egg8h")
-default_color = Color(0.666667, 0, 0, 0.631373)
-script = ExtResource("6_vdihl")
-forceTipAlignment = false
-
-[node name="RaycastNode3" type="Node2D" parent="AttackSystems/Smasher/RaycastCollider"]
-position = Vector2(438, 50)
-
-[node name="ThrustTrail" type="Line2D" parent="AttackSystems/Smasher/RaycastCollider/RaycastNode3"]
-width = 60.0
-width_curve = SubResource("Curve_egg8h")
-default_color = Color(0.666667, 0, 0, 0.631373)
-script = ExtResource("6_vdihl")
-forceTipAlignment = false
-
-[node name="RaycastNode4" type="Node2D" parent="AttackSystems/Smasher/RaycastCollider"]
-position = Vector2(416, -21)
-
-[node name="ThrustTrail" type="Line2D" parent="AttackSystems/Smasher/RaycastCollider/RaycastNode4"]
-width = 60.0
-width_curve = SubResource("Curve_egg8h")
-default_color = Color(0.666667, 0, 0, 0.631373)
-script = ExtResource("6_vdihl")
-forceTipAlignment = false
-
-[node name="RaycastNode5" type="Node2D" parent="AttackSystems/Smasher/RaycastCollider"]
-position = Vector2(415, 21)
-
-[node name="ThrustTrail" type="Line2D" parent="AttackSystems/Smasher/RaycastCollider/RaycastNode5"]
-width = 60.0
-width_curve = SubResource("Curve_egg8h")
-default_color = Color(0.666667, 0, 0, 0.631373)
-script = ExtResource("6_vdihl")
-forceTipAlignment = false
-
-[node name="RaycastNode6" type="Node2D" parent="AttackSystems/Smasher/RaycastCollider"]
-position = Vector2(402, -140)
-
-[node name="ThrustTrail" type="Line2D" parent="AttackSystems/Smasher/RaycastCollider/RaycastNode6"]
-width = 60.0
-width_curve = SubResource("Curve_egg8h")
-default_color = Color(0.666667, 0, 0, 0.631373)
-script = ExtResource("6_vdihl")
-forceTipAlignment = false
-
-[node name="RaycastNode7" type="Node2D" parent="AttackSystems/Smasher/RaycastCollider"]
-position = Vector2(397, 141)
-
-[node name="ThrustTrail" type="Line2D" parent="AttackSystems/Smasher/RaycastCollider/RaycastNode7"]
-width = 60.0
-width_curve = SubResource("Curve_egg8h")
-default_color = Color(0.666667, 0, 0, 0.631373)
-script = ExtResource("6_vdihl")
-forceTipAlignment = false
-
-[node name="HitSFXPlayer" type="AudioStreamPlayer2D" parent="AttackSystems/Smasher/RaycastCollider"]
+[node name="HitSFXPlayer" type="AudioStreamPlayer2D" parent="AttackSystems/Blades/RaycastCollider"]
 bus = &"SFX"
 
 [node name="BossEnemy_EyeLaser_Left" type="Node2D" parent="AttackSystems"]
+position = Vector2(-100, -210)
+rotation = -1.5708
+script = ExtResource("25_25ern")
+enabled = false
+maxBeamLength = 8000.0
+minBeamLength = 350.0
+beamRaycastTotalWidth = 100.0
+beamRaycastMaxSeparation = 60.0
+hitCooldownTime = 0.1
+damage = 6
+knockback = 500.0
 
-[node name="Line2D" type="Line2D" parent="AttackSystems/BossEnemy_EyeLaser_Left"]
+[node name="BeamLine" type="Line2D" parent="AttackSystems/BossEnemy_EyeLaser_Left"]
+z_index = 10
+material = SubResource("ShaderMaterial_v1qn3")
+points = PackedVector2Array(2000, 0, 140, 0)
+width = 340.0
+default_color = Color(0.564706, 0, 1, 0)
+texture_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ChargeVFXOrb" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeLaser_Left"]
+scale = Vector2(0.32541, 0.32541)
+color = Color(0.709804, 0.545098, 1, 0)
+texture = SubResource("GradientTexture2D_opjdw")
+polygon = PackedVector2Array(135, -160, 135, 160, -110, 160, -110, -160)
+uv = PackedVector2Array(0, 0, 1024, 0, 1024, 1024, 0, 1024)
+
+[node name="ChargeVFX" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeLaser_Left"]
+material = SubResource("ShaderMaterial_oom5c")
+position = Vector2(60, 0)
+color = Color(0, 0, 0, 0)
+texture = SubResource("GradientTexture2D_4mial")
+polygon = PackedVector2Array(135, -160, 135, 160, -110, 160, -110, -160)
+uv = PackedVector2Array(0, 0, 1024, 0, 1024, 1024, 0, 1024)
+
+[node name="BossEnemy_EyeLaser_Right" type="Node2D" parent="AttackSystems"]
+position = Vector2(-100, 210)
+rotation = 1.5708
+script = ExtResource("25_25ern")
+enabled = false
+maxBeamLength = 8000.0
+minBeamLength = 350.0
+beamRaycastTotalWidth = 100.0
+beamRaycastMaxSeparation = 60.0
+hitCooldownTime = 0.1
+damage = 6
+knockback = 500.0
+
+[node name="BeamLine" type="Line2D" parent="AttackSystems/BossEnemy_EyeLaser_Right"]
+z_index = 10
+material = SubResource("ShaderMaterial_v1qn3")
+points = PackedVector2Array(2000, 0, 140, 0)
+width = 340.0
+default_color = Color(0.564706, 0, 1, 0)
+texture_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CameraTrackTargets" type="Node2D" parent="."]
 
@@ -1204,12 +1802,22 @@ position = Vector2(-109, 0)
 polygon = PackedVector2Array(-130, -200, -130, 200, 1500, 500, 1500, -500)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(442, 0, 414, -78, 356, -150, 277, -171, 248, -224, 193, -285, 141, -292, 85, -290, 49, -268, 57, -242, -11, -268, -169, -268, -237, -250, -254, -279, -377, -252, -462, -197, -456, -167, -440, -138, -419, -112, -376, -103, -386, -54, -367, -34, -374, 0, -367, 34, -386, 54, -376, 103, -419, 112, -440, 138, -456, 167, -462, 197, -377, 252, -254, 279, -237, 250, -169, 268, -11, 268, 57, 242, 49, 268, 85, 290, 141, 292, 193, 285, 248, 224, 277, 171, 356, 150, 414, 78)
 script = ExtResource("8_rub04")
 originalPolyData = PackedVector2Array(442, 0, 414, -78, 356, -150, 277, -171, 248, -224, 193, -285, 141, -292, 85, -290, 49, -268, 57, -242, -11, -268, -169, -268, -237, -250, -254, -279, -377, -252, -462, -197, -456, -167, -440, -138, -419, -112, -376, -103, -386, -54, -367, -34, -374, 0)
 mirrorPointRange = Vector2i(1, 21)
 
 [node name="HurtSFXPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="MouthSFXPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(280, 0)
+max_distance = 6000.0
+bus = &"SFX"
+
+[node name="EyeSFXPlayer" type="AudioStreamPlayer2D" parent="."]
+max_distance = 6000.0
 bus = &"SFX"
 
 [node name="poly_sprite" type="Polygon2D" parent="."]

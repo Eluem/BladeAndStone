@@ -1,12 +1,12 @@
-extends RigidBody2D
-class_name Hazard
+extends Node2D
+class_name HazardStatic
 
 @onready var hitSFX:AudioStreamPlayer2D = get_node_or_null("HitSFX")
 
-@export var damage:int
-@export var knockback:float
-@export var lifetime:float = 5
-@export var destroySelfOnHit:bool = true
+@export var damage:int = 0
+@export var knockback:float = 0
+@export var lifetime:float = -1
+@export var destroySelfOnHit:bool = false
 
 var originator:Node2D:
 	get:
@@ -17,29 +17,25 @@ var originator:Node2D:
 			originator.tree_exited.connect(originator_destroyed)
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	#$Collider.connect("on_hit", on_hit)
-	($Collider as BulletWithCCD).on_hit.connect(on_hit)
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
-	lifetime -= delta
-	if(lifetime <= 0):
-		lifetime_end()
+	if(lifetime > 0):
+		lifetime -= delta
+		if(lifetime <= 0):
+			lifetime = 0
+			lifetime_end()
 
 
 func on_hit(pHitResult:Dictionary) -> void:
 	#Apply damage to hittable objects
 	if(pHitResult.collider is RigidBodyHittable):
 		var hittable:RigidBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(originator, pHitResult, linear_velocity, linear_velocity, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, global_transform.x, global_transform.x, damage, knockback)
 		hittable.HandleHit(hitData)
 	#Handle hitting static hittable objects
 	elif(pHitResult.collider is StaticBodyHittable):
 		var hittable:StaticBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(originator, pHitResult, linear_velocity, linear_velocity, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, global_transform.x, global_transform.x, damage, knockback)
 		hittable.HandleHit(hitData)
 	#Destroy self after hitting
 	if(destroySelfOnHit):

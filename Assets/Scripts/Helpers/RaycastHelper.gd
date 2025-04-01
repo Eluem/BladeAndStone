@@ -25,6 +25,7 @@ static func RaycastAll(pSpaceState:PhysicsDirectSpaceState2D, pQuery:PhysicsRayQ
 		hitResult = pSpaceState.intersect_ray(pQuery)
 	return hitResults
 
+
 static func CheckLineOfSight(pSpaceState:PhysicsDirectSpaceState2D, pStartPos:Vector2, pTarget:Node2D) -> bool:
 	var castHittable:RigidBodyHittable
 	var query:PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(pStartPos, pTarget.global_position)
@@ -40,3 +41,33 @@ static func CheckLineOfSight(pSpaceState:PhysicsDirectSpaceState2D, pStartPos:Ve
 			if(result.collider == pTarget):
 				return true
 	return false
+
+
+##Returns a dictionary containing blocker (a raycast hit result dictionary) and hitResults (an array of raycast hit result dictionaries)
+##if blocker is empty, it means no blocker was hit
+static func RaycastAllUntilBlocker(pSpaceState:PhysicsDirectSpaceState2D, pQuery:PhysicsRayQueryParameters2D) -> Dictionary:
+	var raycastResults:Dictionary
+	
+	var blocker:Dictionary
+	var hitResults:Array[Dictionary] = []
+	var exclude:Array[RID] = pQuery.exclude
+	var hitResult:Dictionary = pSpaceState.intersect_ray(pQuery)
+	var castHittable:RigidBodyHittable
+	while(!hitResult.is_empty()):
+		if(hitResult.collider is StaticBodyHittable):
+			blocker = hitResult
+			break
+		if(hitResult.collider is RigidBodyHittable):
+			castHittable = hitResult.collider
+			if(castHittable.blockLineOfSight):
+				blocker = hitResult
+				break
+		hitResults.append(hitResult)
+		exclude.append(hitResult.rid)
+		pQuery.exclude = exclude
+		hitResult = pSpaceState.intersect_ray(pQuery)
+	
+	raycastResults.blocker = blocker
+	raycastResults.hitResults = hitResults
+	
+	return raycastResults

@@ -353,8 +353,14 @@ static func ConvertMultiPolygonData(pData:Array[PackedVector2Array]) -> Dictiona
 		
 	return ret
 
+
 static func minv(curVec:Vector2, newVec:Vector2) -> Vector2:
 	return Vector2(minf(curVec.x, newVec.x), minf(curVec.y, newVec.y))
 
+
 static func maxv(curVec:Vector2, newVec:Vector2) -> Vector2:
 	return Vector2(maxf(curVec.x, newVec.x), maxf(curVec.y, newVec.y))
+
+
+static func GetPerpendicular(pVector2:Vector2) -> Vector2:
+	return Vector2(pVector2.y, -pVector2.x)

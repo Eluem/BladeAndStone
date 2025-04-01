@@ -9,8 +9,11 @@ class_name RaycastCollider
 @export var weaponKnockback:float = 400
 @export var hitSFX:Array[AudioStream]
 
-var wielder:Node2D #Stores the object that this collider's weapon is attached to
-var weapon:Node2D #Stores the weapon object for this collider
+##Stores the object that this collider's weapon is attached to
+@export var wielder:Node2D
+##Stores the weapon object for this collider
+@export var weapon:Node2D
+@export var manualRaycastNodes:Array[Node]
 var raycastNodes:Array[RaycastNodeData]
 var excludeCollisionRIDs:Array[RID] #Rids to always ignore
 var hitRIDs:Array[RID] #RIDs to ignore because they were already hit this attack
@@ -22,8 +25,10 @@ var staticHitRIDs:Array[RID] #RIDs to pass true to "alreadyHit"
 func _ready() -> void:
 	#debugInfo = get_tree().get_root().get_node("World2D") as DebugInfo
 	#TODO: make these more dynamic somehow?...
-	wielder = get_parent().get_parent()
-	weapon = get_parent()
+	if(wielder == null):
+		wielder = get_parent().get_parent()
+	if(weapon == null):
+		weapon = get_parent()
 	InitRaycastNodes()
 	for excluded:CollisionObject2D in excludeCollision:
 		excludeCollisionRIDs.append(excluded.get_rid())
@@ -110,7 +115,11 @@ func Enable() -> void:
 
 
 func InitRaycastNodes() -> void:
-	var nodesTemp:Array[Node] = get_children()
+	var nodesTemp:Array[Node]
+	if(manualRaycastNodes.size() == 0):
+		nodesTemp = get_children()
+	else:
+		nodesTemp = manualRaycastNodes
 	var nodesTempSize:int = nodesTemp.size()
 	raycastNodes.resize(nodesTempSize)
 	for i:int in nodesTempSize:
