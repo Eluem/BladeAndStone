@@ -195,3 +195,7 @@ func InitializeEyes() -> void:
 func UpdateEyesTarget(pTarget:Node2D) -> void:
 	for eye:BossEnemy_Eye in eyes:
 		eye.target = pTarget
+
+
+func IntroScream() -> void:
+	($AnimationPlayerMouth as AnimationPlayer).play("Mouth_Scream")

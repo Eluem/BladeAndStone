@@ -42,10 +42,6 @@ func LoadData() -> void:
 	var file:FileAccess = FileAccess.open(filePath, FileAccess.READ)
 	var data:Dictionary = file.get_var(true)
 	SetValues(data)
-	
-	print("Remove Me!!")
-	checkPointReached = true #REMOVE ME
-	print("Remove Me!!")
 
 
 static func GetDefaultValues() -> Dictionary:

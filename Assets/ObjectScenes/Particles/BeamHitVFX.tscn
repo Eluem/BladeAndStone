@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cghucih3xwxkh"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/BossBeamHitVFXShader.gdshader" id="1_dcwti"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Particles/BeamHitVFX.gd" id="2_kn81k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xcytr"]
+shader = ExtResource("1_dcwti")
+
+[sub_resource type="Gradient" id="Gradient_jum8n"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wkl0x"]
+gradient = SubResource("Gradient_jum8n")
+width = 1024
+height = 1024
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.5)
+
+[node name="BeamHitVFX" type="Polygon2D"]
+material = SubResource("ShaderMaterial_xcytr")
+color = Color(0.564706, 0, 1, 1)
+texture = SubResource("GradientTexture2D_wkl0x")
+polygon = PackedVector2Array(10, -200, 10, 200, -390, 200, -390, -200)
+uv = PackedVector2Array(1024, 0, 1024, 1024, 0, 1024, 0, 0)
+script = ExtResource("2_kn81k")

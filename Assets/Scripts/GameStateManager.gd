@@ -53,13 +53,13 @@ func _ready() -> void:
 
 
 func _process(delta:float) -> void:
-	if(Input.is_key_pressed(KEY_A)):
-		SceneChange(SceneType.Game, true)
-		#BeginFadeToScene(SceneType.Game, true)
-	if(Input.is_key_pressed(KEY_S)):
-		SceneChange(SceneType.MainMenu)
-	if(Input.is_key_pressed(KEY_D)):
-		SceneChange(SceneType.Credits)
+	#if(Input.is_key_pressed(KEY_A)):
+		#SceneChange(SceneType.Game, true)
+		##BeginFadeToScene(SceneType.Game, true)
+	#if(Input.is_key_pressed(KEY_S)):
+		#SceneChange(SceneType.MainMenu)
+	#if(Input.is_key_pressed(KEY_D)):
+		#SceneChange(SceneType.Credits)
 	ProcessFadeTransition(delta)
 
 

@@ -13,6 +13,7 @@ func _process(delta:float) -> void:
 		fadeTime -= delta
 		#polySprite.color.a = lerpf(0.0, 1.0, fadeTime/maxFadeTime)
 		#outline.default_color.a = polySprite.color.a
-		modulate.a = lerpf(0.0, 1.0, fadeTime/maxFadeTime)
+		#modulate.a = lerpf(0.0, 1.0, fadeTime/maxFadeTime)
+		modulate.a = fadeTime/maxFadeTime
 	else:
 		queue_free()

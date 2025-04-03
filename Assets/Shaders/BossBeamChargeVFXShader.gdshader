@@ -24,7 +24,7 @@ void fragment()
 		// Remap the space to -1. to 1.
 		//st = st *2.-1.;
 		// Make the distance field
-		
+
 		d = length( abs(st)-.5 );
 		d = sin(ringTimeOffset+d*ringCount+TIME*ringSpeed);
 		// d = length( min(abs(st)-.3,0.) );

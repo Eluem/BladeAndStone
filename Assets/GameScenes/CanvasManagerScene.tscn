@@ -117,6 +117,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_mim8f")
 
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="BossHealthBar" type="ProgressBar" parent="HUD/MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(376, 30)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_arvj1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_my8ih")
+step = 1.0
+value = 50.0
+show_percentage = false
+script = ExtResource("3_k35mw")
+
 [node name="DeathOverlay" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3

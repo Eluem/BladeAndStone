@@ -1,5 +1,6 @@
-res://Assets/Scripts
 C:/Users/eulmm/source/repos/BladeAndStone/BladeAndStone(Android Build)
+res://Assets/ObjectScenes/Hazards
+res://Assets/Scripts
 res://Assets/Art/UI
 res://Assets/Scripts/UI
 res://Assets/GameScenes/DevScenes
@@ -19,4 +20,3 @@ res://Assets/ObjectScenes/Items
 res://Assets/Art/Environment
 res://Assets/ObjectScenes/Environment
 res://Assets/Art/Particles
-res://Assets/Art/UI/PrototypeFont

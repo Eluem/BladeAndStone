@@ -59,4 +59,5 @@ func HandleHighScoreFlashing(pDelta:float) -> void:
 
 
 func on_click_continue() -> void:
+	(CanvasManagerScene as CanvasManager).buttonPressSFX.play()
 	GameStateManager.BeginFadeToScene(GameStateManager.SceneType.Credits)

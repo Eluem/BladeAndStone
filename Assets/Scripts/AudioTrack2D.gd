@@ -1,5 +1,5 @@
-extends AudioStreamPlayer
-class_name MusicTrack
+extends AudioStreamPlayer2D
+class_name AudioTrack2D
 
 @export var defaultTrack:AudioStream
 
@@ -7,6 +7,7 @@ var isFadingTrackOut:bool
 var isFadingTrackIn:bool
 var fadeTrackTime:float
 var fadeTrackDuration:float
+
 
 func _process(delta: float) -> void:
 	HandleFade(delta)

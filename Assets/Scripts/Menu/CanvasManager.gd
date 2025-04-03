@@ -9,6 +9,7 @@ const PAUSE_MENU:PackedScene = preload("res://Assets/GameScenes/PauseMenu.tscn")
 @onready var buttonPressSFX:AudioStreamPlayer = $ButtonPressSFX
 @onready var togglePressSFX:AudioStreamPlayer = $TogglePressSFX
 @onready var sliderDragSFX:AudioStreamPlayer = $SliderDragSFX
+@onready var bossHealthBar:HealthBar = $HUD/MarginContainer/BossHealthBar
 
 var currPauseMenu:PauseMenu
 var deathSequenceTimer:float
@@ -72,6 +73,7 @@ func ResetDeathSequence() -> void:
 func scene_changing(pSceneType:GameStateManager.SceneType) -> void:
 	ResetDeathSequence()
 	visible = (pSceneType == GameStateManager.SceneType.Game)
+	bossHealthBar.hide()
 
 
 func OpenPauseMenu() -> void:

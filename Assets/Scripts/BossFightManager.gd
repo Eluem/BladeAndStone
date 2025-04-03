@@ -99,6 +99,12 @@ func intro_camera_animation_finished(_pAnimName:String) -> void:
 	boss.TargetFound(GetPlayer())
 	mainCamera.zoomRange.x = 0.2
 	mainCamera.ignoreDistance = 100000
+	
+	var bossHealthBar:HealthBar = (CanvasManagerScene as CanvasManager).bossHealthBar
+	boss.health_changed.connect(bossHealthBar.UpdateHealth)
+	boss.exploded.connect(bossHealthBar.hide.unbind(2))
+	bossHealthBar.UpdateHealth(boss.maxHealth, boss.health)
+	bossHealthBar.visible = true
 	boss.isDummyMode = false
 	var musicManager:MusicManager = MusicManagerScene
 	musicManager.gameMusic.PlayTrack(musicManager.BOSS_MUSIC)

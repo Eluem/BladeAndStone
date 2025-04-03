@@ -26,7 +26,8 @@ class_name BossEnemy_EyeLaserProjector
 		if(beamRaycastMaxSeparation != value):
 			beamRaycastMaxSeparation = value
 			UpdateBeamHitDetectorData()
-@export var hitCooldownTime:float = 0.5
+@export var hitCooldownTime:float = 0.1
+@export var beamHitVFX:BeamHitVFX
 var originatorRID:RID
 var hitRIDs:Array[RID] #RIDs to ignore because they were already hit this attack
 var hitRIDResetTimers:Array[float] #Time left to ignore hit per RID
@@ -59,15 +60,20 @@ func HandleBeamHit() -> void:
 	if(!blocker.is_empty()):
 		newBeamLength = blocker.distance
 	UpdateBeamLength(newBeamLength)
+	var nearestTarget:Dictionary = beamHitData.nearestTarget
+	if(!nearestTarget.is_empty()):
+		var nearestTargetPosCast:Vector2 = nearestTarget.position
+		beamHitVFX.Update(global_position + (nearestTargetPosCast - global_position).project(global_transform.x), global_transform.x)
 
 
 func BeamHitCheck() -> Dictionary:
 	var beamHitData:Dictionary
 	var blocker:Dictionary
+	var nearestTarget:Dictionary
 	var hitResults:Array[Dictionary]
 	var query:PhysicsRayQueryParameters2D
 	var exclude:Array[RID] = [originatorRID]
-	exclude.append_array(hitRIDs)
+	#exclude.append_array(hitRIDs)
 	var rayStartPos:Vector2
 	var rayEndPos:Vector2
 	var perpendicular:Vector2 = Geometry2DHelper.GetPerpendicular(global_transform.x)
@@ -76,6 +82,9 @@ func BeamHitCheck() -> Dictionary:
 	var newBlocker:Dictionary
 	var newHitResults:Array[Dictionary]
 	var blockerPosCast:Vector2
+	var nextTargetPosCast:Vector2
+	var nextTargetDistCheck:float
+	var currNearestTargetDist:float = maxBeamLength
 	for offset:float in raycastStartPosOffsets:
 		rayStartPos = global_position + perpendicular * offset
 		rayEndPos = rayStartPos + (global_transform.x * raycastLength)
@@ -93,10 +102,18 @@ func BeamHitCheck() -> Dictionary:
 					blocker = newBlocker
 			newHitResults = newData.hitResults
 			for hitResult:Dictionary in newHitResults:
-				HandleHit(hitResult)
+				nextTargetPosCast = hitResult.position
+				nextTargetDistCheck = (nextTargetPosCast - rayStartPos).length()
+				if(nextTargetDistCheck < currNearestTargetDist):
+					currNearestTargetDist = nextTargetDistCheck
+					nearestTarget = hitResult
+				if(!hitRIDs.has(hitResult.rid)):
+					hitResult["direction"] = global_transform.x
+					HandleHit(hitResult)
 				exclude.append(hitResult.rid)
 			hitResults.append_array(newHitResults)
 	beamHitData.blocker = blocker
+	beamHitData.nearestTarget = nearestTarget
 	beamHitData.hitResults = hitResults
 	return beamHitData
 
@@ -125,6 +142,7 @@ func UpdateBeamHitDetectorData() -> void:
 func HandleHit(pHitResult:Dictionary) -> void:
 	hitRIDs.append(pHitResult.rid)
 	hitRIDResetTimers.append(hitCooldownTime)
+	#var hitResultPosCast:Vector2 = pHitResult.position
 	on_hit(pHitResult)
 
 
@@ -134,6 +152,17 @@ func HandleHitRIDResetTimers(pDelta:float) -> void:
 		hitRIDResetTimers[i] -= pDelta
 		if(hitRIDResetTimers[i] <= 0):
 			timersCompleted.append(i)
+	timersCompleted.reverse()
 	for index:int in timersCompleted:
 		hitRIDResetTimers.remove_at(index)
 		hitRIDs.remove_at(index)
+
+
+func StartFiring() -> void:
+	enabled = true
+
+
+func StopFiring() -> void:
+	enabled = false
+	hitRIDs.clear()
+	hitRIDResetTimers.clear()

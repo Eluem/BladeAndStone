@@ -8,7 +8,7 @@ class_name HazardStatic
 @export var lifetime:float = -1
 @export var destroySelfOnHit:bool = false
 
-var originator:Node2D:
+@export var originator:Node2D:
 	get:
 		return originator
 	set(pValue):
@@ -27,15 +27,17 @@ func _process(delta:float) -> void:
 
 
 func on_hit(pHitResult:Dictionary) -> void:
+	var dirCast:Vector2
+	dirCast = pHitResult.direction
 	#Apply damage to hittable objects
 	if(pHitResult.collider is RigidBodyHittable):
 		var hittable:RigidBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(originator, pHitResult, global_transform.x, global_transform.x, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, dirCast, dirCast, damage, knockback)
 		hittable.HandleHit(hitData)
 	#Handle hitting static hittable objects
 	elif(pHitResult.collider is StaticBodyHittable):
 		var hittable:StaticBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(originator, pHitResult, global_transform.x, global_transform.x, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, dirCast, dirCast, damage, knockback)
 		hittable.HandleHit(hitData)
 	#Destroy self after hitting
 	if(destroySelfOnHit):

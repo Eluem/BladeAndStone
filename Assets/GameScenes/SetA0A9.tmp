@@ -622,7 +622,6 @@ theme_override_font_sizes/font_size = 30
 text = "Default
 "
 script = ExtResource("9_ot5o5")
-mobileCustomMinimumSizeX = 250.0
 
 [node name="SaveCloseButton" type="Button" parent="PanelContainer/BottomContainer"]
 custom_minimum_size = Vector2(200, 60)
@@ -632,7 +631,6 @@ theme_override_colors/font_color = Color(0.709804, 0.709804, 0.709804, 1)
 theme_override_font_sizes/font_size = 30
 text = "Save & Close"
 script = ExtResource("9_ot5o5")
-mobileCustomMinimumSizeX = 400.0
 
 [node name="CloseButton" type="Button" parent="PanelContainer/BottomContainer"]
 custom_minimum_size = Vector2(200, 60)
@@ -642,4 +640,3 @@ theme_override_colors/font_color = Color(0.709804, 0.709804, 0.709804, 1)
 theme_override_font_sizes/font_size = 30
 text = "Close"
 script = ExtResource("9_ot5o5")
-mobileCustomMinimumSizeX = 250.0

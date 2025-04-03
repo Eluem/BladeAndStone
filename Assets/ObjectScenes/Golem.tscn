@@ -229,7 +229,7 @@ tracks/15/keys = {
 
 [sub_resource type="Animation" id="Animation_m6ito"]
 resource_name = "Attack_Swing_Charging"
-length = 0.6
+length = 0.4
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -239,7 +239,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-30, -0.25, 0, 0.25, 0, -71, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 0.4)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -250,7 +250,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(101, -0.25, 0, 0.25, 0, 105, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 0.4)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -261,7 +261,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(3.413, -0.25, 0, 0.25, 0, 3.718, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 0.4)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -272,7 +272,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0.316, -0.25, 0, 0.25, 0, 0.461, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
+"times": PackedFloat32Array(0, 0.4)
 }
 tracks/4/type = "audio"
 tracks/4/imported = false

@@ -11,10 +11,22 @@ var tPressed:bool = false
 
 var player:Golem
 
-var debugString:String = "" #str(DisplayServer.get_display_safe_area())
+var debugString:String = "":
+	get:
+		return debugString
+	set(value):
+		if(debugString != value):
+			debugString = value
+			queue_redraw()
+
+var debugStringEnabled:bool = false
 
 func _ready() -> void:
+	print("Debug Manager Enabled. Disable by going to Project > Project Settings > Globals and deleting it from the list.")
 	call_deferred("InitializeCanvasParent")
+	
+	#Force unlocking the boss check point on game start
+	GameStateManager.gameData.checkPointReached = true
 	
 	process_mode = PROCESS_MODE_ALWAYS
 	GameStateManager.scene_ready.connect(on_scene_change)
@@ -25,6 +37,10 @@ func _process(_delta:float) -> void:
 	_KillAllCreatures()
 	_SpawnTestBossHeart()
 	_FreezeGame()
+	
+	#Framerate tracking
+	#DebugManager.debugStringEnabled = true
+	#DebugManager.debugString = str(Engine.get_frames_per_second())
 
 
 func _input(event:InputEvent) -> void:
@@ -34,8 +50,8 @@ func _input(event:InputEvent) -> void:
 
 
 func _draw() -> void:
-	#DrawString(debugString, get_window().size/2, Color.MAGENTA, 32, HORIZONTAL_ALIGNMENT_CENTER)
-	pass
+	if(debugStringEnabled):
+		DrawString(debugString, get_window().size/2, Color.MAGENTA, 32, HORIZONTAL_ALIGNMENT_CENTER)
 
 
 func _KillAllCreatures() -> void:
