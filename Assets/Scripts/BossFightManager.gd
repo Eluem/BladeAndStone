@@ -21,6 +21,8 @@ var bossHeatCollected:bool = false
 func _ready() -> void:
 	boss.exploded.connect(boss_exploded)
 	boss.bossFightManager = self
+	if(GameStateManager.usingCheckPoint):
+		DeleteNonBossEnemies()
 
 func _process(delta:float) -> void:
 	HandleTransitionCamera(delta)

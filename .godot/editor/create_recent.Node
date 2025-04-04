@@ -1,15 +1,14 @@
+Node2D
+PIDControllerJoint2D
 MarginContainer
 ShapeCast2D
 Polygon2D
 VBoxContainer
-Node2D
 AnimationPlayer
 AudioStreamPlayer2D
 CollisionShape2D
 Line2D
 BossEnemy_Eye
-PIDControllerJoint2D
 Sprite2D
 Node
 Bone2D
-Skeleton2D

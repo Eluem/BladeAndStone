@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://ouyrxptl688w"]
+[gd_scene load_steps=91 format=3 uid="uid://ouyrxptl688w"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BossEnemyRamBeam.gd" id="1_8vjai"]
 [ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/SFX/Creature_Hurt1.wav" id="2_1elft"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bwsqqji2p3qkk" path="res://Assets/Art/Characters/Boss_RamSlamBlast/EyeLid_Right.png" id="9_xb7nm"]
 [ext_resource type="AudioStream" uid="uid://cs8apcyor8v85" path="res://Assets/Audio/SFX/BossSFX_BeamFiring.wav" id="10_smfvb"]
 [ext_resource type="Texture2D" uid="uid://csp06t61tkblx" path="res://Assets/Art/Characters/Boss_RamSlamBlast/Body.png" id="10_x88v5"]
+[ext_resource type="Script" path="res://Assets/Scripts/Helpers/PIDControllerJoint.gd" id="11_htakh"]
 [ext_resource type="Texture2D" uid="uid://do2381gkjwtos" path="res://Assets/Art/Characters/Boss_RamSlamBlast/BladeAndStoneBossBlades.png" id="11_j7xc3"]
 [ext_resource type="Texture2D" uid="uid://cntwj5a2ou54q" path="res://Assets/Art/Characters/Boss_RamSlamBlast/FullBossForShatter.png" id="11_p74ds"]
 [ext_resource type="Texture2D" uid="uid://dijhnem6vfm32" path="res://Assets/Art/Characters/Boss_RamSlamBlast/BodyBase.png" id="12_35o53"]
@@ -116,9 +117,51 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/5/use_blend = true
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/Blade_Spike:material:shader_parameter/heat")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AttackSystems/Blades")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Activate"
+}, {
+"args": [],
+"method": &"Deactivate"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ChompAttackLunge"
+}]
+}
 
-[sub_resource type="Animation" id="Animation_2aapp"]
-resource_name = "Attack_Chomp_Open"
+[sub_resource type="Animation" id="Animation_au5p8"]
+resource_name = "Attack_Chomp_End"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -126,9 +169,9 @@ tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.436466, -0.25, 0, 0.25, 0, -0.524, -0.25, 0, 0.25, 0, -0.628, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -137,9 +180,9 @@ tracks/1/path = NodePath("Visuals/Blade_OuterRight:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.436332, -0.25, 0, 0.25, 0, 0.524, -0.25, 0, 0.25, 0, 0.628, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.436332, 0, 0, 0, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -148,9 +191,9 @@ tracks/2/path = NodePath("Visuals/Blade_InnerLeft:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.174533, -0.25, 0, 0.25, 0, -0.506, -0.25, 0, 0.25, 0, -0.593, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -159,9 +202,9 @@ tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.174533, -0.25, 0, 0.25, 0, 0.506, -0.25, 0, 0.25, 0, 0.593, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -170,9 +213,96 @@ tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1007, -0.25, 0, 0.25, 0, 800, -0.25, 0, 0.25, 0, 600, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4, 1)
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1007, 0, 0, 0, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/Blade_Spike:material:shader_parameter/heat")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"StartBreaking"
+}, {
+"args": [],
+"method": &"StopBreaking"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2aapp"]
+resource_name = "Attack_Chomp_Open"
+length = 1.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-0.436466, -0.25, 0, 0.25, 0, -0.524, -0.25, 0, 0.25, 0, -0.628, -0.25, 0, 0.25, 0, -0.628, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Blade_OuterRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.436332, -0.25, 0, 0.25, 0, 0.524, -0.25, 0, 0.25, 0, 0.628, -0.25, 0, 0.25, 0, 0.628, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Blade_InnerLeft:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-0.174533, -0.25, 0, 0.25, 0, -0.506, -0.25, 0, 0.25, 0, -0.593, -0.25, 0, 0.25, 0, -0.593, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.174533, -0.25, 0, 0.25, 0, 0.506, -0.25, 0, 0.25, 0, 0.593, -0.25, 0, 0.25, 0, 0.593, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1007, -0.25, 0, 0.25, 0, 800, -0.25, 0, 0.25, 0, 600, -0.25, 0, 0.25, 0, 600, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1, 1.3)
 }
 tracks/5/type = "audio"
 tracks/5/imported = false
@@ -189,6 +319,28 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/5/use_blend = true
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/Blade_Spike:material:shader_parameter/heat")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:animRotationSpeedMod")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 1.3)
+}
 
 [sub_resource type="Animation" id="Animation_wuel7"]
 resource_name = "BeamChargeFire"
@@ -282,7 +434,7 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 5.23333, 5.73333)
 }
 tracks/8/type = "bezier"
@@ -348,7 +500,7 @@ tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 5.23333, 5.73333)
 }
 tracks/14/type = "bezier"
@@ -613,7 +765,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_htuxu"]
 resource_name = "Mouth_Idle"
-length = 4.0
+length = 8.0
 loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
@@ -622,31 +774,31 @@ tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.48, 0, 0, 0, 0, -0.524, 0, 0, 0, 0, -0.48, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3, 4)
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436, 0, 0, 0, 0, -0.524, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.48, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 3.5, 4.5, 5.5, 6, 8)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Blade_OuterRight:rotation")
+tracks/1/path = NodePath("Visuals/Blade_InnerLeft:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
-"points": PackedFloat32Array(0.436332, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.524, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3, 4)
+"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.37, 0, 0, 0, 0, -0.209, 0, 0, 0, 0, -0.244, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 4, 6, 8)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Blade_InnerLeft:rotation")
+tracks/2/path = NodePath("Visuals/Blade_OuterRight:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
-"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.209, 0, 0, 0, 0, -0.37, 0, 0, 0, 0, -0.244, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3, 4)
+"handle_modes": PackedInt32Array(1, 1, 1, 0, 1, 0, 1, 1, 1),
+"points": PackedFloat32Array(0.436, 0, 0, 0, 0, 0.466, 0, 0, 0, 0, 0.436, 0, 0, 0, 0, 0.524, 0, 0, 0, 0, 0.436, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436, 0, 0, 0, 0, 0.466, 0, 0, 0, 0, 0.436, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.5, 2.5, 4.23333, 4.73333, 5.43333, 6.66667, 7.16667, 8)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -656,8 +808,8 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
-"points": PackedFloat32Array(0.174533, 0, 0, 0, 0, 0.209, 0, 0, 0, 0, 0.37, 0, 0, 0, 0, 0.244, 0, 0, 0, 0, 0.174533, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3, 4)
+"points": PackedFloat32Array(0.175, 0, 0, 0, 0, 0.37, 0, 0, 0, 0, 0.209, 0, 0, 0, 0, 0.244, 0, 0, 0, 0, 0.175, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.06667, 5.8, 6.66667, 8)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -666,9 +818,9 @@ tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1),
-"points": PackedFloat32Array(1007, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3, 4)
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(1007, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 6.96667, 8)
 }
 
 [sub_resource type="Animation" id="Animation_5o3ni"]
@@ -855,6 +1007,20 @@ tracks/7/loop_wrap = true
 tracks/7/keys = {
 "clips": PackedStringArray("OpenEyes"),
 "times": PackedFloat32Array(0.933333)
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ActivatePhaseTwo"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_lofmm"]
@@ -1196,6 +1362,28 @@ tracks/23/keys = {
 "points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/24/type = "bezier"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Visuals/Blade_Spike:material:shader_parameter/heat")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/25/type = "bezier"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath(".:animRotationSpeedMod")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_e2atm"]
 resource_name = "z_BeamChargeFire_bk04012025"
@@ -1529,14 +1717,136 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.533333, 1, 1.2, 1.4, 1.6, 1.8, 2, 3)
 }
 
+[sub_resource type="Animation" id="Animation_sicmh"]
+resource_name = "Mouth_Close"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Blade_OuterRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(0.436332, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Blade_InnerLeft:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(0.174533, 0, 0, 0, 0, 0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(1007, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_lcupk"]
+resource_name = "Mouth_Idle_bktemp"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 0, 0, 0, 0, 0, 0, 0, 1),
+"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436, 0, 0, 0, 0, -0.524, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.48, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 3.5, 4.5, 5.5, 6, 8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Blade_InnerLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 0, 0, 0, 1),
+"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.37, 0, 0, 0, 0, -0.209, 0, 0, 0, 0, -0.244, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 4, 6, 8)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Blade_OuterRight:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 0, 0, 0, 0, 1),
+"points": PackedFloat32Array(0.436332, 0, 0, 0, 0, 0.524, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 3, 5, 7, 8)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 0, 1, 1),
+"points": PackedFloat32Array(0.174533, 0, 0, 0, 0, 0.37, 0, 0, 0, 0, 0.244, 0, 0, 0, 0, 0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 5, 8)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(1007, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 6.96667, 8)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nyb2w"]
 _data = {
 "Attack_Chomp_Active": SubResource("Animation_c0tvf"),
+"Attack_Chomp_End": SubResource("Animation_au5p8"),
 "Attack_Chomp_Open": SubResource("Animation_2aapp"),
 "BeamChargeFire": SubResource("Animation_wuel7"),
 "BeamFiring": SubResource("Animation_lvhf6"),
 "BeamStopFiring": SubResource("Animation_al102"),
+"Mouth_Close": SubResource("Animation_sicmh"),
 "Mouth_Idle": SubResource("Animation_htuxu"),
+"Mouth_Idle_bktemp": SubResource("Animation_lcupk"),
 "Mouth_Scream": SubResource("Animation_5o3ni"),
 "Mouth_Scream_PhaseChange": SubResource("Animation_v0ydy"),
 "OpenEyes": SubResource("Animation_lofmm"),
@@ -1556,9 +1866,9 @@ shader_parameter/startX = 0.3
 _data = [Vector2(0, 0), 0.0, 0.733974, 0, 0, Vector2(1, 0), -0.331116, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_b8dbk"]
-offsets = PackedFloat32Array(0, 0.349206)
-colors = PackedColorArray(0.862745, 0.658824, 0.658824, 0.631373, 0.666667, 0, 0, 0.631373)
+[sub_resource type="Gradient" id="Gradient_kxpwv"]
+offsets = PackedFloat32Array(0, 0.349206, 0.628571, 1)
+colors = PackedColorArray(0.862745, 0.658824, 0.658824, 0.235294, 0.666667, 0, 0, 0.235294, 0.666667, 0, 0, 0.235294, 0.666667, 0, 0, 0)
 
 [sub_resource type="Curve" id="Curve_tiu3t"]
 resource_local_to_scene = true
@@ -1710,6 +2020,8 @@ radius = 0.0
 
 [node name="BossEnemyRamBeam" type="RigidBody2D"]
 mass = 10.0
+angular_damp_mode = 1
+angular_damp = 2.0
 script = ExtResource("1_8vjai")
 maxHealth = 250
 hurtSFX = Array[AudioStream]([ExtResource("2_1elft"), ExtResource("3_k15bf")])
@@ -1723,6 +2035,17 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_nyb2w")
 }
+autoplay = "Mouth_Idle"
+next/Attack_Chomp_Active = &"Attack_Chomp_End"
+next/Attack_Chomp_End = &"Mouth_Idle"
+next/Attack_Chomp_Open = &"Attack_Chomp_Active"
+next/Mouth_Scream = &"Mouth_Idle"
+next/Mouth_Scream_PhaseChange = &"Mouth_Idle"
+blend_times = [&"Mouth_Idle", &"Mouth_Close", 0.2]
+
+[node name="PIDControllerJoint2D" type="Node2D" parent="."]
+script = ExtResource("11_htakh")
+enabled = false
 
 [node name="Visuals" type="Node2D" parent="."]
 scale = Vector2(0.309, 0.309)
@@ -1764,12 +2087,10 @@ region_rect = Rect2(626, 712, 552, 260)
 position = Vector2(504.327, 0)
 
 [node name="ThrustTrail" type="Line2D" parent="Visuals/Blade_Spike/TrailTarget"]
-position = Vector2(488.146, 3.23625)
-scale = Vector2(3.23625, 3.23625)
-width = 60.0
+width = 300.0
 width_curve = SubResource("Curve_q1b4y")
 default_color = Color(0.666667, 0, 0, 0.631373)
-gradient = SubResource("Gradient_b8dbk")
+gradient = SubResource("Gradient_kxpwv")
 script = ExtResource("6_vdihl")
 forceTipAlignment = false
 
@@ -1799,6 +2120,17 @@ offset = Vector2(419.5, -72.5)
 region_enabled = true
 region_rect = Rect2(187, 362, 855, 313)
 
+[node name="TrailTarget" type="Node2D" parent="Visuals/Blade_InnerLeft"]
+position = Vector2(830, 67)
+
+[node name="Trail" type="Line2D" parent="Visuals/Blade_InnerLeft/TrailTarget"]
+width = 300.0
+width_curve = SubResource("Curve_q1b4y")
+default_color = Color(0.666667, 0, 0, 0.631373)
+gradient = SubResource("Gradient_kxpwv")
+script = ExtResource("6_vdihl")
+forceTipAlignment = false
+
 [node name="RaycastNode_InnerLeft" type="Node2D" parent="Visuals/Blade_InnerLeft"]
 position = Vector2(830, 67)
 rotation = 1.09956
@@ -1823,6 +2155,17 @@ texture = ExtResource("11_j7xc3")
 offset = Vector2(419.5, 72.5)
 region_enabled = true
 region_rect = Rect2(187, 1009, 855, 313)
+
+[node name="TrailTarget" type="Node2D" parent="Visuals/Blade_InnerRight"]
+position = Vector2(830, -67)
+
+[node name="Trail" type="Line2D" parent="Visuals/Blade_InnerRight/TrailTarget"]
+width = 300.0
+width_curve = SubResource("Curve_q1b4y")
+default_color = Color(0.666667, 0, 0, 0.631373)
+gradient = SubResource("Gradient_kxpwv")
+script = ExtResource("6_vdihl")
+forceTipAlignment = false
 
 [node name="RaycastNode_InnerRight" type="Node2D" parent="Visuals/Blade_InnerRight"]
 position = Vector2(830, -67)
@@ -1849,6 +2192,17 @@ offset = Vector2(348, -11)
 region_enabled = true
 region_rect = Rect2(60, 11, 983, 333)
 
+[node name="TrailTarget" type="Node2D" parent="Visuals/Blade_OuterLeft"]
+position = Vector2(807, 127)
+
+[node name="Trail" type="Line2D" parent="Visuals/Blade_OuterLeft/TrailTarget"]
+width = 300.0
+width_curve = SubResource("Curve_q1b4y")
+default_color = Color(0.666667, 0, 0, 0.631373)
+gradient = SubResource("Gradient_kxpwv")
+script = ExtResource("6_vdihl")
+forceTipAlignment = false
+
 [node name="RaycastNode_OuterLeft" type="Node2D" parent="Visuals/Blade_OuterLeft"]
 position = Vector2(807, 127)
 rotation = 0.872665
@@ -1873,6 +2227,17 @@ texture = ExtResource("11_j7xc3")
 offset = Vector2(348, 11)
 region_enabled = true
 region_rect = Rect2(60, 1340, 983, 333)
+
+[node name="TrailTarget" type="Node2D" parent="Visuals/Blade_OuterRight"]
+position = Vector2(807, -127)
+
+[node name="Trail" type="Line2D" parent="Visuals/Blade_OuterRight/TrailTarget"]
+width = 300.0
+width_curve = SubResource("Curve_q1b4y")
+default_color = Color(0.666667, 0, 0, 0.631373)
+gradient = SubResource("Gradient_kxpwv")
+script = ExtResource("6_vdihl")
+forceTipAlignment = false
 
 [node name="RaycastNode_OuterRight" type="Node2D" parent="Visuals/Blade_OuterRight"]
 position = Vector2(807, -127)
@@ -2289,7 +2654,6 @@ script = ExtResource("23_w6wwv")
 position = Vector2(217, 214)
 rotation = 0.523599
 script = ExtResource("14_t7kw4")
-enabled = false
 projectileType = 1
 
 [node name="ChargeEffect" type="GPUParticles2D" parent="AttackSystems/BossEnemy_Eye_FrontRight"]
@@ -2315,7 +2679,6 @@ bus = &"SFX"
 position = Vector2(217, -214)
 rotation = -0.523599
 script = ExtResource("14_t7kw4")
-enabled = false
 projectileType = 1
 
 [node name="ChargeEffect" type="GPUParticles2D" parent="AttackSystems/BossEnemy_Eye_FrontLeft"]
@@ -2341,7 +2704,6 @@ bus = &"SFX"
 position = Vector2(-439, -160)
 rotation = 2.85277
 script = ExtResource("14_t7kw4")
-enabled = false
 
 [node name="InitialProjectilePath" type="Node2D" parent="AttackSystems/BossEnemy_Eye_BackLeft"]
 
@@ -2410,7 +2772,6 @@ bus = &"SFX"
 position = Vector2(-439, 160)
 rotation = -2.85361
 script = ExtResource("14_t7kw4")
-enabled = false
 
 [node name="InitialProjectilePath" type="Node2D" parent="AttackSystems/BossEnemy_Eye_BackRight"]
 
@@ -2479,7 +2840,6 @@ bus = &"SFX"
 position = Vector2(-325, 0)
 rotation = 3.14159
 script = ExtResource("14_t7kw4")
-enabled = false
 
 [node name="InitialProjectilePath" type="Node2D" parent="AttackSystems/BossEnemy_Eye_BackCenter"]
 
@@ -2570,7 +2930,7 @@ script = ExtResource("22_up5g7")
 [node name="RaycastCollider" type="Node2D" parent="AttackSystems/Blades" node_paths=PackedStringArray("excludeCollision", "wielder", "weapon", "manualRaycastNodes")]
 script = ExtResource("5_vc6uq")
 excludeCollision = [NodePath("../../..")]
-weaponDamage = 30
+weaponDamage = 40
 weaponKnockback = 2000.0
 wielder = NodePath("../../..")
 weapon = NodePath("..")
@@ -2726,6 +3086,14 @@ script = ExtResource("7_n44di")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionSensor"]
 position = Vector2(-109, 0)
 polygon = PackedVector2Array(-130, -200, -130, 200, 1500, 500, 1500, -500)
+
+[node name="LookBehindRaycastNodeLeft" type="Node2D" parent="VisionSensor"]
+position = Vector2(-462, -197)
+rotation = 3.14159
+
+[node name="LookBehindRaycastNodeRight" type="Node2D" parent="VisionSensor"]
+position = Vector2(-462, 197)
+rotation = 3.14159
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false

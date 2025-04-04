@@ -170,9 +170,8 @@ func Test() -> void:
 	#		child.reparent(testViewport)
 	#debugString = str(($"../../CanvasManagerScene/HUD" as Control).position) + " ||| " + str(($"../../CanvasManagerScene/HUD" as MobileScreenSafeHUD).displaySafeArea)
 	#queue_redraw()
+	ActivateDebugCamera()
 	pass
-	
-	
 
 
 func InitializeCanvasParent() -> void:
@@ -195,3 +194,11 @@ func DrawString(pString:String, pPos:Vector2, pColor:Color = Color.MAGENTA, pFon
 	pos.y -= stringSize.y / 2
 	pos.y += font.get_ascent(pFontSize)
 	draw_string(ThemeDB.fallback_font, pos, pString, pAlignment, -1, pFontSize, pColor)
+
+
+func ActivateDebugCamera() -> void:
+	var newCamera:Camera2D = Camera2D.new()
+	newCamera.global_position = Vector2(1140, -2800)
+	newCamera.zoom = Vector2.ONE * 0.1
+	get_tree().current_scene.add_child(newCamera)
+	newCamera.make_current()

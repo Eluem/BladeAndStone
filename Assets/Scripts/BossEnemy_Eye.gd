@@ -7,21 +7,27 @@ enum ProjectileType
 	,Large
 }
 
-@export var enabled:bool = true
-@export var projectileType:ProjectileType
 @onready var chargeUpSFXPlayer:AudioStreamPlayer2D = $ChargeUpSFXPlayer
 @onready var fireSFXPlayer:AudioStreamPlayer2D = $FireSFXPlayer
 @onready var chargeEffect:GPUParticles2D = $ChargeEffect
+
+@export var projectileType:ProjectileType
+@export var burstRoundDelay:float = 0.2
+
 
 var target:Node2D
 var boss:RigidBody2D
 var bossRID:RID
 
+var charging:bool = false
+var bursting:bool = false
+var roundsInBurst:int = 1
 var eyeBoltChargeTimer:float = 0
 var eyeBoltChargeWaitTime:float = 4
 var eyeBoltAlmostCharged:float = 2
-var eyeBoltRechargeDelayTimer:float = 1
-var eyeBoltRechargeDelay:float = 1
+var burstRoundDelayTimer:float = 0
+#var eyeBoltRechargeDelayTimer:float = 1
+#var eyeBoltRechargeDelay:float = 1
 var standardChargeParticleProcessMaterial:ParticleProcessMaterial
 var standardChargeEffectLifeTime:float
 var interruptedChargeParticleProcessMaterial:ParticleProcessMaterial
@@ -49,22 +55,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta:float) -> void:
-	if(!enabled):
-		return
-	if(target != null):
+	if(charging):
 		ChargeEyeBolt(delta)
+	elif(bursting):
+		HandleBurst(delta)
 
 
-func ChargeEyeBolt(delta:float) -> void:
-	if(eyeBoltRechargeDelayTimer < eyeBoltRechargeDelay):
-		eyeBoltRechargeDelayTimer += delta
-		return
+func ChargeEyeBolt(pDelta:float) -> void:
 	if(chargeEffect.process_material != standardChargeParticleProcessMaterial):
 		chargeEffect.process_material = standardChargeParticleProcessMaterial
 		chargeEffect.lifetime = standardChargeEffectLifeTime
 		chargeEffect.restart()
 		chargeEffect.emitting = false
-	eyeBoltChargeTimer += delta
+	eyeBoltChargeTimer += pDelta
 	if(!chargeEffect.emitting):
 		chargeEffect.emitting = true
 		chargeUpSFXPlayer.play()
@@ -73,14 +76,31 @@ func ChargeEyeBolt(delta:float) -> void:
 	else:
 		chargeEffect.amount_ratio = clampf(eyeBoltChargeTimer/eyeBoltAlmostCharged, 0, 1)
 	if(eyeBoltChargeTimer >= eyeBoltChargeWaitTime):
-		Fire(initialProjectilePath)
-		if(hasSecondFirePath):
-			Fire(initialProjectilePath2)
+		Fire()
 		StopCharging()
-		eyeBoltRechargeDelayTimer = 0
+		UpdateBurst()
 
 
-func Fire(pPath:Array[Node]) -> void:
+func UpdateBurst() -> void:
+	roundsInBurst -= 1
+	if(roundsInBurst <= 0):
+		bursting = false
+
+
+func HandleBurst(pDelta:float) -> void:
+	burstRoundDelayTimer += pDelta
+	if(burstRoundDelayTimer >= burstRoundDelay):
+		Fire()
+		UpdateBurst()
+
+
+func Fire() -> void:
+	_Fire(initialProjectilePath)
+	if(hasSecondFirePath):
+		_Fire(initialProjectilePath2)
+
+
+func _Fire(pPath:Array[Node]) -> void:
 	var trackingProjectile:TrackingProjectile
 	match projectileType:
 		ProjectileType.Small:
@@ -93,9 +113,15 @@ func Fire(pPath:Array[Node]) -> void:
 
 
 func StopCharging() -> void:
+	charging = false
 	chargeUpSFXPlayer.stop()
 	eyeBoltChargeTimer = 0
 	chargeEffect.emitting = false
+
+
+func StartCharging(pRoundsInBurst:int = 1) -> void:
+	charging = true
+	roundsInBurst = pRoundsInBurst
 
 
 func Die() -> void:
@@ -111,3 +137,12 @@ func SplitOutChargeParticleEffect() -> void:
 	chargeEffectPointer.emitting = true
 	chargeEffectPointer.amount_ratio = 0
 	chargeEffectPointer.reparent(get_tree().current_scene)
+
+
+func SetTarget(pTarget:Node2D) -> void:
+	if(target != null):
+		if(target.tree_exited.is_connected(SetTarget)):
+			target.tree_exited.disconnect(SetTarget)
+	target = pTarget
+	if(target != null):
+		target.tree_exited.connect(SetTarget.bind(null))

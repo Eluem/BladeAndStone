@@ -1,15 +1,20 @@
 extends RigidBodyHittable
 class_name BossEnemyRamBeam
 
+@onready var attackSystems:BossAttackSystems = $AttackSystems
+@onready var pidJoint:PIDControllerJoint2D = $PIDControllerJoint2D
 @onready var visionSensor:VisionSensor = $VisionSensor
 @onready var cameraTrackTarget:Node2D = $CameraTrackTargets/CameraTrackTarget
 @onready var cameraTrackTarget2:Node2D = $CameraTrackTargets/CameraTrackTarget2
 @onready var cameraTrackTarget3:Node2D = $CameraTrackTargets/CameraTrackTarget3
 @onready var cameraTrackTarget4:Node2D = $CameraTrackTargets/CameraTrackTarget4
 @onready var cameraTrackTarget5:Node2D = $CameraTrackTargets/CameraTrackTarget5
+@onready var halfHealth:int = roundi(maxHealth/2.0)
 
 @export var isDummyMode:bool
+@export var animRotationSpeedMod:float = 0
 
+var isInPhaseTwo:bool = false
 var eyes:Array[BossEnemy_Eye]
 var target:Node2D:
 	get:
@@ -19,18 +24,15 @@ var target:Node2D:
 		UpdateEyesTarget(target)
 var force:float = 500
 var maxSpeed:float = 50 #TODO: Implement max speed
-var maxFollowDist:float = 500**2
-var minFollowDistRange:Vector2 = Vector2(400**2, maxFollowDist)
-var attackStartMaxDist:float = 600**2
+var maxFollowDist:float = 1500**2
+var minFollowDist:float = 800**2
+var chompAttackMaxDist:float = 1000**2
 var rotationSpeed:float = 3
-var attackChargeWaitTime:float = 4
-var attackChargeWarningWaitTime:float = 3.6
-var attackChargeTimer:float = 0
-var attackActiveWaitTime:float = 1.5
-var attackActiveTimer:float = attackActiveWaitTime
 var searchTimer:float = 0
 var searchWaitTime:float = 0.5
 var bossFightManager:BossFightManager
+var breaking:bool = false
+var lookBehindRaycastNodes:Array[Node2D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,6 +42,7 @@ func _ready() -> void:
 	add_to_group("Enemies")
 	visionSensor.object_detected.connect(object_detected)
 	InitializeEyes()
+	PopulateLookBehindRaycastNodes()
 	#($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
 
 
@@ -47,63 +50,55 @@ func _ready() -> void:
 func _process(delta:float) -> void:
 	if(isDummyMode):
 		return
-	if(IsAttackActive()):
-		HandleActiveAttack(delta)
-	if(target):
-		if(IsChargeAttackAllowed()):
-			ChargeAttack(delta)
+	HandleDecisionMaking(delta)
 
 
 func _physics_process(_delta:float) -> void:
-	return
-	if(target == null || IsAttackActive() || isDummyMode):
+	if(target == null || isDummyMode):
 		return
-	var dist:float = (target.global_position - global_position).length_squared()
-	if(dist > maxFollowDist):
-		apply_central_force(force * (target.global_position - global_position).normalized())
-	elif(dist < lerp(minFollowDistRange.x, minFollowDistRange.y, GetAttackChargePercentage())):
-		apply_central_force(force * (global_position - target.global_position).normalized())
+	HandleBreaking()
+	var moveForce:Vector2 = Vector2.ZERO
+	var targetDist:float = GetDistanceToTargetSquared()
+	var dirToTarget:Vector2 = GetDirectionToTarget()
+	if(targetDist > maxFollowDist):
+		moveForce += force * dirToTarget
+	elif(targetDist < minFollowDist):
+		moveForce += -force * dirToTarget
+	moveForce += GetBackWallAvoidanceForce() * dirToTarget
+	apply_central_force(moveForce * mass)
 
 
 func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
-	return
-	if(target == null || IsAttackActive() || isDummyMode):
+	if(!IsTurningAllowed()):
 		return
 	var newTransform:Transform2D
 	newTransform = state.transform.looking_at(target.global_position)
-	newTransform = state.transform.rotated_local(lerp_angle(0, newTransform.get_rotation() - state.transform.get_rotation(), rotationSpeed*state.step))
+	newTransform = state.transform.rotated_local(lerp_angle(0, newTransform.get_rotation() - state.transform.get_rotation(), (rotationSpeed+animRotationSpeedMod)*state.step))
 	state.transform = newTransform
 
 
-func HandleActiveAttack(delta:float) -> void:
-	attackActiveTimer += delta
-	if(attackActiveTimer >= attackActiveWaitTime):
-		($AttackSystems/Smasher/RaycastCollider as RaycastCollider).Disable()
-		ToggleTrails(false)
+func HandleDecisionMaking(pDelta:float) -> void:
+	if(!isInPhaseTwo && attackSystems.CanInitiateBigAction() && health <= halfHealth):
+		attackSystems.InitiatePhaseChange()
 
 
-func ChargeAttack(delta:float) -> void:
-	attackChargeTimer += delta
-	#UpdateSmasherVisualEffect(GetAttackChargePercentage())
-	if(attackChargeTimer >= attackChargeWaitTime):
-		BeginAttack()
-		attackChargeTimer = 0
+func ChompAttackLunge() -> void:
+	var lungeForce:Vector2 = transform.x.normalized() * 40000
+	lungeForce += -linear_velocity*mass
+	apply_central_impulse(lungeForce)
 
 
-func BeginAttack() -> void:
-	#UpdateSmasherVisualEffect(0.99)
-	apply_central_impulse(transform.x.normalized() * 50000)
-	($AttackSystems/Smasher/RaycastCollider as RaycastCollider).Enable()
-	ToggleTrails(true)
-	attackActiveTimer = 0
+func StartBreaking() -> void:
+	breaking = true
 
 
-func StopCharging() -> void:
-	#if(IsAttackActive()):
-		#return
-	#attackChargeTimer = 0
-	#UpdateSmasherVisualEffect(GetAttackChargePercentage())
-	pass
+func StopBreaking() -> void:
+	breaking = false
+
+
+func HandleBreaking() -> void:
+	if(breaking):
+		apply_central_force(-linear_velocity * mass)
 
 
 func object_detected(pBody:Node2D) -> void:
@@ -126,7 +121,7 @@ func TargetFound(pTarget:Node2D) -> void:
 
 
 func TargetLost() -> void:
-	StopCharging()
+	#attackSystems.TargetLost()
 	visionSensor.monitoring = true
 	can_sleep = true
 	target.tree_exited.disconnect(TargetLost)
@@ -143,35 +138,8 @@ func TargetLost() -> void:
 		cameraCast.RemoveTrackTarget(cameraTrackTarget5)
 
 
-func ToggleTrails(pEnabled:bool) -> void:
-	var maxLen:int = 0
-	if(pEnabled):
-		maxLen = 40
-	($AttackSystems/Smasher/RaycastCollider/RaycastNode/ThrustTrail as Trail).MAX_LENGTH = maxLen
-	($AttackSystems/Smasher/RaycastCollider/RaycastNode2/ThrustTrail as Trail).MAX_LENGTH = maxLen
-	($AttackSystems/Smasher/RaycastCollider/RaycastNode3/ThrustTrail as Trail).MAX_LENGTH = maxLen
-	($AttackSystems/Smasher/RaycastCollider/RaycastNode4/ThrustTrail as Trail).MAX_LENGTH = maxLen
-	($AttackSystems/Smasher/RaycastCollider/RaycastNode5/ThrustTrail as Trail).MAX_LENGTH = maxLen
-	($AttackSystems/Smasher/RaycastCollider/RaycastNode6/ThrustTrail as Trail).MAX_LENGTH = maxLen
-	($AttackSystems/Smasher/RaycastCollider/RaycastNode7/ThrustTrail as Trail).MAX_LENGTH = maxLen
-
-
-func GetAttackChargePercentage() -> float:
-	return min(attackChargeTimer/attackChargeWarningWaitTime, 1.0)
-
-
-func IsAttackActive() -> bool:
-	return attackActiveTimer < attackActiveWaitTime
-
-
-func IsChargeAttackAllowed() -> bool:
-	return false
-	var dist:float = (target.global_position - global_position).length_squared()
-	return !IsAttackActive() && (dist <= attackStartMaxDist || attackChargeTimer > 0)
-
-
-#func UpdateSmasherVisualEffect(pAttackChargePercentage:float) -> void:
-#	($AttackSystems/Smasher as SmasherVisualEffect).UpdateAttackChargePercentage(pAttackChargePercentage)
+func IsTurningAllowed() -> bool:
+	return target != null && !isDummyMode && !attackSystems.IsChompAttackActive()
 
 
 func HandleHit(pHitData:HitData) -> void:
@@ -194,8 +162,61 @@ func InitializeEyes() -> void:
 
 func UpdateEyesTarget(pTarget:Node2D) -> void:
 	for eye:BossEnemy_Eye in eyes:
-		eye.target = pTarget
+		eye.SetTarget(pTarget)
 
 
 func IntroScream() -> void:
-	($AnimationPlayerMouth as AnimationPlayer).play("Mouth_Scream")
+	attackSystems.Scream()
+
+
+func PopulateLookBehindRaycastNodes() -> void:
+	lookBehindRaycastNodes = []
+	lookBehindRaycastNodes.append($VisionSensor/LookBehindRaycastNodeLeft)
+	lookBehindRaycastNodes.append($VisionSensor/LookBehindRaycastNodeRight)
+
+
+#Gets the nearest distance to the boss from any of the look behind raycast nodes
+func GetDistanceToBackWall() -> float:
+	var ret:float = -1
+	var query:PhysicsRayQueryParameters2D
+	var hitResults:Dictionary
+	var blockerCast:Dictionary
+	var positionCast:Vector2
+	var tempDist:float
+	for node:Node2D in lookBehindRaycastNodes:
+		query = PhysicsRayQueryParameters2D.create(node.global_position, node.transform.x * 5000)
+		hitResults = RaycastHelper.RaycastAllUntilBlocker(get_world_2d().direct_space_state, query)
+		blockerCast = hitResults.blocker
+		if(!blockerCast.is_empty()):
+			positionCast = blockerCast.position
+			tempDist = (positionCast - node.global_position).length()
+			if(tempDist < ret || ret == -1):
+				ret = tempDist
+	return ret
+
+
+func GetBackWallAvoidanceForce() -> float:
+	var backwallDist:float = GetDistanceToBackWall()
+	if(backwallDist == -1 || backwallDist > 2000):
+		return 0
+	return 1000 * (backwallDist/2000)
+
+
+func GetDistanceToTarget() -> float:
+	return GetVectorToTarget().length()
+
+
+func GetDistanceToTargetSquared() -> float:
+	return GetVectorToTarget().length_squared()
+
+
+func GetVectorToTarget() -> Vector2:
+	return target.global_position - global_position
+
+
+func GetDirectionToTarget() -> Vector2:
+	return GetVectorToTarget().normalized()
+
+
+func ActivatePhaseTwo() -> void:
+	isInPhaseTwo = true
