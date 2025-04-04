@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://ouyrxptl688w"]
+[gd_scene load_steps=92 format=3 uid="uid://ouyrxptl688w"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/BossEnemyRamBeam.gd" id="1_8vjai"]
 [ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/SFX/Creature_Hurt1.wav" id="2_1elft"]
@@ -38,7 +38,7 @@
 [ext_resource type="Script" path="res://Assets/Scripts/BossBlades.gd" id="22_up5g7"]
 [ext_resource type="Shader" path="res://Assets/Shaders/BossBeamShader.gdshader" id="23_fa2a6"]
 [ext_resource type="Script" path="res://Assets/Scripts/BossAttackSystems.gd" id="23_w6wwv"]
-[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BossEnemy_EyeLaserProjector.gd" id="25_25ern"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BossEnemy_EyeBeamProjector.gd" id="25_25ern"]
 [ext_resource type="Shader" path="res://Assets/Shaders/BossBeamChargeVFXShader.gdshader" id="31_u7iqs"]
 [ext_resource type="PackedScene" uid="uid://cghucih3xwxkh" path="res://Assets/ObjectScenes/Particles/BeamHitVFX.tscn" id="34_eieff"]
 [ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BossKnockbackPulse.gd" id="37_28fle"]
@@ -245,6 +245,17 @@ tracks/6/keys = {
 "method": &"StopBreaking"
 }]
 }
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:animRotationSpeedMod")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
 
 [sub_resource type="Animation" id="Animation_2aapp"]
 resource_name = "Attack_Chomp_Open"
@@ -338,8 +349,22 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(1, 1, 1),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 1, 1.3)
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AttackSystems")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PhaseTwoChompBackEyeBlasters"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wuel7"]
@@ -363,7 +388,7 @@ tracks/0/use_blend = true
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:r")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -374,7 +399,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:g")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -385,7 +410,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:b")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -396,7 +421,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/4/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:a")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -407,7 +432,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringCount")
+tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringCount")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -418,7 +443,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
+tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -429,7 +454,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:a")
+tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:a")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -440,7 +465,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/BeamLine:default_color:a")
+tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/BeamLine:default_color:a")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -451,7 +476,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:r")
+tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:r")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -462,7 +487,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:g")
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:g")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -473,7 +498,7 @@ tracks/10/keys = {
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:b")
+tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:b")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -484,7 +509,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:a")
+tracks/12/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:a")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -495,7 +520,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFX:color:a")
+tracks/13/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFX:color:a")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -506,7 +531,7 @@ tracks/13/keys = {
 tracks/14/type = "bezier"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/BeamLine:default_color:a")
+tracks/14/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/BeamLine:default_color:a")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -539,7 +564,7 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"ActivateLasers"
+"method": &"ActivateBeams"
 }]
 }
 tracks/17/type = "method"
@@ -579,7 +604,7 @@ tracks/0/use_blend = true
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:r")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -590,7 +615,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:g")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -601,7 +626,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:b")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -612,7 +637,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/4/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:a")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -623,7 +648,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/BeamLine:default_color:a")
+tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/BeamLine:default_color:a")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -634,7 +659,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:r")
+tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:r")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -645,7 +670,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:g")
+tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:g")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -656,7 +681,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:b")
+tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:b")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -667,7 +692,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:a")
+tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:a")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -678,7 +703,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/BeamLine:default_color:a")
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/BeamLine:default_color:a")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -693,7 +718,7 @@ length = 1.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -704,7 +729,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/BeamLine:default_color:a")
+tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/BeamLine:default_color:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -715,7 +740,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:a")
+tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:a")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -726,7 +751,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/BeamLine:default_color:a")
+tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/BeamLine:default_color:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -741,26 +766,85 @@ tracks/4/path = NodePath("AttackSystems")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.8, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"DeactivateLasers"
+"method": &"DeactivateBeams"
+}, {
+"args": [],
+"method": &"BeamFiringEnded"
 }]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("EyeBeamFiringSFXPlayer")
+tracks/5/path = NodePath("AttackSystems")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"Test"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_sicmh"]
+resource_name = "Mouth_Close"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Blade_OuterRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(0.436332, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Blade_InnerLeft:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(0.174533, 0, 0, 0, 0, 0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(1, 0),
+"points": PackedFloat32Array(1007, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2)
 }
 
 [sub_resource type="Animation" id="Animation_htuxu"]
@@ -1211,7 +1295,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:r")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1222,7 +1306,7 @@ tracks/10/keys = {
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:g")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1233,7 +1317,7 @@ tracks/11/keys = {
 tracks/12/type = "bezier"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/12/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:b")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1244,7 +1328,7 @@ tracks/12/keys = {
 tracks/13/type = "bezier"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/13/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:a")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1255,7 +1339,7 @@ tracks/13/keys = {
 tracks/14/type = "bezier"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringCount")
+tracks/14/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringCount")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -1266,7 +1350,7 @@ tracks/14/keys = {
 tracks/15/type = "bezier"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
+tracks/15/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -1277,7 +1361,7 @@ tracks/15/keys = {
 tracks/16/type = "bezier"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:a")
+tracks/16/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:a")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -1288,7 +1372,7 @@ tracks/16/keys = {
 tracks/17/type = "bezier"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/BeamLine:default_color:a")
+tracks/17/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/BeamLine:default_color:a")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -1299,7 +1383,7 @@ tracks/17/keys = {
 tracks/18/type = "bezier"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:r")
+tracks/18/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:r")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -1310,7 +1394,7 @@ tracks/18/keys = {
 tracks/19/type = "bezier"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:g")
+tracks/19/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:g")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -1321,7 +1405,7 @@ tracks/19/keys = {
 tracks/20/type = "bezier"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:b")
+tracks/20/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:b")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -1332,7 +1416,7 @@ tracks/20/keys = {
 tracks/21/type = "bezier"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFXOrb:color:a")
+tracks/21/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFXOrb:color:a")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -1343,7 +1427,7 @@ tracks/21/keys = {
 tracks/22/type = "bezier"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/ChargeVFX:color:a")
+tracks/22/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/ChargeVFX:color:a")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -1354,7 +1438,7 @@ tracks/22/keys = {
 tracks/23/type = "bezier"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Right/BeamLine:default_color:a")
+tracks/23/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Right/BeamLine:default_color:a")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
@@ -1391,7 +1475,7 @@ length = 7.5
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1402,7 +1486,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1413,7 +1497,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1424,7 +1508,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1450,7 +1534,7 @@ tracks/4/use_blend = true
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringCount")
+tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringCount")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1461,7 +1545,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:r")
+tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:r")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1472,7 +1556,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:g")
+tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:g")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1483,7 +1567,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:b")
+tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:b")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1494,7 +1578,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:a")
+tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:a")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -1505,7 +1589,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1520,7 +1604,7 @@ length = 12.0
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:r")
+tracks/0/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1531,7 +1615,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:g")
+tracks/1/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1542,7 +1626,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:b")
+tracks/2/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1553,7 +1637,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFXOrb:color:a")
+tracks/3/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFXOrb:color:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1583,7 +1667,7 @@ tracks/4/use_blend = true
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringCount")
+tracks/5/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringCount")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1594,7 +1678,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:r")
+tracks/6/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:r")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1605,7 +1689,7 @@ tracks/6/keys = {
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:g")
+tracks/7/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:g")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1616,7 +1700,7 @@ tracks/7/keys = {
 tracks/8/type = "bezier"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:b")
+tracks/8/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:b")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1627,7 +1711,7 @@ tracks/8/keys = {
 tracks/9/type = "bezier"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:color:a")
+tracks/9/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:color:a")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -1638,7 +1722,7 @@ tracks/9/keys = {
 tracks/10/type = "bezier"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
+tracks/10/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/ChargeVFX:material:shader_parameter/ringTimeOffset")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1649,13 +1733,73 @@ tracks/10/keys = {
 tracks/11/type = "bezier"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeLaser_Left/BeamLine:default_color:a")
+tracks/11/path = NodePath("AttackSystems/BossEnemy_EyeBeam_Left/BeamLine:default_color:a")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "handle_modes": PackedInt32Array(1, 1, 1),
 "points": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0),
 "times": PackedFloat32Array(0, 5.36667, 5.46667)
+}
+
+[sub_resource type="Animation" id="Animation_lcupk"]
+resource_name = "z_Mouth_Idle_bk04032025"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(1, 0, 0, 0, 0, 0, 0, 0, 1),
+"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436, 0, 0, 0, 0, -0.524, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.48, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 3.5, 4.5, 5.5, 6, 8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Blade_InnerLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(1, 0, 0, 0, 1),
+"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.37, 0, 0, 0, 0, -0.209, 0, 0, 0, 0, -0.244, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 4, 6, 8)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Blade_OuterRight:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(1, 0, 0, 0, 0, 1),
+"points": PackedFloat32Array(0.436332, 0, 0, 0, 0, 0.524, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 3, 5, 7, 8)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(1, 0, 1, 1),
+"points": PackedFloat32Array(0.174533, 0, 0, 0, 0, 0.37, 0, 0, 0, 0, 0.244, 0, 0, 0, 0, 0.174533, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 5, 8)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"points": PackedFloat32Array(1007, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 6.96667, 8)
 }
 
 [sub_resource type="Animation" id="Animation_bqn7l"]
@@ -1717,125 +1861,6 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.533333, 1, 1.2, 1.4, 1.6, 1.8, 2, 3)
 }
 
-[sub_resource type="Animation" id="Animation_sicmh"]
-resource_name = "Mouth_Close"
-length = 0.2
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(1, 0),
-"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Blade_OuterRight:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(1, 0),
-"points": PackedFloat32Array(0.436332, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Blade_InnerLeft:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(1, 0),
-"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(1, 0),
-"points": PackedFloat32Array(0.174533, 0, 0, 0, 0, 0.174533, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(1, 0),
-"points": PackedFloat32Array(1007, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.2)
-}
-
-[sub_resource type="Animation" id="Animation_lcupk"]
-resource_name = "Mouth_Idle_bktemp"
-length = 8.0
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Blade_OuterLeft:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(1, 0, 0, 0, 0, 0, 0, 0, 1),
-"points": PackedFloat32Array(-0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436, 0, 0, 0, 0, -0.524, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.48, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0, -0.466, 0, 0, 0, 0, -0.436466, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3, 3.5, 4.5, 5.5, 6, 8)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Blade_InnerLeft:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(1, 0, 0, 0, 1),
-"points": PackedFloat32Array(-0.174533, 0, 0, 0, 0, -0.37, 0, 0, 0, 0, -0.209, 0, 0, 0, 0, -0.244, 0, 0, 0, 0, -0.174533, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 2, 4, 6, 8)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Blade_OuterRight:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(1, 0, 0, 0, 0, 1),
-"points": PackedFloat32Array(0.436332, 0, 0, 0, 0, 0.524, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0, 0.48, 0, 0, 0, 0, 0.436332, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 2, 3, 5, 7, 8)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/Blade_InnerRight:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(1, 0, 1, 1),
-"points": PackedFloat32Array(0.174533, 0, 0, 0, 0, 0.37, 0, 0, 0, 0, 0.244, 0, 0, 0, 0, 0.174533, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 2, 5, 8)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/Blade_Spike:position:x")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"points": PackedFloat32Array(1007, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 990, 0, 0, 0, 0, 960, 0, 0, 0, 0, 950, 0, 0, 0, 0, 1007, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 6.96667, 8)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nyb2w"]
 _data = {
 "Attack_Chomp_Active": SubResource("Animation_c0tvf"),
@@ -1846,13 +1871,13 @@ _data = {
 "BeamStopFiring": SubResource("Animation_al102"),
 "Mouth_Close": SubResource("Animation_sicmh"),
 "Mouth_Idle": SubResource("Animation_htuxu"),
-"Mouth_Idle_bktemp": SubResource("Animation_lcupk"),
 "Mouth_Scream": SubResource("Animation_5o3ni"),
 "Mouth_Scream_PhaseChange": SubResource("Animation_v0ydy"),
 "OpenEyes": SubResource("Animation_lofmm"),
 "RESET": SubResource("Animation_bwjco"),
 "z_BeamChargeFire_bk04012025": SubResource("Animation_e2atm"),
 "z_BeamFullChargeAndFiringTest": SubResource("Animation_gl13i"),
+"z_Mouth_Idle_bk04032025": SubResource("Animation_lcupk"),
 "z_Scream_bk03252025": SubResource("Animation_bqn7l")
 }
 
@@ -1920,6 +1945,31 @@ point_count = 3
 curve = SubResource("Curve_lvl2t")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qu3xv"]
+resource_local_to_scene = true
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 90.0
+directional_velocity_min = 0.0
+directional_velocity_max = 0.0
+directional_velocity_curve = SubResource("CurveXYZTexture_1oc5f")
+orbit_velocity_min = 1.0
+orbit_velocity_max = 1.0
+orbit_velocity_curve = SubResource("CurveTexture_te03y")
+radial_velocity_min = -100.0
+radial_velocity_max = -100.0
+radial_velocity_curve = SubResource("CurveTexture_h4eja")
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_mst8j")
+color = Color(0.709804, 0.329412, 0.996078, 1)
+alpha_curve = SubResource("CurveTexture_ce2dp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6vdup"]
 resource_local_to_scene = true
 particle_flag_align_y = true
 particle_flag_disable_z = true
@@ -2046,6 +2096,8 @@ blend_times = [&"Mouth_Idle", &"Mouth_Close", 0.2]
 [node name="PIDControllerJoint2D" type="Node2D" parent="."]
 script = ExtResource("11_htakh")
 enabled = false
+frequency = 0.2
+targetPos = Vector2(-67, -7797)
 
 [node name="Visuals" type="Node2D" parent="."]
 scale = Vector2(0.309, 0.309)
@@ -2820,7 +2872,7 @@ position = Vector2(-423.343, -297.755)
 [node name="ChargeEffect" type="GPUParticles2D" parent="AttackSystems/BossEnemy_Eye_BackRight"]
 emitting = false
 amount = 80
-process_material = SubResource("ParticleProcessMaterial_qu3xv")
+process_material = SubResource("ParticleProcessMaterial_6vdup")
 texture = ExtResource("15_ohord")
 lifetime = 1.8
 local_coords = true
@@ -2939,7 +2991,7 @@ manualRaycastNodes = [NodePath("../../../Visuals/Blade_Spike/RaycastNode_Spike")
 [node name="HitSFXPlayer" type="AudioStreamPlayer2D" parent="AttackSystems/Blades/RaycastCollider"]
 bus = &"SFX"
 
-[node name="BossEnemy_EyeLaser_Left" type="Node2D" parent="AttackSystems" node_paths=PackedStringArray("beamHitVFX", "originator")]
+[node name="BossEnemy_EyeBeam_Left" type="Node2D" parent="AttackSystems" node_paths=PackedStringArray("beamHitVFX", "originator")]
 position = Vector2(-100, -210)
 rotation = -1.5708
 script = ExtResource("25_25ern")
@@ -2953,7 +3005,7 @@ damage = 6
 knockback = 500.0
 originator = NodePath("../..")
 
-[node name="BeamLine" type="Line2D" parent="AttackSystems/BossEnemy_EyeLaser_Left"]
+[node name="BeamLine" type="Line2D" parent="AttackSystems/BossEnemy_EyeBeam_Left"]
 z_index = 10
 material = SubResource("ShaderMaterial_v1qn3")
 points = PackedVector2Array(2000, 0, 140, 0)
@@ -2963,14 +3015,14 @@ texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="ChargeVFXOrb" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeLaser_Left"]
+[node name="ChargeVFXOrb" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeBeam_Left"]
 scale = Vector2(0.32541, 0.32541)
 color = Color(0.709804, 0.545098, 1, 0)
 texture = SubResource("GradientTexture2D_opjdw")
 polygon = PackedVector2Array(135, -160, 135, 160, -110, 160, -110, -160)
 uv = PackedVector2Array(0, 0, 1024, 0, 1024, 1024, 0, 1024)
 
-[node name="ChargeVFX" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeLaser_Left"]
+[node name="ChargeVFX" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeBeam_Left"]
 material = SubResource("ShaderMaterial_oom5c")
 position = Vector2(60, 0)
 color = Color(0.564706, 0, 1, 0)
@@ -2978,10 +3030,10 @@ texture = SubResource("GradientTexture2D_4mial")
 polygon = PackedVector2Array(135, -160, 135, 160, -110, 160, -110, -160)
 uv = PackedVector2Array(0, 0, 1024, 0, 1024, 1024, 0, 1024)
 
-[node name="BeamHitVFX" parent="AttackSystems/BossEnemy_EyeLaser_Left" instance=ExtResource("34_eieff")]
+[node name="BeamHitVFX" parent="AttackSystems/BossEnemy_EyeBeam_Left" instance=ExtResource("34_eieff")]
 color = Color(0.564706, 0, 1, 0)
 
-[node name="BossEnemy_EyeLaser_Right" type="Node2D" parent="AttackSystems" node_paths=PackedStringArray("beamHitVFX", "originator")]
+[node name="BossEnemy_EyeBeam_Right" type="Node2D" parent="AttackSystems" node_paths=PackedStringArray("beamHitVFX", "originator")]
 position = Vector2(-100, 210)
 rotation = 1.5708
 script = ExtResource("25_25ern")
@@ -2995,7 +3047,7 @@ damage = 6
 knockback = 500.0
 originator = NodePath("../..")
 
-[node name="BeamLine" type="Line2D" parent="AttackSystems/BossEnemy_EyeLaser_Right"]
+[node name="BeamLine" type="Line2D" parent="AttackSystems/BossEnemy_EyeBeam_Right"]
 z_index = 10
 material = SubResource("ShaderMaterial_v1qn3")
 points = PackedVector2Array(2000, 0, 140, 0)
@@ -3005,14 +3057,14 @@ texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="ChargeVFXOrb" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeLaser_Right"]
+[node name="ChargeVFXOrb" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeBeam_Right"]
 scale = Vector2(0.32541, 0.32541)
 color = Color(0.709804, 0.545098, 1, 0)
 texture = SubResource("GradientTexture2D_opjdw")
 polygon = PackedVector2Array(135, -160, 135, 160, -110, 160, -110, -160)
 uv = PackedVector2Array(0, 0, 1024, 0, 1024, 1024, 0, 1024)
 
-[node name="ChargeVFX" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeLaser_Right"]
+[node name="ChargeVFX" type="Polygon2D" parent="AttackSystems/BossEnemy_EyeBeam_Right"]
 material = SubResource("ShaderMaterial_oom5c")
 position = Vector2(60, 0)
 color = Color(0.564706, 0, 1, 0)
@@ -3020,7 +3072,7 @@ texture = SubResource("GradientTexture2D_4mial")
 polygon = PackedVector2Array(135, -160, 135, 160, -110, 160, -110, -160)
 uv = PackedVector2Array(0, 0, 1024, 0, 1024, 1024, 0, 1024)
 
-[node name="BeamHitVFX" parent="AttackSystems/BossEnemy_EyeLaser_Right" instance=ExtResource("34_eieff")]
+[node name="BeamHitVFX" parent="AttackSystems/BossEnemy_EyeBeam_Right" instance=ExtResource("34_eieff")]
 position = Vector2(-420, 0.00154877)
 rotation = 3.14159
 color = Color(0.564706, 0, 1, 0)
@@ -3080,6 +3132,7 @@ spritePolygon = NodePath("../poly_sprite")
 
 [node name="VisionSensor" type="Area2D" parent="."]
 visible = false
+monitoring = false
 monitorable = false
 script = ExtResource("7_n44di")
 
@@ -3087,11 +3140,19 @@ script = ExtResource("7_n44di")
 position = Vector2(-109, 0)
 polygon = PackedVector2Array(-130, -200, -130, 200, 1500, 500, 1500, -500)
 
-[node name="LookBehindRaycastNodeLeft" type="Node2D" parent="VisionSensor"]
+[node name="WallAvoidRaycastNodeLeft" type="Node2D" parent="VisionSensor"]
+position = Vector2(-108, -297)
+rotation = -1.5708
+
+[node name="WallAvoidRaycastNodeRight" type="Node2D" parent="VisionSensor"]
+position = Vector2(-108, 297)
+rotation = 1.5708
+
+[node name="WallAvoidRaycastNodeBackLeft" type="Node2D" parent="VisionSensor"]
 position = Vector2(-462, -197)
 rotation = 3.14159
 
-[node name="LookBehindRaycastNodeRight" type="Node2D" parent="VisionSensor"]
+[node name="WallAvoidRaycastNodeBackRight" type="Node2D" parent="VisionSensor"]
 position = Vector2(-462, 197)
 rotation = 3.14159
 

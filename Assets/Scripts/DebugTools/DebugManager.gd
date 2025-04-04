@@ -22,7 +22,7 @@ var debugString:String = "":
 var debugStringEnabled:bool = false
 
 func _ready() -> void:
-	print("Debug Manager Enabled. Disable by going to Project > Project Settings > Globals and deleting it from the list.")
+	push_warning("Debug Manager Enabled. Disable by going to Project > Project Settings > Globals and deleting it from the list.")
 	call_deferred("InitializeCanvasParent")
 	
 	#Force unlocking the boss check point on game start

@@ -29,15 +29,20 @@ func _process(delta:float) -> void:
 func on_hit(pHitResult:Dictionary) -> void:
 	var dirCast:Vector2
 	dirCast = pHitResult.direction
+	var effectiveDamage:int
+	if(pHitResult.has("overrideDamage")):
+		effectiveDamage = pHitResult.overrideDamage
+	else:
+		effectiveDamage = damage
 	#Apply damage to hittable objects
 	if(pHitResult.collider is RigidBodyHittable):
 		var hittable:RigidBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(originator, pHitResult, dirCast, dirCast, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, dirCast, dirCast, effectiveDamage, knockback)
 		hittable.HandleHit(hitData)
 	#Handle hitting static hittable objects
 	elif(pHitResult.collider is StaticBodyHittable):
 		var hittable:StaticBodyHittable = pHitResult.collider
-		var hitData:HitData = HitData.new(originator, pHitResult, dirCast, dirCast, damage, knockback)
+		var hitData:HitData = HitData.new(originator, pHitResult, dirCast, dirCast, effectiveDamage, knockback)
 		hittable.HandleHit(hitData)
 	#Destroy self after hitting
 	if(destroySelfOnHit):

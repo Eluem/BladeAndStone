@@ -4,10 +4,11 @@
 #Rigidbodies and one for StaticBodies, and another for Node2D hazards..
 #For my next project, I'd like to do this all a bit better
 extends HazardStatic
-class_name BossEnemy_EyeLaserProjector
+class_name BossEnemy_EyeBeamProjector
 @onready var beamLine:Line2D = $BeamLine
 
 @export var enabled:bool = true
+@export var fullDamage:int = 30
 @export var maxBeamLength:float = 5000
 @export var minBeamLength:float = 10
 @export var beamRaycastTotalWidth:float = 340:
@@ -26,11 +27,14 @@ class_name BossEnemy_EyeLaserProjector
 		if(beamRaycastMaxSeparation != value):
 			beamRaycastMaxSeparation = value
 			UpdateBeamHitDetectorData()
-@export var hitCooldownTime:float = 0.1
+@export var fullHitCooldownTime:float = 0.2
+@export var chipHitCooldownTime:float = 0.1
 @export var beamHitVFX:BeamHitVFX
 var originatorRID:RID
-var hitRIDs:Array[RID] #RIDs to ignore because they were already hit this attack
-var hitRIDResetTimers:Array[float] #Time left to ignore hit per RID
+var fullHitRIDs:Array[RID] #RIDs to ignore because they were already hit this attack
+var fullHitRIDResetTimers:Array[float] #Time left to ignore hit per RID
+var chipHitRIDs:Array[RID] #RIDs to ignore because they were already hit this attack
+var chipHitRIDResetTimers:Array[float] #Time left to ignore hit per RID
 var raycastStartPosOffsets:Array[float]
 
 func _ready() -> void:
@@ -107,9 +111,7 @@ func BeamHitCheck() -> Dictionary:
 				if(nextTargetDistCheck < currNearestTargetDist):
 					currNearestTargetDist = nextTargetDistCheck
 					nearestTarget = hitResult
-				if(!hitRIDs.has(hitResult.rid)):
-					hitResult["direction"] = global_transform.x
-					HandleHit(hitResult)
+				HandleHit(hitResult)
 				exclude.append(hitResult.rid)
 			hitResults.append_array(newHitResults)
 	beamHitData.blocker = blocker
@@ -140,22 +142,49 @@ func UpdateBeamHitDetectorData() -> void:
 
 
 func HandleHit(pHitResult:Dictionary) -> void:
-	hitRIDs.append(pHitResult.rid)
-	hitRIDResetTimers.append(hitCooldownTime)
-	#var hitResultPosCast:Vector2 = pHitResult.position
+	pHitResult["direction"] = global_transform.x
+	var alreadyHitIndex:int
+	alreadyHitIndex = fullHitRIDs.find(pHitResult.rid)
+	if(alreadyHitIndex == -1):
+		pHitResult["overrideDamage"] = fullDamage
+		fullHitRIDs.append(pHitResult.rid)
+		fullHitRIDResetTimers.append(fullHitCooldownTime)
+	elif(!chipHitRIDs.has(pHitResult.rid)):
+		chipHitRIDs.append(pHitResult.rid)
+		chipHitRIDResetTimers.append(chipHitCooldownTime)
+		fullHitRIDResetTimers[alreadyHitIndex] = fullHitCooldownTime
+	else:
+		return
 	on_hit(pHitResult)
-
+	#var hitResultPosCast:Vector2 = pHitResult.position
 
 func HandleHitRIDResetTimers(pDelta:float) -> void:
+	HandleFullHitRIDResetTimers(pDelta)
+	HandleChipHitRIDResetTimers(pDelta)
+
+
+func HandleChipHitRIDResetTimers(pDelta:float) -> void:
 	var timersCompleted:Array[int] = []
-	for i:int in range(hitRIDResetTimers.size()):
-		hitRIDResetTimers[i] -= pDelta
-		if(hitRIDResetTimers[i] <= 0):
+	for i:int in range(chipHitRIDResetTimers.size()):
+		chipHitRIDResetTimers[i] -= pDelta
+		if(chipHitRIDResetTimers[i] <= 0):
 			timersCompleted.append(i)
 	timersCompleted.reverse()
 	for index:int in timersCompleted:
-		hitRIDResetTimers.remove_at(index)
-		hitRIDs.remove_at(index)
+		chipHitRIDResetTimers.remove_at(index)
+		chipHitRIDs.remove_at(index)
+
+
+func HandleFullHitRIDResetTimers(pDelta:float) -> void:
+	var timersCompleted:Array[int] = []
+	for i:int in range(fullHitRIDResetTimers.size()):
+		fullHitRIDResetTimers[i] -= pDelta
+		if(fullHitRIDResetTimers[i] <= 0):
+			timersCompleted.append(i)
+	timersCompleted.reverse()
+	for index:int in timersCompleted:
+		fullHitRIDResetTimers.remove_at(index)
+		fullHitRIDs.remove_at(index)
 
 
 func StartFiring() -> void:
@@ -164,5 +193,7 @@ func StartFiring() -> void:
 
 func StopFiring() -> void:
 	enabled = false
-	hitRIDs.clear()
-	hitRIDResetTimers.clear()
+	fullHitRIDs.clear()
+	fullHitRIDResetTimers.clear()
+	chipHitRIDs.clear()
+	chipHitRIDResetTimers.clear()

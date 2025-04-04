@@ -13,6 +13,7 @@ class_name BossEnemyRamBeam
 
 @export var isDummyMode:bool
 @export var animRotationSpeedMod:float = 0
+@export var wallAvoidMaxDist:float = 2000
 
 var isInPhaseTwo:bool = false
 var eyes:Array[BossEnemy_Eye]
@@ -22,17 +23,21 @@ var target:Node2D:
 	set(value):
 		target = value
 		UpdateEyesTarget(target)
-var force:float = 500
-var maxSpeed:float = 50 #TODO: Implement max speed
-var maxFollowDist:float = 1500**2
-var minFollowDist:float = 800**2
+var moveForwardForce:float = 700
+var moveReverseForce:float = 1000
+var wallAvoidForce:float = 800
+var maxForwardSpeed:float = 1000**2
+var maxReverseSpeed:float = 600**2
+var maxFollowDist:float = 1200**2
+var minFollowDist:float = 1000**2
 var chompAttackMaxDist:float = 1000**2
+var frontEyeBlasterMinDist:float = 800**2
+var wallBugOutDist:float = 200**2
 var rotationSpeed:float = 3
-var searchTimer:float = 0
-var searchWaitTime:float = 0.5
 var bossFightManager:BossFightManager
 var breaking:bool = false
-var lookBehindRaycastNodes:Array[Node2D]
+var wallAvoidRaycastNodes:Array[Node2D]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,7 +47,7 @@ func _ready() -> void:
 	add_to_group("Enemies")
 	visionSensor.object_detected.connect(object_detected)
 	InitializeEyes()
-	PopulateLookBehindRaycastNodes()
+	PopulateWallAvoidRaycastNodes()
 	#($Smasher as SmasherVisualEffect).PopulateTipPolygons(boundingPolygon)
 
 
@@ -54,32 +59,49 @@ func _process(delta:float) -> void:
 
 
 func _physics_process(_delta:float) -> void:
-	if(target == null || isDummyMode):
-		return
 	HandleBreaking()
+	if(!CanMove()):
+		return
 	var moveForce:Vector2 = Vector2.ZERO
 	var targetDist:float = GetDistanceToTargetSquared()
 	var dirToTarget:Vector2 = GetDirectionToTarget()
-	if(targetDist > maxFollowDist):
-		moveForce += force * dirToTarget
-	elif(targetDist < minFollowDist):
-		moveForce += -force * dirToTarget
-	moveForce += GetBackWallAvoidanceForce() * dirToTarget
+	var speedTowardsTarget:float = linear_velocity.dot(dirToTarget)
+	speedTowardsTarget = sign(speedTowardsTarget) * speedTowardsTarget**2
+	if(targetDist > maxFollowDist && speedTowardsTarget < maxForwardSpeed):
+		moveForce += moveForwardForce * dirToTarget
+	elif(targetDist < minFollowDist && -speedTowardsTarget < maxReverseSpeed):
+		moveForce += -moveReverseForce * dirToTarget
+	moveForce += GetWallAvoidVector() * wallAvoidForce
+	DebugLine.DrawLine(get_tree().current_scene, global_position, global_position + moveForce, Color.BLUE, 0.1)
 	apply_central_force(moveForce * mass)
 
 
 func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
-	if(!IsTurningAllowed()):
+	if(!CanTurn()):
 		return
+	var effectiveRotationSpeed:float
 	var newTransform:Transform2D
-	newTransform = state.transform.looking_at(target.global_position)
-	newTransform = state.transform.rotated_local(lerp_angle(0, newTransform.get_rotation() - state.transform.get_rotation(), (rotationSpeed+animRotationSpeedMod)*state.step))
+	var targetRotation:float
+	if(attackSystems.IsBeamActive()):
+		effectiveRotationSpeed = attackSystems.beamRotationSpeed
+		targetRotation = 1
+	else:
+		effectiveRotationSpeed = rotationSpeed+animRotationSpeedMod;
+		newTransform = state.transform.looking_at(target.global_position)
+		targetRotation = newTransform.get_rotation() - state.transform.get_rotation()
+	effectiveRotationSpeed *= state.step
+	newTransform = state.transform.rotated_local(lerp_angle(0, targetRotation, effectiveRotationSpeed))
 	state.transform = newTransform
 
 
 func HandleDecisionMaking(pDelta:float) -> void:
-	if(!isInPhaseTwo && attackSystems.CanInitiateBigAction() && health <= halfHealth):
+	var canInitiateBigAction:bool = attackSystems.CanInitiateBigAction()
+	if(!isInPhaseTwo && canInitiateBigAction && health <= halfHealth):
 		attackSystems.InitiatePhaseChange()
+	
+	if(target == null && attackSystems.MouthNotInUse()):
+		attackSystems.Scream()
+		isDummyMode = true
 
 
 func ChompAttackLunge() -> void:
@@ -127,19 +149,16 @@ func TargetLost() -> void:
 	target.tree_exited.disconnect(TargetLost)
 	target = null
 	
-	var viewPort:Viewport = get_viewport()
-	if(viewPort):
-		var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
-		cameraCast.RemoveTrackTarget(self)
-		cameraCast.RemoveTrackTarget(cameraTrackTarget)
-		cameraCast.RemoveTrackTarget(cameraTrackTarget2)
-		cameraCast.RemoveTrackTarget(cameraTrackTarget3)
-		cameraCast.RemoveTrackTarget(cameraTrackTarget4)
-		cameraCast.RemoveTrackTarget(cameraTrackTarget5)
-
-
-func IsTurningAllowed() -> bool:
-	return target != null && !isDummyMode && !attackSystems.IsChompAttackActive()
+	#Remove self from camera tracking if target player is lost
+	#var viewPort:Viewport = get_viewport()
+	#if(viewPort):
+		#var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
+		#cameraCast.RemoveTrackTarget(self)
+		#cameraCast.RemoveTrackTarget(cameraTrackTarget)
+		#cameraCast.RemoveTrackTarget(cameraTrackTarget2)
+		#cameraCast.RemoveTrackTarget(cameraTrackTarget3)
+		#cameraCast.RemoveTrackTarget(cameraTrackTarget4)
+		#cameraCast.RemoveTrackTarget(cameraTrackTarget5)
 
 
 func HandleHit(pHitData:HitData) -> void:
@@ -169,37 +188,30 @@ func IntroScream() -> void:
 	attackSystems.Scream()
 
 
-func PopulateLookBehindRaycastNodes() -> void:
-	lookBehindRaycastNodes = []
-	lookBehindRaycastNodes.append($VisionSensor/LookBehindRaycastNodeLeft)
-	lookBehindRaycastNodes.append($VisionSensor/LookBehindRaycastNodeRight)
+func PopulateWallAvoidRaycastNodes() -> void:
+	wallAvoidRaycastNodes = []
+	wallAvoidRaycastNodes.append($VisionSensor/WallAvoidRaycastNodeLeft)
+	wallAvoidRaycastNodes.append($VisionSensor/WallAvoidRaycastNodeRight)
+	wallAvoidRaycastNodes.append($VisionSensor/WallAvoidRaycastNodeBackLeft)
+	wallAvoidRaycastNodes.append($VisionSensor/WallAvoidRaycastNodeBackRight)
 
 
-#Gets the nearest distance to the boss from any of the look behind raycast nodes
-func GetDistanceToBackWall() -> float:
-	var ret:float = -1
+#Gets the combined vector of near by walls to determine what direction to move in to avoid all of them
+func GetWallAvoidVector() -> Vector2:
+	var ret:Vector2 = Vector2.ZERO
 	var query:PhysicsRayQueryParameters2D
 	var hitResults:Dictionary
 	var blockerCast:Dictionary
 	var positionCast:Vector2
-	var tempDist:float
-	for node:Node2D in lookBehindRaycastNodes:
-		query = PhysicsRayQueryParameters2D.create(node.global_position, node.transform.x * 5000)
+	for node:Node2D in wallAvoidRaycastNodes:
+		query = PhysicsRayQueryParameters2D.create(node.global_position, node.global_position + node.global_transform.x * wallAvoidMaxDist)
 		hitResults = RaycastHelper.RaycastAllUntilBlocker(get_world_2d().direct_space_state, query)
 		blockerCast = hitResults.blocker
 		if(!blockerCast.is_empty()):
 			positionCast = blockerCast.position
-			tempDist = (positionCast - node.global_position).length()
-			if(tempDist < ret || ret == -1):
-				ret = tempDist
+			ret += (node.global_position - positionCast)
+	ret = ret.normalized() * ((wallAvoidMaxDist - ret.length()) / wallAvoidMaxDist)
 	return ret
-
-
-func GetBackWallAvoidanceForce() -> float:
-	var backwallDist:float = GetDistanceToBackWall()
-	if(backwallDist == -1 || backwallDist > 2000):
-		return 0
-	return 1000 * (backwallDist/2000)
 
 
 func GetDistanceToTarget() -> float:
@@ -220,3 +232,31 @@ func GetDirectionToTarget() -> Vector2:
 
 func ActivatePhaseTwo() -> void:
 	isInPhaseTwo = true
+
+
+func CanMove() -> bool:
+	if(target == null):
+		return false
+	if(isDummyMode):
+		return false
+	if(attackSystems.IsChompAttackActive()):
+		return false
+	if(attackSystems.IsChompAttackEnding()):
+		return false
+	if(attackSystems.IsBeamActive()):
+		return false
+	return true
+
+
+func CanTurn() -> bool:
+	if(attackSystems.IsBeamActive()):
+		return true
+	if(target == null):
+		return false
+	if(isDummyMode):
+		return false
+	if(attackSystems.IsChompAttackActive()):
+		return false
+	#if(attackSystems.IsBeamActive()):
+		#return false
+	return true 

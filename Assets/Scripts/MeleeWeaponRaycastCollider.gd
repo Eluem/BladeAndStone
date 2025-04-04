@@ -109,6 +109,7 @@ func Disable() -> void:
 
 
 func Enable() -> void:
+	ClearHits()
 	enabled = true
 	for nodeData:RaycastNodeData in raycastNodes:
 		nodeData.UpdatePrevPos()

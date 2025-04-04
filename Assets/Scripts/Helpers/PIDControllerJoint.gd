@@ -43,7 +43,7 @@ func _physics_process(delta:float) -> void:
 	_PIDController.damping = damping
 	
 	var force:Vector2 = _PIDController.Update(delta, rb.global_position, rb.linear_velocity)
-	rb.apply_central_force(force)
+	rb.apply_central_force(force*rb.mass)
 
 func CheckDist() -> bool:
 	if(!disableInDist):

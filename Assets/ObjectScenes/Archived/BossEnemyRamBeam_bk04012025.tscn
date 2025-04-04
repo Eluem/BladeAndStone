@@ -32,7 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://x180p4uaj1y8" path="res://Assets/Audio/SFX/BasicEyeEnemy_Fire.wav" id="30_rdmv7"]
 [ext_resource type="Script" path="res://Assets/Scripts/BossBlades.gd" id="31_bgtmb"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="32_ipvmx"]
-[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BossEnemy_EyeLaserProjector.gd" id="33_ti2yd"]
+[ext_resource type="Script" path="res://Assets/ObjectScenes/Hazards/BossEnemy_EyeBeamProjector.gd" id="33_ti2yd"]
 [ext_resource type="Shader" path="res://Assets/Shaders/BossBeamShader.gdshader" id="34_18lxv"]
 [ext_resource type="Shader" path="res://Assets/Shaders/BossBeamChargeVFXShader.gdshader" id="35_3fqpr"]
 [ext_resource type="Texture2D" uid="uid://cntwj5a2ou54q" path="res://Assets/Art/Characters/Boss_RamSlamBlast/FullBossForShatter.png" id="36_y272g"]
