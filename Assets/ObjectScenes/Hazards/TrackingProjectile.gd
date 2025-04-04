@@ -42,6 +42,8 @@ var initialPathNodeDistSqred:float = initialPathNodeDist**2:
 @export var selfDamageDelay:float = -1
 ##Track state to start reducing the selfDamageDelay timer
 @export var selfDamageDelayStateStart:TrackState
+##Minimum distance to start reducing the selfDamageDelay timer
+@export var selfDamageDelayMinDistStart:float = -1
 ##If the target is ever closer in distance or angle, the path following step ends early
 @export var favorTargetOverPath:bool = true
 ##Angle (in degrees) to the target at which the path is ignored automatically
@@ -110,7 +112,6 @@ var dodgeLockBreakDistSqred:float = dodgeLockBreakDist**2:
 	set(value):
 		dodgeLockBreakDistSqred = value
 		dodgeLockBreakDist = sqrt(dodgeLockBreakDistSqred)
-
 var trackState:TrackState:
 	get:
 		return trackState
@@ -118,15 +119,24 @@ var trackState:TrackState:
 		if(trackState != value):
 			trackState = value
 			HandleTrackStateChange()
+var selfDamageDelayMinDistReached:bool
+var selfDamageDelayMinDistStartSqred:float
 
 
 func _ready() -> void:
 	super._ready()
 	UpdateTrackState()
+	if(selfDamageDelayMinDistStart <= 0):
+		selfDamageDelayMinDistReached = true
+		selfDamageDelayMinDistStartSqred = -1
+	else:
+		selfDamageDelayMinDistReached = false
+		selfDamageDelayMinDistStartSqred = selfDamageDelayMinDistStart**2
 
 
 func _process(delta:float) -> void:
 	super._process(delta)
+	HandleSelfDamageDelayMinDist()
 	HandleTimers(delta)
 
 
@@ -184,11 +194,21 @@ func HandleNavigation() -> void:
 
 #Clear collision exceptions after self damage delay ends (Allows player to guide attacks back into boss)
 func HandleSelfDamageDelay(pDelta:float) -> void:
-	if(selfDamageDelay > 0 && trackState >= selfDamageDelayStateStart):
+	if(selfDamageDelay > 0 && trackState >= selfDamageDelayStateStart && selfDamageDelayMinDistReached):
 		selfDamageDelay -= pDelta
 		if(selfDamageDelay <= 0):
 			selfDamageDelay = 0
 			collider.ClearExceptions()
+
+
+func HandleSelfDamageDelayMinDist() -> void:
+	if(selfDamageDelayMinDistReached):
+		return
+	if(originator == null):
+		selfDamageDelayMinDistReached = true
+		return
+	if((originator.global_position - global_position).length_squared() >= selfDamageDelayMinDistStartSqred):
+		selfDamageDelayMinDistReached = true
 
 
 #Enable tracking after track delay ends
@@ -221,6 +241,9 @@ func PopulateInitialPathWithNodes(pNodes:Array[Node]) -> void:
 	initialPath = []
 	for node:Node2D in pNodes:
 		initialPath.append(node)
+	if(pNodes.size() > 0):
+		pNodes[0].tree_exited.connect(initialPath.clear)
+		pNodes[0].tree_exited.connect(UpdateTrackState)
 	UpdateTrackState()
 
 

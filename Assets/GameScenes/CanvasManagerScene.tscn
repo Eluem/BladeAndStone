@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dve415r8hxdxd"]
+[gd_scene load_steps=17 format=3 uid="uid://dve415r8hxdxd"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Menu/CanvasManager.gd" id="1_b6sii"]
 [ext_resource type="Script" path="res://Assets/Scripts/UI/MobileScreenSafeHUD.gd" id="2_e7yq2"]
@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://mmm85hl5bm7c" path="res://Assets/Audio/SFX/ButtonPress.wav" id="7_onacr"]
 [ext_resource type="AudioStream" uid="uid://cbgrdd4bbkrdu" path="res://Assets/Audio/SFX/TogglePress.wav" id="8_e0sfa"]
 [ext_resource type="AudioStream" uid="uid://ebm0nv7jxb62" path="res://Assets/Audio/SFX/SliderDrag.wav" id="9_7ugu7"]
+[ext_resource type="AudioStream" uid="uid://rpc5ujmhhahp" path="res://Assets/Audio/SFX/KeyLockedIn.wav" id="11_i8iax"]
+[ext_resource type="AudioStream" uid="uid://bp4uc2e5vgois" path="res://Assets/Audio/SFX/EyeTurret_Opening.wav" id="12_lu8ul"]
+[ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/SFX/Creature_Hurt2.wav" id="13_v7u0p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arvj1"]
 content_margin_left = 5.0
@@ -185,4 +188,16 @@ bus = &"SFX"
 stream = ExtResource("9_7ugu7")
 volume_db = -5.0
 pitch_scale = 4.0
+bus = &"SFX"
+
+[node name="KonamiCodeInputCorrect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_i8iax")
+bus = &"SFX"
+
+[node name="KonamiCodeSuccess" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_lu8ul")
+bus = &"SFX"
+
+[node name="KonamiCodeFail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_v7u0p")
 bus = &"SFX"

@@ -10,6 +10,9 @@ const PAUSE_MENU:PackedScene = preload("res://Assets/GameScenes/PauseMenu.tscn")
 @onready var togglePressSFX:AudioStreamPlayer = $TogglePressSFX
 @onready var sliderDragSFX:AudioStreamPlayer = $SliderDragSFX
 @onready var bossHealthBar:HealthBar = $HUD/MarginContainer/BossHealthBar
+@onready var konamiCodeInputCorrect:AudioStreamPlayer = $KonamiCodeInputCorrect
+@onready var konamiCodeSuccess:AudioStreamPlayer = $KonamiCodeSuccess
+@onready var konamiCodeFail:AudioStreamPlayer = $KonamiCodeFail
 
 var currPauseMenu:PauseMenu
 var deathSequenceTimer:float

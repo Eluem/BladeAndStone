@@ -68,6 +68,7 @@ func _on_enter(pBody:PhysicsBody2D) -> void:
 	if(player.hasKey()):
 		GameStateManager.gameData.checkPointReached = true
 		GameStateManager.gameData.SaveData()
+		GameStateManager.usingCheckPoint = true
 		bossKey = player.bossKey
 		leftEyeTurret.animation_set_next("LeftScan", "Closing")
 		rightEyeTurret.animation_set_next("RightScan", "Closing")

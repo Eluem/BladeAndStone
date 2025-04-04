@@ -34,7 +34,10 @@ func flick(pDowerMod:float, pDir:Vector2) -> void:
 		return
 	#apply_central_force(50000 * powerMod * dir)
 	#apply_central_impulse(1500 * powerMod * dir)
-	apply_central_impulse(1700 * pDowerMod * pDir)
+	#apply_central_impulse(1700 * pDowerMod * pDir)
+	#apply_central_impulse(3000 * pDowerMod * pDir)
+	#apply_central_impulse(2500 * pDowerMod * pDir)
+	apply_central_impulse(2350 * pDowerMod * pDir)
 	targetRotation = pDir.angle()
 
 
@@ -53,7 +56,7 @@ func drag_update(_pPowerMod:float, pDir:Vector2) -> void:
 	
 func slash() -> void:
 	#Add slight lunge
-	apply_central_impulse(500 * transform.x)
+	apply_central_impulse(700 * transform.x)
 
 
 func lunge(pForce:float) -> void:

@@ -24,19 +24,23 @@ var target:Node2D:
 		target = value
 		UpdateEyesTarget(target)
 var moveForwardForce:float = 700
-var moveReverseForce:float = 1000
+var moveReverseForce:float = 1200
 var wallAvoidForce:float = 800
 var maxForwardSpeed:float = 1000**2
-var maxReverseSpeed:float = 600**2
+var maxReverseSpeed:float = 400**2
 var maxFollowDist:float = 1200**2
-var minFollowDist:float = 1000**2
-var chompAttackMaxDist:float = 1000**2
-var frontEyeBlasterMinDist:float = 800**2
-var wallBugOutDist:float = 200**2
+var minFollowDist:float = 1150**2
+var longRangeDist:float = 1000**2
+var shortRangeDist:float = 800**2
+@onready var distToNearestWall:float = wallAvoidMaxDist**2
+var corneredDist:float = 200**2
+var maxCorneredDuration:float = 2.3
+var corneredDuration:float
 var rotationSpeed:float = 3
 var bossFightManager:BossFightManager
 var breaking:bool = false
 var wallAvoidRaycastNodes:Array[Node2D]
+var firstAction:bool = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -55,7 +59,14 @@ func _ready() -> void:
 func _process(delta:float) -> void:
 	if(isDummyMode):
 		return
-	HandleDecisionMaking(delta)
+	if(target == null):
+		#Scream when player dies
+		if(attackSystems.MouthNotInUse()):
+			attackSystems.Scream()
+			isDummyMode = true
+		return
+	HandleCorneredDetection(delta)
+	HandleDecisionMaking()
 
 
 func _physics_process(_delta:float) -> void:
@@ -72,7 +83,6 @@ func _physics_process(_delta:float) -> void:
 	elif(targetDist < minFollowDist && -speedTowardsTarget < maxReverseSpeed):
 		moveForce += -moveReverseForce * dirToTarget
 	moveForce += GetWallAvoidVector() * wallAvoidForce
-	DebugLine.DrawLine(get_tree().current_scene, global_position, global_position + moveForce, Color.BLUE, 0.1)
 	apply_central_force(moveForce * mass)
 
 
@@ -94,14 +104,83 @@ func _integrate_forces(state:PhysicsDirectBodyState2D) -> void:
 	state.transform = newTransform
 
 
-func HandleDecisionMaking(pDelta:float) -> void:
-	var canInitiateBigAction:bool = attackSystems.CanInitiateBigAction()
-	if(!isInPhaseTwo && canInitiateBigAction && health <= halfHealth):
+func HandleCorneredDetection(pDelta:float) -> void:
+	if(distToNearestWall > corneredDist):
+		corneredDuration -= pDelta
+		if(corneredDuration < 0):
+			corneredDuration = 0
+	else:
+		corneredDuration += pDelta
+		if(corneredDuration > maxCorneredDuration):
+			corneredDuration = maxCorneredDuration
+
+
+func HandleDecisionMaking() -> void:
+	var bigActionActive:bool = attackSystems.BigActionActive()
+	var targetDist:float = GetDistanceToTargetSquared()
+	#Initiate second phase
+	if(!isInPhaseTwo && !bigActionActive && health <= halfHealth):
 		attackSystems.InitiatePhaseChange()
-	
+	#Scream when player dies
 	if(target == null && attackSystems.MouthNotInUse()):
 		attackSystems.Scream()
 		isDummyMode = true
+	#If in phase two, fire beam attack when it's off cooldown
+	if(isInPhaseTwo && !bigActionActive && attackSystems.IsBeamReady()):
+		attackSystems.ChargeFireBeams()
+		if(attackSystems.backEyeBlasterCooldownTimer < 8):
+			attackSystems.backEyeBlasterCooldownTimer = 8
+	if(isInPhaseTwo && attackSystems.IsBeamActive()):
+		#Fire back projectiles during beam attack
+		if(attackSystems.IsBackEyeBlasterReady()):
+			attackSystems.FireBackEyeBlasters()
+			attackSystems.backEyeBlasterCooldownTimer += 2
+		#End after 15-30 seconds
+		if(attackSystems.IsBeamOutOfTime()):
+			attackSystems.StopFiringBeams()	
+	#If big actions are happening, nothing else should really be going on
+	if(bigActionActive):
+		return
+	#Player is far
+	if(targetDist >= longRangeDist):
+		#Fire front projectiles at random times, phase two fire more often
+		if(attackSystems.IsFrontEyeBlasterReady()):
+			attackSystems.FireFrontEyeBlasters()
+			if(attackSystems.chompCooldownTimer > 5):
+				attackSystems.chompCooldownTimer = 5
+		#Fire back projectiles, phase two triple burst and fire more often
+		if(attackSystems.IsBackEyeBlasterReady() && corneredDuration <= 0):
+			if(isInPhaseTwo):
+				attackSystems.FireBackEyeBlasters(3)
+			else:
+				attackSystems.FireBackEyeBlasters()
+		#Maybe chomp attack
+		if(attackSystems.IsChompReady() && (isInPhaseTwo || !attackSystems.IsAnyBlasterBusy())):
+			if(firstAction || randi_range(0, 3) == 0):
+				attackSystems.StartChompAttack()
+			else:
+				attackSystems.chompCooldownTimer = 1
+	#Player is short range
+	if(targetDist <= minFollowDist):
+		#Do chomp attack
+		if(attackSystems.IsChompReady()):
+			attackSystems.StartChompAttack()
+	#Player is mid range
+	#Do chomp attack
+	if(attackSystems.IsChompReady()):
+		attackSystems.StartChompAttack()
+	#Fire front projectiles sometimes
+	if(attackSystems.IsFrontEyeBlasterReady()):
+		if(randi_range(0, 3) == 0):
+				attackSystems.FireFrontEyeBlasters()
+		else:
+			attackSystems.frontEyeBlasterCooldownTimer = 1
+	if(corneredDuration >= maxCorneredDuration):
+		corneredDuration = 0
+		attackSystems.chompCooldownTimer -= 5
+		if(attackSystems.chompCooldownTimer < 0):
+			attackSystems.chompCooldownTimer = 0
+	firstAction = false
 
 
 func ChompAttackLunge() -> void:
@@ -131,8 +210,9 @@ func TargetFound(pTarget:Node2D) -> void:
 	target = pTarget
 	target.tree_exited.connect(TargetLost)
 	can_sleep = false
+	breaking = false
 	visionSensor.monitoring = false
-	
+	#Add camera tracking when player gains aggro
 	var cameraCast:CameraMultitracking = get_viewport().get_camera_2d()
 	cameraCast.AddTrackTarget(self, 20)
 	cameraCast.AddTrackTarget(cameraTrackTarget, 1)
@@ -146,9 +226,9 @@ func TargetLost() -> void:
 	#attackSystems.TargetLost()
 	visionSensor.monitoring = true
 	can_sleep = true
+	breaking = true
 	target.tree_exited.disconnect(TargetLost)
 	target = null
-	
 	#Remove self from camera tracking if target player is lost
 	#var viewPort:Viewport = get_viewport()
 	#if(viewPort):
@@ -203,13 +283,20 @@ func GetWallAvoidVector() -> Vector2:
 	var hitResults:Dictionary
 	var blockerCast:Dictionary
 	var positionCast:Vector2
+	var avoidVector:Vector2
+	var wallDist:float
+	distToNearestWall = wallAvoidMaxDist**2
 	for node:Node2D in wallAvoidRaycastNodes:
 		query = PhysicsRayQueryParameters2D.create(node.global_position, node.global_position + node.global_transform.x * wallAvoidMaxDist)
 		hitResults = RaycastHelper.RaycastAllUntilBlocker(get_world_2d().direct_space_state, query)
 		blockerCast = hitResults.blocker
 		if(!blockerCast.is_empty()):
 			positionCast = blockerCast.position
-			ret += (node.global_position - positionCast)
+			avoidVector = node.global_position - positionCast
+			ret += avoidVector
+			wallDist = avoidVector.length_squared()
+			if(wallDist < distToNearestWall):
+				distToNearestWall = wallDist
 	ret = ret.normalized() * ((wallAvoidMaxDist - ret.length()) / wallAvoidMaxDist)
 	return ret
 

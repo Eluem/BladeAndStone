@@ -2,8 +2,8 @@ extends Node
 
 signal score_changed(pScore:int)
 
-var timeMultiplier:float = 0.25
-var initialTimeBuffer:float = 30
+var timeMultiplier:float = 5
+var initialTimeBuffer:float = 60*5 #5 minute buffer before penalties
 
 var currentScore:int = 0
 var prevScore:int = 0

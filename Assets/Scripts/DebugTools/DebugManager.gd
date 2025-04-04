@@ -26,7 +26,7 @@ func _ready() -> void:
 	call_deferred("InitializeCanvasParent")
 	
 	#Force unlocking the boss check point on game start
-	GameStateManager.gameData.checkPointReached = true
+	#GameStateManager.gameData.checkPointReached = true
 	
 	process_mode = PROCESS_MODE_ALWAYS
 	GameStateManager.scene_ready.connect(on_scene_change)

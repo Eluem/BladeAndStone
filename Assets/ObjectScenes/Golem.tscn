@@ -1,10 +1,11 @@
-[gd_scene load_steps=123 format=3 uid="uid://bduaw211b10ea"]
+[gd_scene load_steps=124 format=3 uid="uid://bduaw211b10ea"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Golem.gd" id="1_tsbc7"]
 [ext_resource type="AudioStream" uid="uid://c31xlgdwhfhep" path="res://Assets/Audio/SFX/Creature_Hurt1.wav" id="2_2bl6p"]
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerStateMachine.gd" id="2_6q84m"]
 [ext_resource type="AudioStream" uid="uid://cov8quo48esx2" path="res://Assets/Audio/SFX/Creature_Hurt2.wav" id="3_26qmk"]
 [ext_resource type="Script" path="res://Assets/Scripts/CharacterInputHandler.gd" id="3_drva7"]
+[ext_resource type="Script" path="res://Assets/Scripts/TopLevelMovementTracker.gd" id="4_3nqdf"]
 [ext_resource type="Script" path="res://Assets/Scripts/Trail.gd" id="4_emk4k"]
 [ext_resource type="Texture2D" uid="uid://d3xligh222wth" path="res://Assets/Art/Characters/BasicSwordTest.png" id="5_g7rrp"]
 [ext_resource type="Script" path="res://Assets/Scripts/MeleeWeaponRaycastCollider.gd" id="6_5cw8i"]
@@ -137,7 +138,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0.12),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [800.0],
+"args": [900.0],
 "method": &"lunge"
 }]
 }
@@ -2110,7 +2111,7 @@ tracks/32/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [500.0],
+"args": [700.0],
 "method": &"lunge"
 }]
 }
@@ -3498,6 +3499,10 @@ linear_damp = 3.0
 angular_damp = 10.0
 script = ExtResource("1_tsbc7")
 hurtSFX = Array[AudioStream]([ExtResource("2_2bl6p"), ExtResource("3_26qmk")])
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+script = ExtResource("4_3nqdf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

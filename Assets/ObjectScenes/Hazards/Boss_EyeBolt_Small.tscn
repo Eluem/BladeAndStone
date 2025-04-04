@@ -28,7 +28,7 @@ selfDamageDelayStateStart = 2
 targetForceBreakawayAngle = 5.0
 dodgeLockBreakAngle = 90.0
 dodgeLockBreakDist = 250.0
-damage = 10
+damage = 5
 knockback = 2000.0
 lifetime = 10.0
 

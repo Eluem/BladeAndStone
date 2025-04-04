@@ -27,10 +27,11 @@ initialPathDuration = 0.0
 trackingDuration = 1.5
 selfDamageDelay = 0.5
 selfDamageDelayStateStart = 2
+selfDamageDelayMinDistStart = 600.0
 initialTargetLockMaxAngle = 100.0
 dodgeLockBreakAngle = 60.0
 dodgeLockBreakDist = 300.0
-damage = 40
+damage = 25
 knockback = 2000.0
 lifetime = 10.0
 

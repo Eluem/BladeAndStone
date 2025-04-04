@@ -12,7 +12,7 @@ enum ProjectileType
 @onready var chargeEffect:GPUParticles2D = $ChargeEffect
 
 @export var projectileType:ProjectileType
-@export var burstRoundDelay:float = 0.2
+@export var burstRoundDelay:float = 0.3
 
 
 var target:Node2D
@@ -22,15 +22,15 @@ var bossRID:RID
 var charging:bool = false
 var bursting:bool = false
 var roundsInBurst:int = 1
+@export var eyeBoltChargeWaitTime:float = 4
 var eyeBoltChargeTimer:float = 0
-var eyeBoltChargeWaitTime:float = 4
-var eyeBoltAlmostCharged:float = 2
+var defaultEyeBoltChargeWaitTime:float = 4
+var eyeBoltAlmostCharged:float
 var burstRoundDelayTimer:float = 0
 #var eyeBoltRechargeDelayTimer:float = 1
 #var eyeBoltRechargeDelay:float = 1
 var standardChargeParticleProcessMaterial:ParticleProcessMaterial
 var standardChargeEffectLifeTime:float
-var interruptedChargeParticleProcessMaterial:ParticleProcessMaterial
 var initialProjectilePath:Array[Node]
 var initialProjectilePath2:Array[Node]
 var hasSecondFirePath:bool = false
@@ -39,11 +39,9 @@ var hasSecondFirePath:bool = false
 func _ready() -> void:
 	boss = owner
 	bossRID = boss.get_rid()
+	eyeBoltAlmostCharged = eyeBoltChargeWaitTime/2
 	standardChargeParticleProcessMaterial = chargeEffect.process_material
 	standardChargeEffectLifeTime = chargeEffect.lifetime
-	interruptedChargeParticleProcessMaterial = chargeEffect.process_material.duplicate(true)
-	interruptedChargeParticleProcessMaterial.radial_velocity_min = 400
-	interruptedChargeParticleProcessMaterial.orbit_velocity_max = 0
 	var initialProjectilePathNode:Node = get_node_or_null("InitialProjectilePath")
 	if(initialProjectilePathNode != null):
 		initialProjectilePath = initialProjectilePathNode.get_children()
@@ -51,6 +49,7 @@ func _ready() -> void:
 	if(initialProjectilePathNode2 != null):
 		hasSecondFirePath = true
 		initialProjectilePath2 = initialProjectilePathNode2.get_children()
+	chargeUpSFXPlayer.pitch_scale = defaultEyeBoltChargeWaitTime / eyeBoltChargeWaitTime
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -90,6 +89,7 @@ func UpdateBurst() -> void:
 func HandleBurst(pDelta:float) -> void:
 	burstRoundDelayTimer += pDelta
 	if(burstRoundDelayTimer >= burstRoundDelay):
+		burstRoundDelayTimer = 0
 		Fire()
 		UpdateBurst()
 
@@ -122,6 +122,8 @@ func StopCharging() -> void:
 func StartCharging(pRoundsInBurst:int = 1) -> void:
 	charging = true
 	roundsInBurst = pRoundsInBurst
+	if(pRoundsInBurst > 1):
+		bursting = true
 
 
 func Die() -> void:
@@ -146,3 +148,7 @@ func SetTarget(pTarget:Node2D) -> void:
 	target = pTarget
 	if(target != null):
 		target.tree_exited.connect(SetTarget.bind(null))
+
+
+func IsBusy() -> bool:
+	return charging || bursting
