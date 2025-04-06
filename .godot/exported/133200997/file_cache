@@ -53,7 +53,7 @@ res://Assets/GameScenes/DevScenes/TestScene.tscn::6f073644c46a4ae9a4343dd2425970
 res://Assets/GameScenes/BootSplash.tscn::7b1f97a531615dccc5c27a2b49416b6b::1743687745::res://.godot/exported/133200997/export-b438ca9df413650bbba5d60e9ffacbc1-BootSplash.scn
 res://Assets/GameScenes/CanvasManagerScene.tscn::f46be7045b7f6a9860bb907fe3628fb6::1743954602::res://.godot/exported/133200997/export-5068558cea8c37fcfc36dd92bdd17d8e-CanvasManagerScene.scn
 res://Assets/GameScenes/Credits.tscn::dac60b0ce61de386423aa70eafbaf2ea::1743606430::res://.godot/exported/133200997/export-ad9781e39e5e6a4c436990ccc3a23363-Credits.scn
-res://Assets/ObjectScenes/Enemies/BossEnemyRamBeam.tscn::acee018f6184dfeb3c7966d07eb88e64::1743966982::res://.godot/exported/133200997/export-3be12fdb4c161349a998acf55e5d14e4-BossEnemyRamBeam.scn
+res://Assets/ObjectScenes/Enemies/BossEnemyRamBeam.tscn::a8f1ffb83235e383140dfd8a4fdf2d19::1743967386::res://.godot/exported/133200997/export-3be12fdb4c161349a998acf55e5d14e4-BossEnemyRamBeam.scn
 res://Assets/ObjectScenes/Items/BossKey.tscn::e2753c69da2243cabf20e260042cbc82::1733416233::res://.godot/exported/133200997/export-ad9102ea09ece79217d0bbaede118613-BossKey.scn
 res://Assets/Art/UI/HoverButton_StyleBox.tres::f07746181ed2abb854d1c281ff795982::1743788032::res://.godot/exported/133200997/export-39af222b1981f65fe5989352df17ed13-HoverButton_StyleBox.res
 res://Assets/Art/UI/NormalButton_StyleBox.tres::9a90f3d8e14b81ed865bb3b33a7ecb87::1743788032::res://.godot/exported/133200997/export-d63957a2faac2bb76e01b6032f0b0092-NormalButton_StyleBox.res
