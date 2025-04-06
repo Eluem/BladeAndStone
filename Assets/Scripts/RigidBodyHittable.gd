@@ -11,6 +11,7 @@ class_name RigidBodyHittable
 		if(health != value):
 			health = value
 			health_changed.emit(maxHealth, health)
+@export var damageReduction:float = 0
 @export var invulnerable:bool = false
 @export var generateOutline:bool = true
 @export var blockLineOfSight:bool = false
@@ -19,6 +20,7 @@ class_name RigidBodyHittable
 @export var largeGemValue:int = 0
 @export var hurtSFX:Array[AudioStream]
 @export var deathSFX:Array[AudioStream]
+
 
 #var debugInfo:DebugInfo
 var spritePolygon:Polygon2D
@@ -61,7 +63,9 @@ func HandleHit(pHitData:HitData) -> void:
 func ApplyDamage(pHitOwner:Node2D, pDamage:int, pDir:Vector2 = Vector2.ZERO, pForce:float = 0) -> void:
 	if(invulnerable):
 		return
-	var effectiveDamage:int = clamp(pDamage, 0, health)
+	var effectiveDamage:int = pDamage
+	effectiveDamage -= clampi(ceili(effectiveDamage * damageReduction), 0, absi(effectiveDamage - 1))
+	effectiveDamage = clampi(effectiveDamage, 0, health)
 	health -= effectiveDamage
 	damage_taken.emit(effectiveDamage, pHitOwner)
 	#health_changed.emit(maxHealth, health, pHitOwner)

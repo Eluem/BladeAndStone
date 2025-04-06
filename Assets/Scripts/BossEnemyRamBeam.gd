@@ -127,6 +127,7 @@ func HandleDecisionMaking() -> void:
 		isDummyMode = true
 	#If in phase two, fire beam attack when it's off cooldown
 	if(isInPhaseTwo && !bigActionActive && attackSystems.IsBeamReady()):
+		bigActionActive = true
 		attackSystems.ChargeFireBeams()
 		if(attackSystems.backEyeBlasterCooldownTimer < 8):
 			attackSystems.backEyeBlasterCooldownTimer = 8
@@ -134,7 +135,8 @@ func HandleDecisionMaking() -> void:
 		#Fire back projectiles during beam attack
 		if(attackSystems.IsBackEyeBlasterReady()):
 			attackSystems.FireBackEyeBlasters()
-			attackSystems.backEyeBlasterCooldownTimer += 2
+			if(attackSystems.backEyeBlasterCooldownTimer < 7):
+				attackSystems.backEyeBlasterCooldownTimer = 7
 		#End after 15-30 seconds
 		if(attackSystems.IsBeamOutOfTime()):
 			attackSystems.StopFiringBeams()	
@@ -146,7 +148,7 @@ func HandleDecisionMaking() -> void:
 		#Fire front projectiles at random times, phase two fire more often
 		if(attackSystems.IsFrontEyeBlasterReady()):
 			attackSystems.FireFrontEyeBlasters()
-			if(attackSystems.chompCooldownTimer > 5):
+			if(!isInPhaseTwo && attackSystems.chompCooldownTimer < 5):
 				attackSystems.chompCooldownTimer = 5
 		#Fire back projectiles, phase two triple burst and fire more often
 		if(attackSystems.IsBackEyeBlasterReady() && corneredDuration <= 0):
@@ -154,10 +156,17 @@ func HandleDecisionMaking() -> void:
 				attackSystems.FireBackEyeBlasters(3)
 			else:
 				attackSystems.FireBackEyeBlasters()
+				if(attackSystems.chompCooldownTimer < 2.5):
+					attackSystems.chompCooldownTimer = 2.5
 		#Maybe chomp attack
 		if(attackSystems.IsChompReady() && (isInPhaseTwo || !attackSystems.IsAnyBlasterBusy())):
 			if(firstAction || randi_range(0, 3) == 0):
 				attackSystems.StartChompAttack()
+				if(!isInPhaseTwo):
+					if(attackSystems.backEyeBlasterCooldownTimer < 1):
+						attackSystems.backEyeBlasterCooldownTimer = 1
+					if(attackSystems.frontEyeBlasterCooldownTimer < 1):
+						attackSystems.frontEyeBlasterCooldownTimer = 1
 			else:
 				attackSystems.chompCooldownTimer = 1
 	#Player is short range
@@ -167,16 +176,23 @@ func HandleDecisionMaking() -> void:
 			attackSystems.StartChompAttack()
 	#Player is mid range
 	#Do chomp attack
-	if(attackSystems.IsChompReady()):
+	if(attackSystems.IsChompReady() && attackSystems.IsAnyBlasterBusy()):
 		attackSystems.StartChompAttack()
+		if(attackSystems.backEyeBlasterCooldownTimer < 1):
+			attackSystems.backEyeBlasterCooldownTimer = 1
+		if(attackSystems.frontEyeBlasterCooldownTimer < 1):
+			attackSystems.frontEyeBlasterCooldownTimer = 1
 	#Fire front projectiles sometimes
 	if(attackSystems.IsFrontEyeBlasterReady()):
 		if(randi_range(0, 3) == 0):
-				attackSystems.FireFrontEyeBlasters()
+			attackSystems.FireFrontEyeBlasters()
+			if(attackSystems.chompCooldownTimer < 5):
+				attackSystems.chompCooldownTimer = 5
 		else:
 			attackSystems.frontEyeBlasterCooldownTimer = 1
+	#Reduce the chomp cooldown if the boss is cornered
 	if(corneredDuration >= maxCorneredDuration):
-		corneredDuration = 0
+		corneredDuration = maxCorneredDuration - 1
 		attackSystems.chompCooldownTimer -= 5
 		if(attackSystems.chompCooldownTimer < 0):
 			attackSystems.chompCooldownTimer = 0

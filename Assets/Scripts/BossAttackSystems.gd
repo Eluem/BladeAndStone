@@ -23,6 +23,7 @@ var keyMDown:bool
 var keyCDown:bool
 var keyFDown:bool
 var keyBDown:bool
+var keyKDown:bool
 var beamCooldownRange:Vector2 = Vector2(30, 60)
 var beamDurationRange:Vector2 = Vector2(13, 18)
 var beamCooldownTimer:float
@@ -111,12 +112,24 @@ func GenerateChompCooldown() -> void:
 		chompCooldownTimer = randf_range(chompCooldownRange.x, chompCooldownRange.y)
 
 
-func IsAnyBlasterBusy() -> bool:
+func IsFrontBlasterBusy() -> bool:
 	if(eyeBlasterFrontLeft.IsBusy() || eyeBlasterFrontRight.IsBusy()):
 		return true
+	return false
+
+
+func IsBackBlasterBusy() -> bool:
 	if(eyeBlasterBackLeft.IsBusy() || eyeBlasterBackRight.IsBusy()):
 		return true
 	if(boss.isInPhaseTwo && eyeBlasterBackCenter.IsBusy()):
+		return true
+	return false
+
+
+func IsAnyBlasterBusy() -> bool:
+	if(IsFrontBlasterBusy()):
+		return true
+	if(IsBackBlasterBusy()):
 		return true
 	return false
 
@@ -148,6 +161,7 @@ func IsBeamOutOfTime() -> bool:
 
 
 func ChargeFireBeams() -> void:
+	boss.damageReduction = 0.5
 	boss.pidJoint.enabled = true
 	boss.lock_rotation = true
 	animationPlayerEyes.play("BeamChargeFire")
@@ -165,6 +179,7 @@ func StopFiringBeams() -> void:
 
 
 func BeamFiringEnded() -> void:
+	boss.damageReduction = 0
 	boss.pidJoint.enabled = false
 	boss.lock_rotation = false
 	beamDurationTimer = randf_range(beamDurationRange.x, beamDurationRange.y)
@@ -267,44 +282,42 @@ func HandleDebugInputs() -> void:
 	if(!debugEnabled):
 		return
 	if(Input.is_key_pressed(KEY_SPACE) && !keySpaceDown):
-		print("Space: Disable Me")
 		ChargeFireBeams()
 		keySpaceDown = true
 	elif(!Input.is_key_pressed(KEY_SPACE)):
 		keySpaceDown = false
 	if(Input.is_key_pressed(KEY_O) && !keyODown):
-		print("O: Disable Me")
 		animationPlayerEyes.play("OpenEyes")
 		keyODown = true
 	elif(!Input.is_key_pressed(KEY_O)):
 		keyODown = false
 	if(Input.is_key_pressed(KEY_S) && !keySDown):
-		print("S: Disable Me")
 		StopFiringBeams()
 		keySDown = true
 	elif(!Input.is_key_pressed(KEY_S)):
 		keySDown = false
 	if(Input.is_key_pressed(KEY_M) && !keyMDown):
-		print("M: Disable Me")
 		InitiatePhaseChange()
 		keyMDown = true
 	elif(!Input.is_key_pressed(KEY_M)):
 		keyMDown = false
 	if(Input.is_key_pressed(KEY_C) && !keyCDown):
-		print("C: Disable Me")
 		StartChompAttack()
 		keyCDown = true
 	elif(!Input.is_key_pressed(KEY_C)):
 		keyCDown = false
 	if(Input.is_key_pressed(KEY_F) && !keyFDown):
-		print("F: Disable Me")
 		FireFrontEyeBlasters()
 		keyFDown = true
 	elif(!Input.is_key_pressed(KEY_F)):
 		keyFDown = false
 	if(Input.is_key_pressed(KEY_B) && !keyBDown):
-		print("F: Disable Me")
 		FireBackEyeBlasters(3)
 		keyBDown = true
 	elif(!Input.is_key_pressed(KEY_B)):
 		keyBDown = false
+	if(Input.is_key_pressed(KEY_K) && !keyKDown):
+		boss.queue_free()
+		keyKDown = true
+	elif(!Input.is_key_pressed(KEY_K)):
+		keyKDown = false

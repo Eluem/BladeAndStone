@@ -2073,8 +2073,19 @@ mass = 10.0
 angular_damp_mode = 1
 angular_damp = 2.0
 script = ExtResource("1_8vjai")
+isDummyMode = null
+wallAvoidMaxDist = null
 maxHealth = 180
+health = null
+damageReduction = null
+invulnerable = null
+generateOutline = null
+blockLineOfSight = null
+blockAttacks = null
+smallGemValue = null
+largeGemValue = null
 hurtSFX = Array[AudioStream]([ExtResource("2_1elft"), ExtResource("3_k15bf")])
+deathSFX = null
 
 [node name="AnimationPlayerEyes" type="AnimationPlayer" parent="."]
 libraries = {

@@ -242,8 +242,7 @@ func PopulateInitialPathWithNodes(pNodes:Array[Node]) -> void:
 	for node:Node2D in pNodes:
 		initialPath.append(node)
 	if(pNodes.size() > 0):
-		pNodes[0].tree_exited.connect(initialPath.clear)
-		pNodes[0].tree_exited.connect(UpdateTrackState)
+		pNodes[0].tree_exited.connect(ClearInitialPath)
 	UpdateTrackState()
 
 
@@ -255,8 +254,8 @@ func GetInitialPathNextPos() -> Vector2:
 			return target.global_position
 		else:
 			return Vector2.ZERO
-	if(!is_instance_valid(initialPath[0])):
-		trackState = TrackState.CancelTracking
+	#if(!is_instance_valid(initialPath[0])):
+		#trackState = TrackState.CancelTracking
 	var retPos:Vector2
 	var nextPathPos:Vector2 = initialPath[0].global_position
 	var nextPathPosDistSqred:float = (nextPathPos - global_position).length_squared()
@@ -276,8 +275,7 @@ func GetInitialPathNextPos() -> Vector2:
 			if(targetPosDistSqred <= nextPathPosDistSqred || targetAngleTo < nextPathAngleTo || targetAngleTo < targetForceBreakawayAngleRad):
 				if(!DoesPathToTargetIntersectOriginator()):
 					retPos = target.global_position
-					initialPath.clear()
-					UpdateTrackState()
+					ClearInitialPath()
 	return retPos
 
 
@@ -308,3 +306,8 @@ func DoesPathToTargetIntersectOriginator() -> bool:
 	var hitResult:Dictionary
 	hitResult = RaycastHelper.RaycastToRID(get_world_2d().direct_space_state, originatorRID, global_position, target.global_position)
 	return !hitResult.is_empty()
+
+
+func ClearInitialPath() -> void:
+	initialPath.clear()
+	UpdateTrackState()
