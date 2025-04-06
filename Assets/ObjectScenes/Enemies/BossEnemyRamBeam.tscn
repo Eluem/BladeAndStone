@@ -2514,8 +2514,8 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="Cracks3" type="Node2D" parent="Visuals"]
-position = Vector2(-1029.13, -495.146)
-rotation = -0.154103
+position = Vector2(-1090.61, -537.217)
+rotation = -0.0804597
 script = ExtResource("13_qe76e")
 widthRange = Vector2(0, 50)
 
@@ -2544,7 +2544,7 @@ antialiased = true
 
 [node name="Crack3" type="Line2D" parent="Visuals/Cracks3"]
 rotation = -2.23008
-points = PackedVector2Array(0, 0, 75.4172, -61.0407, 57.1901, -173.564, -28.3331, -317.154, 23.1506, -410.798)
+points = PackedVector2Array(0, 0, 75.4172, -61.0407, 108.242, -137.809, 40.2656, -221.753, 65.7014, -316.836)
 width = 40.0
 width_curve = SubResource("Curve_tiu3t")
 default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
